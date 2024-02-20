@@ -1,0 +1,91 @@
+import styled from "styled-components";
+import Heading from "./Heading";
+import Logo from "./Logo";
+import LogoLink from "./LogoLink";
+import { HiOutlineEnvelope, HiOutlinePhone } from "react-icons/hi2";
+import { Link } from "react-router-dom";
+
+function Footer() {
+  return (
+    <StyledFooter>
+      <StyledContent>
+        <Link replace to="home">
+          <Logo src="logo-redzone.png" />
+        </Link>
+        <StyledContactUs>
+          <StyledHeadind>
+            <Heading color="#f3f4f6" as="h5">
+              Contact Us
+            </Heading>
+          </StyledHeadind>
+          <ContactElement>
+            <HiOutlinePhone color="#f3f4f6" />
+            <P>+962 7 0000 0000</P>
+          </ContactElement>
+          <ContactElement>
+            <HiOutlineEnvelope color="#f3f4f6" />
+            <P>info@xx.com</P>
+          </ContactElement>
+        </StyledContactUs>
+        <StyledStayUpdated>
+          <StyledHeadind>
+            <Heading color="#f3f4f6" as="h5">
+              Stay updated
+            </Heading>
+          </StyledHeadind>
+          <LogoLink />
+        </StyledStayUpdated>
+      </StyledContent>
+      <StyledCopyRight>
+        <P>Copyright © 2024 dev.Mohammad Alsaadi.</P>
+      </StyledCopyRight>
+    </StyledFooter>
+  );
+}
+
+export default Footer;
+const StyledFooter = styled.footer`
+  width: 100%;
+  height: 200px;
+  border-top: 1px solid var(--color-grey-200);
+
+  background-color: var(--color-grey-footer);
+`;
+const StyledContent = styled.div`
+  display: flex;
+  gap: 15rem;
+  align-items: center;
+  height: 100%;
+`;
+const StyledHeadind = styled.div`
+  border-bottom: 1px solid var(--color-grey-100);
+`;
+const StyledContactUs = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`;
+const StyledStayUpdated = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`;
+const ContactElement = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding-top: 20px;
+`;
+const P = styled.p`
+  font-size: small;
+  color: #f3f4f6;
+  /* padding-top: 10px; */
+`;
+const StyledCopyRight = styled.div`
+  width: 100%;
+  background-color: var(--color-grey-footer);
+  border-top: 1px solid;
+  padding: 10px 20px;
+`;

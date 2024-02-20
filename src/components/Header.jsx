@@ -8,6 +8,7 @@ import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
 import { useShowSideBar } from "../context/ShowSideBar";
 import Logo from "./Logo";
 import Heading from "./Heading";
+import { Link } from "react-router-dom";
 
 function Header() {
   // const { isDesktopDevice } = useDeviceWidth();
@@ -16,7 +17,9 @@ function Header() {
   return (
     <StyledHeader>
       <LayerOne>
-        <Logo />
+        <Link to="home">
+          <Logo />
+        </Link>
         <Heading as="h2">Company Name</Heading>
         <OptionsContainer>
           <Signin>
@@ -42,6 +45,7 @@ function Header() {
             </ButtonIcon>
           </OptionIcon>
         )}
+
         <SearchBar />
       </LayerTwo>
     </StyledHeader>
@@ -57,7 +61,7 @@ const StyledHeader = styled.header`
   gap: 1rem;
   background-color: var(--color-grey-50);
   height: 18rem; //15
-  border-bottom: 1px solid var(--color-grey-200);
+  /* border-bottom: 1px solid var(--color-grey-200); */
 `;
 const OptionsContainer = styled.div`
   display: flex;
@@ -71,9 +75,9 @@ const OptionIcon = styled.div`
   padding-bottom: 8rem;
   cursor: pointer;
 
-  /* @media (min-width: 600px) {
+  @media (min-width: 900px) {
     display: none;
-  } */
+  }
 `;
 const LayerOne = styled.div`
   margin-top: 3rem;
@@ -88,15 +92,17 @@ const LayerOne = styled.div`
 const LayerTwo = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 20rem;
+  justify-content: center;
   height: 50%; //temp
   width: 100%;
+  padding-left: 20rem;
 
   margin-top: 10px;
   @media (max-width: 900px) {
     /* justify-content: flex-end; */
+    gap: 20rem;
     padding: 0px 40px;
+    justify-content: space-between;
     gap: 12rem;
   }
 `;

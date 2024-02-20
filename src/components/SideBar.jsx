@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Logo from "./Logo";
 import ButtonIcon from "./ButtonIcon";
 import { HiOutlineXMark } from "react-icons/hi2";
 import { useShowSideBar } from "../context/ShowSideBar";
@@ -14,9 +13,8 @@ function Sidebar() {
           <HiOutlineXMark color="red" />
         </ButtonIcon>
       </StyleCloser>
-      <br />
+
       <Heading as="h2">Options</Heading>
-      <br />
 
       <SideBarOptions />
     </StyledSidebar>
@@ -31,16 +29,17 @@ const StyledSidebar = styled.aside`
   grid-row: 1/-1;
   display: flex;
   justify-content: flex-start;
-
+  gap: 4rem;
   height: 100%;
-  @media (max-width: 900px) {
-    position: absolute;
-    width: 30%;
-    transition: width 100ms ease;
-  }
+  /* @media (max-width: 900px) { */
+  position: absolute;
+  width: 30%;
+  transition: width 100ms ease;
+  /* } */
 
   flex-direction: column;
   align-items: center;
+  z-index: 1;
 `;
 
 const StyleCloser = styled.div`

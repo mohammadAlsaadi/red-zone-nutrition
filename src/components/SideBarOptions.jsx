@@ -11,6 +11,7 @@ import {
   HiOutlineUserPlus,
 } from "react-icons/hi2";
 import SwitchButton from "./SwitchButton";
+import { useShowSideBar } from "../context/ShowSideBar";
 
 const NavList = styled.ul`
   display: flex;
@@ -58,35 +59,39 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 function SideBarOptions() {
+  const { setShowSideBar } = useShowSideBar();
+  const handleCloseSideBar = () => {
+    setShowSideBar(false);
+  };
   return (
     <NavList>
       <li>
-        <StyledNavLink to="/">
+        <StyledNavLink to="/" onClick={handleCloseSideBar}>
           <HiOutlineHome /> <span>Home</span>
         </StyledNavLink>
       </li>
       <li>
-        <StyledNavLink to="products">
+        <StyledNavLink to="products" onClick={handleCloseSideBar}>
           <HiOutlineSquares2X2 />
 
           <span>Products</span>
         </StyledNavLink>
       </li>
       <li>
-        <StyledNavLink to="cart">
+        <StyledNavLink to="cart" onClick={handleCloseSideBar}>
           <HiOutlineShoppingCart />
           <span>Cart</span>
         </StyledNavLink>
       </li>
       <li>
-        <StyledNavLink to="account">
+        <StyledNavLink to="account" onClick={handleCloseSideBar}>
           <HiOutlineUser />
           <span>Account</span>
         </StyledNavLink>
       </li>
 
       <li>
-        <StyledNavLink to="settings">
+        <StyledNavLink to="settings" onClick={handleCloseSideBar}>
           <HiOutlineCog6Tooth />
           <span>Settings</span>
         </StyledNavLink>

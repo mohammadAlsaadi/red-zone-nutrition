@@ -11,9 +11,11 @@ const TEMP_IMG_SLIDES = [
   { url: "slideImage4.jpg", title: "slideImage4" },
   { url: "slideImage5.jpg", title: "slideImage5" },
 ];
+
 function SliderImages() {
   const [currIndex, setCurrIndex] = useState(0);
   const { showSideBar } = useShowSideBar();
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrIndex((prevIndex) => (prevIndex + 1) % TEMP_IMG_SLIDES.length);
@@ -21,6 +23,7 @@ function SliderImages() {
 
     return () => clearInterval(intervalId); // Cleanup the interval on component unmount
   }, []);
+
   const handlePrevClick = () => {
     if (currIndex !== 0) {
       setCurrIndex((prevIndex) => prevIndex - 1);
@@ -32,12 +35,16 @@ function SliderImages() {
       setCurrIndex((prevIndex) => prevIndex + 1);
     }
   };
+
   return (
     <StyledSliderImages showSideBar={showSideBar}>
       <ButtonIcon onClick={handlePrevClick}>
         <HiChevronLeft color="red" />
       </ButtonIcon>
-      <StyledImg src={`${TEMP_IMG_SLIDES[currIndex]?.url}`}></StyledImg>
+      <StyledImg
+        imgUrl={TEMP_IMG_SLIDES[currIndex]?.url}
+        title={TEMP_IMG_SLIDES[currIndex]?.title}
+      />
       <ButtonIcon onClick={handleNextClick}>
         <HiChevronRight color="red" />
       </ButtonIcon>
@@ -46,13 +53,14 @@ function SliderImages() {
 }
 
 export default SliderImages;
+
 const StyledSliderImages = styled.div`
   height: 100%;
-  /* position: relative; */
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2rem;
+
   ${(props) =>
     props.showSideBar
       ? css`
@@ -77,14 +85,24 @@ const StyledSliderImages = styled.div`
       : ""};
 `;
 
-const StyledImg = styled.img`
+const StyledImg = styled.div`
   @media (max-width: 600px) {
     height: 160px;
     width: 270px;
   }
+
+  border-radius: 2rem;
+  @media (max-width: 600px) {
+    height: 160px;
+    width: 270px;
+  }
+
   border-radius: 2rem;
   height: 220px;
   width: 400px;
+  background-image: ${(props) => `url(${props.imgUrl})`};
+  background-size: cover;
+  background-position: center;
 
   /* Add a nice fade-in, box-shadow, and scale effect */
   opacity: 0;

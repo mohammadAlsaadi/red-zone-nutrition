@@ -3,18 +3,20 @@ import Header from "./Header";
 import SideBar from "./SideBar";
 import { Outlet } from "react-router-dom";
 import { useShowSideBar } from "../context/ShowSideBar";
+import Footer from "./Footer";
 
 function AppLayout() {
   const { showSideBar } = useShowSideBar();
 
   return (
-    <StyledAppLayout showen={showSideBar}>
+    <StyledAppLayout>
       <Header />
       {showSideBar && <SideBar />}
       <Main>
         <Container>
           <Outlet />
         </Container>
+        <Footer />
       </Main>
     </StyledAppLayout>
   );
@@ -24,6 +26,7 @@ export default AppLayout;
 
 const StyledAppLayout = styled.div`
   @media (max-width: 900px) {
+    background-color: var(--color-grey-0);
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -44,20 +47,10 @@ const StyledAppLayout = styled.div`
       background-color: var(--color-grey-300);
     }
   }
-
-  ${(props) =>
-    props.showen
-      ? `
-      display: grid;
-      grid-template-columns: 26rem 1fr;
-      grid-template-rows: auto 1fr;
-      height: 100vh;
-    `
-      : "display: none;"};
 `;
 const Main = styled.main`
   background-color: var(--color-grey-50);
-  padding: 1rem 2.8rem 6.4rem;
+  padding: 1rem 2.8rem 1.4rem;
   height: 100%;
 `;
 const Container = styled.div`
