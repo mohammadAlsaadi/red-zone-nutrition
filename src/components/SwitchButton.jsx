@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDarkMode } from "../context/DarkModeContext";
-import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
 
 const SwitchButton = () => {
   const [isChecked, setIsChecked] = useState(false);
