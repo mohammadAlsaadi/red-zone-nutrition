@@ -25,6 +25,13 @@ export const getToday = function (options = {}) {
 };
 
 export const formatCurrency = (value) =>
-  new Intl.NumberFormat("en", { style: "currency", currency: "USD" }).format(
+  new Intl.NumberFormat("en", { style: "currency", currency: "JOD" }).format(
     value
   );
+
+export const countryPhoneData = [
+  { code: "JO", label: "Jordan", phone: "962", phoneLength: [8, 9] },
+  { code: "IQ", label: "Iraq", phone: "964", phoneLength: 10 },
+  { code: "AE", label: "United Arab Emirates", phone: "971", phoneLength: 9 },
+  { code: "SA", label: "Saudi Arabia", phone: "966", phoneLength: 9 },
+];

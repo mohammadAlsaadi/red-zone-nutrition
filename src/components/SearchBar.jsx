@@ -52,5 +52,5 @@ const StyledInput = styled.input`
 const StyledSearchBar = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 35%;
+  /* margin-right: 35%; */
 `;

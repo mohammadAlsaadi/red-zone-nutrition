@@ -7,7 +7,8 @@ import useProducts from "./useProducts";
 import Spinner from "../../components/Spinner";
 
 function ProductsList() {
-  const { data: FAKE_DATA, isLoading } = useProducts();
+  const { data: FAKE_DATA = [], isLoading } = useProducts();
+
   const { showSideBar } = useShowSideBar();
   const responsive = {
     superLargeDesktop: {

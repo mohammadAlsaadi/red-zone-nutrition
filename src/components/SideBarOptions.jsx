@@ -12,6 +12,7 @@ import {
 } from "react-icons/hi2";
 import SwitchButton from "./SwitchButton";
 import { useShowSideBar } from "../context/ShowSideBar";
+import Logout from "./Logout";
 
 const NavList = styled.ul`
   display: flex;
@@ -97,6 +98,11 @@ function SideBarOptions() {
         </StyledNavLink>
       </li>
       <li>
+        {/* <li>
+          <StyledNavLink>
+            <Logout />
+          </StyledNavLink>
+        </li> */}
         <StyledNavLink>
           <span>Dark mode</span> <SwitchButton />
         </StyledNavLink>

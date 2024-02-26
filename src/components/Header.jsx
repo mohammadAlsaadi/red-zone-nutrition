@@ -8,11 +8,17 @@ import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
 import { useShowSideBar } from "../context/ShowSideBar";
 import Logo from "./Logo";
 import Heading from "./Heading";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import CartIcon from "./CartIcon";
+import { useUser } from "../featurs/authentication/useUser";
+import UserCart from "../featurs/authentication/UserCart";
+import Logout from "./Logout";
 
 function Header() {
   // const { isDesktopDevice } = useDeviceWidth();
   const { showSideBar, setShowSideBar } = useShowSideBar();
+  const { isAuthenticated } = useUser();
+  const navigate = useNavigate();
 
   return (
     <StyledHeader>
@@ -22,15 +28,14 @@ function Header() {
         </Link>
         <Heading as="h2">Company Name</Heading>
         <OptionsContainer>
-          <Signin>
-            <P>Sign in</P>
-          </Signin>
-          <ButtonIcon>
-            <HiOutlineUser color="red" />
-          </ButtonIcon>
-          <ButtonIcon>
-            <HiOutlineShoppingCart color="red" />
-          </ButtonIcon>
+          {isAuthenticated ? (
+            <UserCart />
+          ) : (
+            <Signin onClick={() => navigate("/login")}>
+              <P>Sign in</P>
+            </Signin>
+          )}
+          <CartIcon />
         </OptionsContainer>
       </LayerOne>
       <LayerTwo>
@@ -47,6 +52,7 @@ function Header() {
         )}
 
         <SearchBar />
+        {isAuthenticated && <Logout />}
       </LayerTwo>
     </StyledHeader>
   );
@@ -65,7 +71,7 @@ const StyledHeader = styled.header`
 `;
 const OptionsContainer = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 20px;
 `;
 const OptionIcon = styled.div`
   /* Default styles for smaller screens */
@@ -92,18 +98,19 @@ const LayerOne = styled.div`
 const LayerTwo = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-between;
   height: 50%; //temp
   width: 100%;
-  padding-left: 20rem;
+  padding: 0px 30px;
+  /* padding-left: 10rem; */
 
   margin-top: 10px;
   @media (max-width: 900px) {
     /* justify-content: flex-end; */
-    gap: 20rem;
-    padding: 0px 40px;
-    justify-content: space-between;
-    gap: 12rem;
+    /* gap: 20rem; */
+    /* padding: 0px 20px; */
+    /* justify-content: space-between; */
+    /* gap: 0rem; */
   }
 `;
 const Signin = styled.div`

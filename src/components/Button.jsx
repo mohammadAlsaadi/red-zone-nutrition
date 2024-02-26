@@ -35,7 +35,12 @@ const variations = {
     border: 1px solid var(--color-grey-200);
 
     &:hover {
-      background-color: var(--color-grey-50);
+      background-color: var(--color-red-500);
+      border-color: var(--color-grey-0);
+      color: white;
+    }
+    &:focus {
+      outline: none;
     }
   `,
   danger: css`
@@ -50,7 +55,8 @@ const variations = {
 
 const Button = styled.button`
   border: none;
-  border-radius: var(--border-radius-sm);
+  border-radius: ${(props) =>
+    props.border === "circle" ? "20px" : "var(--border-radius-sm)"};
   box-shadow: var(--shadow-sm);
 
   ${(props) => sizes[props.size]}

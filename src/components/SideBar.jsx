@@ -4,12 +4,19 @@ import { HiOutlineXMark } from "react-icons/hi2";
 import { useShowSideBar } from "../context/ShowSideBar";
 import Heading from "./Heading";
 import SideBarOptions from "./SideBarOptions";
+import Uploader from "../data/Uploader";
+import { useOutsideClick } from "../hooks/useOutsideClick";
 function Sidebar() {
   const { setShowSideBar } = useShowSideBar();
+  function handleClose() {
+    setShowSideBar((show) => false);
+  }
+  const { ref } = useOutsideClick(handleClose, true);
+
   return (
-    <StyledSidebar>
+    <StyledSidebar ref={ref}>
       <StyleCloser>
-        <ButtonIcon onClick={() => setShowSideBar((show) => false)}>
+        <ButtonIcon onClick={handleClose}>
           <HiOutlineXMark color="red" />
         </ButtonIcon>
       </StyleCloser>
@@ -17,6 +24,7 @@ function Sidebar() {
       <Heading as="h2">Options</Heading>
 
       <SideBarOptions />
+      {/* <Uploader /> */}
     </StyledSidebar>
   );
 }
