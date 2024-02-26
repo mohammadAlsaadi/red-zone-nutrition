@@ -2,14 +2,14 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ProductCard from "../../components/ProductCard";
 import styled from "styled-components";
-import { useShowSideBar } from "../../context/ShowSideBar";
+// import { useShowSideBar } from "../../context/ShowSideBar";
 import useProducts from "./useProducts";
 import Spinner from "../../components/Spinner";
 
 function ProductsList() {
   const { data: FAKE_DATA = [], isLoading } = useProducts();
 
-  const { showSideBar } = useShowSideBar();
+  // const { showSideBar } = useShowSideBar();
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },

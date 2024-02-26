@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function WaitingForConfirm() {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const navigate = useNavigate();
-  const { user, isAuthenticated } = useUser();
+  const { isAuthenticated } = useUser();
   console.log(isAuthenticated);
   useEffect(
     function () {

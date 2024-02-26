@@ -22,10 +22,10 @@ function LogoLink() {
 
 export default LogoLink;
 
-const StyledLogoLink = styled.a`
-  cursor: pointer;
-  height: 10px;
-`;
+// const StyledLogoLink = styled.a`
+//   cursor: pointer;
+//   height: 10px;
+// `;
 const LogoLinkContainer = styled.div`
   display: flex;
   align-items: center;

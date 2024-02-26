@@ -4,7 +4,6 @@ import { HiOutlineXMark } from "react-icons/hi2";
 import { useShowSideBar } from "../context/ShowSideBar";
 import Heading from "./Heading";
 import SideBarOptions from "./SideBarOptions";
-import Uploader from "../data/Uploader";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 function Sidebar() {
   const { setShowSideBar } = useShowSideBar();

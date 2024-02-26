@@ -1,18 +1,14 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import {
-  HiHomeModern,
-  HiOutlineCalendarDays,
   HiOutlineCog6Tooth,
   HiOutlineHome,
   HiOutlineShoppingCart,
   HiOutlineSquares2X2,
   HiOutlineUser,
-  HiOutlineUserPlus,
 } from "react-icons/hi2";
 import SwitchButton from "./SwitchButton";
 import { useShowSideBar } from "../context/ShowSideBar";
-import Logout from "./Logout";
 
 const NavList = styled.ul`
   display: flex;

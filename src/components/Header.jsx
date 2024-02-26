@@ -1,9 +1,6 @@
 import styled from "styled-components";
-import DarkModeToggle from "./DarkModeToggle";
 import ButtonIcon from "./ButtonIcon";
-import { HiOutlineShoppingCart, HiOutlineUser } from "react-icons/hi2";
 import SearchBar from "./SearchBar";
-import { useDeviceWidth } from "../context/DeviceWidthContext";
 import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
 import { useShowSideBar } from "../context/ShowSideBar";
 import Logo from "./Logo";

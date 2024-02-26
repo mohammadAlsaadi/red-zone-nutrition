@@ -4,7 +4,7 @@ import { formatCurrency } from "../utils/helper";
 import useAddItemToCart from "../featurs/cart/useAddItemToCart";
 import { useCartContext } from "../context/CartContext";
 function ProductCard({ product }) {
-  const { addItem, isLoading } = useAddItemToCart();
+  const { isLoading } = useAddItemToCart();
   const { name, image, category, price, isNew } = product;
   const { addToCart } = useCartContext();
   return (

@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import SliderImages from "../components/SliderImages";
-import OfferOverVieW from "../components/OfferOverVieW";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ProductsList from "../featurs/product/ProductsList";
 import Heading from "../components/Heading";
