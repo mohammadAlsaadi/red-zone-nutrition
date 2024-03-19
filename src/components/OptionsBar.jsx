@@ -14,6 +14,8 @@ const OptionsContainer = styled.div`
   @media (max-width: 900px) {
     display: none;
   }
+  /* background-color: var(--color-grey-50); */
+  position: absolute;
   width: 100%;
   margin: 0rem 10rem;
 `;

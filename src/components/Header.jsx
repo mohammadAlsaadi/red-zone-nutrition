@@ -1,117 +1,251 @@
-import styled from "styled-components";
-import ButtonIcon from "./ButtonIcon";
+import styled, { css } from "styled-components";
 import SearchBar from "./SearchBar";
-import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
+import { HiOutlineBars3, HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import { useShowSideBar } from "../context/ShowSideBar";
 import Logo from "./Logo";
-import Heading from "./Heading";
-import { Link, useNavigate } from "react-router-dom";
-import CartIcon from "./CartIcon";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import CartModal from "./CartModal";
 import { useUser } from "../featurs/authentication/useUser";
-import UserCart from "../featurs/authentication/UserCart";
-import Logout from "./Logout";
+import { useState } from "react";
+import OptionsBar from "./OptionsBar";
+import { useScrolled } from "../context/ScrolledContext";
+import UserCard from "../featurs/authentication/UserCard";
+import useProducts from "../featurs/product/useProducts";
+import ProductItemPreview from "./productItemPreview";
+import ProductResult from "./ProductResult";
 
 function Header() {
-  // const { isDesktopDevice } = useDeviceWidth();
+  const [searchInput, setSearchInput] = useState("");
+  const { data, isLoading } = useProducts();
+  const [showSearchBar, setShowSearchBar] = useState(false);
   const { showSideBar, setShowSideBar } = useShowSideBar();
   const { isAuthenticated } = useUser();
   const navigate = useNavigate();
+  const isHomePagePath = useLocation().pathname === "/home";
+  const { isScrolled } = useScrolled();
+  // Filter products based on search input
+  let resultData =
+    searchInput.length >= 2 &&
+    data.filter((item) =>
+      item.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
+  if (showSearchBar)
+    return (
+      <StyledSearchResult>
+        <StyledHeader>
+          <SearchBar
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+            setShowSideBar={setShowSideBar}
+            setShowSearchBar={setShowSearchBar}
+          />
+        </StyledHeader>
+        <StyledResult>
+          {resultData &&
+            resultData.map((item) => (
+              <ProductResult
+                setShowSearchBar={setShowSearchBar}
+                item={item}
+                key={item.id}
+              />
+            ))}
+        </StyledResult>
+      </StyledSearchResult>
+    );
+  if (!showSearchBar) {
+    return (
+      <StyledHeader>
+        <LayerOne ishomepagepath={isHomePagePath} isscrolled={isScrolled}>
+          <OptionsContainer1>
+            {!showSideBar && (
+              <StyledSideBarButton onClick={() => setShowSideBar(true)}>
+                <HiOutlineBars3
+                  size={22}
+                  color={
+                    isScrolled || !isHomePagePath ? "" : "var(--color-grey-0)"
+                  }
+                />
+              </StyledSideBarButton>
+            )}
+            <StyledSearchButton onClick={() => setShowSearchBar(true)}>
+              <HiOutlineMagnifyingGlass
+                size={22}
+                color={
+                  isScrolled || !isHomePagePath ? "" : "var(--color-grey-0)"
+                }
+              />
+            </StyledSearchButton>
+          </OptionsContainer1>
+          <SearchBarContainer
+            onClick={() => setShowSearchBar((showen) => !showen)}
+          >
+            <HiOutlineMagnifyingGlass
+              size={22}
+              color={isScrolled || !isHomePagePath ? "" : "var(--color-grey-0)"}
+            />
+            <SearchText ishomepagepath={isHomePagePath} isscrolled={isScrolled}>
+              Search
+            </SearchText>
+          </SearchBarContainer>
+          <Link to="/home">
+            <Logo
+              width={250}
+              height={60}
+              src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/redzoneWithoutbg.png"
+            />
+          </Link>
 
-  return (
-    <StyledHeader>
-      <LayerOne>
-        <Link to="home">
-          <Logo />
-        </Link>
-        <Heading as="h2">Company Name</Heading>
-        <OptionsContainer>
-          {isAuthenticated ? (
-            <UserCart />
-          ) : (
-            <Signin onClick={() => navigate("/login")}>
-              <P>Sign in</P>
-            </Signin>
-          )}
-          <CartIcon />
-        </OptionsContainer>
-      </LayerOne>
-      <LayerTwo>
-        {!showSideBar && (
-          <OptionIcon>
-            <ButtonIcon
-              width={30}
-              height={30}
-              onClick={() => setShowSideBar((show) => true)}
-            >
-              <HiOutlineBars3BottomLeft color="red" />
-            </ButtonIcon>
-          </OptionIcon>
-        )}
-
-        <SearchBar />
-        {isAuthenticated && <Logout />}
-      </LayerTwo>
-    </StyledHeader>
-  );
+          {/* <OptionsContainer2>
+            <UserContainer>
+              {isAuthenticated ? (
+                <UserCard />
+              ) : (
+                <Signin onClick={() => navigate("/login")}>
+                  <P ishomepagepath={isHomePagePath}>Sign in</P>
+                </Signin>
+              )}
+            </UserContainer>
+          </OptionsContainer2> */}
+          <CartModal />
+        </LayerOne>
+        <LayerTwo ishomepagepath={isHomePagePath} isscrolled={isScrolled}>
+          <OptionsBar />
+        </LayerTwo>
+      </StyledHeader>
+    );
+  }
 }
 
 export default Header;
-const StyledHeader = styled.header`
+const StyledHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 2rem;
+`;
+const StyledSearchResult = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+const StyledResult = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  /* margin-top: 0.2rem; */
+
+  background-color: var(--color-grey-0);
+`;
+const LayerOne = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: column;
-  gap: 1rem;
-  background-color: var(--color-grey-50);
-  height: 18rem; //15
-  /* border-bottom: 1px solid var(--color-grey-200); */
-`;
-const OptionsContainer = styled.div`
-  display: flex;
-  gap: 20px;
-`;
-const OptionIcon = styled.div`
-  /* Default styles for smaller screens */
+  height: 100%;
+  width: 100%;
+  ${(props) =>
+    props.isscrolled ||
+    (!props.ishomepagepath &&
+      css`
+        border-bottom: 1px solid var(--color-grey-300);
+      `)}
 
-  display: flex;
-  /* padding-top: 2rem; */
-  padding-bottom: 8rem;
-  cursor: pointer;
+  @media (min-width: 1200px) {
+    padding: 0rem 3rem;
+  }
+`;
+const LayerTwo = styled.div`
+  display: none;
+  @media (min-width: 900px) {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    height: 3rem;
+    ${(props) =>
+      props.isscrolled ||
+      (!props.ishomepagepath &&
+        css`
+          border-bottom: 1px solid var(--color-grey-300);
+        `)}
+  }
 
+  /* &:hover {
+    border-bottom: 1px solid
+      ${(props) =>
+    props.isscrolled ? "var(--color-grey-200)" : "var(--color-grey-700)"};
+  } */
+`;
+const OptionsContainer1 = styled.div`
+  display: flex;
+  padding-left: 2rem;
   @media (min-width: 900px) {
     display: none;
   }
 `;
-const LayerOne = styled.div`
-  margin-top: 3rem;
-  height: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding-left: 30px;
-  padding-right: 30px;
-`;
-const LayerTwo = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  height: 50%; //temp
-  width: 100%;
-  padding: 0px 30px;
-  /* padding-left: 10rem; */
 
-  margin-top: 10px;
+const StyledSideBarButton = styled.div`
+  display: none;
+
   @media (max-width: 900px) {
-    /* justify-content: flex-end; */
-    /* gap: 20rem; */
-    /* padding: 0px 20px; */
-    /* justify-content: space-between; */
-    /* gap: 0rem; */
+    width: 5rem;
+    height: 5rem;
+  }
+  @media (max-width: 900px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 10%; */
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
+const StyledSearchButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
+  @media (max-width: 900px) {
+    width: 5rem;
+    height: 5rem;
+  }
+`;
+const SearchBarContainer = styled.div`
+  display: none;
+  @media (min-width: 900px) {
+    display: flex;
+    gap: 0.6rem;
+    padding-left: 2rem;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+`;
+const SearchText = styled.p`
+  color: ${(props) =>
+    props.isscrolled || !props.ishomepagepath
+      ? "var(--color-grey-700)"
+      : "var(--color-grey-0)"};
+  padding-left: 0.6rem;
+  font-size: 11px;
+  @media (max-width: 900px) {
+    display: none;
+  }
+`;
+
 const Signin = styled.div`
-  background-color: var(--color-grey-100);
+  /* background-color: var(--color-grey-100); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,5 +259,8 @@ const Signin = styled.div`
   cursor: pointer;
 `;
 const P = styled.p`
-  color: var(--color-red-500);
+  color: ${(props) =>
+    props.isscrolled || !props.ishomepagepath
+      ? "var(--color-grey-700)"
+      : "var(--color-grey-0)"};
 `;

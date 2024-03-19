@@ -23,11 +23,40 @@ export const getToday = function (options = {}) {
   else today.setUTCHours(0, 0, 0, 0);
   return today.toISOString();
 };
+export default function formatJordanDateTime(dateTimeString) {
+  const options = {
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+    timeZone: "Asia/Amman", // Set the timezone to Jordan
+  };
+
+  const dateTime = new Date(dateTimeString);
+  const formattedDateTime = new Intl.DateTimeFormat("en-JO", options).format(
+    dateTime
+  );
+
+  return formattedDateTime;
+}
 
 export const formatCurrency = (value) =>
   new Intl.NumberFormat("en", { style: "currency", currency: "JOD" }).format(
     value
   );
+export const formatPrice = (price, currency = "JOD") => {
+  // Check if the price is a number
+  if (typeof price !== "number") {
+    throw new Error("Invalid price. Must be a number.");
+  }
+
+  // Format the price with trailing zeroes and currency label
+  const formattedPrice = price.toFixed(2);
+
+  return `${formattedPrice} ${currency}`;
+};
 
 export const countryPhoneData = [
   { code: "JO", label: "Jordan", phone: "962", phoneLength: [8, 9] },
@@ -35,3 +64,55 @@ export const countryPhoneData = [
   { code: "AE", label: "United Arab Emirates", phone: "971", phoneLength: 9 },
   { code: "SA", label: "Saudi Arabia", phone: "966", phoneLength: 9 },
 ];
+export const getStatusColor = (status) => {
+  switch (status) {
+    case "Order Received":
+      return "#007bff";
+    case "Processing":
+      return "#ffc107";
+    case "Shipped":
+      return "#17a2b8";
+    case "Completed":
+      return "#28a745";
+    default:
+      return "#333";
+  }
+};
+
+export function colorCoordination(text = "unflavored") {
+  const LowerCaseedText = text.toLowerCase();
+  if (LowerCaseedText.includes("chocolate" || "Choclate")) {
+    return "#7B3F00";
+  } else if (LowerCaseedText.includes("vanilla" || "white")) {
+    return "#fffbe9";
+  } else if (LowerCaseedText.includes("caramel" || "orange")) {
+    return "#e68b22";
+  } else if (LowerCaseedText.includes("banana" || "pineapple")) {
+    return "#fbec5d";
+  } else if (LowerCaseedText.includes("Strawberry")) {
+    return "#db1515";
+  } else if (LowerCaseedText.includes("unflavored")) {
+    return "#bfc1c2";
+  } else if (LowerCaseedText.includes("peanut" || "butter")) {
+    return "#DCA465";
+  } else if (LowerCaseedText.includes("cola" || "dark")) {
+    return "#3c3024";
+  } else if (LowerCaseedText.includes("fruit" || "punch")) {
+    return "#ce3d48";
+  } else if (LowerCaseedText.includes("lemon")) {
+    return "#FAFA33";
+  } else if (LowerCaseedText.includes("watermelon" || "green")) {
+    return "#a9ff85";
+  } else if (LowerCaseedText.includes("lemon")) {
+    return "##FF5733";
+  } else if (LowerCaseedText.includes("mango" || "peach")) {
+    return "#F4BB44";
+  } else if (LowerCaseedText.includes("blue" || "berry")) {
+    return "#0CBFE9";
+  } else if (LowerCaseedText.includes("cookies" || "cream")) {
+    return "#6e5b55";
+  } else {
+    // default color or additional cases can be handled here
+    return "#fff";
+  }
+}

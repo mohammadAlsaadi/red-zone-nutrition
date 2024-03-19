@@ -7,12 +7,22 @@ import ProductCard from "../components/ProductCard";
 
 import useProducts from "../featurs/product/useProducts";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi2";
+import { useParams } from "react-router-dom";
 
 function Porducts() {
-  const { data: products, isLoading, error } = useProducts();
+  const { data, isLoading, error } = useProducts();
+  const { categoryName } = useParams();
+  console.log(categoryName);
   const [currentPage, setCurrentPage] = useState(1);
+  let products = [];
   if (error) console.log(error.message);
   if (isLoading) return <Spinner />;
+  if (categoryName === "all") {
+    products = data;
+    console.log(data);
+  } else {
+    products = data.filter((product) => product.category === categoryName);
+  }
 
   const productsPerPage = 6;
   const totalPages = Math.ceil(products?.length / productsPerPage);
@@ -34,7 +44,6 @@ function Porducts() {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
   };
 
-  console.log(products);
   return (
     <StyledProducts>
       <StyledHeader>
@@ -61,7 +70,7 @@ function Porducts() {
             <PageNumber
               key={index + 1}
               onClick={() => handlePageChange(index + 1)}
-              isActive={index + 1 === currentPage}
+              isactive={index + 1 === currentPage}
             >
               {index + 1}
             </PageNumber>
@@ -81,6 +90,22 @@ const StyledProducts = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  @media (min-width: 600px) {
+    /* width: 60%; */
+    padding: 0rem 5rem;
+  }
+  @media (min-width: 700px) {
+    /* width: 60%; */
+    padding: 0rem 0rem;
+  }
+  @media (min-width: 1000px) {
+    /* width: 60%; */
+    padding: 0rem 10rem;
+  }
+  @media (min-width: 1200px) {
+    /* width: 60%; */
+    padding: 0rem 20rem;
+  }
 `;
 
 const StyledHeader = styled.div`
@@ -95,12 +120,22 @@ const ProductsContainer = styled.div`
   background-color: var(--color-grey-50);
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const ProductsList = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+
+  grid-template-columns: repeat(2, 2fr);
+  gap: 6rem;
+
+  @media (min-width: 700px) {
+    grid-template-columns: repeat(3, 2fr);
+    gap: 3rem;
+  }
+  /* @media (min-width: 1000px) {
+    gap: 3rem;
+  } */
   padding: 20px;
 `;
 
@@ -116,11 +151,11 @@ const PageNumber = styled.div`
   margin: 0 5px;
   padding: 8px;
   border-radius: 4px;
-  background-color: ${(props) => (props.isActive ? "red" : "white")};
-  color: ${(props) => (props.isActive ? "white" : "black")};
+  background-color: ${(props) => (props.isactive ? "red" : "white")};
+  color: ${(props) => (props.isactive ? "white" : "black")};
 
   &:hover {
-    background-color: ${(props) => (props.isActive ? "red" : "#f0f0f0")};
+    background-color: ${(props) => (props.isactive ? "red" : "#f0f0f0")};
   }
 `;
 

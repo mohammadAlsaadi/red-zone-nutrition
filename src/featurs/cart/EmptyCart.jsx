@@ -18,7 +18,7 @@ function EmptyCart() {
         Your cart is still empty. Start adding some items 🙋‍♂️
       </Heading>
       {isCartPath && (
-        <Button onClick={() => navigate("/products")}>Add Products</Button>
+        <Button onClick={() => navigate("/products/all")}>Add Products</Button>
       )}
     </StyledEmpty>
   );

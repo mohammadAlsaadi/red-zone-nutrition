@@ -1,33 +1,50 @@
 import styled from "styled-components";
 import Button from "./Button";
 import { formatCurrency } from "../utils/helper";
-import useAddItemToCart from "../featurs/cart/useAddItemToCart";
-import { useCartContext } from "../context/CartContext";
+// import { useCartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
+import Banner from "./Banner";
+import HasOffer from "./HasOffer";
 function ProductCard({ product }) {
-  const { isLoading } = useAddItemToCart();
-  const { name, image, category, price, isNew } = product;
-  const { addToCart } = useCartContext();
+  const { name, image, category, price, isNew, id, hasOffer, newPrice } =
+    product;
+  // const { addToCart } = useCartContext();
+  const navigate = useNavigate();
+  const handleBuyNow = (e) => {
+    e.stopPropagation();
+    // navigate(`/details/${id}`);
+  };
   return (
-    <StyledProductCart>
-      {isNew && (
-        <NewIcon>
-          <img src="new.svg" alt="new" width={50} height={50} />
-        </NewIcon>
+    <StyledProductCart onClick={() => navigate(`/details/${id}`)}>
+      {isNew && !hasOffer && (
+        <Banner src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/new.svg" />
+      )}
+      {hasOffer && !isNew && (
+        <Banner
+          src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/discount1.png"
+          width={40}
+          height={40}
+        />
+      )}
+      {hasOffer && isNew && (
+        <Banner src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/new.svg" />
       )}
       <StyledImage src={image}></StyledImage>
       <ProductInfo>
         <ProductName>{name}</ProductName>
         <ProductCategory>{category}</ProductCategory>
-        <ProductPrice>{formatCurrency(price)}</ProductPrice>
+        {hasOffer ? (
+          <OldNewPrice>
+            <HasOffer>{formatCurrency(price[0])}</HasOffer>
+            <ProductPrice>From {formatCurrency(newPrice[0])}</ProductPrice>
+          </OldNewPrice>
+        ) : (
+          <ProductPrice>From {formatCurrency(price[0])}</ProductPrice>
+        )}{" "}
       </ProductInfo>
       <CardOption>
-        <Button
-          disabled={isLoading}
-          variations="primary"
-          size="small"
-          onClick={() => addToCart(product)}
-        >
-          Add to card
+        <Button variations="primary" size="small" onClick={handleBuyNow}>
+          Buy now
         </Button>
       </CardOption>
     </StyledProductCart>
@@ -37,7 +54,7 @@ function ProductCard({ product }) {
 export default ProductCard;
 const StyledProductCart = styled.div`
   width: 300px;
-  height: 400px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,16 +67,31 @@ const StyledProductCart = styled.div`
 
   &:hover {
     transform: scale(1.1);
-    height: 370px;
+    /* height: 370px; */
   }
-  @media (max-width: 700px) {
+  @media (min-width: 800px) {
+    width: 200px;
+    height: 320px;
+    /* &:hover {
+      height: 300px;
+    } */
+  }
+  @media (min-width: 1000px) {
+    width: 300px;
+    height: 400px;
+    /* &:hover {
+      height: 700px;
+    } */
+  }
+  @media (max-width: 800px) {
     width: 160px;
-    height: 280px;
-    &:hover {
+    height: 290px;
+    /* &:hover {
       height: 280px;
-    }
+    } */
   }
 `;
+
 const ProductName = styled.span`
   font-weight: bold;
   font-size: 16px;
@@ -74,9 +106,21 @@ const ProductCategory = styled.span`
 `;
 const ProductPrice = styled.span`
   font-weight: bold;
-  font-size: 16px;
-  color: red;
-  padding: 10px 0px;
+  font-size: 15px;
+  color: var(--color-gold-700);
+  padding: 5px 0px;
+  @media (max-width: 900px) {
+    font-size: 13px;
+  }
+`;
+
+const OldNewPrice = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  /* gap: 0.5rem; */
 `;
 const StyledImage = styled.img`
   width: 80%;
@@ -93,13 +137,6 @@ const ProductInfo = styled.div`
 const CardOption = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-`;
-const NewIcon = styled.div`
-  z-index: 1;
-  width: 100%;
-  display: flex;
-  align-items: center;
   justify-content: flex-end;
-  height: 0%;
+  height: 100%;
 `;

@@ -3,11 +3,20 @@ import { products } from "./data-products";
 import Button from "../components/Button";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { reviews } from "./data-reviews";
+import { categories } from "./data-categories";
 async function createProducts() {
   const { error } = await supabase.from("products").insert(products);
   if (error) console.log(error.message);
 }
-
+async function createReviews() {
+  const { error } = await supabase.from("reviews").insert(reviews);
+  if (error) console.log(error.message);
+}
+async function createCategories() {
+  const { error } = await supabase.from("categories").insert(categories);
+  if (error) console.log(error.message);
+}
 // async function deleteProducts() {
 //   const { error } = await supabase.from("products").delete().gt("id", 0);
 //   if (error) console.log(error.message);
@@ -36,7 +45,24 @@ function Uploader() {
     setIsLoading(false);
     toast.success("uploaded successfully !");
   }
+  async function uploadReviews() {
+    setIsLoading(true);
 
+    // await deleteProducts();
+    await createReviews();
+
+    setIsLoading(false);
+    toast.success("uploaded successfully !");
+  }
+  async function uploadCategories() {
+    setIsLoading(true);
+
+    // await deleteProducts();
+    await createCategories();
+
+    setIsLoading(false);
+    toast.success("uploaded successfully !");
+  }
   return (
     <div
       style={{
@@ -58,6 +84,12 @@ function Uploader() {
 
       <Button onClick={uploadProducts} disabled={isLoading}>
         Upload Products
+      </Button>
+      <Button onClick={uploadReviews} disabled={isLoading}>
+        Upload Reviews
+      </Button>
+      <Button onClick={uploadCategories} disabled={isLoading}>
+        Upload categories
       </Button>
     </div>
   );

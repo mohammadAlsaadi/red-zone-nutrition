@@ -18,15 +18,20 @@ const sizes = {
     padding: 1.2rem 2.4rem;
     font-weight: 500;
   `,
+  tallerHerzontally: css`
+    font-size: 1.6rem;
+    padding: 0.6rem 8rem;
+    font-weight: 500;
+  `,
 };
 
 const variations = {
   primary: css`
     color: var(--color-grey-50);
-    background-color: var(--color-red-500);
+    background-color: var(--color-grey-900);
 
     &:hover {
-      background-color: var(--color-red-700);
+      background-color: var(--color-grey-700);
     }
   `,
   secondary: css`
@@ -35,9 +40,18 @@ const variations = {
     border: 1px solid var(--color-grey-200);
 
     &:hover {
-      background-color: var(--color-red-500);
-      border-color: var(--color-grey-0);
-      color: white;
+      background-color: var(--color-grey-50);
+    }
+  `,
+  transparent: css`
+    color: var(--color-grey-600);
+    background: var(--color-grey-0);
+    border: 1px solid var(--color-grey-200);
+
+    &:hover {
+      background-color: var(--backdrop-color);
+      /* border-color: var(--color-grey-0); */
+      color: var(--color-grey-0);
     }
     &:focus {
       outline: none;
@@ -56,7 +70,7 @@ const variations = {
 const Button = styled.button`
   border: none;
   border-radius: ${(props) =>
-    props.border === "circle" ? "20px" : "var(--border-radius-sm)"};
+    props.borderradius === "circle" ? "20px" : "none"};
   box-shadow: var(--shadow-sm);
 
   ${(props) => sizes[props.size]}

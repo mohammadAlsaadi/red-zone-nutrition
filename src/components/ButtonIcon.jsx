@@ -4,7 +4,7 @@ const ButtonIcon = styled.button`
   background: none;
   border: none;
   /* padding: 0.6rem; */
-  border-radius: var(--border-radius-sm);
+  /* border-radius: var(--border-radius-sm); */
   transition: all 0.2s;
 
   &:hover {
@@ -21,8 +21,8 @@ const ButtonIcon = styled.button`
       height: ${(props) => (props.height ? `${props.height}px` : "2.2rem")};
     }
 
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 2rem;
+    height: 2rem;
     /* color: var(--color-brand-600); */
   }
 `;

@@ -1,64 +1,111 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import SwitchButton from "./SwitchButton";
+import { useScrolled } from "../context/ScrolledContext";
 
 function Options() {
+  const { isScrolled } = useScrolled();
+  const isHomePagePath = useLocation().pathname === "/home";
+
   return (
-    <StyledOptions>
-      <li>
-        <StyledNavLink to="/">
-          <span>Home</span>
-        </StyledNavLink>
-      </li>
-      |
-      <li>
-        <StyledNavLink to="/products">
-          <span>Products</span>
-        </StyledNavLink>
-      </li>
-      |
-      <li>
-        <StyledNavLink to="cart">
-          <span>Cart</span>
-        </StyledNavLink>
-      </li>
-      |
-      <li>
-        <StyledNavLink to="account">
-          <span>Account</span>
-        </StyledNavLink>
-      </li>
-      |
-      <li>
-        <StyledNavLink to="settings">
-          <span>Settings</span>
-        </StyledNavLink>
-      </li>
-      |
-      <DarkModeToggleContainer>
+    <>
+      {isHomePagePath ? (
+        <StyledOptionsHomePage
+          ishomepagepath={isHomePagePath}
+          isscrolled={isScrolled}
+        >
+          <li>
+            <StyledNavLink isscrolled={isScrolled} to="/">
+              <span>Home</span>
+            </StyledNavLink>
+          </li>
+
+          <li>
+            <StyledNavLink to="/products/all" isscrolled={isScrolled}>
+              <span>Products</span>
+            </StyledNavLink>
+          </li>
+
+          <li>
+            <StyledNavLink to="/cart" isscrolled={isScrolled}>
+              <span>Cart</span>
+            </StyledNavLink>
+          </li>
+
+          <li>
+            <StyledNavLink to="/account" isscrolled={isScrolled}>
+              <span>Account</span>
+            </StyledNavLink>
+          </li>
+
+          <li>
+            <StyledNavLink to="/settings" isscrolled={isScrolled}>
+              <span>Settings</span>
+            </StyledNavLink>
+          </li>
+
+          {/* <DarkModeToggleContainer>
         <DarkModeText>Dark mode</DarkModeText> <SwitchButton />
-      </DarkModeToggleContainer>
-    </StyledOptions>
+      </DarkModeToggleContainer> */}
+        </StyledOptionsHomePage>
+      ) : (
+        <StyledOptions ishomepagepath={isHomePagePath} isscrolled={isScrolled}>
+          <li>
+            <StyledNavLink to="/">
+              <span>Home</span>
+            </StyledNavLink>
+          </li>
+
+          <li>
+            <StyledNavLink to="/products/all" isscrolled={isScrolled}>
+              <span>Products</span>
+            </StyledNavLink>
+          </li>
+
+          <li>
+            <StyledNavLink to="/cart" isscrolled={isScrolled}>
+              <span>Cart</span>
+            </StyledNavLink>
+          </li>
+
+          <li>
+            <StyledNavLink to="/account" isscrolled={isScrolled}>
+              <span>Account</span>
+            </StyledNavLink>
+          </li>
+
+          <li>
+            <StyledNavLink to="/settings" isscrolled={isScrolled}>
+              <span>Settings</span>
+            </StyledNavLink>
+          </li>
+
+          {/* <DarkModeToggleContainer>
+        <DarkModeText>Dark mode</DarkModeText> <SwitchButton />
+      </DarkModeToggleContainer> */}
+        </StyledOptions>
+      )}
+    </>
   );
 }
 
 export default Options;
+const StyledOptionsHomePage = styled.ul`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  color: ${(props) =>
+    !props.isscrolled ? "var(--color-grey-100)" : "var(--color-grey-800)"};
+`;
 const StyledOptions = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
+  color: var(--color-grey-800);
 `;
-const DarkModeToggleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-`;
-const DarkModeText = styled.div`
-  color: var(--color-grey-600);
-  cursor: auto;
-`;
+
 const StyledNavLink = styled(NavLink)`
   &:link,
   &:visited {
@@ -66,7 +113,6 @@ const StyledNavLink = styled(NavLink)`
     align-items: center;
     gap: 1.2rem;
 
-    color: var(--color-grey-600);
     font-size: 1.6rem;
     font-weight: 500;
     padding: 1.2rem 2.4rem;
@@ -78,9 +124,10 @@ const StyledNavLink = styled(NavLink)`
   &:active,
   &.active:link,
   &.active:visited {
-    color: var(--color-red-500);
-    background-color: var(--color-grey-50);
-    border-radius: var(--border-radius-sm);
+    color: var(--color-gold-500);
+
+    /* background-color: var(--color-grey-50);
+    border-radius: var(--border-radius-sm); */
   }
 
   & svg {

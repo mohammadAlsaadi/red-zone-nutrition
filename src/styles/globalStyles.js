@@ -8,7 +8,10 @@ const GlobalStyles = createGlobalStyle`
   
   &, &.light-mode{
     
-    
+    --color-gold-500:#eec644;
+    --color-gold-600:#e2bc40;
+    --color-gold-700:#d4af37;
+    --color-gold-900:#be9204;
     /* Grey */
     --color-grey-0: #fff;
     --color-grey-50: #f9fafb;

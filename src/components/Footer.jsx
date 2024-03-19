@@ -4,13 +4,14 @@ import Logo from "./Logo";
 import LogoLink from "./LogoLink";
 import { HiOutlineEnvelope, HiOutlinePhone } from "react-icons/hi2";
 import { Link } from "react-router-dom";
-
+const FOOTER_LOGO_REDZONE =
+  "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/logo-redzone.png";
 function Footer() {
   return (
     <StyledFooter>
       <StyledContent>
         <Link replace to="home">
-          <Logo src="logo-redzone.png" />
+          <Logo src={FOOTER_LOGO_REDZONE} />
         </Link>
         <StyledContactUs>
           <StyledHeadind>
@@ -46,7 +47,9 @@ function Footer() {
 export default Footer;
 const StyledFooter = styled.footer`
   width: 100%;
-  height: 200px;
+  height: 30%;
+  /* bottom: 0rem; */
+  position: relative;
   border-top: 1px solid var(--color-grey-200);
 
   background-color: var(--color-grey-footer);
@@ -54,6 +57,13 @@ const StyledFooter = styled.footer`
 const StyledContent = styled.div`
   display: flex;
   gap: 15rem;
+  @media (max-width: 700px) {
+    gap: 7rem;
+  }
+  @media (min-width: 1000px) {
+    justify-content: space-between;
+    padding: 0rem 10rem;
+  }
   align-items: center;
   height: 100%;
 `;

@@ -4,50 +4,58 @@ import toast from "react-hot-toast";
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  const storedCart = window.localStorage.getItem("cart");
+  const initialCart = storedCart ? JSON.parse(storedCart) : [];
+  const [cart, setCart] = useState(initialCart);
   const [cartCountItems, setCartCountItems] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const totalPrice = cart?.reduce(
+    (total, item) => total + item.price * item.count,
+    0
+  );
 
   useEffect(() => {
-    const storedCart = window.localStorage.getItem("cart");
-    // setCartCountItems(
-    //   storedCart.reduce((count, item) => count + item.count, 0)
-    // );
-
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
-  }, [setCart]);
+  }, [storedCart]);
 
   useEffect(() => {
+    setIsLoading(true);
     window.localStorage.setItem("cart", JSON.stringify(cart));
     setCartCountItems(cart.reduce((count, item) => count + item.count, 0));
+    setIsLoading(false);
+  }, [cart]);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    window.localStorage.setItem("cart", JSON.stringify(cart));
+    setCartCountItems(cart.reduce((count, item) => count + item.count, 0));
+    setIsLoading(false);
   }, [cart]);
 
   const addToCart = (product) => {
-    const existingItem = cart.find((item) => item.id === product.id);
-    if (existingItem) {
-      // If the item already exists, increment its count
-      setCart((prevCart) =>
-        prevCart.map((item) =>
-          item.id === product.id ? { ...item, count: item.count + 1 } : item
-        )
-      );
-    } else {
-      // If the item doesn't exist, add it to the cart
-      setCart((prevCart) => [...prevCart, { ...product, count: 1 }]);
-      toast.success("added to cart");
-    }
+    setCart((prevCart) => [...prevCart, product]);
+    toast.success("added to cart");
   };
 
-  const incrementItem = (productId) => {
+  const incrementItem = (itemId) => {
+    console.log("item id:", itemId);
+    console.log("inc");
+    setIsLoading(true);
     setCart((prevCart) =>
       prevCart.map((item) =>
-        item.id === productId ? { ...item, count: item.count + 1 } : item
+        item.id === itemId ? { ...item, count: item.count + 1 } : item
       )
     );
+    toast.success("Product was incremened successfully");
+    setIsLoading(false);
   };
 
   const decrementItem = (productId) => {
+    setIsLoading(true);
+
     setCart((prevCart) =>
       prevCart.map((item) =>
         item.id === productId && item.count > 1
@@ -55,14 +63,25 @@ const CartProvider = ({ children }) => {
           : item
       )
     );
+    toast.success("Product was decremened successfully");
+
+    setIsLoading(false);
   };
 
   const removeItem = (productId) => {
+    setIsLoading(true);
+
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+    toast.success("Product was removed successfully");
+    setIsLoading(false);
   };
 
   const clearCart = () => {
+    setIsLoading(true);
+
     setCart([]);
+    setIsLoading(false);
+    toast.success("cart was cleared successfully");
   };
 
   return (
@@ -75,6 +94,8 @@ const CartProvider = ({ children }) => {
         removeItem,
         clearCart,
         cartCountItems,
+        isLoading,
+        totalPrice,
       }}
     >
       {children}

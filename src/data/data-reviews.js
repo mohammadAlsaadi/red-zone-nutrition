@@ -1,0 +1,42 @@
+export const reviews = [
+  {
+    userName: "Mohammad alsaadi",
+    productId: "67",
+    rating: 5,
+    comment: "high quality !",
+    userId: "fe66e0f3-494a-45cc-ab87-310868424c91",
+    likes: 4,
+  },
+  {
+    userName: "Mohammad alsaadi",
+    productId: "63",
+    rating: 5,
+    comment: "flavores are amazing !",
+    userId: "fe66e0f3-494a-45cc-ab87-310868424c91",
+    likes: 11,
+  },
+  {
+    userName: "Mohammad alsaadi",
+    productId: "72",
+    rating: 4,
+    comment: " مناسب للنباتيين ",
+    userId: "fe66e0f3-494a-45cc-ab87-310868424c91",
+    likes: 2,
+  },
+  {
+    userName: "Mohammad alsaadi",
+    productId: "66",
+    rating: 5,
+    comment: "ممتاز لزيادة الوزن ساعدني كثير",
+    userId: "fe66e0f3-494a-45cc-ab87-310868424c91",
+    likes: 9,
+  },
+  {
+    userName: "Mohammad alsaadi",
+    productId: "70",
+    rating: 5,
+    comment: "حسيت حالي CBUM 😜",
+    userId: "fe66e0f3-494a-45cc-ab87-310868424c91",
+    likes: 9,
+  },
+];

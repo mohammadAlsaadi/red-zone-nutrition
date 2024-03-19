@@ -9,7 +9,7 @@ function DeviceWidthProvider({ children }) {
   useEffect(() => {
     const handleResize = () => {
       setdeviceWidth(window.innerWidth);
-      if (deviceWidth > 900) {
+      if (deviceWidth >= 900) {
         setIsDesktopDevice(true);
       } else {
         setIsDesktopDevice(false);

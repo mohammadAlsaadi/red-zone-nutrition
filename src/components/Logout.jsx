@@ -5,13 +5,14 @@ import ButtonText from "./ButtonText";
 function Logout() {
   const { logout, isLogingOut } = useLogout();
   return (
-    <ButtonIcon disabled={isLogingOut} onClick={() => logout()}>
-      {isLogingOut ? (
-        <SpinnerMini />
-      ) : (
-        <ButtonText color="red">Logout</ButtonText>
-      )}
-    </ButtonIcon>
+    <ButtonText
+      color="red"
+      fontSize="x-small"
+      disabled={isLogingOut}
+      onClick={() => logout()}
+    >
+      {isLogingOut ? <SpinnerMini /> : <p>Logout</p>}
+    </ButtonText>
   );
 }
 

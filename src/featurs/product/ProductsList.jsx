@@ -2,46 +2,78 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ProductCard from "../../components/ProductCard";
 import styled from "styled-components";
-// import { useShowSideBar } from "../../context/ShowSideBar";
 import useProducts from "./useProducts";
 import Spinner from "../../components/Spinner";
+import { useShowSideBar } from "../../context/ShowSideBar";
+import { useDeviceWidth } from "../../context/DeviceWidthContext";
 
-function ProductsList() {
-  const { data: FAKE_DATA = [], isLoading } = useProducts();
+function ProductsList({ offers, isLoadingFetch, category, categoryList }) {
+  let products;
+  const { data, isLoading } = useProducts();
+  const { showSideBar } = useShowSideBar();
+  const { isDesktopDevice } = useDeviceWidth();
 
-  // const { showSideBar } = useShowSideBar();
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
     },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 2000, min: 1200 },
+      items: 4,
+    },
+    notebook: {
+      breakpoint: { max: 1200, min: 950 },
       items: 3,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      breakpoint: { max: 950, min: 600 },
+      items: 3,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
+      breakpoint: { max: 600, min: 0 },
+      items: 2,
     },
   };
-  if (isLoading) return <Spinner />;
+
+  if (isLoading || isLoadingFetch) return <Spinner />;
+  const offersProducts = data?.filter((product) => product.hasOffer === true);
+
+  if (offers) {
+    products = offersProducts;
+  } else if (categoryList) {
+    products = data.filter(
+      (product) =>
+        product.category === categoryList[0] ||
+        product.category === categoryList[1] ||
+        product.category === categoryList[2]
+    );
+  } else if (category) {
+    products = data.filter((product) => product.category === category);
+  } else {
+    products = data;
+  }
+
   return (
     <StyledList>
-      <Carousel responsive={responsive} autoPlay={true} autoPlaySpeed={1500}>
-        {FAKE_DATA.map((product) => (
+      <Carousel
+        arrows={showSideBar && !isDesktopDevice ? false : true}
+        responsive={responsive}
+        autoPlay={true}
+        autoPlaySpeed={1500}
+      >
+        {products.map((product) => (
           <ProductCard product={product} key={product.name} />
         ))}
       </Carousel>
     </StyledList>
   );
 }
+
 export default ProductsList;
+
 const StyledList = styled.div`
   width: 100%;
-  height: 450px;
+  height: 100%;
   margin: 3rem 0rem;
 `;

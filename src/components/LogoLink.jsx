@@ -1,18 +1,22 @@
 import styled from "styled-components";
 import Logo from "./Logo";
+const LOGO_ICONS_FACEBOOK =
+  "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/Facebook.svg";
+const LOGO_ICONS_INSTAGRAM =
+  "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/Instagram.svg";
 
 function LogoLink() {
   return (
     <StyledContainer>
       <StyledNavLink href="https://www.instagram.com/redzonenutritionjo/?hl=en">
         <LogoLinkContainer>
-          <Logo src="Instagram.svg" width={30} height={35} />
+          <Logo src={LOGO_ICONS_INSTAGRAM} width={30} height={35} />
           <P>redzonenutritionjo</P>
         </LogoLinkContainer>
       </StyledNavLink>
       <StyledNavLink href="https://www.facebook.com/Redzonejordan/">
         <LogoLinkContainer>
-          <Logo src="Facebook.svg" width={30} height={35} />
+          <Logo src={LOGO_ICONS_FACEBOOK} width={30} height={35} />
           <P>Red Zone Nutrition Jordan</P>
         </LogoLinkContainer>
       </StyledNavLink>

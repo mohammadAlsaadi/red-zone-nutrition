@@ -1,69 +1,126 @@
+import supabase from "./supabase";
+
 export async function fetchCart() {
+  const { data, error } = await supabase.from("cart").select("*");
+  if (error) {
+    console.error(error);
+    throw new Error("Cart could not be loaded");
+  }
+  return data;
+}
+
+export async function insertNewProduct(newProduct) {
+  const { data, error } = await supabase
+    .from("cart")
+    .insert(newProduct)
+    .select();
+  if (error) {
+    console.error(error);
+    throw new Error("New product could not be loaded");
+  }
+  return data;
+}
+
+export async function IncrementItemCart(productId) {
+  let { data: cartProductCount, error: fetchingError } = await supabase
+    .from("cart")
+    .select("*");
+  if (fetchingError) {
+    console.error(fetchingError);
+    throw new Error("Error fetching current productCount value");
+  }
+  // console.log(cartProductCount);
+  const productCurrentCount = cartProductCount.filter(
+    (item) => item.productId === productId
+  )[0].productCount;
+  let newCount = productCurrentCount + 1;
+  console.log(newCount);
+  // console.log(newCount);
+  const { data, error } = await supabase
+    .from("cart")
+    .update({ productCount: newCount })
+    .eq("productId", productId)
+    .select();
+  if (error) {
+    console.error(error);
+    throw new Error("Error updating current productCount value");
+  }
+  console.log(data);
+  return data;
+}
+
+export async function DecrementItemCart(productId) {
+  let { data: cartProductCount, error: fetchingError } = await supabase
+    .from("cart")
+    .select("*");
+  if (fetchingError) {
+    console.error(fetchingError);
+    throw new Error("Error fetching current productCount value");
+  }
+  // console.log(cartProductCount);
+  const productCurrentCount = cartProductCount.filter(
+    (item) => item.productId === productId
+  )[0].productCount;
+  let newCount =
+    productCurrentCount > 1 ? productCurrentCount - 1 : productCurrentCount;
+  console.log(newCount);
+  // console.log(newCount);
+  if (productCurrentCount === 1) return null;
+  const { data, error } = await supabase
+    .from("cart")
+    .update({ productCount: newCount })
+    .eq("productId", productId)
+    .select();
+  if (error) {
+    console.error(error);
+    throw new Error("Error updating current productCount value");
+  }
+  console.log(data);
+  return data;
+}
+
+export async function removeItem(itemId) {
   try {
-    const response = await fetch("http://localhost:3001/cart");
-    const data = await response.json();
-    return data;
+    const { error } = await supabase.from("cart").delete().eq("id", itemId);
+
+    if (error) {
+      console.error(error);
+      throw new Error(`Error deleting item with productId ${itemId}`);
+    }
+
+    console.log("Item deleted successfully");
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error(error);
+    throw new Error(`Error deleting item with productId ${itemId}`);
   }
 }
 
-export async function addNewItem(newItem) {
-  // Fetch the current cart from the server
-  const cartResponse = await fetch("http://localhost:3001/cart");
-  const currentCart = await cartResponse.json();
+export async function removeAllItems() {
+  try {
+    // Fetch all items from the "cart" table
+    const { data: cartItems, error } = await supabase.from("cart").select("id");
 
-  // Check if an item with the given itemId already exists in the cart
-  const existingItem = currentCart.find((item) => item.id === newItem.id);
+    if (error) {
+      console.error(error.message);
+      throw new Error(`Error fetching cart items`);
+    }
 
-  // If the item exists, increment its count by 1
-  if (existingItem) {
-    existingItem.count += 1;
-  } else {
-    // If the item doesn't exist, create a new item with count 1 and details from the products
-    const formattedItem = {
-      img: newItem.img,
-      name: newItem.name,
-      category: newItem.category,
-      price: newItem.price,
-      isNew: newItem.isNew,
-      id: newItem.id,
-      count: 1,
-    };
+    // Delete each item one by one
+    for (const item of cartItems) {
+      const { error: deleteError } = await supabase
+        .from("cart")
+        .delete()
+        .eq("id", item.id);
 
-    // Add the new item to the cart
-    currentCart.push(formattedItem);
-  }
+      if (deleteError) {
+        console.error(deleteError.message);
+        throw new Error(`Error deleting item with ID ${item.id}`);
+      }
+    }
 
-  // Update the cart on the server
-  await fetch("http://localhost:3001/cart", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(currentCart),
-  });
-}
-
-export async function deleteItem(id) {
-  // Fetch the current cart from the server
-  const cartResponse = await fetch("http://localhost:3001/cart");
-  let currentCart = await cartResponse.json();
-
-  // Find the index of the item with the given id in the cart
-  const itemIndex = currentCart.findIndex((item) => item.id === id);
-
-  // If the item exists, remove it from the cart
-  if (itemIndex !== -1) {
-    currentCart.splice(itemIndex, 1);
-
-    // Update the cart on the server
-    await fetch("http://localhost:3001/cart", {
-      method: "PUT", // Assuming your API supports updating the entire cart
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(currentCart),
-    });
+    console.log("All items removed successfully");
+  } catch (error) {
+    console.error(error.message);
+    throw new Error(`Error removing all items from cart`);
   }
 }

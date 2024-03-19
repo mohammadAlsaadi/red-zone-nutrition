@@ -3,12 +3,23 @@ import Button from "./Button";
 import { formatCurrency } from "../utils/helper";
 import ButtonText from "./ButtonText";
 import Spinner from "./Spinner";
+
 import { useCartContext } from "../context/CartContext";
 
 function CartItem({ item }) {
-  const { image, name, category, price, count, id } = item;
   const { incrementItem, decrementItem, removeItem } = useCartContext();
-  console.log(image);
+  if (!item) return null;
+  const {
+    image,
+    name,
+    category,
+    price,
+    count,
+    productId,
+    id,
+    flavor,
+    productSize,
+  } = item;
   return (
     <StyledCartItem>
       <StyledProductInfo>
@@ -20,6 +31,7 @@ function CartItem({ item }) {
         <StyledName>
           {name}
           <br /> <StyledCategory>{category}</StyledCategory>
+          {flavor} <p>{productSize}</p>
         </StyledName>
       </StyledProductInfo>
       <OptionsContainer>
@@ -37,6 +49,7 @@ function CartItem({ item }) {
             variation="secondary"
             border="circle"
             size="x-small"
+            disabled={count === 1}
             onClick={() => decrementItem(id)}
           >
             <StyledButtonContant>-</StyledButtonContant>

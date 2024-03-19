@@ -5,7 +5,7 @@ const Heading = styled.h1`
     props.as === "h1" &&
     css`
       font-size: 30px;
-      font-weight: 600;
+      font-weight: bold;
       padding-top: 5px;
       padding-bottom: 5px;
     `}
@@ -35,7 +35,23 @@ const Heading = styled.h1`
     ${(props) =>
     props.as === "h5" &&
     css`
-      font-size: 15px;
+      font-size: 13px;
+      font-weight: 600;
+      padding-top: 5px;
+      padding-bottom: 8px;
+    `}
+       ${(props) =>
+    props.as === "h6" &&
+    css`
+      font-size: 11px;
+      font-weight: 600;
+      padding-top: 5px;
+      padding-bottom: 8px;
+    `}
+    ${(props) =>
+    props.as === "h7" &&
+    css`
+      font-size: 9px;
       font-weight: 600;
       padding-top: 5px;
       padding-bottom: 8px;
