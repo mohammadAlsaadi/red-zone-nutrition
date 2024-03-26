@@ -4,9 +4,12 @@ import Logo from "./Logo";
 import LogoLink from "./LogoLink";
 import { HiOutlineEnvelope, HiOutlinePhone } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const FOOTER_LOGO_REDZONE =
   "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/logo-redzone.png";
 function Footer() {
+  const { t } = useTranslation();
+
   return (
     <StyledFooter>
       <StyledContent>
@@ -16,7 +19,7 @@ function Footer() {
         <StyledContactUs>
           <StyledHeadind>
             <Heading color="#f3f4f6" as="h5">
-              Contact Us
+              {t("Contact Us")}
             </Heading>
           </StyledHeadind>
           <ContactElement>
@@ -31,7 +34,7 @@ function Footer() {
         <StyledStayUpdated>
           <StyledHeadind>
             <Heading color="#f3f4f6" as="h5">
-              Stay updated
+              {t("Stay updated")}
             </Heading>
           </StyledHeadind>
           <LogoLink />

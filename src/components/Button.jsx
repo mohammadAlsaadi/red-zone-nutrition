@@ -50,7 +50,6 @@ const variations = {
 
     &:hover {
       background-color: var(--backdrop-color);
-      /* border-color: var(--color-grey-0); */
       color: var(--color-grey-0);
     }
     &:focus {

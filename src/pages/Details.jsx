@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { HiOutlinePlus, HiOutlineXMark } from "react-icons/hi2";
 import useProduct from "../featurs/product/useProduct";
-import { formatPrice } from "../utils/helper";
+import { formatPrice, formatProductDescription } from "../utils/helper";
 import Spinner from "../components/Spinner";
 import Heading from "../components/Heading";
 import DropDownList from "../components/DropDownList";
@@ -14,6 +14,8 @@ import Reviews from "../featurs/reviews/Reviews";
 
 import { v4 as uuidv4 } from "uuid";
 import HasOffer from "../components/HasOffer";
+import { useTranslation } from "react-i18next";
+import SpinnerMini from "../components/SpinnerMini";
 
 function Details() {
   const [activeProductSize, setActiveProductSize] = useState(0);
@@ -22,6 +24,7 @@ function Details() {
   const [inStock, setInStock] = useState(true);
   const [isOpenDescription, setIsOpenDescription] = useState(false);
   const [isOpenNutritionFacts, setIsOpenNutritionFacts] = useState(false);
+  const { t } = useTranslation();
 
   // const [isOpenRating, setIsOpenRating] = useState(false);
   const {
@@ -29,7 +32,6 @@ function Details() {
     addToCart,
     isLoading: isAdding,
     incrementItem,
-    decrementItem,
   } = useCartContext();
   const { product, isLoading } = useProduct();
 
@@ -79,22 +81,6 @@ function Details() {
       productSize: productSizes[activeProductSize],
     };
 
-    // Log newItem for debugging
-
-    // const existingItem = cart?.find(
-    //   (item) =>
-    //     item.id === id &&
-    //     item.flavor === flavors[selectedFlavor] &&
-    //     item.productSize === productSizes[activeProductSize]
-    // );
-    // const existingItem = cart?.map((i) =>
-    //   i.productSize?.includes(productSizes[activeProductSize])
-    // );
-    // console.log(product);
-    // console.log(
-    //   productSizes[activeProductSize],
-    //   flavors[activeProductSize][selectedFlavor]
-    // );
     const existingItem = cart?.find(
       (item) =>
         item.productId === productId &&
@@ -103,7 +89,6 @@ function Details() {
     );
     if (existingItem) {
       console.log("update count item");
-      // If the item already exists, increment its count
       console.log(existingItem.id);
       incrementItem(existingItem.id);
     } else {
@@ -126,7 +111,7 @@ function Details() {
         </ImageContainer>
         <StyledOptions>
           <StyledIcon src={companyIcon} />
-          <Heading as="h3">{name}</Heading>
+          <Heading as="h3">{t(name)}</Heading>
           {hasOffer && (
             <HasOffer>
               {price.length > 1
@@ -149,7 +134,7 @@ function Details() {
             </Heading>
           )}
           <StyledInStock instock={inStock}>
-            {inStock ? "In Stock" : "Out of Stock"}
+            {inStock ? t("In Stock") : t("Out of Stock")}
           </StyledInStock>
 
           <DropDownList
@@ -177,28 +162,32 @@ function Details() {
               size="tallerHerzontally"
               variation="primary"
               onClick={handleAddToCart}
-              // disabled={isAdding}
             >
-              Add to cart
+              {isAdding ? <SpinnerMini /> : t("Add to cart")}
             </Button>
           </ButtonPosition>
         </StyledOptions>
       </ProductOptions>
       <ProductDescription>
         <StyledLabel onClick={() => setIsOpenDescription((opened) => !opened)}>
-          <Heading as="h3">Product description</Heading>
+          <Heading as="h3">{t("Product description")}</Heading>
           <ButtonIcon width="14" height="14">
             {isOpenDescription ? <HiOutlineXMark /> : <HiOutlinePlus />}{" "}
           </ButtonIcon>
         </StyledLabel>
         <UnderLine />
-        {isOpenDescription && <p>{description}</p>}
+        {isOpenDescription && (
+          <DescriptionParagraphs>
+            <p>{formatProductDescription(t(description))}</p>{" "}
+            {/* Format the description using the function */}
+          </DescriptionParagraphs>
+        )}
       </ProductDescription>
       <ProductNutritionFacts>
         <StyledLabel
           onClick={() => setIsOpenNutritionFacts((opened) => !opened)}
         >
-          <Heading as="h3">Nutrition Facts</Heading>
+          <Heading as="h3">{t("Nutrition Facts")}</Heading>
           <ButtonIcon width="14" height="14">
             {isOpenNutritionFacts ? <HiOutlineXMark /> : <HiOutlinePlus />}
           </ButtonIcon>
@@ -206,7 +195,7 @@ function Details() {
         <UnderLine />
         {isOpenNutritionFacts && <StyledImg src={nutritionFactsImage} />}
       </ProductNutritionFacts>
-      <Heading as="h2">Other Top Related Products</Heading>
+      <Heading as="h2">{t("Other Top Related Products")}</Heading>
       <ProductsList category={category} />
       <Reviews />
     </DetailsLayout>
@@ -250,6 +239,12 @@ const ImageContainer = styled.div`
   @media (max-width: 700px) {
     width: 300px;
     height: 300px;
+  }
+`;
+const DescriptionParagraphs = styled.div`
+  width: 90%;
+  p {
+    margin-bottom: 1rem;
   }
 `;
 const StyledOptions = styled.div`
@@ -313,7 +308,7 @@ const ProductDescription = styled.div`
 `;
 const UnderLine = styled.div`
   border-bottom: 1.5px solid var(--color-grey-300);
-  width: 45%;
+  width: 70%;
   @media (max-width: 700px) {
     width: 60%;
   }
@@ -331,7 +326,7 @@ const StyledLabel = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 45%;
+  width: 70%;
   @media (max-width: 700px) {
     width: 60%;
   }

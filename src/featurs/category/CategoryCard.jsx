@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../components/Button";
+import { useBodyDirection } from "../../context/BodyDirectionContext";
 
 function CategoryCard({ categoryItem }) {
-  const { image, category } = categoryItem;
+  const { image, category, image_ar } = categoryItem;
   const navigate = useNavigate();
+  const { isRtl } = useBodyDirection();
 
   return (
     <StyledCategoryCart onClick={() => navigate(`/products/${category}`)}>
-      <StyledImage imgurl={image}>
+      <StyledImage imgurl={isRtl ? image_ar : image}>
         <ButtonPosition>
           {/* <Heading color="var(--color-grey-50)" as="h3">
             {name}

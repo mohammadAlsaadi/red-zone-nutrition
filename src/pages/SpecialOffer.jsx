@@ -1,9 +1,11 @@
+import { useTranslation } from "react-i18next";
 import ListOfProducts from "../components/ListOfProducts";
 import Spinner from "../components/Spinner";
 import useProducts from "../featurs/product/useProducts";
 
-function SpectialOffer() {
+function SpecialOffer() {
   const { data, isLoading } = useProducts();
+
   if (isLoading) return <Spinner />;
   const products = data?.filter((product) => product.hasOffer === true);
   return (
@@ -11,10 +13,10 @@ function SpectialOffer() {
       <ListOfProducts
         data={products}
         isLoading={isLoading}
-        headerName="Spectial Offers"
+        headerName="Special Offers"
       />
     </>
   );
 }
 
-export default SpectialOffer;
+export default SpecialOffer;

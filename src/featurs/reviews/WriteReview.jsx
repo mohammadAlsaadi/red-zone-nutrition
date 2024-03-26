@@ -10,9 +10,12 @@ import { useUser } from "../authentication/useUser";
 
 import ReviewForm from "./ReviewForm";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function WriteReview({ isUserReviewedBefore, onCloseModal }) {
   const { isAuthenticated } = useUser();
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   function handleSignin() {
     navigate("/login");
@@ -25,7 +28,7 @@ function WriteReview({ isUserReviewedBefore, onCloseModal }) {
         <Button variation="primary" size="medium">
           <StyledButtonText>
             <Heading as="h5" color="var(--color-grey-50)">
-              Write a review
+              {t("Write a review")}
             </Heading>
             <HiOutlinePencilSquare size={18} />
           </StyledButtonText>

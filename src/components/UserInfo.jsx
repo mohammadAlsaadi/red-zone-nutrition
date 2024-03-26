@@ -3,63 +3,24 @@ import Form from "./Form";
 import FormRow from "./FormRow";
 import Input from "./Input";
 import { useUser } from "../featurs/authentication/useUser";
+import { useTranslation } from "react-i18next";
 function UserInfo() {
-  const { user, isAuthenticated } = useUser();
+  const { user } = useUser();
+  const { t } = useTranslation();
+
   const { fullName, phone } = user?.user_metadata;
   const { email } = user;
   return (
     <StyledForm>
       <Form>
-        <FormRow label="Your Full Name">
-          <Input
-            // disabled={isLoading}
-            // type="email"
-            // id="email"
-            // placeholder="xx@xx.com"
-            value={fullName}
-            disabled={true}
-            // {...register("email", {
-            //   required: "this field is required",
-            //   pattern: {
-            //     value: /\S+@\S+\.\S+/,
-            //     message: "Please provide a valid email address",
-            //   },
-            // })}
-          />
+        <FormRow label={t("Your Full Name")}>
+          <Input value={fullName} disabled={true} />
         </FormRow>
-        <FormRow label="Your Email">
-          <Input
-            // disabled={isLoading}
-            type="email"
-            id="email"
-            // placeholder="xx@xx.com"
-            value={email}
-            disabled={true}
-            // {...register("email", {
-            //   required: "this field is required",
-            //   pattern: {
-            //     value: /\S+@\S+\.\S+/,
-            //     message: "Please provide a valid email address",
-            //   },
-            // })}
-          />
+        <FormRow label={t("Your Email")}>
+          <Input type="email" id="email" value={email} disabled={true} />
         </FormRow>
-        <FormRow label="Your Phone">
-          <Input
-            // disabled={isLoading}
-            // type="email"
-            // id="email"
-            // placeholder="xx@xx.com"
-            value={phone}
-            disabled={true}
-            // {...register("email", {
-            //   required: "this field is required",
-            //   pattern: {
-            //     value: /\S+@\S+\.\S+/,
-            //     message: "Please provide a valid email address",
-            //   },
-            // })}
-          />
+        <FormRow label={t("Your Phone")}>
+          <Input value={phone} disabled={true} />
         </FormRow>
       </Form>
     </StyledForm>

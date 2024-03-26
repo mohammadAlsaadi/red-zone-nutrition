@@ -2,26 +2,29 @@ import styled from "styled-components";
 import Heading from "./Heading";
 import ColorIcon from "./ColorIcon";
 import { formatPrice } from "../utils/helper";
+import { useTranslation } from "react-i18next";
 
 function ProductItemPreview({ item, withoutDetails }) {
+  const { t } = useTranslation();
+
   return (
     <CartItemContainer>
       <CartItemSummary>
         <img src={item.image} width={65} height={65} alt="productSummary" />
         <InfoContainer>
-          <Heading as="h6">{item.name}</Heading>
+          <Heading as="h6">{t(item.name)}</Heading>
           <Heading color="var(--color-grey-400)" as="h7">
-            {item.category}
+            {t(item.category)}
           </Heading>
           <Heading color="var(--color-gold-700)" as="h7">
-            {item.companyName}
+            {t(item.companyName)}
           </Heading>
         </InfoContainer>
       </CartItemSummary>
       <StyledFlavorPriceContainer>
         <StyledFlavor>
           <ColorIcon dataToConvert={item?.flavor} />
-          <Heading as="h6">{item.flavor}</Heading>
+          <Heading as="h6">{t(item.flavor)}</Heading>
         </StyledFlavor>
         <Heading as="h4">{formatPrice(item.price)}</Heading>
       </StyledFlavorPriceContainer>

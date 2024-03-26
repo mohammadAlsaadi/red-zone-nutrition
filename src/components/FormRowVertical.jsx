@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 const StyledFormRow = styled.div`
@@ -17,11 +18,13 @@ const Error = styled.span`
 `;
 
 function FormRowVertical({ label, error, children }) {
+  const { t } = useTranslation();
+
   return (
     <StyledFormRow>
-      {label && <Label htmlFor={children.props.id}>{label}</Label>}
+      {label && <Label htmlFor={children.props.id}>{t(label)}</Label>}
       {children}
-      {error && <Error>{error}</Error>}
+      {error && <Error>{t(error)}</Error>}
     </StyledFormRow>
   );
 }

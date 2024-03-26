@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import { useDarkMode } from "../context/DarkModeContext";
 
 function Banner({ src, width = 50, height = 50 }) {
-  const { isDarkMode } = useDarkMode();
   return (
     <StyledBanner>
       <img src={src} alt="new" width={width} height={height} />

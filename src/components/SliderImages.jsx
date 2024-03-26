@@ -3,8 +3,9 @@ import styled, { css } from "styled-components";
 import ButtonIcon from "./ButtonIcon";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useShowSideBar } from "../context/ShowSideBar";
-import Heading from "./Heading";
 import Button from "./Button";
+import { useTranslation } from "react-i18next";
+import { useBodyDirection } from "../context/BodyDirectionContext";
 
 const TEMP_IMG_SLIDES = [
   {
@@ -35,6 +36,8 @@ const TEMP_IMG_SLIDES = [
 function SliderImages() {
   const [currIndex, setCurrIndex] = useState(0);
   const { showSideBar } = useShowSideBar();
+  const { t } = useTranslation();
+  const { isRtl } = useBodyDirection();
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -43,18 +46,6 @@ function SliderImages() {
 
     return () => clearInterval(intervalId); // Cleanup the interval on component unmount
   }, []);
-
-  const handlePrevClick = () => {
-    if (currIndex !== 0) {
-      setCurrIndex((prevIndex) => prevIndex - 1);
-    }
-  };
-
-  const handleNextClick = () => {
-    if (currIndex !== TEMP_IMG_SLIDES.length - 1) {
-      setCurrIndex((prevIndex) => prevIndex + 1);
-    }
-  };
 
   return (
     <StyledSliderImages showsidebar={showSideBar}>
@@ -66,17 +57,14 @@ function SliderImages() {
         imgurl={TEMP_IMG_SLIDES[currIndex]?.url}
         title={TEMP_IMG_SLIDES[currIndex]?.title}
       >
-        <StyledHeading>
-          <P1>Redzone nutrition's partnars </P1>
-          <P2>Join our team and be a part of us</P2>
+        <StyledHeading isrtl={isRtl}>
+          <P1>{t("Redzone nutrition's partnars")} </P1>
+          <P2>{t("Join our team and be a part of us")}</P2>
           <Button borderbutton="none" variation="transparent">
-            <h4>JOIN US NOW</h4>{" "}
+            <h4>{t("JOIN US NOW")}</h4>{" "}
           </Button>
         </StyledHeading>
       </StyledImg>
-      {/* <ButtonIcon onClick={handleNextClick}>
-        <HiChevronRight color="red" />
-      </ButtonIcon> */}
     </StyledSliderImages>
   );
 }
@@ -88,7 +76,7 @@ const P1 = styled.p`
   font-weight: bold;
 `;
 const P2 = styled.p`
-  font-size: x-large;
+  font-size: 20px;
   @media (max-width: 700px) {
     font-size: large;
   }
@@ -103,43 +91,25 @@ const StyledSliderImages = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* gap: 2rem; */
   width: 100%;
-
-  ${(props) =>
-    props.showsidebar &&
-    css`
-      /* @media (max-width: 600px) {
-        width: 270px;
-        display: flex;
-        align-items: center;
-        padding-left: 10rem;
-        margin-left: 10rem;
-        padding-right: 0;
-        margin-right: 0;
-      } */
-      /* @media (min-width: 900px) {
-        display: flex;
-        align-items: center;
-        padding-left: 1rem;
-      } */
-    `}
 `;
 const StyledHeading = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: flex-end;
-  padding-top: 35rem;
 
-  padding-left: 50%;
+  justify-content: ${(props) => (props.isrtl ? "flex-start" : "flex-end")};
+  padding-top: 35rem;
+  width: ${(props) => (props.isrtl ? "90%" : "95%")};
+
+  /* padding-left: ${(props) => (props.isrtl ? "0" : "50%")};
+  padding-right: ${(props) => (props.isrtl ? "50%" : "0")}; */
+
   @media (max-width: 900px) {
-    padding-left: 40%;
+    padding-left: ${(props) => (props.isrtl ? "0" : "50%")};
   }
   gap: 1rem;
-  /* bottom: 0rem;
-  right: 6rem; */
 
   z-index: 1;
 `;

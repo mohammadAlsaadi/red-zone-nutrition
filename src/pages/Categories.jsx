@@ -6,10 +6,12 @@ import CategoryCard from "../featurs/category/CategoryCard";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
+import { useTranslation } from "react-i18next";
 
 function Categories() {
   const { data: categories, isLoading } = useCategories();
   const [currentPage, setCurrentPage] = useState(1);
+  const { t } = useTranslation();
 
   if (isLoading) return <Spinner />;
   const categoriesPerPage = 4;
@@ -34,9 +36,9 @@ function Categories() {
   return (
     <StyledCategories>
       <StyledHeader>
-        <Heading as="h3">All Categories</Heading>
+        <Heading as="h3">{t("All Categories")}</Heading>
         <ButtonText color="red" size="small">
-          Filter
+          {t("Filter")}
         </ButtonText>
       </StyledHeader>
       <CategoriesContainer>

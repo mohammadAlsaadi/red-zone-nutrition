@@ -1,21 +1,22 @@
 import styled from "styled-components";
 import Button from "./Button";
 import { formatCurrency } from "../utils/helper";
-// import { useCartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import Banner from "./Banner";
 import HasOffer from "./HasOffer";
+import { useTranslation } from "react-i18next";
 function ProductCard({ product }) {
   const { name, image, category, price, isNew, id, hasOffer, newPrice } =
     product;
-  // const { addToCart } = useCartContext();
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const handleBuyNow = (e) => {
-    e.stopPropagation();
-    // navigate(`/details/${id}`);
+    // e.stopPropagation();
+    navigate(`/details/${id}`);
   };
   return (
-    <StyledProductCart onClick={() => navigate(`/details/${id}`)}>
+    <StyledProductCart>
       {isNew && !hasOffer && (
         <Banner src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/new.svg" />
       )}
@@ -31,20 +32,24 @@ function ProductCard({ product }) {
       )}
       <StyledImage src={image}></StyledImage>
       <ProductInfo>
-        <ProductName>{name}</ProductName>
-        <ProductCategory>{category}</ProductCategory>
+        <ProductName>{t(name)}</ProductName>
+        <ProductCategory>{t(category)}</ProductCategory>
         {hasOffer ? (
           <OldNewPrice>
             <HasOffer>{formatCurrency(price[0])}</HasOffer>
-            <ProductPrice>From {formatCurrency(newPrice[0])}</ProductPrice>
+            <ProductPrice>
+              {t("From")} {formatCurrency(newPrice[0])}
+            </ProductPrice>
           </OldNewPrice>
         ) : (
-          <ProductPrice>From {formatCurrency(price[0])}</ProductPrice>
+          <ProductPrice>
+            {t("From")} {formatCurrency(price[0])}
+          </ProductPrice>
         )}{" "}
       </ProductInfo>
       <CardOption>
         <Button variations="primary" size="small" onClick={handleBuyNow}>
-          Buy now
+          {t("Buy now")}
         </Button>
       </CardOption>
     </StyledProductCart>

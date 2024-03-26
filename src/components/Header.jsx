@@ -1,29 +1,35 @@
 import styled, { css } from "styled-components";
 import SearchBar from "./SearchBar";
-import { HiOutlineBars3, HiOutlineMagnifyingGlass } from "react-icons/hi2";
+import {
+  HiOutlineBars3,
+  HiOutlineLanguage,
+  HiOutlineMagnifyingGlass,
+} from "react-icons/hi2";
 import { useShowSideBar } from "../context/ShowSideBar";
 import Logo from "./Logo";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import CartModal from "./CartModal";
-import { useUser } from "../featurs/authentication/useUser";
 import { useState } from "react";
 import OptionsBar from "./OptionsBar";
 import { useScrolled } from "../context/ScrolledContext";
-import UserCard from "../featurs/authentication/UserCard";
 import useProducts from "../featurs/product/useProducts";
-import ProductItemPreview from "./productItemPreview";
 import ProductResult from "./ProductResult";
+import Modal from "./Modal";
+import { useTranslation } from "react-i18next";
+import LanguageModal from "../featurs/language/LanguageModal";
 
 function Header() {
   const [searchInput, setSearchInput] = useState("");
-  const { data, isLoading } = useProducts();
+  const { data } = useProducts();
   const [showSearchBar, setShowSearchBar] = useState(false);
   const { showSideBar, setShowSideBar } = useShowSideBar();
-  const { isAuthenticated } = useUser();
-  const navigate = useNavigate();
+  // const { isAuthenticated } = useUser();
   const isHomePagePath = useLocation().pathname === "/home";
   const { isScrolled } = useScrolled();
   // Filter products based on search input
+  const { t } = useTranslation();
+  const bodyDir = document.body.dir;
+  console.log(bodyDir);
   let resultData =
     searchInput.length >= 2 &&
     data.filter((item) =>
@@ -77,6 +83,7 @@ function Header() {
             </StyledSearchButton>
           </OptionsContainer1>
           <SearchBarContainer
+            dir={bodyDir}
             onClick={() => setShowSearchBar((showen) => !showen)}
           >
             <HiOutlineMagnifyingGlass
@@ -84,7 +91,7 @@ function Header() {
               color={isScrolled || !isHomePagePath ? "" : "var(--color-grey-0)"}
             />
             <SearchText ishomepagepath={isHomePagePath} isscrolled={isScrolled}>
-              Search
+              {t("Search")}
             </SearchText>
           </SearchBarContainer>
           <Link to="/home">
@@ -95,18 +102,25 @@ function Header() {
             />
           </Link>
 
-          {/* <OptionsContainer2>
-            <UserContainer>
-              {isAuthenticated ? (
-                <UserCard />
-              ) : (
-                <Signin onClick={() => navigate("/login")}>
-                  <P ishomepagepath={isHomePagePath}>Sign in</P>
-                </Signin>
-              )}
-            </UserContainer>
-          </OptionsContainer2> */}
-          <CartModal />
+          <OptionsContainer2>
+            <Modal>
+              <Modal.Open opens="language">
+                <HiOutlineLanguage
+                  cursor="pointer"
+                  size={22}
+                  color={
+                    isScrolled || !isHomePagePath
+                      ? "var(--color-grey-800)"
+                      : "var(--color-grey-0"
+                  }
+                />
+              </Modal.Open>
+              <Modal.Window name="language">
+                <LanguageModal />
+              </Modal.Window>
+            </Modal>
+            <CartModal />
+          </OptionsContainer2>
         </LayerOne>
         <LayerTwo ishomepagepath={isHomePagePath} isscrolled={isScrolled}>
           <OptionsBar />
@@ -220,6 +234,7 @@ const StyledSearchButton = styled.div`
   }
 `;
 const SearchBarContainer = styled.div`
+  padding-right: ${(props) => props.dir === "rtl" && "2rem"};
   display: none;
   @media (min-width: 900px) {
     display: flex;
@@ -244,23 +259,10 @@ const SearchText = styled.p`
   }
 `;
 
-const Signin = styled.div`
-  /* background-color: var(--color-grey-100); */
+const OptionsContainer2 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 8rem;
-  height: 4rem;
-  border: none;
-  border-radius: 1rem;
-  &:hover {
-    background-color: var(--color-grey-200);
-  }
-  cursor: pointer;
-`;
-const P = styled.p`
-  color: ${(props) =>
-    props.isscrolled || !props.ishomepagepath
-      ? "var(--color-grey-700)"
-      : "var(--color-grey-0)"};
+  /* width: 12%; */
+  gap: 2rem;
 `;

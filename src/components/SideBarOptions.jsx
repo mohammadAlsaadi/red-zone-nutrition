@@ -6,6 +6,7 @@ import { useShowSideBar } from "../context/ShowSideBar";
 import Heading from "./Heading";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function SideBarOptions() {
   const [isOpenCategories, setIsOpenCategories] = useState(false);
@@ -13,6 +14,8 @@ function SideBarOptions() {
   // const { isAuthenticated } = useUser();
   const { setShowSideBar } = useShowSideBar();
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   function handleNavigate(path) {
     navigate(path);
     setShowSideBar(false);
@@ -20,7 +23,7 @@ function SideBarOptions() {
   return (
     <NavList>
       <StyledListLabel onClick={() => setIsOpenCategories((isOpen) => !isOpen)}>
-        <Heading as="h5">Categories</Heading>
+        <Heading as="h5">{t("Categories")}</Heading>
         {isOpenCategories ? <HiOutlineXMark /> : <HiOutlineChevronRight />}
       </StyledListLabel>
       {isOpenCategories && (
@@ -29,70 +32,70 @@ function SideBarOptions() {
             onClick={() => handleNavigate(`/products/whey-protein`)}
           >
             <Heading as="h5" color="var(--color-red-500)">
-              Whey Protein
+              {t("Whey Protein")}
             </Heading>
           </StyledOption>
           <StyledOption onClick={() => handleNavigate(`/products/iso-protein`)}>
             <Heading as="h5" color="var(--color-red-500)">
-              Iso Protein
+              {t("Iso Protein")}
             </Heading>
           </StyledOption>
           <StyledOption onClick={() => handleNavigate(`/products/creatine`)}>
             <Heading as="h5" color="var(--color-red-500)">
-              Creatine
+              {t("Creatine")}
             </Heading>
           </StyledOption>
           <StyledOption onClick={() => handleNavigate(`/products/pre-workout`)}>
             <Heading as="h5" color="var(--color-red-500)">
-              Pre-Workout
+              {t("Pre-Workout")}
             </Heading>
           </StyledOption>
           <StyledOption onClick={() => handleNavigate(`/products/amino-acid`)}>
             <Heading as="h5" color="var(--color-red-500)">
-              Amino Acid
+              {t("Amino Acid")}
             </Heading>
           </StyledOption>
           <StyledOption
             onClick={() => handleNavigate(`/products/carbohydrates`)}
           >
             <Heading as="h5" color="var(--color-red-500)">
-              Carbohydrates
+              {t("Carbohydrates")}
             </Heading>
           </StyledOption>
           <StyledOption onClick={() => handleNavigate(`/products/snacks`)}>
             <Heading as="h5" color="var(--color-red-500)">
-              Snacks
+              {t("Snacks")}
             </Heading>
           </StyledOption>
           <StyledOption onClick={() => handleNavigate(`/products/vegan`)}>
             <Heading as="h5" color="var(--color-red-500)">
-              Vegan
+              {t("Vegan")}
             </Heading>
           </StyledOption>
           <StyledOption
             onClick={() => handleNavigate(`/products/mass-gainers`)}
           >
             <Heading as="h5" color="var(--color-red-500)">
-              Mass Gainers
+              {t("Mass Gainers")}
             </Heading>
           </StyledOption>
           <StyledOption onClick={() => handleNavigate(`/products/fat-burners`)}>
             <Heading as="h5" color="var(--color-red-500)">
-              Fat Burners
+              {t("Fat Burners")}
             </Heading>
           </StyledOption>
         </StyledList>
       )}
 
       <StyledOption onClick={() => handleNavigate(`/spectial-offer`)}>
-        <Heading as="h5">Spectial Offers</Heading>
+        <Heading as="h5">{t("Special Offers")}</Heading>
       </StyledOption>
 
       <StyledOption onClick={() => handleNavigate(`/best-seller`)}>
-        <Heading as="h5">Best Seller</Heading>
+        <Heading as="h5">{t("Best Seller")}</Heading>
       </StyledOption>
       <StyledOption onClick={() => handleNavigate(`/new-in-store`)}>
-        <Heading as="h5">New in Store</Heading>
+        <Heading as="h5">{t("New in Store")}</Heading>
         <img
           src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/new.svg"
           alt="new"
@@ -105,25 +108,25 @@ function SideBarOptions() {
           handleNavigate(`/products/all`);
         }}
       >
-        <Heading as="h5">All Products</Heading>
+        <Heading as="h5">{t("All Products")}</Heading>
       </StyledOption>
       <StyledOption onClick={() => handleNavigate(`/calculate-calories`)}>
-        <Heading as="h5">Calculate Calories</Heading>
+        <Heading as="h5">{t("Calculate Calories")}</Heading>
       </StyledOption>
       {/* <StyledOption onClick={() => handleNavigate(`/consultation`)}>
         <Heading as="h5">Take a Consultation</Heading>
       </StyledOption> */}
       <StyledOption onClick={() => handleNavigate(`/cart`)}>
-        <Heading as="h5">Cart</Heading>
+        <Heading as="h5">{t("Cart")}</Heading>
       </StyledOption>
       <StyledOption onClick={() => handleNavigate(`/orders`)}>
-        <Heading as="h5">Orders</Heading>
+        <Heading as="h5">{t("Orders")}</Heading>
       </StyledOption>
       <StyledOption onClick={() => handleNavigate(`/about-us`)}>
-        <Heading as="h5">About Us</Heading>
+        <Heading as="h5">{t("About Us")}</Heading>
       </StyledOption>
       <StyledOption onClick={() => handleNavigate(`/contact-us`)}>
-        <Heading as="h5">Contact Us</Heading>
+        <Heading as="h5">{t("Contact Us")}</Heading>
       </StyledOption>
     </NavList>
   );
@@ -161,6 +164,8 @@ const StyledOption = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding-left: 2rem;
+  padding-right: 2rem;
+
   gap: 9rem;
   &:hover {
     background-color: var(--color-grey-100);

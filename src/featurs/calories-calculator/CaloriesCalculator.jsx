@@ -6,6 +6,7 @@ import InpBMRut from "../../components/Input";
 import Heading from "../../components/Heading";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import { useTranslation } from "react-i18next";
 
 // Activity levels and their corresponding multipliers for TDEE calculation
 const activityLevels = {
@@ -26,15 +27,12 @@ const calculateBMR = (weight, height, age, gender) => {
 };
 
 // Component
-function CaloriesCalculator({
-  setCalculatedTDEE,
-  continueToCalculate,
-  setContinueToCalculate,
-}) {
+function CaloriesCalculator({ setCalculatedTDEE }) {
   const [errors, setErrors] = useState({});
   const [BMR, setBMR] = useState(0);
   const [TDEE, setTDEE] = useState(0);
   const [isLoading, setIsLoading] = useState(0);
+  const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
     height: "",
@@ -67,9 +65,6 @@ function CaloriesCalculator({
       const calculatedTDEE = calculatedBMR * activityLevels[activityLevel];
       setTDEE(calculatedTDEE);
       setCalculatedTDEE(calculatedTDEE);
-
-      console.log("Basal Metabolic Rate (BMR):", calculatedBMR);
-      console.log("Total Daily Energy Expenditure (TDEE):", calculatedTDEE);
     } else {
       setErrors(errors);
     }
@@ -79,8 +74,8 @@ function CaloriesCalculator({
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
-        <Heading as="h4"> Calculate your BMR & TDEE</Heading>
-        <FormRow label="Height (cm):" errors={errors.height}>
+        <Heading as="h4"> {t("Calculate your BMR & TDEE")}</Heading>
+        <FormRow label="Height (cm)" errors={errors.height}>
           <Input
             type="number"
             name="height"
@@ -88,7 +83,7 @@ function CaloriesCalculator({
             onChange={handleChange}
           />
         </FormRow>
-        <FormRow label="Weight (kg):" errors={errors.weight}>
+        <FormRow label="Weight (kg)" errors={errors.weight}>
           <Input
             type="number"
             name="weight"
@@ -96,7 +91,7 @@ function CaloriesCalculator({
             onChange={handleChange}
           />
         </FormRow>
-        <FormRow label="Age:" errors={errors.age}>
+        <FormRow label="Age" errors={errors.age}>
           <Input
             type="number"
             name="age"
@@ -104,10 +99,10 @@ function CaloriesCalculator({
             onChange={handleChange}
           />
         </FormRow>
-        <FormRow label="Gender:">
+        <FormRow label="Gender">
           <Select name="gender" value={formData.gender} onChange={handleChange}>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="male">{t("Male")}</option>
+            <option value="female">{t("Female")}</option>
           </Select>
         </FormRow>
         <FormRow label="Activity Level:" errors={errors.activityLevel}>
@@ -116,29 +111,30 @@ function CaloriesCalculator({
             value={formData.activityLevel}
             onChange={handleChange}
           >
-            <option value="">Choose an activity level</option>
             {Object.keys(activityLevels).map((key) => (
               <option key={key} value={key}>
-                {key}
+                {t(key)}
               </option>
             ))}
           </Select>
         </FormRow>
         <Button variation="primary" size="medium" disabled={isLoading}>
-          {isLoading ? "Calculating..." : "Calculate"}
+          {isLoading ? t("Calculating...") : t("Calculate")}
         </Button>
       </Form>
       {BMR !== 0 && TDEE !== 0 ? (
         <Form>
-          <Heading as="h4">Basal Metabolic Rate (BMR): {BMR} kcal</Heading>
           <Heading as="h4">
-            Total Daily Energy Expenditure (TDEE): {TDEE} kcal
+            {t("Basal Metabolic Rate (BMR):")} {BMR} kcal
+          </Heading>
+          <Heading as="h4">
+            {t("Total Daily Energy Expenditure (TDEE):")} {TDEE} kcal
           </Heading>
         </Form>
       ) : (
         <Form>
           <Heading as="h4">
-            Please enter all values to calculate your calories🙋‍♂️
+            {t("Please enter all values to calculate your calories")}🙋‍♂️
           </Heading>
         </Form>
       )}

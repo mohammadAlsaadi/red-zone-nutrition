@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { useState } from "react";
 import { HiOutlineMagnifyingGlass, HiXMark } from "react-icons/hi2";
+import { useTranslation } from "react-i18next";
 
 function SearchBar({ setShowSearchBar, setSearchInput, searchInput }) {
-  // Function to handle input change
+  const { t } = useTranslation();
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);
   };
@@ -15,7 +15,7 @@ function SearchBar({ setShowSearchBar, setSearchInput, searchInput }) {
       </StyledCloseButton>
       <StyledSearchBar>
         <StyledInput
-          placeholder="Search for product.."
+          placeholder={t("Search for product..")}
           value={searchInput}
           onChange={handleInputChange}
         />

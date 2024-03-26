@@ -9,9 +9,11 @@ import { HiOutlineChevronDown, HiXMark } from "react-icons/hi2";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import ConfirmDelete from "../../components/ConfirmDelete";
+import { useTranslation } from "react-i18next";
 const STATUS = ["Order Received", "Processing", "Shipped", "Completed"];
 const OrderDetails = ({ order, isLoading }) => {
   const [isOpenDetails, setIsOpenDetails] = useState(false);
+  const { t } = useTranslation();
 
   if (isLoading) return <Spinner />;
   const { id, totalPrice, status, estimatedDelivery, items, location, userId } =
@@ -21,11 +23,13 @@ const OrderDetails = ({ order, isLoading }) => {
     <Container>
       <DetailsSection>
         <StyledDetailsHeader>
-          <Heading as="h2">Order # {id}</Heading>
+          <Heading as="h2">
+            {t("Order #")} {id}
+          </Heading>
           <DetailItem>
             {!isOpenDetails && (
               <Heading as="h4" color={colorOfStatus}>
-                {status}
+                {t(status)}
               </Heading>
             )}
             {isOpenDetails ? (
@@ -49,16 +53,16 @@ const OrderDetails = ({ order, isLoading }) => {
               <Stepper steps={STATUS} currentStep={1} status={status} />
             </StepsWrapper>
             <DetailItem>
-              <Label>Total Price:</Label>
+              <Label>{t("Total Price:")}</Label>
               <Value>{formatPrice(totalPrice)}</Value>
             </DetailItem>
 
             <DetailItem>
-              <Label>Estimated Delivery:</Label>
+              <Label>{t("Estimated Delivery:")}</Label>
               <Value>{estimatedDelivery}</Value>
             </DetailItem>
             <DetailItem>
-              <Label>Location:</Label>
+              <Label>{t("Location")}:</Label>
               <Value>{location}</Value>
             </DetailItem>
             {/* <DetailItem>
@@ -66,7 +70,7 @@ const OrderDetails = ({ order, isLoading }) => {
           <Value>{userId}</Value>
         </DetailItem> */}
             <DetailItem>
-              <Label>Items</Label>
+              <Label>{t("Items")}</Label>
               <ItemList>
                 {items?.map((item) => (
                   <ProductItemPreview

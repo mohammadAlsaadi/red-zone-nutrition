@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ColorIcon from "./ColorIcon";
+import { useTranslation } from "react-i18next";
 
 function DropDownList({
   withoutLabel,
@@ -12,25 +13,27 @@ function DropDownList({
   additionIcon,
   fontSize,
 }) {
+  const { t } = useTranslation();
+
   return (
     <DropDownListContainer>
-      {!withoutLabel && <p>{labelText}</p>}
+      {!withoutLabel && <p>{t(labelText)}</p>}
       <StyledSelect
         width={width}
         height={height}
         fontsize={fontSize}
         value={options[value]}
-        onChange={(e) => setter(options.indexOf(e.target.value))}
+        onChange={(e) => setter(e.target.value)}
       >
         {options?.map((option) => (
           <StyledOption value={option} key={option}>
             {additionIcon ? (
               <StyledOptionWithAdditionData>
                 <ColorIcon dataToConvert={option} />
-                <span>{option}</span>
+                <span>{t(option)}</span>
               </StyledOptionWithAdditionData>
             ) : (
-              option
+              t(option)
             )}
           </StyledOption>
         ))}

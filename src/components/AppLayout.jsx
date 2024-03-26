@@ -6,20 +6,21 @@ import { useShowSideBar } from "../context/ShowSideBar";
 import Footer from "./Footer";
 import { useScrolled } from "../context/ScrolledContext";
 import { useDeviceWidth } from "../context/DeviceWidthContext";
+import { useBodyDirection } from "../context/BodyDirectionContext";
 
 function AppLayout() {
   const { showSideBar } = useShowSideBar();
   const { isDesktopDevice } = useDeviceWidth();
 
   const isHomePage = useLocation().pathname === "/home";
-  const calculateCalories = useLocation().pathname === "/calculate-calories";
-
   const { isScrolled } = useScrolled();
+  const { isRtl } = useBodyDirection();
   return (
     <StyledAppLayout>
       {/* <Header /> */}
       {showSideBar && <SideBar />}
       <StyledHeader
+        isrtl={isRtl}
         showsidebar={showSideBar}
         isdesktopdevice={isDesktopDevice}
         isscrolled={isHomePage ? isScrolled : true}
@@ -39,35 +40,19 @@ function AppLayout() {
 export default AppLayout;
 
 const StyledAppLayout = styled.div`
-  /* @media (max-width: 900px) { */
   background-color: var(--color-grey-0);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   height: 100%;
-  /* overflow: scroll; */
-  /* scrollbar-width: thin; */
-  /* scrollbar-color: var(--color-grey-300) var(--color-grey-400);
-
-  &::-webkit-scrollbar {
-    width: 12px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--color-grey-300);
-    border-radius: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: var(--color-grey-300);
-  } */
-  /* } */
 `;
 const StyledHeader = styled.div`
   position: fixed;
   top: 0;
-  left: ${(props) => (props.showsidebar && !props.isdesktopdevice ? "30%" : 0)};
-  right: 0;
+  left: ${(props) =>
+    props.showsidebar && !props.isdesktopdevice && !props.isrtl ? "30%" : 0};
+  right: ${(props) =>
+    props.showsidebar && !props.isdesktopdevice && props.isrtl ? "30%" : 0};
   z-index: 1;
 
   background-color: ${(props) =>
@@ -80,6 +65,9 @@ const Main = styled.main`
   height: 100%;
   width: 100%;
   padding-top: 10rem;
+  @media (min-width: 900px) {
+    padding-top: 15rem;
+  }
 `;
 const Container = styled.div`
   width: 100%;

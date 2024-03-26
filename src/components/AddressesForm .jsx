@@ -5,6 +5,7 @@ import Input from "./Input";
 import styled from "styled-components";
 import Form from "./Form";
 import Heading from "./Heading";
+import { useTranslation } from "react-i18next";
 
 function AddressesForm({
   setAdressAutoFill,
@@ -16,10 +17,10 @@ function AddressesForm({
   const [addressError, setAddressError] = useState("");
   const [streetError, setStreetError] = useState("");
   const [buildingNumberError, setBuildingNumberError] = useState("");
-
+  const { t } = useTranslation();
   const validateAddress = (place) => {
     if (!place || !place.formatted_address) {
-      setAddressError("This field is required");
+      setAddressError(t("This field is required"));
       return false;
     }
     setAddressError("");
@@ -28,7 +29,7 @@ function AddressesForm({
 
   const validateStreet = (street) => {
     if (!street || !/^[a-zA-Z\s]+$/.test(street)) {
-      setStreetError("Please enter a valid street name");
+      setStreetError(t("Please enter a valid street name"));
       return false;
     }
     setStreetError("");
@@ -37,7 +38,7 @@ function AddressesForm({
 
   const validateBuildingNumber = (buildingNumber) => {
     if (!buildingNumber || !/^\d+$/.test(buildingNumber)) {
-      setBuildingNumberError("Please enter a valid building number");
+      setBuildingNumberError(t("Please enter a valid building number"));
       return false;
     }
     setBuildingNumberError("");
@@ -79,7 +80,6 @@ function AddressesForm({
           placeholder="Amman, Jordan"
           onPlaceSelected={handlePlaceSelected}
         />
-        {/* <ValidationMessage>{addressError}</ValidationMessage> */}
       </FormRow>
       <FormRow errors={streetError} id="Street" label="Street">
         <Input
@@ -87,7 +87,6 @@ function AddressesForm({
           placeholder="Pr. Hamzeh Street"
           onChange={handleStreetChange}
         />
-        {/* <ValidationMessage>{streetError}</ValidationMessage> */}
       </FormRow>
       <FormRow
         id="buildingNumber"
@@ -99,7 +98,6 @@ function AddressesForm({
           type="number"
           onChange={handleBuildingNumberChange}
         />
-        {/* <ValidationMessage>{buildingNumberError}</ValidationMessage> */}
       </FormRow>
     </Form>
   );
@@ -114,10 +112,4 @@ const StyledHeader = styled.div`
   justify-content: center;
   align-items: center;
   padding-bottom: 2rem;
-`;
-
-const ValidationMessage = styled.div`
-  color: red;
-  font-size: 12px;
-  margin-top: 0.5rem;
 `;

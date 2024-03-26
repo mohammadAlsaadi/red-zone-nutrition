@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 const StyledFormRow = styled.div`
@@ -55,11 +56,13 @@ const Error = styled.span`
 `;
 
 function FormRow({ label, errors, children }) {
+  const { t } = useTranslation();
+
   return (
     <StyledFormRow>
-      {label && <Label htmlFor={children.props.id}>{label}</Label>}
+      {label && <Label htmlFor={children.props.id}>{t(label)}</Label>}
       {children}
-      {errors && <Error>{errors}</Error>}
+      {errors && <Error>{t(errors)}</Error>}
     </StyledFormRow>
   );
 }

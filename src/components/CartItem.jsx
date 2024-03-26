@@ -5,9 +5,12 @@ import ButtonText from "./ButtonText";
 import Spinner from "./Spinner";
 
 import { useCartContext } from "../context/CartContext";
+import { useTranslation } from "react-i18next";
 
 function CartItem({ item }) {
   const { incrementItem, decrementItem, removeItem } = useCartContext();
+  const { t } = useTranslation();
+
   if (!item) return null;
   const {
     image,
@@ -15,7 +18,7 @@ function CartItem({ item }) {
     category,
     price,
     count,
-    productId,
+
     id,
     flavor,
     productSize,
@@ -30,8 +33,8 @@ function CartItem({ item }) {
         )}
         <StyledName>
           {name}
-          <br /> <StyledCategory>{category}</StyledCategory>
-          {flavor} <p>{productSize}</p>
+          <br /> <StyledCategory>{t(category)}</StyledCategory>
+          {flavor} <p>{t(productSize)}</p>
         </StyledName>
       </StyledProductInfo>
       <OptionsContainer>
@@ -60,7 +63,7 @@ function CartItem({ item }) {
             textDecoration="underLine"
             onClick={() => removeItem(id)}
           >
-            Remove
+            {t("Remove")}
           </ButtonText>
         </StyledOptins>
         <StyledPrice>{formatCurrency(price)}</StyledPrice>

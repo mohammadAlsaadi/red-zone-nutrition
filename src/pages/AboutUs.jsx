@@ -1,45 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import Heading from "../components/Heading";
+import { useTranslation } from "react-i18next";
 
 const AboutUs = () => {
+  const { t } = useTranslation();
+  const language = window.localStorage.getItem("language");
+  const isArLanguage = language === "ar";
   return (
     <AboutUsContainer>
       <AboutUsContent>
         <Heading color="var(--color-grey-100)" as="h2">
-          Welcome to RedZone Nutrition
+          {t("About RedZone Nutrition")}
         </Heading>
-        <Paragraph>
-          Your ultimate destination for premium supplements tailored to fuel
-          your fitness journey. At RedZone, we're dedicated to providing
-          top-quality products designed to optimize your performance and support
-          your health and wellness goals.
-        </Paragraph>
-        <Paragraph>
-          Founded by fitness enthusiasts who understand the importance of
-          quality nutrition in achieving peak performance, RedZone Nutrition is
-          more than just a supplements store; it's a hub for individuals
-          passionate about maximizing their potential. We believe that fitness
-          is not just a hobby but a lifestyle, and our mission is to empower you
-          with the tools you need to conquer your fitness goals, whether you're
-          a seasoned athlete or just starting your journey.
-        </Paragraph>
-        <Paragraph>
-          At RedZone Nutrition, we prioritize transparency and integrity,
-          ensuring that each product meets the highest standards of quality and
-          effectiveness. Backed by scientific research and formulated with
-          premium ingredients, our supplements are trusted by athletes and
-          fitness enthusiasts alike to fuel their workouts, optimize recovery,
-          and support overall health.
-        </Paragraph>
-        <Paragraph>
-          Join the RedZone community today and experience the difference in your
-          fitness journey. With our unwavering commitment to excellence and
-          passion for empowering individuals to reach their full potential,
-          we're here to help you elevate your performance and achieve your
-          fitness aspirations. Discover the power of premium supplements with
-          RedZone Nutrition.
-        </Paragraph>
+        <Paragraph isar="isArLanguage">{t("redZoneP1")}</Paragraph>
+        <Paragraph isar="isArLanguage">{t("redZoneP2")}</Paragraph>
+        <Paragraph isar="isArLanguage">{t("redZoneP3")}</Paragraph>
+        <Paragraph isar="isArLanguage">{t("redZoneP4")}</Paragraph>
       </AboutUsContent>
       <ImageContainer>
         <Image src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/redzoneWithoutbg.png" />
@@ -67,10 +44,14 @@ const AboutUsContent = styled.div`
 `;
 
 const Paragraph = styled.p`
-  font-size: 1.3rem;
+  padding: 0.4rem 0rem;
+  font-size: ${(props) => (props.isar ? "1.6rem" : " 1.3rem")};
   line-height: 2;
   margin-bottom: 1rem;
   color: var(--color-grey-100);
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
 `;
 
 const ImageContainer = styled.div`

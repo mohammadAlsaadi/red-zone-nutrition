@@ -5,23 +5,19 @@ import ProductsList from "../featurs/product/ProductsList";
 import Heading from "../components/Heading";
 import ButtonText from "../components/ButtonText";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
 import { useScrolled } from "../context/ScrolledContext";
 import CategoriesList from "../featurs/category/CategoriesList";
 import Button from "../components/Button";
-import useProducts from "../featurs/product/useProducts";
-// import { useUser } from "../featurs/authentication/useUser";
-// import Header from "../components/Header";
+import { useTranslation } from "react-i18next";
+
 function Home() {
   const navigate = useNavigate();
   const { isScrolled } = useScrolled();
-  // const { user, isAuthenticated } = useUser();
-  // const { data, isLoading } = useProducts();
+  const { t } = useTranslation();
 
   return (
     <StyledHome>
       <SliderContainer>
-        {/* <Header /> */}
         <SliderImages />
       </SliderContainer>
       <br />
@@ -32,52 +28,54 @@ function Home() {
           imgurl="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/cover-images/saadi.jpg"
         ></StyledConsultationImg>
         <StyledDescription>
-          <Heading as="h2">NOW YOU CAN COUNT YOUR CALORIES!</Heading>
+          <Heading as="h2">{t("NOW YOU CAN COUNT YOUR CALORIES!")}</Heading>
           <Heading as="h6">
-            You will also get recommended products based on your calorie intake.
+            {t(
+              "You will also get recommended products based on your calorie intake."
+            )}
           </Heading>
           <Button onClick={() => navigate("/calculate-calories")}>
-            Calculate now!
+            {t("Calculate now!")}
           </Button>
         </StyledDescription>
       </ConsultationContainer>
 
       <StyledCategoriesContant>
         <StyledLabel>
-          <Heading as="h3">Categories</Heading>
+          <Heading as="h3">{t("Categories")}</Heading>
 
           <ButtonText
             color="var(--color-gold-500)"
             onClick={() => navigate("/categories")}
             fontSize="20px"
           >
-            See all
+            {t("See all")}
           </ButtonText>
         </StyledLabel>
         <CategoriesList />
       </StyledCategoriesContant>
       <StyledContent>
         <StyledLabel>
-          <Heading as="h3">Spectial Offers</Heading>
+          <Heading as="h3">{t("Special Offers")}</Heading>
           <ButtonText
             color="var(--color-gold-500)"
             onClick={() => navigate("/spectial-offer")}
             fontSize="20px"
           >
-            See all
+            {t("See all")}
           </ButtonText>
         </StyledLabel>
         <ProductsList offers={true} />
       </StyledContent>
       <StyledContent>
         <StyledLabel>
-          <Heading as="h3">Productes</Heading>
+          <Heading as="h3">{t("Productes")}</Heading>
           <ButtonText
             color="var(--color-gold-500)"
             onClick={() => navigate("/products/all")}
             fontSize="20px"
           >
-            See all
+            {t("See all")}
           </ButtonText>
         </StyledLabel>
         <ProductsList />

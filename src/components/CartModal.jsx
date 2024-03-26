@@ -6,21 +6,34 @@ import { useLocation } from "react-router-dom";
 import { useScrolled } from "../context/ScrolledContext";
 
 import { useCartContext } from "../context/CartContext";
+import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 function CartModal() {
-  // const { cart, isLoading, cartCountItems } = useFetchCart();
   const { cartCountItems } = useCartContext();
   const { isScrolled } = useScrolled();
   const isHomePagePath = useLocation().pathname === "/home";
-
+  const [bodyDir, setBodyDir] = useState(document.body.dir);
+  // useEffect(() => {
+  //   const lan = window.localStorage.getItem("language");
+  //   if (lan === "ar") {
+  //     setBodyDir("rtl");
+  //   } else {
+  //     setBodyDir("ltr");
+  //   }
+  // }, []);
+  const { t } = useTranslation();
+  useEffect(() => {
+    setBodyDir(document.body.dir);
+  }, []);
   return (
     <div>
       <Modal>
         <Modal.Open opens="cart">
           <StyledCartIcon>
             {isHomePagePath ? (
-              <CartText isscrolled={isScrolled}>Cart</CartText>
+              <CartText isscrolled={isScrolled}>{t("Cart")}</CartText>
             ) : (
-              <CartTextBlack isscrolled={isScrolled}>Cart</CartTextBlack>
+              <CartTextBlack isscrolled={isScrolled}>{t("Cart")}</CartTextBlack>
             )}
 
             <HiOutlineShoppingBag
@@ -28,11 +41,9 @@ function CartModal() {
               color={isScrolled || !isHomePagePath ? "" : "var(--color-grey-0)"}
             />
 
-            <Counter isScrolled={isScrolled}>
+            <Counter dir={bodyDir} isScrolled={isScrolled}>
               <P>{cartCountItems}</P>
             </Counter>
-
-            {/* {isLoading && <SpinnerMini>Loading...</SpinnerMini>} */}
           </StyledCartIcon>
         </Modal.Open>
 
@@ -50,6 +61,7 @@ const StyledCartIcon = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  gap: 0.2rem;
 
   &:hover {
     transform: scale(1.1);
@@ -63,7 +75,8 @@ const Counter = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  right: 11px;
+  left: ${(props) => props.dir === "rtl" && "11px"};
+  right: ${(props) => props.dir !== "rtl" && "11px"};
   margin-left: 0px;
   margin-bottom: 20px;
   background-color: var(--color-grey-800);

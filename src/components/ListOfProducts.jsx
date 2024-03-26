@@ -5,6 +5,7 @@ import ProductCart from "./ProductCard";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
+import { useTranslation } from "react-i18next";
 function ListOfProducts({
   data,
   isLoading,
@@ -13,6 +14,7 @@ function ListOfProducts({
 }) {
   //   const { data: categories, isLoading } = useCategories();
   const [currentPage, setCurrentPage] = useState(1);
+  const { t } = useTranslation();
 
   if (isLoading) return <Spinner />;
   const itemsPerPage = itemsNumbersPerPage;
@@ -34,12 +36,13 @@ function ListOfProducts({
   const handleNextPage = () => {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
   };
+
   return (
     <ListOfProductsLayout>
       <StyledHeader>
-        <Heading as="h3">{headerName}</Heading>
+        <Heading as="h3">{t(headerName)}</Heading>
         <ButtonText color="red" size="small">
-          Filter
+          {t("Filter")}
         </ButtonText>
       </StyledHeader>
       <ProductsContainer>

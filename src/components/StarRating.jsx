@@ -12,8 +12,6 @@ const StarRatingWrapper = styled.div`
 function StarRating({ rating, setRating, readable, size = 20 }) {
   const handleRating = (rate) => {
     setRating(rate);
-    console.log(rate);
-    // Other logic
   };
 
   return (

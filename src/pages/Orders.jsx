@@ -4,9 +4,11 @@ import Heading from "../components/Heading";
 import { useUser } from "../featurs/authentication/useUser";
 import Spinner from "../components/Spinner";
 import useOrders from "../featurs/order/useOrders";
+import { useTranslation } from "react-i18next";
 
 function Orders() {
   const { data, isLoading } = useOrders();
+  const { t } = useTranslation();
   const { user, isLoading: isFetchingUserId } = useUser();
   if (isFetchingUserId || isLoading) return <Spinner />;
   const userId = user?.id;
@@ -16,7 +18,7 @@ function Orders() {
     <OrdersLayout>
       {orders ? (
         <>
-          <Heading as="h2">Orders History</Heading>
+          <Heading as="h2">{t("Orders History")}</Heading>
           {orders?.map((order) => (
             <OrderDetails order={order} key={order.id} isLoading={isLoading} />
           ))}

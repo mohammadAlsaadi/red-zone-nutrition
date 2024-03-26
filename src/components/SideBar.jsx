@@ -9,12 +9,10 @@ import UserCard from "../featurs/authentication/UserCard";
 import { useUser } from "../featurs/authentication/useUser";
 import Logout from "./Logout";
 import DropDownList from "./DropDownList";
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import Spinner from "./Spinner";
-import Modal from "./Modal";
+import { useState } from "react";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 // import Uploader from "../data/Uploader";
 function Sidebar() {
   const [language, setLanguage] = useState("English");
@@ -23,6 +21,7 @@ function Sidebar() {
   const { isAuthenticated } = useUser();
   const { ref } = useOutsideClick(handleClose, true);
   const navigate = useNavigate();
+
   function handleNavigate(path) {
     navigate(path);
     setShowSideBar(false);
@@ -30,12 +29,8 @@ function Sidebar() {
   function handleClose() {
     setShowSideBar((show) => false);
   }
-  // useEffect(() => {
-  //   if (language !== "English")
-  //     return toast.error("سيتم اضافة اللغة العربية قريبا ..");
-  //   return null;
-  // }, [language]);
-  // if (language !== "English") return alert("mm",);
+  const { t } = useTranslation();
+
   return (
     <StyledSidebar ref={ref}>
       <StyledHeader>
@@ -45,23 +40,13 @@ function Sidebar() {
         </ButtonIcon>
       </StyledHeader>
       <SideBarOptions />
-      {/* <StyleCloser>
-        <UserCard />
-        <ButtonIcon onClick={handleClose}>
-          <HiOutlineXMark color="red" />
-        </ButtonIcon>
-      </StyleCloser>
 
-      <Heading as="h2">Options</Heading>
-
-      <SideBarOptions /> */}
-      {/* <Uploader /> */}
       <StyledFooter>
         <LayerOne>
           <DropDownList
             setter={setCountry}
             value={country}
-            options={["jordan"]}
+            options={[t("jordan")]}
             labelText="country"
             width="50px"
             height="30px"
@@ -83,7 +68,7 @@ function Sidebar() {
           {isAuthenticated ? (
             <UserCard />
           ) : (
-            <Heading as="h6">Do not have an account ?</Heading>
+            <Heading as="h6">{t("Do not have an account ?")}</Heading>
           )}
           {isAuthenticated ? (
             <Logout />
@@ -93,7 +78,7 @@ function Sidebar() {
               variation="primary"
               size="small"
             >
-              sign in
+              {t("sign in")}
             </Button>
           )}
         </LayerTwo>
@@ -146,16 +131,7 @@ const StyledHeader = styled.div`
   background-color: var(--color-grey-50);
   border-bottom: 1px solid var(--color-grey-300);
 `;
-// const StyleCloser = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   width: 100%;
-//   padding-top: 5px;
-//   padding-right: 20px;
-//   height: 7rem;
-//   background-color: var(--color-grey-600);
-// `;
+
 const StyledFooter = styled.footer`
   display: flex;
   flex-direction: column;
@@ -181,7 +157,8 @@ const LayerTwo = styled.div`
   justify-content: space-between;
   width: 100%;
   padding-right: 1rem;
+
   /* padding-top: 1rem; */
   align-items: center;
-  padding-left: ${(props) => (props.isauth ? "0rem" : "1rem")};
+  padding-left: ${(props) => (props.isauth ? "1rem" : "1rem")};
 `;

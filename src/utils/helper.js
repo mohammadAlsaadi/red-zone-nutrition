@@ -46,7 +46,11 @@ export const formatCurrency = (value) =>
   new Intl.NumberFormat("en", { style: "currency", currency: "JOD" }).format(
     value
   );
-export const formatPrice = (price, currency = "JOD") => {
+const language = window.localStorage.getItem("language");
+export const formatPrice = (
+  price,
+  currency = language === "ar" ? "د.أ" : "JOD"
+) => {
   // Check if the price is a number
   if (typeof price !== "number") {
     throw new Error("Invalid price. Must be a number.");
@@ -78,6 +82,27 @@ export const getStatusColor = (status) => {
       return "#333";
   }
 };
+export function formatProductDescription(description) {
+  // Split the description into sentences
+  const sentences = description.split(". ");
+
+  // Format each sentence
+  const formattedSentences = sentences.map((sentence) => {
+    // Capitalize the first letter of each sentence
+    const capitalizedSentence =
+      sentence.charAt(0).toUpperCase() + sentence.slice(1);
+    // Add a period at the end of each sentence if it's not already there
+    const formattedSentence = capitalizedSentence.endsWith(".")
+      ? capitalizedSentence
+      : capitalizedSentence + ".";
+    return formattedSentence;
+  });
+
+  // Join the formatted sentences back into a single string
+  const formattedDescription = formattedSentences.join(" ");
+
+  return formattedDescription;
+}
 
 export function colorCoordination(text = "unflavored") {
   const LowerCaseedText = text.toLowerCase();

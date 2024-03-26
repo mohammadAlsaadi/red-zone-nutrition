@@ -8,11 +8,13 @@ import ProductCard from "../components/ProductCard";
 import useProducts from "../featurs/product/useProducts";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi2";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Porducts() {
   const { data, isLoading, error } = useProducts();
   const { categoryName } = useParams();
-  console.log(categoryName);
+  const { t } = useTranslation();
+
   const [currentPage, setCurrentPage] = useState(1);
   let products = [];
   if (error) console.log(error.message);
@@ -47,9 +49,13 @@ function Porducts() {
   return (
     <StyledProducts>
       <StyledHeader>
-        <Heading as="h3">All Products</Heading>
+        <Heading as="h3">
+          {categoryName && categoryName !== "all"
+            ? t(categoryName)
+            : t("All Products")}
+        </Heading>
         <ButtonText color="red" size="small">
-          Filter
+          {t("Filter")}
         </ButtonText>
       </StyledHeader>
       <ProductsContainer>

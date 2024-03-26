@@ -1,8 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { HiOutlineCheckCircle } from "react-icons/hi2";
 import styled from "styled-components";
 
 const Stepper = ({ steps, currentStep, status }) => {
+  const { t } = useTranslation();
+
   return (
     <StepperContainer>
       {steps.map((step, index) => (
@@ -15,7 +18,7 @@ const Stepper = ({ steps, currentStep, status }) => {
                 {index}
               </PhaseNumber>
             )}{" "}
-            {step}
+            {t(step)}
           </Phase>
           {index < steps.length - 1 && <Divider />}
         </React.Fragment>

@@ -8,11 +8,14 @@ import Spinner from "../../components/Spinner";
 import { useParams } from "react-router-dom";
 import WriteReview from "./WriteReview";
 import { useUser } from "../authentication/useUser";
+import { useTranslation } from "react-i18next";
 function Reviews() {
   const { data, isLoading } = useFetchReviews();
   const { user } = useUser();
   const userId = user?.id;
   const { productId } = useParams();
+  const { t } = useTranslation();
+
   if (isLoading) return <Spinner />;
 
   const reviews = data?.filter(
@@ -40,19 +43,24 @@ function Reviews() {
   const oneStar = reviews.filter(
     (review) => review.rating === Number(1)
   ).length;
+  // console.log(data);
+  const reviewsForProduct = data?.filter(
+    (product) => product.productId === Number(productId)
+  );
 
   return (
     <ReviewsContainer>
       <RatingOverView>
         <ReviewsSummary>
-          <Heading as="h3">Reviews </Heading>
+          <Heading as="h3">{t("Reviews")} </Heading>
           <SummaryHeader />
         </ReviewsSummary>
         <AvgRating>
           <StarRatingOverView>
             <StarRating rating={Math.round(avgRatings)} readable={true} />
             <Heading color="var(--color-grey-500)" as="h5">
-              {data.length} {data.length > 1 ? "Reviews" : "Reviews"}
+              {reviewsForProduct.length}{" "}
+              {reviewsForProduct.length > 1 ? t("Review") : t("Review")}
             </Heading>
             <Heading color="var(--color-grey-400)" as="h2">
               {Math.round(avgRatings)}

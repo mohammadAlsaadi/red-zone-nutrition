@@ -2,23 +2,28 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../components/Button";
 import Heading from "../../components/Heading";
+import { useTranslation } from "react-i18next";
 
 function EmptyCart() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const isCartPath = useLocation().pathname === "/cart";
   return (
     <StyledEmpty>
       {!isCartPath && (
         <StyledHeader>
-          <Heading as="h3">Shopping cart 🛒</Heading>
+          <Heading as="h3">{t("Shopping cart")}</Heading>
         </StyledHeader>
       )}
 
       <Heading as="h4">
-        Your cart is still empty. Start adding some items 🙋‍♂️
+        {t("Your cart is still empty. Start adding some items")}
       </Heading>
       {isCartPath && (
-        <Button onClick={() => navigate("/products/all")}>Add Products</Button>
+        <Button onClick={() => navigate("/products/all")}>
+          {t("Add Products")}
+        </Button>
       )}
     </StyledEmpty>
   );

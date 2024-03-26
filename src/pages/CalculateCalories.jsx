@@ -4,11 +4,12 @@ import Heading from "../components/Heading";
 import { HiLightBulb } from "react-icons/hi2";
 import ProductsList from "../featurs/product/ProductsList";
 import { useEffect, useState } from "react";
-import GoalForm from "../featurs/calories-calculator/GoalForm";
+import { useTranslation } from "react-i18next";
 
 function CalculateCalories() {
   const [calculatedTDEE, setCalculatedTDEE] = useState(0);
   const [categoryRecommended, setCategoryRecommended] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(
     function () {
@@ -31,29 +32,34 @@ function CalculateCalories() {
       {calculatedTDEE !== 0 && (
         <ProductsContainer>
           <Heading as="h4">
-            We recommend these products based on your calories 🧐
+            {t("We recommend these products based on your calories")} 🧐
           </Heading>
           <ProductsList categoryList={categoryRecommended} />
         </ProductsContainer>
       )}
       {calculatedTDEE !== 0 && (
         <ProductsContainer>
-          <Heading as="h4">Also for your performance we recommend</Heading>
+          <Heading as="h4">
+            {t("Also for your performance we recommend")}
+          </Heading>
           <ProductsList categoryList={["creatine", "pre-workout"]} />
         </ProductsContainer>
       )}
 
       <StyledFooter>
         <Heading color="var(--color-grey-200)" as="h3">
-          BMR & TDEE Meaning {<HiLightBulb color="var(--color-gold-500)" />}
+          {t("BMR & TDEE Meaning")}{" "}
+          {<HiLightBulb color="var(--color-gold-500)" />}
         </Heading>
         <P>
-          BMR is the minimal calories your body needs for vital functions at
-          rest.
+          {t(
+            "BMR is the minimal calories your body needs for vital functions at rest."
+          )}
         </P>
         <P>
-          TDEE is your total calorie burn daily, including activity. To find it,
-          start with BMR. Knowing TDEE helps set calorie goals for weight loss.
+          {t(
+            "TDEE is your total calorie burn daily, including activity. To find it, start with BMR. Knowing TDEE helps set calorie goals for weight loss."
+          )}
         </P>
       </StyledFooter>
     </CalculateCaloriesLayout>

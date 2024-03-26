@@ -9,7 +9,7 @@ const ButtonText = styled.button`
   transition: all 0.3s;
   background: none;
   border: none;
-  outline: none; /* Add this line to remove the outline */
+  outline: none;
 
   &:hover,
   &:active {

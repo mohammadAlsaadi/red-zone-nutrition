@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import Heading from "./Heading";
 import { useNavigate } from "react-router-dom";
-import { useOutsideClick } from "../hooks/useOutsideClick";
+// import { useOutsideClick } from "../hooks/useOutsideClick";
+import { useTranslation } from "react-i18next";
 
 function ProductResult({ item, setShowSearchBar, setSearchInput }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const handleClick = () => {
     navigate(`details/${item.id}`);
     setShowSearchBar(false);
@@ -20,12 +23,12 @@ function ProductResult({ item, setShowSearchBar, setSearchInput }) {
       <CartItemSummary>
         <img src={item.image} width={50} height={50} alt="productSummary" />
         <InfoContainer>
-          <Heading as="h6">{item.name}</Heading>
+          <Heading as="h6">{t(item.name)}</Heading>
           <Heading color="var(--color-grey-400)" as="h7">
-            {item.category}
+            {t(item.category)}
           </Heading>
           <Heading color="var(--color-gold-700)" as="h7">
-            {item.companyName}
+            {t(item.companyName)}
           </Heading>
         </InfoContainer>
       </CartItemSummary>
