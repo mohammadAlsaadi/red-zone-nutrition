@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Button from "../components/Button";
+import { useTranslation } from "react-i18next";
 
 const Wrapper = styled.div`
   max-width: 40rem;
@@ -48,6 +49,7 @@ const CreditCardPayment = () => {
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [cvc, setCvc] = useState("");
+  const { t } = useTranslation();
 
   const handlePayment = () => {
     // Implement your payment logic here
@@ -56,7 +58,7 @@ const CreditCardPayment = () => {
 
   return (
     <Wrapper>
-      <Title>Enter Credit Card Information</Title>
+      <Title>{t("Enter Credit Card Information")}</Title>
       <img
         src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/credit-card.png"
         width={250}
@@ -64,7 +66,7 @@ const CreditCardPayment = () => {
         alt="credit"
       />
       <FormGroup>
-        <Label>Card Number</Label>
+        <Label>{t("Card Number")}</Label>
         <Input
           type="text"
           placeholder="1234 5678 9012 3456"
@@ -73,7 +75,7 @@ const CreditCardPayment = () => {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Expiry Date</Label>
+        <Label>{t("Expiry Date")}</Label>
         <Input
           type="text"
           placeholder="MM/YYYY"
@@ -82,7 +84,7 @@ const CreditCardPayment = () => {
         />
       </FormGroup>
       <FormGroup>
-        <Label>CVC</Label>
+        <Label>{t("CVC")}</Label>
         <Input
           type="text"
           placeholder="123"
@@ -95,7 +97,7 @@ const CreditCardPayment = () => {
         size="tallerHerzontally"
         onClick={handlePayment}
       >
-        Submit Payment
+        {t("Submit Payment")}
       </Button>
     </Wrapper>
   );

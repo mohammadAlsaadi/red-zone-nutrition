@@ -117,6 +117,8 @@ export const english = {
   confirmDeletePart1: "Are you sure you want to delete this",
   confirmDeletePart2: "permanently? This action cannot be undone.",
   Cancel: "Cancel",
+  "Please fill all address field.":
+    "Please fill all address field to confirm your order.",
   Delete: "Delete",
   "Whey Protein": "Whey Protein",
   Creatine: "Creatine",
@@ -151,6 +153,11 @@ export const english = {
   moderatelyActive: "moderatelyActive",
   veryActive: "veryActive",
   extraActive: "extraActive",
+  "Amman, Jordan": "Amman, Jordan",
+  Street: "Street",
+  "Pr. Hamzeh Street": "Pr. Hamzeh Street",
+  "Total Price": "Total Price",
+  Loading: "Loading",
   // Categories
   "pre-workout": "Pre Workout",
   "whey-protein": "Whey Protein",
@@ -162,6 +169,13 @@ export const english = {
   "fat-burners": "Fat Burners",
   "amino-acid": "Amino Acid",
   carbohydrates: "Carbohydrates",
+  //Conpany names
+  Evogen: "Evogen",
+  Eagle: "Eagle",
+  "Applied Nutrition": "Applied Nutrition",
+  "Raw nutrition": "Raw nutrition",
+  "Ultimate nutrition": "Ultimate nutrition",
+
   // products flavors
   Chocolate: "chocolate",
   Vanilla: "Vanilla",

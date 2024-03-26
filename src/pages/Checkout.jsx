@@ -17,6 +17,8 @@ import ProductItemPreview from "../components/productItemPreview";
 import { HiOutlineChevronDown, HiXMark } from "react-icons/hi2";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import toast from "react-hot-toast";
 
 function Checkout() {
   const [addressAutoFill, setAdressAutoFill] = useState("");
@@ -35,32 +37,39 @@ function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState("creditCard");
   const shipping = totalPrice < 60.0 ? 3.0 : 0;
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const handlePaymentMethodChange = (method) => {
     setPaymentMethod(method);
   };
 
   const handleComplete = (e) => {
     e.preventDefault();
-    const newOrder = {
-      totalPrice,
-      status: "Order Received",
-      estimatedDelivery: "24h-48h",
-      items: cart,
-      location:
-        addressAutoFill.formatted_address +
-        "-" +
-        street +
-        "/building number:" +
-        buildingNumber,
-      userId: user.id,
-    };
-    createOrder(newOrder);
-    clearCart();
-    // navigate("/home");
+    if (addressAutoFill === undefined || !street || !buildingNumber) {
+      toast.error(t("Please fill all address field."));
+    }
+    //TODO: add another condition for payment method
+    else {
+      const newOrder = {
+        totalPrice,
+        status: "Order Received",
+        estimatedDelivery: "24h-48h",
+        items: cart,
+        location:
+          addressAutoFill.formatted_address +
+          "-" +
+          street +
+          "/building number:" +
+          buildingNumber,
+        userId: user.id,
+      };
+      createOrder(newOrder);
+      clearCart();
+    }
   };
 
   console.log(user);
   if (isLoading || isFetchingCartData) return <Spinner />;
+  if (cart.length === 0) return navigate("/home");
   return (
     <CheckoutLayout>
       {!isAuthenticated && <NotAuthenticatedUser />}
@@ -72,7 +81,7 @@ function Checkout() {
             width={50}
             height={50}
           />
-          <Heading as="h4">Email Submitted </Heading>
+          <Heading as="h4">{t("Email Submitted")} </Heading>
         </ISAuthCheck>
       )}
 
@@ -88,7 +97,7 @@ function Checkout() {
       <BoxContainer>
         <Form>
           <PaymentMethodsContainer>
-            <Heading as="h5">Choose Payment Method</Heading>
+            <Heading as="h5">{t("Choose Payment Method")}</Heading>
             <RadioContainer>
               <MethodContainer
                 onClick={() => handlePaymentMethodChange("creditCard")}
@@ -102,7 +111,7 @@ function Checkout() {
                     checked={paymentMethod === "creditCard"}
                     onChange={() => handlePaymentMethodChange("creditCard")}
                   />
-                  <Heading as="h5">Credit Card</Heading>
+                  <Heading as="h5">{t("Credit Card")}</Heading>
                 </RadioOption>
                 <img
                   src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/creditMethod.png"
@@ -123,7 +132,7 @@ function Checkout() {
                     checked={paymentMethod === "cash"}
                     onChange={() => handlePaymentMethodChange("cash")}
                   />
-                  <Heading as="h5">Cash</Heading>
+                  <Heading as="h5">{t("Cash")}</Heading>
                 </RadioOption>
                 <img
                   src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/cashMethod.png"
@@ -142,7 +151,9 @@ function Checkout() {
       <Form>
         <OrderSummaryContainer>
           <StyledHeader>
-            <Heading as="h5">Oreder Summary({cartCountItems})</Heading>
+            <Heading as="h5">
+              {t("Oreder Summary")}({cartCountItems})
+            </Heading>
             {isOpenSummaryItems ? (
               <HiXMark onClick={() => setIsOpenSummaryItems(false)} />
             ) : (
@@ -164,26 +175,26 @@ function Checkout() {
           )}
           <SummaryInfo>
             <LabelValue>
-              <p as="h6">Items count</p>
+              <p as="h6">{t("Items count")}</p>
               <Heading as="h6">{cartCountItems}</Heading>
             </LabelValue>
             <LabelValue>
-              <p as="h6">Shipping</p>
+              <p as="h6">{t("Shipping")}</p>
               <Heading color="green" as="h6">
                 {totalPrice > 60.0 ? "FREE" : shipping}
               </Heading>
             </LabelValue>
             <LabelValue>
-              <p as="h6">Tax</p>
+              <p as="h6">{t("Tax")}</p>
               <Heading as="h6">--</Heading>
             </LabelValue>
             <LabelValue>
-              <p as="h6">Discount</p>
+              <p as="h6">{t("Discount")}</p>
               <Heading as="h6">--</Heading>
             </LabelValue>
           </SummaryInfo>
           <LabelValue>
-            <p as="h4">Total Price</p>
+            <p as="h4">{t("Total Price")}</p>
             <Heading as="h5">{formatPrice(totalPrice + shipping)}</Heading>
           </LabelValue>
           <Button
@@ -191,7 +202,7 @@ function Checkout() {
             size="tallerHerzontally"
             onClick={(e) => handleComplete(e)}
           >
-            {isCreating ? "Loading .." : "Complete Order"}
+            {isCreating ? t("Loading") + " .." : t("Complete Order")}
           </Button>
         </OrderSummaryContainer>
       </Form>
@@ -265,8 +276,11 @@ const RadioOption = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding-left: 2rem;
+  padding-right: 2rem;
+
   width: 100%;
   margin: 8px;
+  gap: 1rem;
 
   padding-bottom: 1.2rem;
 
@@ -294,6 +308,7 @@ const MethodContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   padding-right: 2rem;
+  padding-left: 2rem;
 `;
 const OrderSummaryContainer = styled.div`
   display: flex;

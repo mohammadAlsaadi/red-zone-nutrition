@@ -108,7 +108,7 @@ export function colorCoordination(text = "unflavored") {
   const LowerCaseedText = text.toLowerCase();
   if (LowerCaseedText.includes("chocolate" || "Choclate")) {
     return "#7B3F00";
-  } else if (LowerCaseedText.includes("vanilla" || "white")) {
+  } else if (LowerCaseedText.includes("vanilla" || "bueno" || "white")) {
     return "#fffbe9";
   } else if (LowerCaseedText.includes("caramel" || "orange")) {
     return "#e68b22";

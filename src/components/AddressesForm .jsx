@@ -28,7 +28,7 @@ function AddressesForm({
   };
 
   const validateStreet = (street) => {
-    if (!street || !/^[a-zA-Z\s]+$/.test(street)) {
+    if (!street || !/^[a-zA-Z\sا-ي]+$/.test(street)) {
       setStreetError(t("Please enter a valid street name"));
       return false;
     }
@@ -65,7 +65,7 @@ function AddressesForm({
   return (
     <Form>
       <StyledHeader>
-        <Heading as="h5">Address Information</Heading>
+        <Heading as="h5">{t("Address Information")}</Heading>
       </StyledHeader>
       <FormRow errors={addressError} id="address" label="Country/City">
         <GoogleAutoComplete
@@ -77,14 +77,14 @@ function AddressesForm({
             padding: "0.5rem 1.5rem",
           }}
           apiKey={apiKey}
-          placeholder="Amman, Jordan"
+          placeholder={t("Amman, Jordan")}
           onPlaceSelected={handlePlaceSelected}
         />
       </FormRow>
       <FormRow errors={streetError} id="Street" label="Street">
         <Input
           type="text"
-          placeholder="Pr. Hamzeh Street"
+          placeholder={t("Pr. Hamzeh Street")}
           onChange={handleStreetChange}
         />
       </FormRow>

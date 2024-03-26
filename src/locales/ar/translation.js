@@ -154,6 +154,16 @@ export const arabicTranslation = {
   moderatelyActive: "نشاط متوسط",
   veryActive: "نشيط جدا",
   extraActive: "نشاط شاق",
+  "Amman, Jordan": "عمان,الاردن",
+  Street: "شارع",
+  "Pr. Hamzeh Street": "شارع الأمير حمزة",
+  "Total Price": "السعر الأجمالي",
+  Loading: "أنتظر",
+  confirmDeletePart1: "هل أنت متأكد أنك تريد حذف هذا",
+  confirmDeletePart2: "نهائيا؟ لا يمكن التراجع عن هذا الإجراء.",
+  "Please fill all address field.":
+    "الرجاء ملىء جميع حقول معلومات العنوان لأكمال الطلب",
+
   // Categories
   "pre-workout": "ما قيل التمرين",
   "whey-protein": "واي بروتين",
@@ -165,7 +175,12 @@ export const arabicTranslation = {
   "fat-burners": "حوارق دهون",
   "amino-acid": "أحماض أمينية",
   carbohydrates: "كاربوهيدرات",
-
+  // Company names
+  Evogen: "ايفوجين",
+  Eagle: "إيغل",
+  "Applied Nutrition": "ابلايد نيوترشن",
+  "Raw nutrition": "رو نيوترشن",
+  "Ultimate nutrition": "ألتميت نيوترشن",
   // products flavors
   Chocolate: "شوكولاتة",
   Vanilla: "فانيليا",
