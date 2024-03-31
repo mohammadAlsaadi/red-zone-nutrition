@@ -10,13 +10,13 @@ function LogoLink() {
     <StyledContainer>
       <StyledNavLink href="https://www.instagram.com/redzonenutritionjo/?hl=en">
         <LogoLinkContainer>
-          <Logo src={LOGO_ICONS_INSTAGRAM} width={30} height={35} />
+          <LogoImageLink src={LOGO_ICONS_INSTAGRAM} width={50} height={50} />
           <P>redzonenutritionjo</P>
         </LogoLinkContainer>
       </StyledNavLink>
       <StyledNavLink href="https://www.facebook.com/Redzonejordan/">
         <LogoLinkContainer>
-          <Logo src={LOGO_ICONS_FACEBOOK} width={30} height={35} />
+          <LogoImageLink src={LOGO_ICONS_FACEBOOK} width={50} height={50} />
           <P>Red Zone Nutrition Jordan</P>
         </LogoLinkContainer>
       </StyledNavLink>
@@ -71,4 +71,10 @@ const StyledNavLink = styled.a`
     scale: calc(1.1);
     /* border-radius: var(--border-radius-sm); */
   }
+`;
+const LogoImageLink = styled.img`
+  text-align: center;
+  padding-top: 2rem;
+  /* padding-bottom: 2rem; */
+  padding-left: 1rem;
 `;

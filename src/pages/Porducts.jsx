@@ -9,19 +9,26 @@ import useProducts from "../featurs/product/useProducts";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi2";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import Modal from "../components/Modal";
+import FilterContant from "../components/FilterContant";
+import useFilterProductsPrice from "../featurs/product/useFilterProducts";
 
 function Porducts() {
   const { data, isLoading, error } = useProducts();
+  const { filterPrice, isLoading: isFiltering } = useFilterProductsPrice();
   const { categoryName } = useParams();
   const { t } = useTranslation();
+  const [priceFrom, setPriceFrom] = useState(35);
+  const [priceTo, setPriceTo] = useState(70);
+  const [filtered, setFiltered] = useState(false);
+  const [stock, setStock] = useState("all");
 
   const [currentPage, setCurrentPage] = useState(1);
   let products = [];
   if (error) console.log(error.message);
-  if (isLoading) return <Spinner />;
+  if (isLoading || isFiltering) return <Spinner />;
   if (categoryName === "all") {
     products = data;
-    console.log(data);
   } else {
     products = data.filter((product) => product.category === categoryName);
   }
@@ -55,7 +62,22 @@ function Porducts() {
             : t("All Products")}
         </Heading>
         <ButtonText color="red" size="small">
-          {t("Filter")}
+          <Modal>
+            <Modal.Open opens="category-filter">
+              <ButtonText color="red" size="small">
+                {t("Filter")}
+              </ButtonText>
+            </Modal.Open>
+            <Modal.Window name="category-filter">
+              <FilterContant
+                stock={stock}
+                setPriceFrom={setPriceFrom}
+                setPriceTo={setPriceTo}
+                setStock={setStock}
+                setFiltered={setFiltered}
+              />
+            </Modal.Window>
+          </Modal>
         </ButtonText>
       </StyledHeader>
       <ProductsContainer>

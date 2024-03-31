@@ -8,6 +8,10 @@ const Heading = styled.h1`
       font-weight: bold;
       padding-top: 5px;
       padding-bottom: 5px;
+      @media (max-width: 600px) {
+        font-size: 28px;
+        padding-bottom: 3px;
+      }
     `}
   ${(props) =>
     props.as === "h2" &&
@@ -16,6 +20,10 @@ const Heading = styled.h1`
       font-weight: 600;
       padding-top: 5px;
       padding-bottom: 5px;
+      @media (max-width: 600px) {
+        font-size: 20px;
+        padding-bottom: 3px;
+      }
     `}
   ${(props) =>
     props.as === "h3" &&
@@ -24,6 +32,10 @@ const Heading = styled.h1`
       font-weight: 600;
       padding-top: 5px;
       padding-bottom: 5px;
+      @media (max-width: 600px) {
+        font-size: 18px;
+        padding-bottom: 3px;
+      }
     `}
   ${(props) =>
     props.as === "h4" &&
@@ -47,12 +59,16 @@ const Heading = styled.h1`
       font-weight: 600;
       padding-top: 5px;
       padding-bottom: 8px;
+      @media (max-width: 600px) {
+        font-size: 10px;
+        padding-bottom: 5px;
+      }
     `}
     ${(props) =>
     props.as === "h7" &&
     css`
       font-size: 9px;
-      font-weight: 600;
+      font-weight: 800;
       padding-top: 5px;
       padding-bottom: 8px;
     `}

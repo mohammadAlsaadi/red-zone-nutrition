@@ -11,8 +11,9 @@ import { useBodyDirection } from "../context/BodyDirectionContext";
 function AppLayout() {
   const { showSideBar } = useShowSideBar();
   const { isDesktopDevice } = useDeviceWidth();
-
+  const isContactUsPage = useLocation().pathname === "/contact-us";
   const isHomePage = useLocation().pathname === "/home";
+  console.log(isContactUsPage);
   const { isScrolled } = useScrolled();
   const { isRtl } = useBodyDirection();
   return (
@@ -23,11 +24,11 @@ function AppLayout() {
         isrtl={isRtl}
         showsidebar={showSideBar}
         isdesktopdevice={isDesktopDevice}
-        isscrolled={isHomePage ? isScrolled : true}
+        isscrolled={isHomePage || isContactUsPage ? isScrolled : true}
       >
         <Header />
       </StyledHeader>
-      <Main>
+      <Main iscontactuspage={isContactUsPage}>
         <Container>
           <Outlet />
         </Container>
@@ -64,9 +65,9 @@ const Main = styled.main`
   /* padding: 1rem 2.8rem 1.4rem; */
   height: 100%;
   width: 100%;
-  padding-top: 10rem;
+  padding-top: ${(props) => (props.iscontactuspage ? "0rem" : "10rem")};
   @media (min-width: 900px) {
-    padding-top: 15rem;
+    padding-top: ${(props) => (props.iscontactuspage ? "0rem" : "15rem")};
   }
 `;
 const Container = styled.div`

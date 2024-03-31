@@ -46,6 +46,8 @@ const CartItemContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding-left: 1rem;
+  padding-right: 1rem;
+
   cursor: pointer;
   &:hover {
     background-color: var(--color-grey-100);
@@ -55,6 +57,8 @@ const CartItemSummary = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0.6rem;
+  gap: 1rem;
 `;
 const InfoContainer = styled.div`
   display: flex;

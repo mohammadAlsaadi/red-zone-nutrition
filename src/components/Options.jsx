@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 function Options() {
   const { isScrolled } = useScrolled();
   const isHomePagePath = useLocation().pathname === "/home";
+  const isContactUsPage = useLocation().pathname === "/contact-us";
+
   const [color, setColor] = useState("");
   const [isOpenCategories, setIsOpenCategories] = useState(false);
   const [isOpenMore, setIsOpenMore] = useState(false);
@@ -19,14 +21,23 @@ function Options() {
   const { isAuthenticated, isLoading } = useUser();
   useEffect(
     function () {
-      if (isScrolled && isHomePagePath) setColor("var(--color-grey-800)");
-      else if (!isScrolled && isHomePagePath) setColor("var(--color-grey-50)");
+      if ((isScrolled && isHomePagePath) || (isContactUsPage && isScrolled))
+        setColor("var(--color-grey-800)");
+      else if (
+        (!isScrolled && isHomePagePath) ||
+        (isContactUsPage && !isScrolled)
+      )
+        setColor("var(--color-grey-50)");
       else {
         setColor("var(--color-grey-800)");
       }
     },
     [isScrolled, isHomePagePath, setColor]
   );
+  const handleNavigate = () => {
+    window.scrollTo(0, 0);
+    setIsOpenCategories(false);
+  };
   if (isLoading) return;
   return (
     <>
@@ -39,11 +50,11 @@ function Options() {
         <li>
           <StyledOptions
             onMouseEnter={() => setIsOpenCategories(true)}
-            onMouseLeave={() => setIsOpenCategories(false)}
+            onMouseLeave={handleNavigate}
             color="color"
           >
             <StyledNavLink
-              onClick={() => setIsOpenCategories(false)}
+              onClick={handleNavigate}
               isscrolled={isScrolled}
               to="/categories"
             >
@@ -52,70 +63,70 @@ function Options() {
             {isOpenCategories && (
               <DropdownContentGrid>
                 <StyledNavItem
-                  onClick={() => setIsOpenCategories(false)}
+                  onClick={handleNavigate}
                   to="/products/whey-protein"
                   isscrolled={false}
                 >
                   <Label>{t("Whey Protein")}</Label>
                 </StyledNavItem>
                 <StyledNavItem
-                  onClick={() => setIsOpenCategories(false)}
+                  onClick={handleNavigate}
                   to="/products/iso-protein"
                   isscrolled={false}
                 >
                   <Label>{t("Iso Protein")}</Label>
                 </StyledNavItem>
                 <StyledNavItem
-                  onClick={() => setIsOpenCategories(false)}
+                  onClick={handleNavigate}
                   to="/products/creatine"
                   isscrolled={false}
                 >
                   <Label>{t("Creatine")}</Label>
                 </StyledNavItem>
                 <StyledNavItem
-                  onClick={() => setIsOpenCategories(false)}
+                  onClick={handleNavigate}
                   to="/products/pre-workout"
                   isscrolled={false}
                 >
                   <Label>{t("Pre-Workout")}</Label>
                 </StyledNavItem>
                 <StyledNavItem
-                  onClick={() => setIsOpenCategories(false)}
+                  onClick={handleNavigate}
                   to="/products/amino-acid"
                   isscrolled={false}
                 >
                   <Label>{t("Amino Acid")}</Label>
                 </StyledNavItem>
                 <StyledNavItem
-                  onClick={() => setIsOpenCategories(false)}
+                  onClick={handleNavigate}
                   to="/products/carbohydrates"
                   isscrolled={false}
                 >
                   <Label>{t("Carbohydrates")}</Label>
                 </StyledNavItem>
                 <StyledNavItem
-                  onClick={() => setIsOpenCategories(false)}
+                  onClick={handleNavigate}
                   to="/products/snacks"
                   isscrolled={false}
                 >
                   <Label>{t("Snacks")}</Label>
                 </StyledNavItem>
                 <StyledNavItem
-                  onClick={() => setIsOpenCategories(false)}
+                  onClick={handleNavigate}
                   to="/products/vegan"
                   isscrolled={false}
                 >
                   <Label>{t("Vegan")}</Label>
                 </StyledNavItem>
                 <StyledNavItem
-                  onClick={() => setIsOpenCategories(false)}
+                  onClick={handleNavigate}
                   to="/products/mass-gainers"
                   isscrolled={false}
                 >
                   <Label>{t("Mass Gainers")}</Label>
                 </StyledNavItem>
                 <StyledNavItem
-                  onClick={() => setIsOpenCategories(false)}
+                  onClick={handleNavigate}
                   to="/products/fat-burners"
                   isscrolled={false}
                 >
@@ -128,13 +139,21 @@ function Options() {
         </li>
 
         <li>
-          <StyledNavLink to="/products/all" isscrolled={isScrolled}>
+          <StyledNavLink
+            onClick={() => window.scrollTo(0, 0)}
+            to="/products/all"
+            isscrolled={isScrolled}
+          >
             <Label>{t("All Products")}</Label>
           </StyledNavLink>
         </li>
 
         <li>
-          <StyledNavLink to="/calculate-calories" isscrolled={isScrolled}>
+          <StyledNavLink
+            onClick={() => window.scrollTo(0, 0)}
+            to="/calculate-calories"
+            isscrolled={isScrolled}
+          >
             <Label>{t("Calculate Calories")}</Label>
           </StyledNavLink>
         </li>
@@ -142,7 +161,10 @@ function Options() {
           <>
             <li>
               <StyledNavLink
-                onClick={() => setIsOpenMore(false)}
+                onClick={() => {
+                  setIsOpenMore(false);
+                  window.scrollTo(0, 0);
+                }}
                 to="/new-in-store"
                 isscrolled={isScrolled}
               >
@@ -151,7 +173,10 @@ function Options() {
             </li>
             <li>
               <StyledNavLink
-                onClick={() => setIsOpenMore(false)}
+                onClick={() => {
+                  setIsOpenMore(false);
+                  window.scrollTo(0, 0);
+                }}
                 to="/best-seller"
                 isscrolled={isScrolled}
               >
@@ -161,7 +186,10 @@ function Options() {
 
             <li>
               <StyledNavLink
-                onClick={() => setIsOpenMore(false)}
+                onClick={() => {
+                  setIsOpenMore(false);
+                  window.scrollTo(0, 0);
+                }}
                 to="/cart"
                 isscrolled={isScrolled}
               >
@@ -184,21 +212,30 @@ function Options() {
                 {!isLargeScreen && (
                   <>
                     <StyledNavItem
-                      onClick={() => setIsOpenMore(false)}
+                      onClick={() => {
+                        setIsOpenMore(false);
+                        window.scrollTo(0, 0);
+                      }}
                       to="/new-in-store"
                       isscrolled={isScrolled}
                     >
                       <Label>{t("New in Store")}</Label>
                     </StyledNavItem>
                     <StyledNavItem
-                      onClick={() => setIsOpenMore(false)}
+                      onClick={() => {
+                        setIsOpenMore(false);
+                        window.scrollTo(0, 0);
+                      }}
                       to="/best-seller"
                       isscrolled={isScrolled}
                     >
                       <Label>{t("Best Seller")}</Label>
                     </StyledNavItem>
                     <StyledNavItem
-                      onClick={() => setIsOpenMore(false)}
+                      onClick={() => {
+                        setIsOpenMore(false);
+                        window.scrollTo(0, 0);
+                      }}
                       to="/cart"
                       isscrolled={isScrolled}
                     >
@@ -208,7 +245,10 @@ function Options() {
                 )}
                 {isAuthenticated && (
                   <StyledNavItem
-                    onClick={() => setIsOpenMore(false)}
+                    onClick={() => {
+                      setIsOpenMore(false);
+                      window.scrollTo(0, 0);
+                    }}
                     to="/orders"
                     isscrolled={isScrolled}
                   >
@@ -216,7 +256,10 @@ function Options() {
                   </StyledNavItem>
                 )}
                 <StyledNavItem
-                  onClick={() => setIsOpenMore(false)}
+                  onClick={() => {
+                    setIsOpenMore(false);
+                    window.scrollTo(0, 0);
+                  }}
                   to="/about-us"
                   isscrolled={isScrolled}
                 >
@@ -224,7 +267,10 @@ function Options() {
                 </StyledNavItem>
 
                 <StyledNavItem
-                  onClick={() => setIsOpenMore(false)}
+                  onClick={() => {
+                    setIsOpenMore(false);
+                    window.scrollTo(0, 0);
+                  }}
                   to="/contact-us"
                   isscrolled={isScrolled}
                 >

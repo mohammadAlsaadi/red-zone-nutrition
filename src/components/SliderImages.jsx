@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
-import ButtonIcon from "./ButtonIcon";
-import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
+import styled from "styled-components";
+
 import { useShowSideBar } from "../context/ShowSideBar";
 import Button from "./Button";
 import { useTranslation } from "react-i18next";
 import { useBodyDirection } from "../context/BodyDirectionContext";
+import { useNavigate } from "react-router-dom";
+import Spinner from "./Spinner";
 
 const TEMP_IMG_SLIDES = [
   {
@@ -35,7 +36,9 @@ const TEMP_IMG_SLIDES = [
 ];
 function SliderImages() {
   const [currIndex, setCurrIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const { showSideBar } = useShowSideBar();
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const { isRtl } = useBodyDirection();
 
@@ -46,6 +49,10 @@ function SliderImages() {
 
     return () => clearInterval(intervalId); // Cleanup the interval on component unmount
   }, []);
+  const handleImageLoad = () => {
+    setImageLoaded(true); // Set imageLoaded state to true when the image is loaded
+  };
+  if (imageLoaded) return <Spinner />;
 
   return (
     <StyledSliderImages showsidebar={showSideBar}>
@@ -56,12 +63,20 @@ function SliderImages() {
       <StyledImg
         imgurl={TEMP_IMG_SLIDES[currIndex]?.url}
         title={TEMP_IMG_SLIDES[currIndex]?.title}
+        onLoad={handleImageLoad}
       >
         <StyledHeading isrtl={isRtl}>
           <P1>{t("Redzone nutrition's partnars")} </P1>
           <P2>{t("Join our team and be a part of us")}</P2>
-          <Button borderbutton="none" variation="transparent">
-            <h4>{t("JOIN US NOW")}</h4>{" "}
+          <Button
+            borderbutton="none"
+            variation="transparent"
+            onClick={() => {
+              window.scrollTo(0, 0);
+              navigate("/contact-us");
+            }}
+          >
+            <h4>{t("CONTACT US NOW")}</h4>{" "}
           </Button>
         </StyledHeading>
       </StyledImg>
@@ -74,14 +89,29 @@ const P1 = styled.p`
   font-size: x-small;
   color: var(--color-grey-200);
   font-weight: bold;
+  @media (min-width: 700px) {
+    font-size: 14px;
+  }
+  @media (max-width: 600px) {
+    font-size: 8px;
+  }
 `;
 const P2 = styled.p`
   font-size: 20px;
-  @media (max-width: 700px) {
-    font-size: large;
+  @media (min-width: 600px) {
+    font-size: 17px;
+  }
+  @media (min-width: 800px) {
+    font-size: 20px;
+  }
+  @media (min-width: 900px) {
+    font-size: 25px;
+  }
+  @media (min-width: 1100px) {
+    font-size: 30px;
   }
   @media (max-width: 600px) {
-    font-size: medium;
+    font-size: 12px;
   }
   color: var(--color-grey-200);
   font-weight: bold;

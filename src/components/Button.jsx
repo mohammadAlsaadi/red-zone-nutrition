@@ -7,11 +7,50 @@ const sizes = {
     text-transform: uppercase;
     font-weight: 600;
     text-align: center;
+
+    //
+    @media (max-width: 600px) {
+      font-size: 1rem;
+      padding: 0.8rem 1.6rem;
+    }
+    @media (min-width: 600px) {
+      font-size: 1.1rem;
+    }
+    @media (min-width: 700px) {
+      font-size: 1.3rem;
+      padding: 0.8rem 1.6rem;
+    }
+    @media (min-width: 900px) {
+      font-size: 1.5rem;
+      padding: 0.8rem 1.6rem;
+    }
+    @media (min-width: 1100px) {
+      font-size: 1.8rem;
+      padding: 0.8rem 1.6rem;
+    }
   `,
   medium: css`
     font-size: 1.4rem;
-    padding: 1.2rem 1.6rem;
+    padding: 1rem 1.6rem;
     font-weight: 500;
+    text-align: center;
+
+    @media (max-width: 600px) {
+      font-size: 1.1rem;
+      padding: 0.8rem 1.6rem;
+    }
+    @media (min-width: 600px) {
+      font-size: 1.2rem;
+    }
+    @media (min-width: 700px) {
+      font-size: 1.2rem;
+    }
+    @media (min-width: 900px) {
+      font-size: 1.4rem;
+    }
+    @media (min-width: 1100px) {
+      font-size: 1.6rem;
+    }
   `,
   large: css`
     font-size: 1.6rem;

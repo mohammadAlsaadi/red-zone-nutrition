@@ -56,16 +56,17 @@ function ProductsList({ offers, isLoadingFetch, category, categoryList }) {
 
   return (
     <StyledList>
-      <Carousel
+      <StyledCarousel
         arrows={showSideBar && !isDesktopDevice ? false : true}
         responsive={responsive}
         autoPlay={true}
         autoPlaySpeed={1500}
+        pauseOnHover={true}
       >
         {products.map((product) => (
           <ProductCard product={product} key={product.name} />
         ))}
-      </Carousel>
+      </StyledCarousel>
     </StyledList>
   );
 }
@@ -75,5 +76,25 @@ export default ProductsList;
 const StyledList = styled.div`
   width: 100%;
   height: 100%;
-  margin: 3rem 0rem;
+  /* margin: 3rem 0rem; */
+`;
+const StyledCarousel = styled(Carousel)`
+  height: 45rem;
+  @media (max-width: 600px) {
+    height: 29rem;
+  }
+  @media (min-width: 600px) {
+    height: 33rem;
+  }
+  @media (min-width: 700px) {
+    height: 38rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  @media (min-width: 900px) {
+    height: 42rem;
+  }
+  @media (min-width: 1100px) {
+    height: 45rem;
+  }
 `;

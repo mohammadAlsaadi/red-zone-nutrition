@@ -4,21 +4,32 @@ import ProductItemPreview from "../../components/productItemPreview";
 import Spinner from "../../components/Spinner";
 import Heading from "../../components/Heading";
 import Stepper from "../../components/Stepper";
+import SpinnerMini from "../../components/SpinnerMini";
 import { formatPrice, getStatusColor } from "../../utils/helper";
 import { HiOutlineChevronDown, HiXMark } from "react-icons/hi2";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import ConfirmDelete from "../../components/ConfirmDelete";
 import { useTranslation } from "react-i18next";
+import useDeleteOrder from "./useDeleteOrder";
+
 const STATUS = ["Order Received", "Processing", "Shipped", "Completed"];
+
 const OrderDetails = ({ order, isLoading }) => {
   const [isOpenDetails, setIsOpenDetails] = useState(false);
   const { t } = useTranslation();
+  const { deleteOrder, isLoading: isDeleting } = useDeleteOrder();
 
-  if (isLoading) return <Spinner />;
+  if (isLoading || isDeleting) return <Spinner />;
+
   const { id, totalPrice, status, estimatedDelivery, items, location, userId } =
     order;
   const colorOfStatus = getStatusColor(status);
+
+  const toggleDetails = () => {
+    setIsOpenDetails((prevIsOpen) => !prevIsOpen);
+  };
+
   return (
     <Container>
       <DetailsSection>
@@ -33,16 +44,12 @@ const OrderDetails = ({ order, isLoading }) => {
               </Heading>
             )}
             {isOpenDetails ? (
-              <HiXMark
-                cursor="pointer"
-                size={23}
-                onClick={() => setIsOpenDetails(false)}
-              />
+              <HiXMark cursor="pointer" size={23} onClick={toggleDetails} />
             ) : (
               <HiOutlineChevronDown
                 cursor="pointer"
                 size={23}
-                onClick={() => setIsOpenDetails(true)}
+                onClick={toggleDetails}
               />
             )}
           </DetailItem>
@@ -56,7 +63,6 @@ const OrderDetails = ({ order, isLoading }) => {
               <Label>{t("Total Price:")}</Label>
               <Value>{formatPrice(totalPrice)}</Value>
             </DetailItem>
-
             <DetailItem>
               <Label>{t("Estimated Delivery:")}</Label>
               <Value>{estimatedDelivery}</Value>
@@ -65,10 +71,6 @@ const OrderDetails = ({ order, isLoading }) => {
               <Label>{t("Location")}:</Label>
               <Value>{location}</Value>
             </DetailItem>
-            {/* <DetailItem>
-          <Label>User ID:</Label>
-          <Value>{userId}</Value>
-        </DetailItem> */}
             <DetailItem>
               <Label>{t("Items")}</Label>
               <ItemList>
@@ -84,10 +86,13 @@ const OrderDetails = ({ order, isLoading }) => {
             <StyledCancelOrder>
               <Modal>
                 <Modal.Open opens="cancel order">
-                  <Button variation="danger">Cancel order</Button>
+                  <Button variation="danger">{t("Cancel order")}</Button>
                 </Modal.Open>
                 <Modal.Window name="cancel order">
-                  <ConfirmDelete resourceName="order" />
+                  <ConfirmDelete
+                    resourceName="order"
+                    onConfirm={() => deleteOrder(id)}
+                  />
                 </Modal.Window>
               </Modal>
             </StyledCancelOrder>
@@ -109,12 +114,14 @@ const DetailsSection = styled.div`
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 `;
+
 const StepsWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   height: 10rem;
 `;
+
 const DetailItem = styled.div`
   display: flex;
   align-items: center;
@@ -139,6 +146,7 @@ const ItemList = styled.ul`
   padding-top: 2rem;
   width: 100%;
 `;
+
 const StyledDetailsHeader = styled.div`
   display: flex;
   width: 100%;
@@ -146,6 +154,7 @@ const StyledDetailsHeader = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
 const StyledCancelOrder = styled.div`
   display: flex;
   width: 100%;

@@ -9,7 +9,12 @@ function CategoryCard({ categoryItem }) {
   const { isRtl } = useBodyDirection();
 
   return (
-    <StyledCategoryCart onClick={() => navigate(`/products/${category}`)}>
+    <StyledCategoryCart
+      onClick={() => {
+        navigate(`/products/${category}`);
+        window.scrollTo(0, 0);
+      }}
+    >
       <StyledImage imgurl={isRtl ? image_ar : image}>
         <ButtonPosition>
           {/* <Heading color="var(--color-grey-50)" as="h3">
@@ -39,23 +44,21 @@ const StyledCategoryCart = styled.div`
   transition: transform 0.5s ease-out;
   animation: fadeIn 1s ease-out forwards;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     /* height: 240px; */
   }
-  /* @media (min-width: 800px) {
-    width: 250px;
-    height: 280px;
-    &:hover {
-      height: 300px;
-    }
+  @media (max-width: 900px) {
+    width: 190px;
+    height: 190px;
   }
-  @media (min-width: 1000px) {
-    width: 300px;
-    height: 450px;
-    &:hover {
-      height: 280px;
-    }
-  } */
+  @media (min-width: 900px) {
+    width: 220px;
+    height: 220px;
+  }
+  @media (min-width: 1100px) {
+    width: 230px;
+    height: 230px;
+  }
 
   /* @media (max-width: 800px) {
     width: 220px;

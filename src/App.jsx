@@ -32,6 +32,7 @@ import BestSeller from "./pages/BestSeller";
 import AboutUs from "./pages/Aboutus";
 import ContactUs from "./pages/ContactUs";
 import { BodyDirectionProvider } from "./context/BodyDirectionContext";
+import Articles from "./pages/Articles";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -97,6 +98,7 @@ function App() {
                               path="new-in-store"
                               element={<NewInStore />}
                             />
+                            <Route path="articles" element={<Articles />} />
                             <Route
                               path="checkout"
                               element={

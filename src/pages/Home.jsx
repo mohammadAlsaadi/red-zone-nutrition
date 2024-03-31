@@ -9,6 +9,7 @@ import { useScrolled } from "../context/ScrolledContext";
 import CategoriesList from "../featurs/category/CategoriesList";
 import Button from "../components/Button";
 import { useTranslation } from "react-i18next";
+import ArticlesList from "../featurs/articles/ArticlesList";
 
 function Home() {
   const navigate = useNavigate();
@@ -34,7 +35,13 @@ function Home() {
               "You will also get recommended products based on your calorie intake."
             )}
           </Heading>
-          <Button onClick={() => navigate("/calculate-calories")}>
+          <Button
+            onClick={() => {
+              window.scrollTo(0, 0);
+
+              navigate("/calculate-calories");
+            }}
+          >
             {t("Calculate now!")}
           </Button>
         </StyledDescription>
@@ -59,7 +66,7 @@ function Home() {
           <Heading as="h3">{t("Special Offers")}</Heading>
           <ButtonText
             color="var(--color-gold-500)"
-            onClick={() => navigate("/spectial-offer")}
+            onClick={() => navigate("/special-offer")}
             fontSize="20px"
           >
             {t("See all")}
@@ -80,6 +87,19 @@ function Home() {
         </StyledLabel>
         <ProductsList />
       </StyledContent>
+      <StyledContent>
+        <StyledLabel>
+          <Heading as="h3">{t("Red Zone Article")}</Heading>
+          <ButtonText
+            color="var(--color-gold-500)"
+            onClick={() => navigate("/articles")}
+            fontSize="20px"
+          >
+            {t("See all")}
+          </ButtonText>
+        </StyledLabel>
+        <ArticlesList />
+      </StyledContent>
     </StyledHome>
   );
 }
@@ -97,7 +117,7 @@ const StyledHome = styled.div`
 const SliderContainer = styled.div`
   width: 100%;
   height: 300px;
-  padding-bottom: 20rem;
+  padding-bottom: 25rem;
   /* @media (max-width: 900px) {
     width: 90%;
   } */
@@ -109,7 +129,7 @@ const ConsultationContainer = styled.div`
 
   align-items: center;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 1rem;
   @media (max-width: 600px) {
     flex-direction: column;
     gap: 0rem;
@@ -118,7 +138,7 @@ const ConsultationContainer = styled.div`
 const StyledDescription = styled.div`
   width: 40%;
   padding-top: 5rem;
-
+  background-color: var(--color-grey-0);
   gap: 1rem;
   height: 300px;
   display: flex;
@@ -126,13 +146,15 @@ const StyledDescription = styled.div`
   align-items: center;
   justify-content: flex-start;
   text-align: center;
-
   @media (max-width: 600px) {
-    width: 50%;
-    margin-left: 17rem;
-    align-items: flex-start;
+    padding-top: 2rem;
+    height: 240px;
+    width: 55%;
+    margin-left: 30%;
   }
-  background-color: var(--color-grey-0);
+  @media (min-width: 600px) {
+    width: 40%;
+  }
 `;
 const zoomoutSlow = keyframes`
   from {
@@ -156,10 +178,15 @@ const StyledConsultationImg = styled.div`
     css`
       animation: ${zoomoutSlow} 15s ease forwards;
     `}
-
   @media (max-width: 600px) {
+    width: 80%;
+
+    margin-right: 20%;
+    margin-left: 10%;
+  }
+  @media (min-width: 600px) {
     width: 70%;
-    margin-right: 17rem;
+    /* margin-right: 17rem; */
   }
   @media (min-width: 900px) {
     width: 50%;
@@ -186,7 +213,7 @@ const StyledLabel = styled.div`
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 5rem 5rem 0rem 5rem;
+  padding: 0rem 4rem 0rem 2.5rem;
 `;
 const StyledCategoriesContant = styled.div`
   display: flex;

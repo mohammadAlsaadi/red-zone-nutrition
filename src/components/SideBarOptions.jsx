@@ -17,6 +17,7 @@ function SideBarOptions() {
   const { t } = useTranslation();
 
   function handleNavigate(path) {
+    window.scrollTo(0, 0);
     navigate(path);
     setShowSideBar(false);
   }

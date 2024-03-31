@@ -24,7 +24,7 @@ export const english = {
   "Search for product..": "Search for product..",
   "Redzone nutrition's partnars": "Redzone nutrition's partnars",
   "Join our team and be a part of us": "Join our team and be a part of us",
-  "JOIN US NOW": "JOIN US NOW",
+  "CONTACT US NOW": "CONTACT US NOW",
   "NOW YOU CAN COUNT YOUR CALORIES!": "NOW YOU CAN COUNT YOUR CALORIES!",
   "You will also get recommended products based on your calorie intake.":
     "You will also get recommended products based on your calorie intake.",
@@ -120,6 +120,14 @@ export const english = {
   "Please fill all address field.":
     "Please fill all address field to confirm your order.",
   Delete: "Delete",
+  "Filter by": "Filter by",
+  Price: "Price",
+  to: "to",
+  JOD: "JOD",
+  Stock: "Stock",
+  All: "All",
+  "In Stock": "In Stock",
+  "Out of stock": "Out of stock",
   "Whey Protein": "Whey Protein",
   Creatine: "Creatine",
   "Pre-Workout": "Pre-Workout",
@@ -235,4 +243,11 @@ export const english = {
     "Applied Nutrition Critical Whey Blend",
   "Eagle Mass": "Eagle Mass",
   "Raw nutrition isolate protein": "Raw nutrition isolate protein",
+
+  //Contact us page
+  "The main branch in Jordan": "The main branch in Jordan",
+  Location: "Location",
+  "Seqeleyah St. 16-20,Rabiah, Amman": "Seqeleyah St. 16-20,Rabiah, Amman",
+  "Location in google maps": "Location in google maps",
+  "Follow location": "Follow location",
 };

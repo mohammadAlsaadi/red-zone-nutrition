@@ -3,15 +3,17 @@ import Heading from "./Heading";
 import Logo from "./Logo";
 import LogoLink from "./LogoLink";
 import { HiOutlineEnvelope, HiOutlinePhone } from "react-icons/hi2";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 const FOOTER_LOGO_REDZONE =
   "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/logo-redzone.png";
 function Footer() {
   const { t } = useTranslation();
+  const isContactUsPage = useLocation().pathname === "/contact-us";
+  if (isContactUsPage) return null;
 
   return (
-    <StyledFooter>
+    <StyledFooter isContactUsPage={isContactUsPage}>
       <StyledContent>
         <Link replace to="home">
           <Logo src={FOOTER_LOGO_REDZONE} />

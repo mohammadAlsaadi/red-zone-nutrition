@@ -29,4 +29,20 @@ const StyledLogo = styled.div`
 
 const Img = styled.img`
   /* border-radius: 5rem; */
+  @media (max-width: 500px) {
+    width: 120px;
+    height: 50px;
+  }
+  @media (min-width: 500px) {
+    width: 180px;
+    height: 60px;
+  }
+  @media (min-width: 700px) {
+    width: 250px;
+    height: 70px;
+  }
+  @media (min-width: 900px) {
+    width: 300px;
+    height: 80px;
+  }
 `;

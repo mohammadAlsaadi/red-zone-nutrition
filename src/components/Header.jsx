@@ -17,24 +17,26 @@ import ProductResult from "./ProductResult";
 import Modal from "./Modal";
 import { useTranslation } from "react-i18next";
 import LanguageModal from "../featurs/language/LanguageModal";
-
+import { useBodyDirection } from "../context/BodyDirectionContext";
 function Header() {
   const [searchInput, setSearchInput] = useState("");
   const { data } = useProducts();
   const [showSearchBar, setShowSearchBar] = useState(false);
   const { showSideBar, setShowSideBar } = useShowSideBar();
-  // const { isAuthenticated } = useUser();
-  const isHomePagePath = useLocation().pathname === "/home";
+  const pathName = useLocation().pathname;
+  const isHomePagePath = pathName === "/home" || pathName === "/contact-us";
   const { isScrolled } = useScrolled();
-  // Filter products based on search input
   const { t } = useTranslation();
-  const bodyDir = document.body.dir;
-  console.log(bodyDir);
+  const { bodyDirectionection, isRtl } = useBodyDirection();
+
   let resultData =
     searchInput.length >= 2 &&
     data.filter((item) =>
-      item.name.toLowerCase().includes(searchInput.toLowerCase())
+      isRtl
+        ? item.name_ar.includes(searchInput)
+        : item.name.toLowerCase().includes(searchInput.toLowerCase())
     );
+  console.log(searchInput);
   if (showSearchBar)
     return (
       <StyledSearchResult>
@@ -83,7 +85,7 @@ function Header() {
             </StyledSearchButton>
           </OptionsContainer1>
           <SearchBarContainer
-            dir={bodyDir}
+            dir={bodyDirectionection}
             onClick={() => setShowSearchBar((showen) => !showen)}
           >
             <HiOutlineMagnifyingGlass

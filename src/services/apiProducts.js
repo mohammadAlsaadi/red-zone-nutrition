@@ -36,3 +36,16 @@ export async function updateProductRating(newRating, productId) {
   }
   return data;
 }
+
+export async function filterProducts(priceFrom, priceTo) {
+  let { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .gte("price", priceFrom)
+    .lte("price", priceTo);
+  if (error) {
+    console.error(error);
+    throw new Error("Product  could not be fetched");
+  }
+  return data;
+}

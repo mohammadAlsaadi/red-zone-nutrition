@@ -12,6 +12,8 @@ function CartModal() {
   const { cartCountItems } = useCartContext();
   const { isScrolled } = useScrolled();
   const isHomePagePath = useLocation().pathname === "/home";
+  const isContactUsPage = useLocation().pathname === "/contact-us";
+
   const [bodyDir, setBodyDir] = useState(document.body.dir);
   // useEffect(() => {
   //   const lan = window.localStorage.getItem("language");
@@ -30,7 +32,7 @@ function CartModal() {
       <Modal>
         <Modal.Open opens="cart">
           <StyledCartIcon>
-            {isHomePagePath ? (
+            {isHomePagePath || isContactUsPage ? (
               <CartText isscrolled={isScrolled}>{t("Cart")}</CartText>
             ) : (
               <CartTextBlack isscrolled={isScrolled}>{t("Cart")}</CartTextBlack>
@@ -38,7 +40,11 @@ function CartModal() {
 
             <HiOutlineShoppingBag
               size={22}
-              color={isScrolled || !isHomePagePath ? "" : "var(--color-grey-0)"}
+              color={
+                isScrolled || !(isHomePagePath || isContactUsPage)
+                  ? ""
+                  : "var(--color-grey-0)"
+              }
             />
 
             <Counter dir={bodyDir} isScrolled={isScrolled}>

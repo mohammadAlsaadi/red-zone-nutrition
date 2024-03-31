@@ -28,7 +28,7 @@ export const arabicTranslation = {
   "Search for product..": "..أبحث عن منتج",
   "Redzone nutrition's partnars": "شركاء ريد زون نيوترشن",
   "Join our team and be a part of us": "انضم إلى فريقنا وكن جزءًا منا",
-  "JOIN US NOW": "انضم إلينا الآن",
+  "CONTACT US NOW": "اتصل بنا الآن",
   "NOW YOU CAN COUNT YOUR CALORIES!":
     "!الآن يمكنك حساب السعرات الحرارية الخاصة بك",
   "You will also get recommended products based on your calorie intake.":
@@ -52,7 +52,7 @@ export const arabicTranslation = {
   "Weight is required": "الوزن متطلب*",
   "Age is required": "العمر متطلب*",
 
-  "Also for your performance we recommend": "ايضا لزيادة أدائك الرياصي نوصي",
+  "Also for your performance we recommend": "ايضا لزيادة أدائك الرياضي نوصي",
   "Please enter all values to calculate your calories":
     "الرجاء إدخال كافة القيم لحساب السعرات الحرارية الخاصة بك",
   "BMR & TDEE Meaning": "معنى BMR & TDEE",
@@ -101,7 +101,7 @@ export const arabicTranslation = {
   Shipped: "تم شحنه",
   Completed: "مكتمل",
   "Estimated Delivery:": "التوصيل المتوقع:",
-  Location: "موقع",
+  Location: "الموقع",
   Items: "العناصر",
   "Cancel order": "الغاء الطلب",
   "New Products in store": "منتجات جديدة في المتجر",
@@ -159,6 +159,15 @@ export const arabicTranslation = {
   "Pr. Hamzeh Street": "شارع الأمير حمزة",
   "Total Price": "السعر الأجمالي",
   Loading: "أنتظر",
+  Price: "السعر",
+  to: "الى",
+  JOD: "د.أ",
+  Stock: "مخزون",
+  All: "الكل",
+  "In Stock": "في المخزن",
+  "Out of stock": "نفذ من المخزن",
+
+  "Filter by": "تصنيف حسب",
   confirmDeletePart1: "هل أنت متأكد أنك تريد حذف هذا",
   confirmDeletePart2: "نهائيا؟ لا يمكن التراجع عن هذا الإجراء.",
   "Please fill all address field.":
@@ -242,4 +251,11 @@ export const arabicTranslation = {
   //description
   "Grass-Fed Whey Protein Powder: RAW Nutrition brings you our grass-fed micro-filtered isolate protein, complete with naturally occurring Branch Chain Amino Acids (BCAA). Each scoop packs 25 grams of protein with 0.5g of total fat and 1 gram of carbohydrates. 2.25 lbs. No Nonsense, All Flavor: We pride ourselves on creating products that perfectly balance the scales of quality and flavor. With our classic Cookies N Cream flavor in your corner, building muscle has never tasted so good. Benefits of Protein: RAW Protein delivers the purest form of protein available, aiding digestion, supporting muscle growth and recovery, and providing a balanced source of amino acids and peptides. The New Standard: This hormone-free, micro-filtered protein powder with zero fillers has been crafted for supreme quality to help you meet your protein needs, recover fast and build lean muscle. Made in the USA. No artificial ingredients, no GMOs, no BS. Built From the Ground Up: RAW Nutrition was created to provide athletes with the best fuel for peak training and performance. Our mission is to make smart nutrition easy and convenient with expertly crafted supplements made with the purest ingredients available in the industry. .":
     "مسحوق بروتين مصل اللبن الذي يتغذى على العشب: تقدم لك RAW Nutrition بروتيننا المعزول المصفى بدقة من العشب، والذي يكتمل مع الأحماض الأمينية ذات السلسلة الفرعية (BCAA) التي تحدث بشكل طبيعي. تحتوي كل مغرفة على 25 جرامًا من البروتين مع 0.5 جرام من إجمالي الدهون و1 جرام من الكربوهيدرات. 2.25 رطل. لا معنى له، جميع النكهات: نحن نفخر بقدرتنا على ابتكار منتجات توازن بشكل مثالي بين معايير الجودة والنكهة. مع نكهة الكوكيز والكريمة الكلاسيكية لدينا في ركنك، لم يكن بناء العضلات بهذه الروعة من قبل. فوائد البروتين: يوفر البروتين الخام أنقى أشكال البروتين المتاحة، مما يساعد على الهضم، ويدعم نمو العضلات وتعافيها، ويوفر مصدرًا متوازنًا للأحماض الأمينية والببتيدات. المعيار الجديد: تم تصنيع مسحوق البروتين الخالي من الهرمونات والمصفى بدقة والذي لا يحتوي على مواد مالئة للحصول على جودة فائقة لمساعدتك على تلبية احتياجاتك من البروتين والتعافي بسرعة وبناء العضلات الخالية من الدهون. صنع في الولايات المتحدة الأمريكية. لا يحتوي على مكونات صناعية، أو كائنات معدلة وراثيًا، أو BS. تم تصميمه من الألف إلى الياء: تم إنشاء RAW Nutrition لتزويد الرياضيين بأفضل وقود لتحقيق أعلى مستويات التدريب والأداء. مهمتنا هي جعل التغذية الذكية سهلة ومريحة باستخدام المكملات الغذائية المصممة بخبرة والمصنوعة من أنقى المكونات المتوفرة في الصناعة. .",
+  //Contact us page
+  "The main branch in Jordan": "الفرع الرئيسي في الأردن",
+  "Seqeleyah St. 16-20,Rabiah, Amman": "شارع السقيلية 16-20,الرابية, عمان",
+  "Location in google maps": "الموقع على google maps",
+  "Follow location": "اذهب للموقع",
+  Email: "الأيميل",
+  Phone: "الهاتف",
 };

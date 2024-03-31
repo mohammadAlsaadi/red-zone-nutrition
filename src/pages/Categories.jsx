@@ -37,9 +37,6 @@ function Categories() {
     <StyledCategories>
       <StyledHeader>
         <Heading as="h3">{t("All Categories")}</Heading>
-        <ButtonText color="red" size="small">
-          {t("Filter")}
-        </ButtonText>
       </StyledHeader>
       <CategoriesContainer>
         <CategoriesList>

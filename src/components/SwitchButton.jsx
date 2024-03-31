@@ -1,51 +1,94 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import { useDarkMode } from "../context/DarkModeContext";
 
-const SwitchButton = () => {
-  const [isChecked, setIsChecked] = useState(false);
-  const { isDarkMode, toggleDarkMode } = useDarkMode();
-
-  const handleToggle = () => {
-    toggleDarkMode();
-    setIsChecked((check) => !check);
-  };
-
+function SwitchButton({
+  label1 = "1",
+  label2 = "2",
+  label3,
+  width,
+  height,
+  setStock,
+  stock,
+}) {
+  const [isSelectedOp1, setIsSelectedOp1] = useState(true);
+  const [isSelectedOp2, setIsSelectedOp2] = useState(false);
+  const [isSelectedOp3, setIsSelectedOp3] = useState(false);
+  const { t } = useTranslation();
   return (
-    <SwitchContainer onClick={handleToggle} ischecked={isChecked}>
-      <SwitchHandle ischecked={isChecked}>
-        {isDarkMode ? "🌙" : "☀️"}
-      </SwitchHandle>
-    </SwitchContainer>
+    <StyledSwitchButton width={width} height={height}>
+      <StyledButton
+        selected={isSelectedOp1}
+        onClick={() => {
+          setIsSelectedOp2(false);
+          setIsSelectedOp3(false);
+          setIsSelectedOp1(true);
+          setStock((stock) => label1);
+        }}
+      >
+        {t(label1)}
+      </StyledButton>
+      <StyledButton
+        selected={isSelectedOp2}
+        onClick={() => {
+          setIsSelectedOp1(false);
+          setIsSelectedOp3(false);
+          setIsSelectedOp2(true);
+          setStock((stock) => label2);
+        }}
+      >
+        {t(label2)}
+      </StyledButton>
+      {label3 && (
+        <StyledButton
+          selected={isSelectedOp3}
+          onClick={() => {
+            setIsSelectedOp1(false);
+            setIsSelectedOp2(false);
+            setIsSelectedOp3(true);
+            setStock((stock) => label3);
+          }}
+        >
+          {t(label3)}
+        </StyledButton>
+      )}
+    </StyledSwitchButton>
   );
-};
+}
 
 export default SwitchButton;
-const SwitchContainer = styled.div`
-  width: 40px;
-  height: 20px;
-  background-color: ${({ ischecked }) => (ischecked ? "#f20404" : "#ccc")};
-  border-radius: 15px;
-  cursor: pointer;
-  position: relative;
-  transition: background-color 0.3s;
-
-  &:active {
-    background-color: ${({ ischecked }) => (ischecked ? "#f20404" : "#bbb")};
+const StyledSwitchButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-weight: 600;
+  background-color: var(--color-grey-100);
+  width: ${(props) => (props.width ? props.width : "200px")};
+  height: ${(props) => (props.height ? props.height : "40px")};
+  @media (max-width: 600px) {
+    font-size: small;
+  }
+  @media (min-width: 900px) {
+    font-size: medium;
   }
 `;
-
-const SwitchHandle = styled.div`
-  width: 20px;
-  height: 20px;
-  background-color: var(--color-grey-50);
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  left: ${({ ischecked }) => (ischecked ? "30px" : "0")};
-  transition: left 0.3s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  align-items: center;
+const StyledButton = styled.div`
   display: flex;
-  justify-content: center;
+  align-items: center;
+  font-size: x-small;
+  padding: 0.5rem 0.8rem;
+  height: 80%;
+  border: ${(props) => props.selected && "1px solid var(--color-grey-800)"};
+  background-color: ${(props) => props.selected && "var(--color-grey-0)"};
+  cursor: pointer;
+  &:hover {
+    background-color: var(--color-grey-200);
+  }
+  @media (max-width: 600px) {
+    padding: 0rem 0.3rem;
+  }
+  @media (min-width: 900px) {
+    padding: 0.6rem 1rem;
+  }
 `;

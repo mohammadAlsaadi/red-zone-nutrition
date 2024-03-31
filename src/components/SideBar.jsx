@@ -102,7 +102,7 @@ const StyledSidebar = styled.aside`
   position: fixed;
   z-index: 1;
   width: 30%;
-  transform: scale(1); /* Add this line for initial scale */
+  transform: scale(1);
   transition: opacity 1s ease-out 0.3s, box-shadow 0.5s ease-out,
     transform 0.5s ease-out;
 

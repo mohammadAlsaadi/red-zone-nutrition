@@ -10,7 +10,9 @@ const ButtonText = styled.button`
   background: none;
   border: none;
   outline: none;
-
+  @media (max-width: 600px) {
+    font-size: 18px;
+  }
   &:hover,
   &:active {
     color: var(--color-gold-700);

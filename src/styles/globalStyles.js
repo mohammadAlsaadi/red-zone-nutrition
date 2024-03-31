@@ -7,7 +7,8 @@ const GlobalStyles = createGlobalStyle`
  
   
   &, &.light-mode{
-    
+    --color-gold-100:#FEFBEC;
+    --color-gold-300:#FEF3C7;
     --color-gold-500:#eec644;
     --color-gold-600:#e2bc40;
     --color-gold-700:#d4af37;
