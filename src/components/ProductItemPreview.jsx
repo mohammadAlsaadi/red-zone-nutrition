@@ -37,9 +37,14 @@ const CartItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 40rem;
-  border-bottom: 1px solid var(--color-grey-300);
+  width: 50rem;
+  /* border-bottom: 1px solid var(--color-grey-300); */
   margin-bottom: 1rem;
+  @media (max-width: 700px) {
+    width: 80%;
+  }
+  background-color: var(--color-gold-100);
+  padding: 1rem;
 `;
 const CartItemSummary = styled.div`
   display: flex;
@@ -49,6 +54,7 @@ const InfoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   padding-left: 0.6rem;
+  padding-right: 0.8rem;
 `;
 const StyledFlavorPriceContainer = styled.div`
   display: flex;

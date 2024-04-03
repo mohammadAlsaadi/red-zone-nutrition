@@ -7,7 +7,7 @@ import {
 } from "react-icons/hi2";
 import { useShowSideBar } from "../context/ShowSideBar";
 import Logo from "./Logo";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import CartModal from "./CartModal";
 import { useState } from "react";
 import OptionsBar from "./OptionsBar";
@@ -265,6 +265,5 @@ const OptionsContainer2 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* width: 12%; */
   gap: 2rem;
 `;
