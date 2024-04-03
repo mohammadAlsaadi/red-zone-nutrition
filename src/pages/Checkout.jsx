@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 // import { useUser } from "../featurs/authentication/useUser";
 import NotAuthenticatedUser from "../components/NotAuthenticatedUser";
 import UserInfo from "../components/UserInfo";
@@ -211,7 +211,16 @@ function Checkout() {
 }
 
 export default Checkout;
-
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 const CheckoutLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -220,6 +229,7 @@ const CheckoutLayout = styled.div`
   width: 100%;
   height: 100%;
   gap: 1rem;
+  animation: ${fadeIn} 1s ease-out;
 `;
 const BoxContainer = styled.div`
   /* background-color: var(--color-grey-0); */

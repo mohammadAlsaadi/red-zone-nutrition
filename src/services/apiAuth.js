@@ -2,7 +2,7 @@ import supabase, { supabaseUrl } from "./supabase";
 
 export async function signup(user) {
   const { fullName, email, password, phone } = user;
-  const { data } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -13,6 +13,7 @@ export async function signup(user) {
       },
     },
   });
+  if (error) return console.log("SignUp Error :", error.message);
   return data;
 }
 

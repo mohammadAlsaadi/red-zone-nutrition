@@ -3,6 +3,7 @@ import Heading from "./Heading";
 import SwitchButton from "./SwitchButton";
 import { useTranslation } from "react-i18next";
 import Button from "./Button";
+import { useState } from "react";
 
 function FilterContant({
   stock,
@@ -10,11 +11,28 @@ function FilterContant({
   setPriceTo,
   setStock,
   onCloseModal,
-  setFiltered,
+  priceFrom,
+  priceTo,
 }) {
   const { t } = useTranslation();
+  const [stockValue, setStockValue] = useState(stock);
+  const [fromValue, setFromValue] = useState(priceFrom);
+  const [toValue, setToValue] = useState(priceTo);
+  const placeHolderValue1 = 35;
+  const placeHolderValue2 = 70;
   const handleFilter = () => {
-    setFiltered(true);
+    if (toValue < 0 || fromValue < 0) return onCloseModal();
+    else if (toValue < fromValue) {
+      setStock(stockValue);
+      setPriceFrom(fromValue);
+      setPriceTo(fromValue * 2);
+    } else {
+      setStock(stockValue);
+
+      setPriceFrom(fromValue);
+      setPriceTo(toValue);
+    }
+
     onCloseModal();
   };
   return (
@@ -26,18 +44,18 @@ function FilterContant({
           <InputContainer>
             <Heading as="h5">{t("From")}</Heading>
             <StyledInput
-              placeholder="35"
+              placeholder={placeHolderValue1}
               type="number"
-              onChange={(e) => setPriceFrom(e.target.value)}
+              onChange={(e) => setFromValue(e.target.value)}
             />
             <Heading as="h6">{t("JOD")}</Heading>
           </InputContainer>
           <InputContainer>
             <Heading as="h5">{t("to")}</Heading>
             <StyledInput
-              placeholder="70"
+              placeholder={placeHolderValue2}
               type="number"
-              onChange={(e) => setPriceTo(e.target.value)}
+              onChange={(e) => setToValue(e.target.value)}
             />
             <Heading as="h6">{t("JOD")}</Heading>
           </InputContainer>
@@ -47,13 +65,11 @@ function FilterContant({
         <Heading as="h4">{t("Stock")}</Heading>
         <OptionContant>
           <SwitchButton
-            label1="All"
-            label2="In Stock"
-            label3="Out of stock"
+            labels={["All", "In Stock", "Out of stock"]}
             width="190px"
             height="40px"
-            setStock={setStock}
-            stock={stock}
+            setStock={setStockValue}
+            stock={stockValue}
           />
         </OptionContant>
       </OptionContainer>

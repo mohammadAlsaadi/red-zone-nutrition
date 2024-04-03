@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Button from "./Button";
-import { formatCurrency } from "../utils/helper";
+import { formatCurrency, formatPrice } from "../utils/helper";
 import ButtonText from "./ButtonText";
 import Spinner from "./Spinner";
 
@@ -32,9 +32,9 @@ function CartItem({ item }) {
           <img src={image} alt={`${image}`} width={100} height={100} />
         )}
         <StyledName>
-          {name}
+          {t(name)}
           <br /> <StyledCategory>{t(category)}</StyledCategory>
-          {flavor} <p>{t(productSize)}</p>
+          {t(flavor)} <p>{t(productSize)}</p>
         </StyledName>
       </StyledProductInfo>
       <OptionsContainer>
@@ -66,7 +66,7 @@ function CartItem({ item }) {
             {t("Remove")}
           </ButtonText>
         </StyledOptins>
-        <StyledPrice>{formatCurrency(price)}</StyledPrice>
+        <StyledPrice>{formatPrice(price)}</StyledPrice>
       </OptionsContainer>
     </StyledCartItem>
   );
@@ -79,8 +79,9 @@ const StyledCartItem = styled.li`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  /* padding: 0rem 2rem; */
 
-  margin-bottom: 2rem;
+  margin: 1rem 0rem 2rem;
   background-color: var(--color-grey-100);
   border-radius: 7px;
   border-bottom: 1px solid var(--color-grey-500);
@@ -143,7 +144,8 @@ const OptionsContainer = styled.div`
   align-items: flex-end;
   justify-content: center;
   gap: 1rem;
-  margin-right: 10px;
+  padding: 0rem 3rem;
+  /* margin-right: 10px; */
   @media (max-width: 600px) {
   }
 `;

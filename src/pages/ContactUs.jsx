@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Heading from "../components/Heading";
 import { useTranslation } from "react-i18next";
-import { HiOutlineEnvelope, HiOutlinePhone } from "react-icons/hi2";
+import { HiMiniLink, HiOutlineEnvelope, HiOutlinePhone } from "react-icons/hi2";
 import LogoLink from "../components/LogoLink";
 
 function ContactUs() {
@@ -11,9 +11,12 @@ function ContactUs() {
       <StyledHeader />
       <StyledBody>
         <Heading as="h2" color="var(--color-grey-100)">
-          {t("The main branch in Jordan")}
+          {t("Our branches in Jordan")}
         </Heading>
         <ContactContainer>
+          <Heading as="h3" color="var(--color-gold-500)">
+            {t("Rabieh Branch")}
+          </Heading>
           <LabelValue>
             <Label>{t("Location")} :</Label>
             <Value>{t("Seqeleyah St. 16-20,Rabiah, Amman")}</Value>
@@ -22,8 +25,27 @@ function ContactUs() {
             <Label>{t("Location in google maps")} :</Label>
             <Value>
               <A href="https://www.google.com/maps?q=RED+ZONE+NUTRITION+RABIEH+%D8%B1%D9%8A%D8%AF%D8%B2%D9%88%D9%86+%D9%86%D9%8A%D9%88%D8%AA%D8%B1%D9%8A%D8%B4%D9%86+%D8%A7%D9%84%D8%B1%D8%A7%D8%A8%D9%8A%D8%A9,+Seqeleyah+St.+16-20,+Amman&ftid=0x151ca156c4730f3d:0x2feb8aa0c9c1f3f8&hl=en-JO&gl=jo&entry=gps&lucs=,47071704,47069508&g_ep=CAISDDYuODcuMC4xNjY5MBgAINeCAyoSLDQ3MDcxNzA0LDQ3MDY5NTA4QgJKTw%3D%3D&g_st=iw">
-                {t("Follow location")}
+                {t("Follow location")} <HiMiniLink />
               </A>
+            </Value>
+          </LabelValue>
+        </ContactContainer>
+        <ContactContainer>
+          <Heading as="h3" color="var(--color-gold-500)">
+            {t("Gardens branch")}
+          </Heading>
+
+          <LabelValue>
+            <Label>{t("Location")} :</Label>
+            <Value>{t("Ayman Ramadan St.,Gardens, Amman")}</Value>
+          </LabelValue>
+          <LabelValue>
+            <Label>{t("Location in google maps")} :</Label>
+            <Value>
+              <A href="https://www.google.com/maps?q=RED+ZONE+NUTRITION+GARDENZ+%D8%B1%D9%8A%D8%AF+%D8%B2%D9%88%D9%86+%D9%86%D9%8A%D9%88%D8%AA%D8%B1%D9%8A%D8%B4%D9%86+%D8%A7%D9%84%D8%AC%D8%A7%D8%B1%D8%AF%D9%86%D8%B2,+Amman&ftid=0x151ca03cffa78dc5:0x39d5312a417f87&hl=en-JO&gl=jo&entry=gps&lucs=,94216395,47071704,47069508&g_ep=CAISDDYuODcuMC4xNjY5MBgAINeCAyobLDk0MjE2Mzk1LDQ3MDcxNzA0LDQ3MDY5NTA4QgJKTw%3D%3D&g_st=iw">
+                {t("Follow location")}
+              </A>{" "}
+              <HiMiniLink />
             </Value>
           </LabelValue>
         </ContactContainer>
@@ -60,6 +82,16 @@ function ContactUs() {
 }
 
 export default ContactUs;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 const StyledContactUs = styled.div`
   display: flex;
   flex-direction: column;
@@ -69,6 +101,7 @@ const StyledContactUs = styled.div`
   width: 100%;
   height: 170vh;
   background-color: var(--color-grey-footer);
+  animation: ${fadeIn} 1s ease-out;
 `;
 const StyledHeader = styled.div`
   display: flex;
@@ -90,17 +123,24 @@ const StyledBody = styled.div`
   align-items: flex-start;
   justify-content: center;
   padding: 3rem 6rem;
-  gap: 1rem;
+  gap: 4rem;
   width: 100%;
   /* height: 100%; */
 `;
 const ContactContainer = styled.div`
-  width: 90%;
-  height: 20vh;
+  width: 60%;
+  height: 100%;
   /* background-color: var(--color-grey-100); */
   display: flex;
   flex-direction: column;
-  /* border-radius: 2rem; */
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-grey-700);
+  @media (max-width: 800px) {
+    width: 90%;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 const LabelValue = styled.div`
   display: flex;

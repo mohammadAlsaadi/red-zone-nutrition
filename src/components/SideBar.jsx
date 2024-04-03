@@ -21,6 +21,8 @@ function Sidebar() {
   const { isAuthenticated } = useUser();
   const { ref } = useOutsideClick(handleClose, true);
   const navigate = useNavigate();
+  const { user } = useUser();
+  console.log("user", user);
 
   function handleNavigate(path) {
     navigate(path);
@@ -34,7 +36,7 @@ function Sidebar() {
   return (
     <StyledSidebar ref={ref}>
       <StyledHeader>
-        <Heading as="h3">Menu</Heading>
+        <Heading as="h3">{t("Menu")}</Heading>
         <ButtonIcon onClick={handleClose}>
           <HiOutlineXMark color="red" />
         </ButtonIcon>
@@ -68,7 +70,7 @@ function Sidebar() {
           {isAuthenticated ? (
             <UserCard />
           ) : (
-            <Heading as="h6">{t("Do not have an account ?")}</Heading>
+            <Heading as="h7">{t("Don't have an account ?")}</Heading>
           )}
           {isAuthenticated ? (
             <Logout />

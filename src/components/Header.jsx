@@ -96,13 +96,12 @@ function Header() {
               {t("Search")}
             </SearchText>
           </SearchBarContainer>
-          <Link to="/home">
-            <Logo
-              width={250}
-              height={60}
-              src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/redzoneWithoutbg.png"
-            />
-          </Link>
+
+          <Logo
+            width={250}
+            height={60}
+            src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/redzoneWithoutbg.png"
+          />
 
           <OptionsContainer2>
             <Modal>
@@ -140,6 +139,7 @@ const StyledHeader = styled.div`
   height: 100%;
   gap: 2rem;
 `;
+
 const StyledSearchResult = styled.div`
   display: flex;
   flex-direction: column;

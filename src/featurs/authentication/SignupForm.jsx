@@ -9,12 +9,15 @@ import Spinner from "../../components/Spinner";
 import Heading from "../../components/Heading";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 // Email regex: /\S+@\S+\.\S+/
 
 function SignupForm() {
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
   const { signup, isLoading } = useSignup();
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   function handleNavigate(e) {
     e.preventDefault();
@@ -113,20 +116,20 @@ function SignupForm() {
 
         <FormRow>
           <Button variation="secondary" type="button" onClick={() => reset()}>
-            Cancel
+            {t("Cancel")}
           </Button>
           <Button disabled={isLoading} type="submit">
-            Create new user
+            {t("Create new user")}
           </Button>
         </FormRow>
         <StyledContainer>
-          <Heading as="h5">Do you have an account? </Heading>
+          <Heading as="h5">{t("Do you have an account?")} </Heading>
           <ButtonText
             onClick={handleNavigate}
             color="var(--color-red-500)"
             fontSize="small"
           >
-            Login
+            {t("Login")}
           </ButtonText>
         </StyledContainer>
       </Form>

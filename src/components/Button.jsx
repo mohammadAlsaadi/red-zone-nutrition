@@ -10,8 +10,9 @@ const sizes = {
 
     //
     @media (max-width: 600px) {
-      font-size: 1rem;
-      padding: 0.8rem 1.6rem;
+      font-size: 0.8rem;
+      padding: 0.6rem 1.6rem;
+      text-transform: lowercase;
     }
     @media (min-width: 600px) {
       font-size: 1.1rem;
@@ -67,7 +68,8 @@ const sizes = {
 const variations = {
   primary: css`
     color: var(--color-grey-50);
-    background-color: var(--color-grey-900);
+    background-color: ${(props) =>
+      props.color ? props.color : "var(--color-grey-900)"};
 
     &:hover {
       background-color: var(--color-grey-700);

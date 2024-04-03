@@ -65,6 +65,8 @@ export const english = {
   "Order more": "Order more",
   "Check out": "Check out",
   Remove: "Remove",
+  "Clear cart": "Clear cart",
+
   "Email Submitted": "Email Submitted",
   "Your Full Name": "Your Full Name",
   "Your Email": "Your Email",
@@ -139,13 +141,20 @@ export const english = {
   "Fat Burners": "Fat Burners",
   "Buy now": "Buy now",
   From: "From",
+  "Read more": "Read more",
   jordan: "jordan",
   "Do not have an account ?": "Do not have an account ?",
   "sign in": "sign in",
   "Iso Protein": "Iso Protein",
   "Add Products": "Add Products",
   "Out of Stock": "Out of Stock",
-  "In Stock": "In Stock",
+  "Rabieh Branch": "Rabieh Branch",
+  "Red Zone Article": "Red Zone Article",
+  "ABE Pump": "ABE Pump",
+  "Gardens branch": "Gardens branch",
+  "Ayman Ramadan St.,Gardens, Amman": "Ayman Ramadan St.,Gardens, Amman",
+  "Free delivery for orders over 70 JD": "Free delivery for orders over 75 JD",
+
   "We recommend these products based on your calories":
     "We recommend these products based on your calories",
   "Basal Metabolic Rate (BMR):": "Basal Metabolic Rate (BMR):",
@@ -245,9 +254,85 @@ export const english = {
   "Raw nutrition isolate protein": "Raw nutrition isolate protein",
 
   //Contact us page
-  "The main branch in Jordan": "The main branch in Jordan",
+  "Our branches in Jordan": "Our branches in Jordan",
   Location: "Location",
   "Seqeleyah St. 16-20,Rabiah, Amman": "Seqeleyah St. 16-20,Rabiah, Amman",
   "Location in google maps": "Location in google maps",
   "Follow location": "Follow location",
+
+  // Articles
+  //names
+  "Is creatine harmful to the kidneys? Does it cause hair loss? Does it hold water under the skin?":
+    "Is creatine harmful to the kidneys? Does it cause hair loss? Does it hold water under the skin?",
+  "Is pre-workout just over priced caffeine?":
+    "Is pre-workout just over priced caffeine?",
+  //bref
+  "Creatine is the safest supplement according to recent studies":
+    "Creatine is the safest supplement according to recent studies",
+  "Are pre-workout supplements just expensive sources of caffeine or provide additional benefits?":
+    "Are pre-workout supplements just expensive sources of caffeine or provide additional benefits?",
+  //contantHeading
+  "What is the Creatine?": "What is the Creatine?",
+  "Is creatine harmful to the kidneys?": "Is creatine harmful to the kidneys?",
+  "Does creatine cause hair loss?": "Does creatine cause hair loss?",
+  "Does creatine hold water under the skin?":
+    "Does creatine hold water under the skin?",
+  Summary: "Summary",
+  "The Composition of Pre-Workout Supplements":
+    "The Composition of Pre-Workout Supplements",
+  "The Role of Caffeine in Pre-Workout Supplements":
+    "The Role of Caffeine in Pre-Workout Supplements",
+  "Evaluating the Value Proposition of Pre-Workout Supplements":
+    "Evaluating the Value Proposition of Pre-Workout Supplements",
+
+  //contant
+  "Creatine is a compound that comes from three amino acids. Creatine is found mostly in your body's muscles as well as in the brain. Most people get creatine through seafood and red meat — though at levels far below those found in synthetically made creatine supplements,":
+    "Creatine is a compound that comes from three amino acids. Creatine is found mostly in your body's muscles as well as in the brain. Most people get creatine through seafood and red meat — though at levels far below those found in synthetically made creatine supplements",
+  "Research has shown that it is safe to consume creatine supplements daily, even over several years,In fact, research has shown positive health benefits in athletes who took daily supplements of creatine for long periods of time":
+    "Research has shown that it is safe to consume creatine supplements daily, even over several years,In fact, research has shown positive health benefits in athletes who took daily supplements of creatine for long periods of time",
+  "A long-term study of college athletes found no side effects related to liver or kidney function. Other studies measuring biological markers in the urine found no difference after creatine ingestion,One of the longest studies to date — lasting for 4 years — similarly concluded that creatine has no negative side effects ":
+    "A long-term study of college athletes found no side effects related to liver or kidney function. Other studies measuring biological markers in the urine found no difference after creatine ingestion,One of the longest studies to date — lasting for 4 years — similarly concluded that creatine has no negative side effects ",
+  "No study has reported hair loss in humans with creatine supplementation, and the current body of evidence does not support a link between creatine supplementation and hair loss or balding.":
+    "No study has reported hair loss in humans with creatine supplementation, and the current body of evidence does not support a link between creatine supplementation and hair loss or balding.",
+  "Creatine ability to enhance strength, power output, muscle growth, and exercise recovery has been well-documented. Despite some misconceptions, creatine does not cause excessive water retention or bloating in the long term. Any initial water weight gain is typically temporary and due to improved muscle hydration.":
+    "Creatine ability to enhance strength, power output, muscle growth, and exercise recovery has been well-documented. Despite some misconceptions, creatine does not cause excessive water retention or bloating in the long term. Any initial water weight gain is typically temporary and due to improved muscle hydration.",
+  "Creatine is one of the best supplements for improving strength and high intensity exercise performance. It works by increasing your capacity to produce ATP energy.":
+    "Creatine is one of the best supplements for improving strength and high intensity exercise performance. It works by increasing your capacity to produce ATP energy.",
+  "Pre-workout supplements are complex formulations designed to enhance various aspects of exercise performance. While caffeine is a prominent ingredient due to its stimulatory effects, these supplements typically contain a blend of other compounds as well. Ingredients such as beta-alanine, creatine, BCAAs, and nitric oxide precursors are often included to provide additional benefits such as improved endurance, strength, focus, and muscle pump during workouts.":
+    "Pre-workout supplements are complex formulations designed to enhance various aspects of exercise performance. While caffeine is a prominent ingredient due to its stimulatory effects, these supplements typically contain a blend of other compounds as well. Ingredients such as beta-alanine, creatine, BCAAs, and nitric oxide precursors are often included to provide additional benefits such as improved endurance, strength, focus, and muscle pump during workouts.",
+  "Caffeine plays a pivotal role in pre-workout supplements, contributing to increased alertness, improved focus, and reduced perceived exertion during exercise. Its stimulant properties can enhance endurance and strength performance, making it a key component in many pre-workout formulations. However, it's important to note that while caffeine is a primary source of energy and stimulation in these supplements, they also contain other ingredients aimed at optimizing exercise performance.":
+    "Caffeine plays a pivotal role in pre-workout supplements, contributing to increased alertness, improved focus, and reduced perceived exertion during exercise. Its stimulant properties can enhance endurance and strength performance, making it a key component in many pre-workout formulations. However, it's important to note that while caffeine is a primary source of energy and stimulation in these supplements, they also contain other ingredients aimed at optimizing exercise performance.",
+  "The cost-effectiveness of pre-workout supplements is a topic of debate, with some questioning whether their price justifies the benefits they offer. While these supplements often provide a convenient way to consume multiple performance-enhancing ingredients in a single product, their high price tags may not always align with the actual cost of their constituents. Factors such as ingredient quality, formulation potency, and individual response should be considered when assessing the value of pre-workout supplements.":
+    "The cost-effectiveness of pre-workout supplements is a topic of debate, with some questioning whether their price justifies the benefits they offer. While these supplements often provide a convenient way to consume multiple performance-enhancing ingredients in a single product, their high price tags may not always align with the actual cost of their constituents. Factors such as ingredient quality, formulation potency, and individual response should be considered when assessing the value of pre-workout supplements.",
+  "As with any nutritional supplement, pre-workout supplements provide a blend of ingredients intended to enhance exercise performance, with caffeine often playing a key role. While these supplements can provide benefits such as increased energy, focus, and stamina, their proposed value and potential drawbacks must be carefully considered. Factors such as individual response to caffeine, formulation efficacy, and cost-effectiveness merit consideration before incorporating pre-workout supplements into one's fitness routine. Therefore, “Red Zone Nutrition” provided the best products that combine benefits with good prices.":
+    "As with any nutritional supplement, pre-workout supplements provide a blend of ingredients intended to enhance exercise performance, with caffeine often playing a key role. While these supplements can provide benefits such as increased energy, focus, and stamina, their proposed value and potential drawbacks must be carefully considered. Factors such as individual response to caffeine, formulation efficacy, and cost-effectiveness merit consideration before incorporating pre-workout supplements into one's fitness routine. Therefore, “Red Zone Nutrition” provided the best products that combine benefits with good prices.",
+  References: "References",
+
+  // Login page
+  "Login to your account": "Login to your account",
+  "Email address": "Email address",
+  Password: "Password",
+  Login: "Login",
+  "Don't have an account ?": "Don't have an account ?",
+  "Register now": "Register now",
+  or: "or",
+
+  // Register page
+
+  "Create a new account": "Careat a new account",
+  "Full name": "Full name",
+  "this field is required": "this field is required",
+  "Please provide a valid email address":
+    "Please provide a valid email address",
+  "Password (min 8 characters)": "Password (min 8 characters)",
+  "Password needs a minimum of 8 characters":
+    "Password needs a minimum of 8 characters",
+  "Password must contain at least one capital letter":
+    "Password must contain at least one capital letter",
+  "Repeat password": "Repeat password",
+  "Password need to match": "Password need to match",
+  "Phone number - start with (07x)": "Phone number - start with (07x)",
+  "Please provide a valid phone number": "Please provide a valid phone number",
+  "Create new user": "Create new user",
+  "Do you have an account?": "Do you have an account?",
 };

@@ -53,7 +53,10 @@ function Home() {
 
           <ButtonText
             color="var(--color-gold-500)"
-            onClick={() => navigate("/categories")}
+            onClick={() => {
+              navigate("/categories");
+              window.scrollTo(0, 0);
+            }}
             fontSize="20px"
           >
             {t("See all")}
@@ -66,7 +69,10 @@ function Home() {
           <Heading as="h3">{t("Special Offers")}</Heading>
           <ButtonText
             color="var(--color-gold-500)"
-            onClick={() => navigate("/special-offer")}
+            onClick={() => {
+              navigate("/special-offer");
+              window.scrollTo(0, 0);
+            }}
             fontSize="20px"
           >
             {t("See all")}
@@ -76,10 +82,13 @@ function Home() {
       </StyledContent>
       <StyledContent>
         <StyledLabel>
-          <Heading as="h3">{t("Productes")}</Heading>
+          <Heading as="h3">{t("All Products")}</Heading>
           <ButtonText
             color="var(--color-gold-500)"
-            onClick={() => navigate("/products/all")}
+            onClick={() => {
+              navigate("/products/all");
+              window.scrollTo(0, 0);
+            }}
             fontSize="20px"
           >
             {t("See all")}
@@ -105,7 +114,16 @@ function Home() {
 }
 
 export default Home;
-
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 const StyledHome = styled.div`
   display: flex;
   flex-direction: column;
@@ -113,6 +131,7 @@ const StyledHome = styled.div`
   align-items: flex-start;
   justify-content: center;
   background-color: var(--color-grey-0);
+  animation: ${fadeIn} 1s ease-out;
 `;
 const SliderContainer = styled.div`
   width: 100%;

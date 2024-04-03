@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Heading from "../components/Heading";
 import ButtonText from "../components/ButtonText";
@@ -12,25 +12,64 @@ import { useTranslation } from "react-i18next";
 import Modal from "../components/Modal";
 import FilterContant from "../components/FilterContant";
 import useFilterProductsPrice from "../featurs/product/useFilterProducts";
+import NoResult from "../components/NoResult";
 
 function Porducts() {
   const { data, isLoading, error } = useProducts();
   const { filterPrice, isLoading: isFiltering } = useFilterProductsPrice();
   const { categoryName } = useParams();
   const { t } = useTranslation();
-  const [priceFrom, setPriceFrom] = useState(35);
-  const [priceTo, setPriceTo] = useState(70);
+  const [priceFrom, setPriceFrom] = useState(0);
+  const [priceTo, setPriceTo] = useState(100);
   const [filtered, setFiltered] = useState(false);
   const [stock, setStock] = useState("all");
-
   const [currentPage, setCurrentPage] = useState(1);
   let products = [];
+
   if (error) console.log(error.message);
   if (isLoading || isFiltering) return <Spinner />;
   if (categoryName === "all") {
     products = data;
   } else {
     products = data.filter((product) => product.category === categoryName);
+  }
+
+  if (stock === "In Stock") {
+    if (categoryName === "all") {
+      products = data.filter(
+        (product) =>
+          (product.price[0] >= priceFrom && product.price[0] <= priceTo) ||
+          (product.price[1] >= priceFrom &&
+            product.price[1] <= priceTo &&
+            product.inStock === true)
+      );
+    } else {
+      const productsBeforeCategories = data.filter(
+        (product) =>
+          (product.price[0] >= priceFrom && product.price[0] <= priceTo) ||
+          (product.price[1] >= priceFrom &&
+            product.price[1] <= priceTo &&
+            product.inStock === true)
+      );
+      products = productsBeforeCategories.filter(
+        (product) => product.category === categoryName
+      );
+    }
+  } else if (stock === "Out of stock") {
+    if (categoryName === "all") {
+      products = data.filter((product) => product.inStock === false);
+    } else {
+      products = data.filter(
+        (product) =>
+          product.category === categoryName && product.inStock === false
+      );
+    }
+  } else {
+    if (categoryName === "all") {
+      products = data;
+    } else {
+      products = data.filter((product) => product.category === categoryName);
+    }
   }
 
   const productsPerPage = 6;
@@ -53,6 +92,8 @@ function Porducts() {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
   };
 
+  if (products.length === 0) return <NoResult />;
+
   return (
     <StyledProducts>
       <StyledHeader>
@@ -71,6 +112,8 @@ function Porducts() {
             <Modal.Window name="category-filter">
               <FilterContant
                 stock={stock}
+                priceFrom={priceFrom}
+                priceTo={priceTo}
                 setPriceFrom={setPriceFrom}
                 setPriceTo={setPriceTo}
                 setStock={setStock}

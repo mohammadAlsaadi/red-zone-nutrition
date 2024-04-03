@@ -1,14 +1,20 @@
 import styled from "styled-components";
 import { useDeviceWidth } from "../context/DeviceWidthContext";
+import { useNavigate } from "react-router-dom";
 const IMG_LOGO =
   "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/redzone.png";
 // "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/redzone.jpg";
 function Logo({ src, width, height }) {
   const { isDesktopDevice } = useDeviceWidth();
+  const navigate = useNavigate();
 
   return (
     <StyledLogo>
       <Img
+        onClick={() => {
+          navigate("/home");
+          window.scrollTo(0, 0);
+        }}
         src={src || IMG_LOGO} // Use the provided src or default to "redzone.jpg"
         alt="Logo"
         width={!width ? (isDesktopDevice ? 100 : 90) : width}
@@ -25,6 +31,7 @@ const StyledLogo = styled.div`
   padding-top: 2rem;
   /* padding-bottom: 2rem; */
   padding-left: 1rem;
+  cursor: pointer;
 `;
 
 const Img = styled.img`

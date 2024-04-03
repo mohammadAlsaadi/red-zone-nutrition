@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import CaloriesCalculator from "../featurs/calories-calculator/CaloriesCalculator";
 import Heading from "../components/Heading";
 import { HiLightBulb } from "react-icons/hi2";
@@ -67,6 +67,16 @@ function CalculateCalories() {
 }
 
 export default CalculateCalories;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 const CalculateCaloriesLayout = styled.div`
   padding-top: 4rem;
   display: flex;
@@ -75,6 +85,7 @@ const CalculateCaloriesLayout = styled.div`
   width: 100%;
   height: 100%;
   align-items: center;
+  animation: ${fadeIn} 1s ease-out;
   background-color: var(--color-grey-50);
   /* background-image: url("https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/cover-images/fit.jpg"); */
   background-size: cover;

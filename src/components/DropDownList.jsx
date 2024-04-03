@@ -14,7 +14,7 @@ function DropDownList({
   fontSize,
 }) {
   const { t } = useTranslation();
-
+  console.log(options);
   return (
     <DropDownListContainer>
       {!withoutLabel && <p>{t(labelText)}</p>}
@@ -22,11 +22,11 @@ function DropDownList({
         width={width}
         height={height}
         fontsize={fontSize}
-        value={options[value]}
+        value={value}
         onChange={(e) => setter(e.target.value)}
       >
-        {options?.map((option) => (
-          <StyledOption value={option} key={option}>
+        {options?.map((option, index) => (
+          <StyledOption value={index} key={option}>
             {additionIcon ? (
               <StyledOptionWithAdditionData>
                 <ColorIcon dataToConvert={option} />

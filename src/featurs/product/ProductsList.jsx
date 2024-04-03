@@ -20,7 +20,7 @@ function ProductsList({ offers, isLoadingFetch, category, categoryList }) {
     },
     desktop: {
       breakpoint: { max: 2000, min: 1200 },
-      items: 4,
+      items: 4.2,
     },
     notebook: {
       breakpoint: { max: 1200, min: 950 },
@@ -32,7 +32,7 @@ function ProductsList({ offers, isLoadingFetch, category, categoryList }) {
     },
     mobile: {
       breakpoint: { max: 600, min: 0 },
-      items: 2,
+      items: 2.6,
     },
   };
 

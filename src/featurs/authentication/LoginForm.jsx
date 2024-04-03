@@ -8,12 +8,14 @@ import Spinner from "../../components/Spinner";
 import ButtonText from "../../components/ButtonText";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, isLoading } = useLogin();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -59,9 +61,9 @@ function LoginForm() {
         </Button>
       </FormRowVertical>
       <StyledRegister>
-        Don't have an account ?
+        {t("Don't have an account ?")}
         <ButtonText color="red" onClick={() => navigate("/register")}>
-          Register now
+          {t("Register now")}
         </ButtonText>
       </StyledRegister>
     </Form>

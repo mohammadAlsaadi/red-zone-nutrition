@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { HiOutlinePlus, HiOutlineXMark } from "react-icons/hi2";
 import useProduct from "../featurs/product/useProduct";
 import { formatPrice, formatProductDescription } from "../utils/helper";
@@ -16,17 +16,24 @@ import { v4 as uuidv4 } from "uuid";
 import HasOffer from "../components/HasOffer";
 import { useTranslation } from "react-i18next";
 import SpinnerMini from "../components/SpinnerMini";
+import { useLocation, useParams } from "react-router-dom";
+import { useProductSelection } from "../context/ProductSelectionContext";
 
 function Details() {
-  const [activeProductSize, setActiveProductSize] = useState(0);
-  const [selectedFlavor, setSelectedFlavor] = useState(0);
+  const {
+    activeProductSize,
+    selectedFlavor,
+    setActiveProductSize,
+    setSelectedFlavor,
+  } = useProductSelection();
   const [isHovered, setIsHovered] = useState(false);
   const [inStock, setInStock] = useState(true);
   const [isOpenDescription, setIsOpenDescription] = useState(false);
   const [isOpenNutritionFacts, setIsOpenNutritionFacts] = useState(false);
   const { t } = useTranslation();
-
-  // const [isOpenRating, setIsOpenRating] = useState(false);
+  const location = useLocation();
+  const { productId } = useParams();
+  console.log(productId);
   const {
     cart,
     addToCart,
@@ -34,7 +41,15 @@ function Details() {
     incrementItem,
   } = useCartContext();
   const { product, isLoading } = useProduct();
-
+  useEffect(() => {
+    // window.location.reload();
+    if (productId) {
+      setSelectedFlavor(0);
+      setActiveProductSize(0);
+    }
+  }, [productId]);
+  console.log(activeProductSize);
+  console.log("selected flavors", selectedFlavor);
   useEffect(
     function () {
       if (product?.flavors[activeProductSize].length === 0) {
@@ -45,9 +60,8 @@ function Details() {
     [activeProductSize, product]
   );
   if (isLoading) return <Spinner />;
-
   const {
-    id: productId,
+    id,
     name,
     image,
     price,
@@ -63,7 +77,6 @@ function Details() {
     country,
     companyIcon,
   } = product;
-
   function handleAddToCart() {
     const newItem = {
       id: uuidv4(),
@@ -88,13 +101,8 @@ function Details() {
         item.flavor === flavors[activeProductSize][selectedFlavor]
     );
     if (existingItem) {
-      console.log("update count item");
-      console.log(existingItem.id);
       incrementItem(existingItem.id);
     } else {
-      console.log(newItem);
-
-      console.log("add new item");
       addToCart(newItem);
     }
   }
@@ -203,6 +211,16 @@ function Details() {
 }
 
 export default Details;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 const DetailsLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -210,6 +228,7 @@ const DetailsLayout = styled.div`
   padding-bottom: 10rem;
   padding-top: 20px;
   background-color: var(--color-grey-0);
+  animation: ${fadeIn} 1s ease-out;
 
   @media (max-width: 700px) {
     gap: 1rem;

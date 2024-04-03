@@ -33,6 +33,8 @@ import AboutUs from "./pages/Aboutus";
 import ContactUs from "./pages/ContactUs";
 import { BodyDirectionProvider } from "./context/BodyDirectionContext";
 import Articles from "./pages/Articles";
+import Article from "./pages/Article";
+import { ProductSelectionProvider } from "./context/ProductSelectionContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,98 +54,111 @@ function App() {
             <CartProvider>
               <DeviceWidthProvider>
                 <GlobalStyles />
-                <ShowSideBarProvider>
-                  <ReviewsProvider>
-                    <ScrolledProvider>
-                      <BrowserRouter>
-                        <Routes>
-                          <Route element={<AppLayout />}>
-                            <Route
-                              index
-                              element={<Navigate replace to="home" />}
-                            />
-                            <Route path="home" element={<Home />} />
-                            <Route
-                              path="products/:categoryName"
-                              element={<Porducts />}
-                            />
-                            <Route path="categories" element={<Categories />} />
-                            <Route
-                              path="calculate-calories"
-                              element={<CalculateCalories />}
-                            />
-                            <Route
-                              path="special-offer"
-                              element={<SpecialOffer />}
-                            />
-                            <Route path="about-us" element={<AboutUs />} />
-                            <Route path="contact-us" element={<ContactUs />} />
+                <ProductSelectionProvider>
+                  <ShowSideBarProvider>
+                    <ReviewsProvider>
+                      <ScrolledProvider>
+                        <BrowserRouter>
+                          <Routes>
+                            <Route element={<AppLayout />}>
+                              <Route
+                                index
+                                element={<Navigate replace to="home" />}
+                              />
+                              <Route path="home" element={<Home />} />
+                              <Route
+                                path="products/:categoryName"
+                                element={<Porducts />}
+                              />
+                              <Route
+                                path="categories"
+                                element={<Categories />}
+                              />
+                              <Route
+                                path="calculate-calories"
+                                element={<CalculateCalories />}
+                              />
+                              <Route
+                                path="special-offer"
+                                element={<SpecialOffer />}
+                              />
+                              <Route path="about-us" element={<AboutUs />} />
+                              <Route
+                                path="contact-us"
+                                element={<ContactUs />}
+                              />
 
-                            <Route
-                              path="best-seller"
-                              element={<BestSeller />}
-                            />
-                            <Route path="cart" element={<Cart />} />
-                            <Route
-                              path="details/:productId"
-                              element={<Details />}
-                            />
-                            <Route path="orders" element={<Orders />} />
+                              <Route
+                                path="best-seller"
+                                element={<BestSeller />}
+                              />
+                              <Route path="cart" element={<Cart />} />
+                              <Route
+                                path="details/:productId"
+                                element={<Details />}
+                              />
+                              <Route path="orders" element={<Orders />} />
 
+                              <Route
+                                path="payment"
+                                element={<CreditCardPayment />}
+                              />
+                              <Route
+                                path="new-in-store"
+                                element={<NewInStore />}
+                              />
+                              <Route path="articles" element={<Articles />} />
+                              <Route
+                                path="articles/:articleId"
+                                element={<Article />}
+                              />
+
+                              <Route
+                                path="checkout"
+                                element={
+                                  // <ProtectedRoute>
+                                  //   <Checkout />
+                                  // </ProtectedRoute>
+                                  <Checkout />
+                                }
+                              />
+                            </Route>
+                            <Route path="login" element={<Login />} />
+                            <Route path="register" element={<Register />} />
                             <Route
-                              path="payment"
-                              element={<CreditCardPayment />}
+                              path="/waitingforconfirm"
+                              element={<WaitingForConfirm />}
                             />
-                            <Route
-                              path="new-in-store"
-                              element={<NewInStore />}
-                            />
-                            <Route path="articles" element={<Articles />} />
-                            <Route
-                              path="checkout"
-                              element={
-                                // <ProtectedRoute>
-                                //   <Checkout />
-                                // </ProtectedRoute>
-                                <Checkout />
-                              }
-                            />
-                          </Route>
-                          <Route path="login" element={<Login />} />
-                          <Route path="register" element={<Register />} />
-                          <Route
-                            path="/waitingforconfirm"
-                            element={<WaitingForConfirm />}
-                          />
-                          <Route path="*" element={<PageNotFound />} />
-                        </Routes>
-                      </BrowserRouter>
-                      <Toaster
-                        position="top-center"
-                        reverseOrder={false}
-                        gutter={12}
-                        containerStyle={{
-                          margin: "8px",
-                        }}
-                        toastOptions={{
-                          success: {
-                            duration: 3000,
-                          },
-                          error: {
-                            duration: 5000,
-                          },
-                          style: {
-                            fontSize: "16px",
-                            maxWidth: "500px",
-                            padding: "16px 24px",
-                            backgroundColor: "var(--color-grey-0)",
-                            color: "var(--color-grey-700)",
-                          },
-                        }}
-                      />
-                    </ScrolledProvider>
-                  </ReviewsProvider>
-                </ShowSideBarProvider>
+                            <Route path="*" element={<PageNotFound />} />
+                          </Routes>
+                        </BrowserRouter>
+                        <Toaster
+                          position="top-center"
+                          reverseOrder={false}
+                          gutter={12}
+                          containerStyle={{
+                            margin: "8px",
+                          }}
+                          toastOptions={{
+                            success: {
+                              duration: 3000,
+                            },
+                            error: {
+                              duration: 5000,
+                            },
+                            style: {
+                              fontSize: "16px",
+                              maxWidth: "500px",
+                              padding: "16px 24px",
+                              backgroundColor: "var(--color-grey-0)",
+                              color: "var(--color-grey-700)",
+                            },
+                          }}
+                        />
+                      </ScrolledProvider>
+                    </ReviewsProvider>
+                  </ShowSideBarProvider>
+                </ProductSelectionProvider>
               </DeviceWidthProvider>
             </CartProvider>
             {/* </ReactQueryDevtools> */}

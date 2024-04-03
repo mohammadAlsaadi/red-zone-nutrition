@@ -11,7 +11,7 @@ function ThirdPartyAuth() {
       <Auth
         supabaseClient={supabase}
         appearance={{ theme: ThemeSupa }}
-        providers={["google", "apple", "facebook"]}
+        providers={["google"]}
         queryParams={{
           access_type: "offline",
           prompt: "consent",

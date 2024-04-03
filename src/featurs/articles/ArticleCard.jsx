@@ -1,15 +1,27 @@
 import styled from "styled-components";
 import Button from "../../components/Button";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function ArticleCard({ article }) {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { image, name, bref, id: articleId } = article;
   return (
     <StyledArticleCard>
-      <StyledImg src={article.image} />
+      <StyledImg src={image} />
       <StyledArticleContant>
-        <ArticleHeader>{article.name}</ArticleHeader>
-        <ArticleBref>{article.bref}</ArticleBref>
+        <ArticleHeader>{t(name)}</ArticleHeader>
+        <ArticleBref>{t(bref)}</ArticleBref>
         <StyledButton>
-          <Button>Read more</Button>
+          <Button
+            onClick={() => {
+              navigate(`/articles/${articleId}`);
+              window.scrollTo(0, 0);
+            }}
+          >
+            {t("Read more")}
+          </Button>
         </StyledButton>
       </StyledArticleContant>
     </StyledArticleCard>
@@ -32,8 +44,8 @@ const StyledArticleCard = styled.div`
     transform: scale(1.02);
   }
   @media (max-width: 600px) {
-    height: 20rem;
-    width: 40rem;
+    height: 18rem;
+    width: 37rem;
   }
   /* @media (max-width: 600px) {
     height: 20rem;

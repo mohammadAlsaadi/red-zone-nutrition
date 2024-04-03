@@ -2,22 +2,23 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-function SwitchButton({
-  label1 = "1",
-  label2 = "2",
-  label3,
-  width,
-  height,
-  setStock,
-  stock,
-}) {
-  const [isSelectedOp1, setIsSelectedOp1] = useState(true);
-  const [isSelectedOp2, setIsSelectedOp2] = useState(false);
-  const [isSelectedOp3, setIsSelectedOp3] = useState(false);
+function SwitchButton({ width, height, setStock, stock, labels }) {
+  const [selectedLabel, setSelectedLabel] = useState(stock);
   const { t } = useTranslation();
   return (
     <StyledSwitchButton width={width} height={height}>
-      <StyledButton
+      {labels.map((label, index) => (
+        <StyledButton
+          selected={selectedLabel === labels[index]}
+          onClick={() => {
+            setSelectedLabel(label);
+            setStock(label);
+          }}
+        >
+          {t(label)}
+        </StyledButton>
+      ))}
+      {/* <StyledButton
         selected={isSelectedOp1}
         onClick={() => {
           setIsSelectedOp2(false);
@@ -51,7 +52,7 @@ function SwitchButton({
         >
           {t(label3)}
         </StyledButton>
-      )}
+      )} */}
     </StyledSwitchButton>
   );
 }

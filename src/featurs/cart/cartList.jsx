@@ -4,19 +4,21 @@ import styled from "styled-components";
 import Modal from "../../components/Modal";
 import CartItem from "../../components/CartItem";
 import Heading from "../../components/Heading";
-import { formatCurrency } from "../../utils/helper";
+import { formatCurrency, formatPrice } from "../../utils/helper";
 import Button from "../../components/Button";
 import ButtonText from "../../components/ButtonText";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import EmptyCart from "./EmptyCart";
 import { useCartContext } from "../../context/CartContext";
 import ConfirmDelete from "../../components/ConfirmDelete";
+import { useTranslation } from "react-i18next";
 
 function CartList({ onCloseModal }) {
   const { cart, clearCart, totalPrice } = useCartContext();
 
   const navigate = useNavigate();
   const isCartPage = useLocation().pathname === "/cart";
+  const { t } = useTranslation();
 
   function handleclick(path) {
     // e.preventDefault();
@@ -34,7 +36,7 @@ function CartList({ onCloseModal }) {
             <div>
               <Modal>
                 <Modal.Open opens="delete">
-                  <ButtonText color="red">Clear cart</ButtonText>
+                  <ButtonText color="red">{t("Clear cart")}</ButtonText>
                 </Modal.Open>
 
                 <Modal.Window name="delete">
@@ -49,9 +51,9 @@ function CartList({ onCloseModal }) {
           <StyledFooterBar>
             <StyledTotalPrice>
               <Heading as="h4" color="var(--color-grey-50)">
-                Total Price :
+                {t("Total Price")} :
               </Heading>
-              <P>{formatCurrency(totalPrice)}</P>
+              <P>{formatPrice(totalPrice)}</P>
             </StyledTotalPrice>
             <StyledOptions>
               <ButtonText
@@ -59,14 +61,14 @@ function CartList({ onCloseModal }) {
                 color="white"
                 textDecoration="underLine"
               >
-                Order more
+                {t("Order more")}
               </ButtonText>
               <Button
                 onClick={() => handleclick("checkout")}
                 variation="transparent"
                 border="circle"
               >
-                Check out
+                {t("Check out")}
               </Button>
             </StyledOptions>
           </StyledFooterBar>
@@ -95,6 +97,7 @@ const StyledFooterBar = styled.footer`
   height: 80px;
   border-radius: 10px;
   background-color: var(--color-grey-700);
+  padding: 0rem 2rem;
 `;
 const StyledTotalPrice = styled.div`
   display: flex;

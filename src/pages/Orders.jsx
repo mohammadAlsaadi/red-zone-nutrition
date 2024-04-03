@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import OrderDetails from "../featurs/order/OrderDetails";
 import Heading from "../components/Heading";
 import { useUser } from "../featurs/authentication/useUser";
@@ -33,10 +33,21 @@ function Orders() {
 }
 
 export default Orders;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 const OrdersLayout = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
   height: 100%;
-  margin-bottom: 5rem;
+  margin: 3rem 0rem;
+  animation: ${fadeIn} 1s ease-out;
 `;

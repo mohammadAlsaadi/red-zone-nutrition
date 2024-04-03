@@ -25,8 +25,12 @@ function ArticlesList() {
       items: 1.3,
     },
     mobile: {
-      breakpoint: { max: 600, min: 0 },
-      items: 1.3,
+      breakpoint: { max: 600, min: 400 },
+      items: 1.2,
+    },
+    smallmobile: {
+      breakpoint: { max: 400, min: 0 },
+      items: 1,
     },
   };
 
@@ -34,14 +38,13 @@ function ArticlesList() {
   const { showSideBar } = useShowSideBar();
   const isDesktopDevice = useLocation().pathname === "/home";
   if (isLoading) return <Spinner />;
-  const article = data[0];
   return (
     <StyledArticlesList>
       <StyledCarousel
         arrows={showSideBar && !isDesktopDevice ? false : true}
         responsive={responsive}
         autoPlay={true}
-        autoPlaySpeed={1500}
+        autoPlaySpeed={3500}
         pauseOnHover={true}
       >
         {data?.map((article) => (

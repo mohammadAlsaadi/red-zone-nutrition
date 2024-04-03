@@ -1,24 +1,40 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Button from "./Button";
 import { formatCurrency } from "../utils/helper";
 import { useNavigate } from "react-router-dom";
 import Banner from "./Banner";
 import HasOffer from "./HasOffer";
 import { useTranslation } from "react-i18next";
+import Heading from "./Heading";
+import { useState } from "react";
+import { useProductSelection } from "../context/ProductSelectionContext";
+
 function ProductCard({ product }) {
-  const { name, image, category, price, isNew, id, hasOffer, newPrice } =
-    product;
+  const {
+    name,
+    image,
+    category,
+    price,
+    isNew,
+    id,
+    hasOffer,
+    newPrice,
+    inStock,
+  } = product;
   const { t } = useTranslation();
-
   const navigate = useNavigate();
-  const handleBuyNow = (e) => {
-    // e.stopPropagation();
-    window.scrollTo(0, 0);
-
+  const [isBuyNow, setIsBuyNow] = useState(false);
+  const { setActiveProductSize, setSelectedFlavor } = useProductSelection();
+  function handleBuy() {
+    setActiveProductSize(0);
+    setSelectedFlavor(0);
+    setIsBuyNow((buyNow) => !buyNow);
     navigate(`/details/${id}`);
-  };
+    window.scrollTo(0, 0);
+  }
+
   return (
-    <StyledProductCart>
+    <StyledProductCart inStock={inStock}>
       {isNew && !hasOffer && (
         <Banner src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/new.svg" />
       )}
@@ -32,10 +48,11 @@ function ProductCard({ product }) {
       {hasOffer && isNew && (
         <Banner src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/new.svg" />
       )}
-      <StyledImage src={image}></StyledImage>
+      <StyledImage src={image} outOfStock={!inStock}></StyledImage>
       <ProductInfo>
         <ProductName>{t(name)}</ProductName>
         <ProductCategory>{t(category)}</ProductCategory>
+
         {hasOffer ? (
           <OldNewPrice>
             <HasOffer>{formatCurrency(price[0])}</HasOffer>
@@ -47,11 +64,17 @@ function ProductCard({ product }) {
           <ProductPrice>
             {t("From")} {formatCurrency(price[0])}
           </ProductPrice>
-        )}{" "}
+        )}
       </ProductInfo>
       <CardOption>
-        <Button variations="primary" size="small" onClick={handleBuyNow}>
-          {t("Buy now")}
+        <Button
+          disabled={!inStock}
+          variations="primary"
+          color={!inStock && "var(--color-grey-500)"}
+          size="small"
+          onClick={handleBuy}
+        >
+          {inStock ? t("Buy now") : t("Out of Stock")}
         </Button>
       </CardOption>
     </StyledProductCart>
@@ -59,6 +82,7 @@ function ProductCard({ product }) {
 }
 
 export default ProductCard;
+
 const StyledProductCart = styled.div`
   width: 280px;
   height: 420px;
@@ -73,8 +97,14 @@ const StyledProductCart = styled.div`
   animation: fadeIn 1s ease-out forwards;
 
   &:hover {
-    transform: scale(1.02);
+    transform: ${(props) => props.inStock && "scale(1.02)"};
   }
+
+  ${(props) =>
+    !props.inStock &&
+    css`
+      filter: grayscale(100%);
+    `}
 
   @media (max-width: 1100px) {
     width: 260px;
@@ -127,6 +157,11 @@ const StyledImage = styled.img`
   width: 80%;
   border-radius: 0.5rem;
   border: none;
+  ${(props) =>
+    props.outOfStock &&
+    css`
+      filter: grayscale(100%);
+    `}
 `;
 const ProductInfo = styled.div`
   display: flex;

@@ -7,6 +7,8 @@ import Footer from "./Footer";
 import { useScrolled } from "../context/ScrolledContext";
 import { useDeviceWidth } from "../context/DeviceWidthContext";
 import { useBodyDirection } from "../context/BodyDirectionContext";
+import Heading from "./Heading";
+import { useTranslation } from "react-i18next";
 
 function AppLayout() {
   const { showSideBar } = useShowSideBar();
@@ -16,8 +18,14 @@ function AppLayout() {
   console.log(isContactUsPage);
   const { isScrolled } = useScrolled();
   const { isRtl } = useBodyDirection();
+  const { t } = useTranslation();
   return (
     <StyledAppLayout>
+      {/* <AlertOffer>
+        <Heading as="h4" color="var(--color-gold-500)">
+          {t("Free delivery for orders over 70 JD")}
+        </Heading>
+      </AlertOffer> */}
       {/* <Header /> */}
       {showSideBar && <SideBar />}
       <StyledHeader
@@ -47,9 +55,22 @@ const StyledAppLayout = styled.div`
   overflow: hidden;
   height: 100%;
 `;
+const AlertOffer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 5rem;
+  background-color: var(--color-grey-900);
+  z-index: 1;
+  position: fixed;
+`;
+
 const StyledHeader = styled.div`
   position: fixed;
-  top: 0;
+  top: 0rem;
+  /* top: 5rem; */
+
   left: ${(props) =>
     props.showsidebar && !props.isdesktopdevice && !props.isrtl ? "30%" : 0};
   right: ${(props) =>

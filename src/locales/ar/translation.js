@@ -30,12 +30,16 @@ export const arabicTranslation = {
   "Join our team and be a part of us": "انضم إلى فريقنا وكن جزءًا منا",
   "CONTACT US NOW": "اتصل بنا الآن",
   "NOW YOU CAN COUNT YOUR CALORIES!":
-    "!الآن يمكنك حساب السعرات الحرارية الخاصة بك",
+    "الآن يمكنك حساب السعرات الحرارية الخاصة بك!",
   "You will also get recommended products based on your calorie intake.":
     ".سوف تحصل أيضًا على المنتجات الموصى بها بناءً على السعرات الحرارية التي تتناولها",
   "Calculate now!": "!أحسبها الآن",
+  "Free delivery for orders over 70 JD":
+    "التوصيل مجاني للطلبات التي تزيد عن 70 دينار",
   //
   "See all": "اظهار الكل",
+  "Clear cart": "إفرغ السلة",
+
   Products: "منتجات",
   "Stay updated": "ابق على اطلاع",
   Logout: "تسجيل خروج",
@@ -135,6 +139,7 @@ export const arabicTranslation = {
   From: "تبدأ من",
   jordan: "الأردن",
   "Do not have an account ?": "لا تملك حساب ؟",
+  "Products has related": "المنتجات ذات الصلة",
   "sign in": "تسجيل الدخول",
   "Iso Protein": "ايزو بروتين",
   "Add Products": "أضف منتجات",
@@ -149,6 +154,9 @@ export const arabicTranslation = {
   "Choose an activity level": "أختر النشاط اليومي",
   Male: "ذكر",
   Female: "انثى",
+  "Rabieh Branch": "فرع الرابية",
+  "Gardens branch": "فرع الجاردنز",
+  "Ayman Ramadan St.,Gardens, Amman": "شارع أيمن رمضان، الجاردنز، عمان",
   sedentary: "حركة قليلة",
   lightlyActive: "حركة بشكل خفيف",
   moderatelyActive: "نشاط متوسط",
@@ -164,9 +172,8 @@ export const arabicTranslation = {
   JOD: "د.أ",
   Stock: "مخزون",
   All: "الكل",
-  "In Stock": "في المخزن",
   "Out of stock": "نفذ من المخزن",
-
+  "Read more": "أقرأ المزيد",
   "Filter by": "تصنيف حسب",
   confirmDeletePart1: "هل أنت متأكد أنك تريد حذف هذا",
   confirmDeletePart2: "نهائيا؟ لا يمكن التراجع عن هذا الإجراء.",
@@ -252,10 +259,85 @@ export const arabicTranslation = {
   "Grass-Fed Whey Protein Powder: RAW Nutrition brings you our grass-fed micro-filtered isolate protein, complete with naturally occurring Branch Chain Amino Acids (BCAA). Each scoop packs 25 grams of protein with 0.5g of total fat and 1 gram of carbohydrates. 2.25 lbs. No Nonsense, All Flavor: We pride ourselves on creating products that perfectly balance the scales of quality and flavor. With our classic Cookies N Cream flavor in your corner, building muscle has never tasted so good. Benefits of Protein: RAW Protein delivers the purest form of protein available, aiding digestion, supporting muscle growth and recovery, and providing a balanced source of amino acids and peptides. The New Standard: This hormone-free, micro-filtered protein powder with zero fillers has been crafted for supreme quality to help you meet your protein needs, recover fast and build lean muscle. Made in the USA. No artificial ingredients, no GMOs, no BS. Built From the Ground Up: RAW Nutrition was created to provide athletes with the best fuel for peak training and performance. Our mission is to make smart nutrition easy and convenient with expertly crafted supplements made with the purest ingredients available in the industry. .":
     "مسحوق بروتين مصل اللبن الذي يتغذى على العشب: تقدم لك RAW Nutrition بروتيننا المعزول المصفى بدقة من العشب، والذي يكتمل مع الأحماض الأمينية ذات السلسلة الفرعية (BCAA) التي تحدث بشكل طبيعي. تحتوي كل مغرفة على 25 جرامًا من البروتين مع 0.5 جرام من إجمالي الدهون و1 جرام من الكربوهيدرات. 2.25 رطل. لا معنى له، جميع النكهات: نحن نفخر بقدرتنا على ابتكار منتجات توازن بشكل مثالي بين معايير الجودة والنكهة. مع نكهة الكوكيز والكريمة الكلاسيكية لدينا في ركنك، لم يكن بناء العضلات بهذه الروعة من قبل. فوائد البروتين: يوفر البروتين الخام أنقى أشكال البروتين المتاحة، مما يساعد على الهضم، ويدعم نمو العضلات وتعافيها، ويوفر مصدرًا متوازنًا للأحماض الأمينية والببتيدات. المعيار الجديد: تم تصنيع مسحوق البروتين الخالي من الهرمونات والمصفى بدقة والذي لا يحتوي على مواد مالئة للحصول على جودة فائقة لمساعدتك على تلبية احتياجاتك من البروتين والتعافي بسرعة وبناء العضلات الخالية من الدهون. صنع في الولايات المتحدة الأمريكية. لا يحتوي على مكونات صناعية، أو كائنات معدلة وراثيًا، أو BS. تم تصميمه من الألف إلى الياء: تم إنشاء RAW Nutrition لتزويد الرياضيين بأفضل وقود لتحقيق أعلى مستويات التدريب والأداء. مهمتنا هي جعل التغذية الذكية سهلة ومريحة باستخدام المكملات الغذائية المصممة بخبرة والمصنوعة من أنقى المكونات المتوفرة في الصناعة. .",
   //Contact us page
-  "The main branch in Jordan": "الفرع الرئيسي في الأردن",
+  "Our branches in Jordan": "فروعنا في الأردن",
   "Seqeleyah St. 16-20,Rabiah, Amman": "شارع السقيلية 16-20,الرابية, عمان",
   "Location in google maps": "الموقع على google maps",
   "Follow location": "اذهب للموقع",
   Email: "الأيميل",
   Phone: "الهاتف",
+  // Articles
+  //names
+  "Is creatine harmful to the kidneys? Does it cause hair loss? Does it hold water under the skin?":
+    "هل الكرياتين مضر للكلى؟ هل يسبب تساقط الشعر؟ هل يحبس الماء تحت الجلد؟",
+  "Is pre-workout just over priced caffeine?":
+    "هل مكملات ما قبل التمرين مجرد كافيين مبالغ في سعره؟",
+  //bref
+  "Creatine is the safest supplement according to recent studies":
+    "الكرياتين هو المكمل الأكثر أمانا وفقا للدراسات الحديثة",
+  "Are pre-workout supplements just expensive sources of caffeine or provide additional benefits?":
+    "هل المكملات الغذائية ما قبل التمرين هي مجرد مصادر باهظة الثمن للكافيين أم توفر فوائد إضافية؟",
+  //contantHeading
+  "What is the Creatine?": "ما هو الكرياتين؟",
+  "Is creatine harmful to the kidneys?": "هل الكرياتين مضر للكلى؟",
+  "Does creatine cause hair loss?": "هل يسبب الكرياتين تساقط الشعر؟",
+  "Does creatine hold water under the skin?":
+    "هل يحتفظ الكرياتين بالماء تحت الجلد؟",
+  Summary: "الملخص",
+  "The Composition of Pre-Workout Supplements":
+    "تكوين المكملات الغذائية ما قبل التمرين",
+  "The Role of Caffeine in Pre-Workout Supplements":
+    "دور الكافيين في المكملات الغذائية ما قبل التمرين",
+  "Evaluating the Value Proposition of Pre-Workout Supplements":
+    "تقييم القيمة لمكملات ما قبل التمرين",
+
+  //contant
+  "Creatine is a compound that comes from three amino acids. Creatine is found mostly in your body's muscles as well as in the brain. Most people get creatine through seafood and red meat — though at levels far below those found in synthetically made creatine supplements,":
+    "الكرياتين هو مركب يأتي من ثلاثة أحماض أمينية. يوجد الكرياتين في الغالب في عضلات الجسم وكذلك في الدماغ. يحصل معظم الناس على الكرياتين من خلال المأكولات البحرية واللحوم الحمراء، ولكن بمستويات أقل بكثير من تلك الموجودة في مكملات الكرياتين المصنعة صناعيًا",
+  "Research has shown that it is safe to consume creatine supplements daily, even over several years,In fact, research has shown positive health benefits in athletes who took daily supplements of creatine for long periods of time":
+    "أظهرت الأبحاث أنه من الآمن تناول مكملات الكرياتين يوميًا، حتى على مدى عدة سنوات، في الواقع، أظهرت الأبحاث فوائد صحية إيجابية لدى الرياضيين الذين تناولوا مكملات الكرياتين يوميًا لفترات طويلة من الزمن.",
+  "A long-term study of college athletes found no side effects related to liver or kidney function. Other studies measuring biological markers in the urine found no difference after creatine ingestion,One of the longest studies to date — lasting for 4 years — similarly concluded that creatine has no negative side effects ":
+    "لم تجد دراسة طويلة الأمد للرياضيين الجامعيين أي آثار جانبية تتعلق بوظائف الكبد أو الكلى. لم تجد دراسات أخرى تقيس العلامات البيولوجية في البول أي فرق بعد تناول الكرياتين، وخلصت إحدى أطول الدراسات حتى الآن - والتي استمرت لمدة 4 سنوات - إلى أن الكرياتين ليس له أي آثار جانبية سلبية.",
+  "No study has reported hair loss in humans with creatine supplementation, and the current body of evidence does not support a link between creatine supplementation and hair loss or balding.":
+    "لم تُبلغ أي دراسة عن تساقط الشعر لدى البشر الذين يتناولون مكملات الكرياتين، ولا تدعم مجموعة الأدلة الحالية وجود صلة بين مكملات الكرياتين وفقدان الشعر أو الصلع.",
+  "Creatine ability to enhance strength, power output, muscle growth, and exercise recovery has been well-documented. Despite some misconceptions, creatine does not cause excessive water retention or bloating in the long term. Any initial water weight gain is typically temporary and due to improved muscle hydration.":
+    "لقد تم توثيق قدرة الكرياتين على تعزيز القوة وإنتاج الطاقة ونمو العضلات والتعافي من التمارين بشكل جيد. على الرغم من بعض المفاهيم الخاطئة، فإن الكرياتين لا يسبب احتباس الماء الزائد أو الانتفاخ على المدى الطويل. عادةً ما تكون أي زيادة أولية في وزن الماء مؤقتة وترجع إلى تحسن ترطيب العضلات.",
+  "Creatine is one of the best supplements for improving strength and high intensity exercise performance. It works by increasing your capacity to produce ATP energy.":
+    "يعد الكرياتين أحد أفضل المكملات الغذائية لتحسين القوة وأداء التمارين عالية الكثافة. إنه يعمل عن طريق زيادة قدرتك على إنتاج طاقة ATP.",
+  "Pre-workout supplements are complex formulations designed to enhance various aspects of exercise performance. While caffeine is a prominent ingredient due to its stimulatory effects, these supplements typically contain a blend of other compounds as well. Ingredients such as beta-alanine, creatine, BCAAs, and nitric oxide precursors are often included to provide additional benefits such as improved endurance, strength, focus, and muscle pump during workouts.":
+    "مكملات ما قبل التمرين عبارة عن تركيبات معقدة مصممة لتعزيز جوانب مختلفة من أداء التمرين. في حين أن الكافيين عنصر بارز بسبب آثاره التحفيزية، إلا أن هذه المكملات تحتوي عادةً على مزيج من المركبات الأخرى أيضًا. غالبًا ما يتم تضمين المكونات مثل بيتا ألانين والكرياتين وBCAAs وسلائف أكسيد النيتريك لتوفير فوائد إضافية مثل تحسين القدرة على التحمل والقوة والتركيز ومضخة العضلات أثناء التدريبات.",
+  "Caffeine plays a pivotal role in pre-workout supplements, contributing to increased alertness, improved focus, and reduced perceived exertion during exercise. Its stimulant properties can enhance endurance and strength performance, making it a key component in many pre-workout formulations. However, it's important to note that while caffeine is a primary source of energy and stimulation in these supplements, they also contain other ingredients aimed at optimizing exercise performance.":
+    "يلعب الكافيين دورًا محوريًا في مكملات ما قبل التمرين، مما يساهم في زيادة اليقظة وتحسين التركيز وتقليل الجهد المبذول أثناء التمرين. خصائصه المنشطة يمكن أن تعزز القدرة على التحمل وأداء القوة، مما يجعله مكونًا رئيسيًا في العديد من تركيبات ما قبل التمرين. ومع ذلك، من المهم ملاحظة أنه على الرغم من أن الكافيين هو المصدر الرئيسي للطاقة والتحفيز في هذه المكملات، إلا أنها تحتوي أيضًا على مكونات أخرى تهدف إلى تحسين أداء التمارين الرياضية.",
+  "The cost-effectiveness of pre-workout supplements is a topic of debate, with some questioning whether their price justifies the benefits they offer. While these supplements often provide a convenient way to consume multiple performance-enhancing ingredients in a single product, their high price tags may not always align with the actual cost of their constituents. Factors such as ingredient quality, formulation potency, and individual response should be considered when assessing the value of pre-workout supplements.":
+    "تعد فعالية تكلفة مكملات ما قبل التمرين موضوعًا للنقاش، حيث يتساءل البعض عما إذا كان سعرها يبرر الفوائد التي تقدمها. في حين أن هذه المكملات غالبًا ما توفر طريقة ملائمة لاستهلاك العديد من مكونات تحسين الأداء في منتج واحد، إلا أن أسعارها المرتفعة قد لا تتماشى دائمًا مع التكلفة الفعلية لمكوناتها. يجب أخذ عوامل مثل جودة المكونات وفعالية التركيبة والاستجابة الفردية في الاعتبار عند تقييم قيمة المكملات الغذائية قبل التمرين.",
+  "As with any nutritional supplement, pre-workout supplements provide a blend of ingredients intended to enhance exercise performance, with caffeine often playing a key role. While these supplements can provide benefits such as increased energy, focus, and stamina, their proposed value and potential drawbacks must be carefully considered. Factors such as individual response to caffeine, formulation efficacy, and cost-effectiveness merit consideration before incorporating pre-workout supplements into one's fitness routine. Therefore, “Red Zone Nutrition” provided the best products that combine benefits with good prices.":
+    "كما هو الحال مع أي مكمل غذائي، توفر مكملات ما قبل التمرين مزيجًا من المكونات المخصصة لتحسين أداء التمرين، وغالبًا ما يلعب الكافيين دورًا رئيسيًا. في حين أن هذه المكملات يمكن أن توفر فوائد مثل زيادة الطاقة والتركيز والقدرة على التحمل، إلا أنه يجب دراسة قيمتها المقترحة وعيوبها المحتملة بعناية. عوامل مثل الاستجابة الفردية للكافيين، وفعالية التركيبة، وفعالية التكلفة تستحق النظر فيها قبل دمج مكملات ما قبل التمرين في روتين اللياقة البدنية. ولذلك قدمت  ريد زون نيوترشن أفضل المنتجات التي تجمع بين الفوائد والأسعار الجيدة.",
+  References: "مراجع",
+
+  // Login page
+  "Login to your account": "تسجيل الدخول إلى حسابك",
+  "Email address": "البريد الإلكتروني",
+  Password: "كلمة المرور",
+  Login: "تسجيل الدخول",
+  "Don't have an account ?": "ليس لديك حساب ؟",
+  "Register now": "سجل الان",
+
+  or: "أو",
+
+  // Register page
+
+  "Create a new account": "انشاء حساب جديد",
+  "Full name": "الاسم الكامل",
+  "this field is required": "هذه الخانة مطلوبه",
+  "Please provide a valid email address": "يرجى تقديم بريد إلكتروني صالح",
+  "Password (min 8 characters)": "كلمة المرور (8 أحرف على الأقل)",
+  "Password needs a minimum of 8 characters":
+    "كلمة المرور تحتاج إلى 8 أحرف على الأقل",
+  "Password must contain at least one capital letter":
+    "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
+  "Repeat password": "اعد كلمة السر",
+  "Password need to match": "يجب أن تكون كلمة المرور متطابقة",
+  "Phone number - start with (07x)": "رقم الهاتف – يبدأ بـ (07x)",
+  "Please provide a valid phone number": "الرجاء تقديم رقم هاتف صالح",
+  "Create new user": "إنشاء مستخدم جديد",
+  "Do you have an account?": "هل لديك حساب؟",
 };
