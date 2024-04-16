@@ -8,6 +8,10 @@ export const arabicTranslation = {
   Done: "تم",
   Cart: "السلة",
   "Special Offers": "عروض خاصة",
+  "Red Zone Article": "مقالات ريد زون",
+  "Red Zone Articles": "مقالات ريد زون",
+
+  Articles: "مقالات",
 
   categories: "الفئات",
   "All Products": "كل المنتجات",
@@ -358,4 +362,23 @@ export const arabicTranslation = {
   "Please provide a valid phone number": "الرجاء تقديم رقم هاتف صالح",
   "Create new user": "إنشاء مستخدم جديد",
   "Do you have an account?": "هل لديك حساب؟",
+  // no result page
+  "No Results Found": "لم يتم العثور على نتائج",
+  "Sorry, we couldn't find any products matching your search.":
+    "عذرًا، لم نتمكن من العثور على أي منتجات تطابق بحثك.",
+  back: " عودة الى الخلف",
+  // write a review
+
+  "Write A Review": "أكتب مراجعة",
+  Comment: "تعليق",
+  "write a comment ..": "أكتب تعليقا ..",
+  "Add Review": "إضافة مراجعة",
+  //ABE PUMB
+  "ABE Pump": "آبي بمب",
+  "It is a distinguished choice with its rich nootropic composition, full of fiery energy, which Ensures muscle amplification during the toughest training sessions.This product is carefully formulated using a combination of prestigious key ingredients, along with several licensed and clinically tested active ingredients, that work to enhance muscle activity, improve mental energy and focus, and increase your exercise capacity. This product is designed to change the way you perform by adapting to enhanced workouts, keeping you focused and committed to your workouts at any time of the day or night.":
+    "إنه خيار متميز بتركيبته الغنية منشط للذهن، المليئة بالطاقة النارية، والتي تضمن تضخيم العضلات خلال أصعب جلسات التدريب. تم صياغة هذا المنتج بعناية باستخدام مزيج من المكونات الرئيسية المرموقة، إلى جانب العديد من المكونات النشطة المرخصة والمختبرة سريريًا، والتي العمل على تعزيز النشاط العضلي، وتحسين الطاقة الذهنية والتركيز، وزيادة قدرتك على ممارسة التمارين الرياضية. تم تصميم هذا المنتج لتغيير طريقة أدائك من خلال التكيف مع التدريبات المحسنة، مما يحافظ على تركيزك والتزامك بتدريباتك في أي وقت من النهار أو الليل.",
+  "ABE nutrition": "آبي نيوتريشن",
+  "40 Scoops": "40 مكيال",
+  "Red Hawaiian": "هاواي الحمراء",
+  "Tigers Blood": "دماء النمور",
 };

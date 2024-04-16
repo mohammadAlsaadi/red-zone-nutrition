@@ -86,7 +86,7 @@ const ArticleContainer = styled.div`
 const ArticleList = styled.div`
   display: grid;
 
-  grid-template-columns: repeat(2, 2fr);
+  grid-template-columns: repeat(1, 2fr);
   gap: 6rem;
 
   @media (min-width: 700px) {

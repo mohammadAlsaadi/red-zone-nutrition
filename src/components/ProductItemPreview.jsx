@@ -37,14 +37,14 @@ const CartItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 50rem;
+  width: 90%;
   /* border-bottom: 1px solid var(--color-grey-300); */
   margin-bottom: 1rem;
   @media (max-width: 700px) {
-    width: 80%;
+    width: 100%;
   }
   background-color: var(--color-gold-100);
-  padding: 1rem;
+  padding: 1rem 3rem;
 `;
 const CartItemSummary = styled.div`
   display: flex;

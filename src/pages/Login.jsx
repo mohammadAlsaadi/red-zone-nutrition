@@ -15,7 +15,7 @@ const LoginLayout = styled.main`
   background-color: var(--color-grey-50);
 `;
 const Or = styled.div`
-  margin-left: 20rem;
+  /* margin-left: 20rem; */
   font-weight: bold;
   font-size: small;
   text-align: center;

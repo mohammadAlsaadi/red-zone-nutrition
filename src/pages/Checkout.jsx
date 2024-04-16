@@ -409,11 +409,14 @@ const StyledHeader = styled.div`
 const ItemsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40rem;
+  width: 45rem;
   height: 100%;
   gap: 1rem;
   border-bottom: 2px solid var(--color-grey-300);
   margin-bottom: 1rem;
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 const DiscountContainer = styled.div`
   display: flex;

@@ -117,6 +117,9 @@ function SideBarOptions() {
       {/* <StyledOption onClick={() => handleNavigate(`/consultation`)}>
         <Heading as="h5">Take a Consultation</Heading>
       </StyledOption> */}
+      <StyledOption onClick={() => handleNavigate(`/articles`)}>
+        <Heading as="h5">{t("Articles")}</Heading>
+      </StyledOption>
       <StyledOption onClick={() => handleNavigate(`/cart`)}>
         <Heading as="h5">{t("Cart")}</Heading>
       </StyledOption>

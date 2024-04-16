@@ -34,12 +34,13 @@ const StyledArticleCard = styled.div`
   width: 45rem;
   height: 22rem;
   background-color: var(--color-gold-100);
-  padding: 1rem 0.6rem 0rem 0.6rem;
+  padding: 1rem 0.6rem 0.5rem 0.6rem;
   border: 2px solid var(--color-grey-300);
   border-radius: 0.6rem;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.5s ease-out;
   animation: fadeIn 1s ease-out forwards;
+  gap: 1.2rem;
   &:hover {
     transform: scale(1.02);
   }

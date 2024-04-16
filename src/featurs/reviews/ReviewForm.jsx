@@ -9,6 +9,7 @@ import { useUser } from "../authentication/useUser";
 import { useParams } from "react-router-dom";
 import { useInsertReview } from "./useInsertReview";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 function ReviewForm({ onCloseModal }) {
   const { user, isAuthenticated } = useUser();
   const { insertReview, isLoading } = useInsertReview();
@@ -16,6 +17,7 @@ function ReviewForm({ onCloseModal }) {
   const userId = user.id;
   const userName = user.user_metadata.fullName;
   const { starsRating, setStarsRating, comment, setComment } = useReviews();
+  const { t } = useTranslation();
   const newReview = {
     productId,
     rating: starsRating,
@@ -31,21 +33,21 @@ function ReviewForm({ onCloseModal }) {
   }
   return (
     <StyledWriteReviw>
-      <Heading as="h3">Write A Review</Heading>
+      <Heading as="h3">{t("Write A Review")}</Heading>
       <HorizontalBar />
       <div>
         <StarRating reting={starsRating} setRating={setStarsRating} />
       </div>
       <StyledCommentContainer onChange={(e) => setComment(e.target.value)}>
-        <Heading as="h5">Comment</Heading>
-        <StyledTextArea type="text" placeholder="write a commint .." />
+        <Heading as="h5">{t("Comment")}</Heading>
+        <StyledTextArea type="text" placeholder={t("write a comment ..")} />
       </StyledCommentContainer>
       <StyledOptionsButton>
         <Button onClick={onCloseModal} variation="secondary">
-          Cancle
+          {t("Cancel")}
         </Button>
         <Button onClick={handleAddReview} variation="primary" size="small">
-          {isLoading ? <SpinnerMini /> : "Add Review"}
+          {isLoading ? <SpinnerMini /> : t("Add Review")}
         </Button>
       </StyledOptionsButton>
     </StyledWriteReviw>

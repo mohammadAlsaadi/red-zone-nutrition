@@ -22,6 +22,6 @@ const StyledColorIcon = styled.div`
   width: 15px;
   height: 15px;
   border-radius: 20px;
-  border: 1px solid var(--color-grey-200) r;
+  border: 0.8px solid var(--color-grey-200);
   background-color: ${(props) => props.color};
 `;

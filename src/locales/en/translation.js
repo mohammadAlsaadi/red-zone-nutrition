@@ -166,9 +166,10 @@ export const english = {
   "Iso Protein": "Iso Protein",
   "Add Products": "Add Products",
   "Out of Stock": "Out of Stock",
+  Articles: "Articles",
   "Rabieh Branch": "Rabieh Branch",
-  "Red Zone Article": "Red Zone Article",
-  "ABE Pump": "ABE Pump",
+  "Red Zone Article": "Red Zone Articles",
+
   "Gardens branch": "Gardens branch",
   "Ayman Ramadan St.,Gardens, Amman": "Ayman Ramadan St.,Gardens, Amman",
   "Free delivery for orders over 70 JD": "Free delivery for orders over 75 JD",
@@ -353,4 +354,25 @@ export const english = {
   "Please provide a valid phone number": "Please provide a valid phone number",
   "Create new user": "Create new user",
   "Do you have an account?": "Do you have an account?",
+
+  // no result page
+  "No Results Found": "No Results Found",
+  "Sorry, we couldn't find any products matching your search.":
+    "Sorry, we couldn't find any products matching your search.",
+  back: "back",
+  // write a review
+
+  "Write A Review": "Write A Review",
+  Comment: "Comment",
+  "write a comment ..": "write a commint ..",
+  "Add Review": "Add Review",
+
+  //ABE PUMB
+  "ABE Pump": "ABE Pump",
+  "It is a distinguished choice with its rich nootropic composition, full of fiery energy, which Ensures muscle amplification during the toughest training sessions.This product is carefully formulated using a combination of prestigious key ingredients, along with several licensed and clinically tested active ingredients, that work to enhance muscle activity, improve mental energy and focus, and increase your exercise capacity. This product is designed to change the way you perform by adapting to enhanced workouts, keeping you focused and committed to your workouts at any time of the day or night.":
+    "It is a distinguished choice with its rich nootropic composition, full of fiery energy, which Ensures muscle amplification during the toughest training sessions.This product is carefully formulated using a combination of prestigious key ingredients, along with several licensed and clinically tested active ingredients, that work to enhance muscle activity, improve mental energy and focus, and increase your exercise capacity. This product is designed to change the way you perform by adapting to enhanced workouts, keeping you focused and committed to your workouts at any time of the day or night.",
+  "ABE nutrition": "ABE nutrition",
+  "40 Scoops": "40 Scoops",
+  "Red Hawaiian": "Red Hawaiian",
+  "Tigers Blood": "Tigers Blood",
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { HiOutlinePlus, HiOutlineXMark } from "react-icons/hi2";
 import useProduct from "../featurs/product/useProduct";
 import { formatPrice, formatProductDescription } from "../utils/helper";
@@ -31,7 +31,6 @@ function Details() {
   const [isOpenDescription, setIsOpenDescription] = useState(false);
   const [isOpenNutritionFacts, setIsOpenNutritionFacts] = useState(false);
   const { t } = useTranslation();
-  const location = useLocation();
   const { productId } = useParams();
   console.log(productId);
   const {
@@ -41,13 +40,7 @@ function Details() {
     incrementItem,
   } = useCartContext();
   const { product, isLoading } = useProduct();
-  useEffect(() => {
-    // window.location.reload();
-    if (productId) {
-      setSelectedFlavor(0);
-      setActiveProductSize(0);
-    }
-  }, [productId]);
+
   console.log(activeProductSize);
   console.log("selected flavors", selectedFlavor);
   useEffect(
@@ -76,6 +69,7 @@ function Details() {
     companyName,
     country,
     companyIcon,
+    inStock: in_stock,
   } = product;
   function handleAddToCart() {
     const newItem = {
@@ -141,9 +135,10 @@ function Details() {
                 : formatPrice(price[0])}
             </Heading>
           )}
-          <StyledInStock instock={inStock}>
-            {inStock ? t("In Stock") : t("Out of Stock")}
-          </StyledInStock>
+          <br />
+          <Heading as="h4" color={in_stock ? "green" : "red"}>
+            {in_stock ? t("In Stock") : t("Out of Stock")}
+          </Heading>
 
           <DropDownList
             setter={setActiveProductSize}
@@ -170,6 +165,8 @@ function Details() {
               size="tallerHerzontally"
               variation="primary"
               onClick={handleAddToCart}
+              disabled={!in_stock}
+              disabledColor={!in_stock}
             >
               {isAdding ? <SpinnerMini /> : t("Add to cart")}
             </Button>
@@ -255,6 +252,7 @@ const ImageContainer = styled.div`
   justify-content: center;
   width: 50%;
   height: 90%;
+
   @media (max-width: 700px) {
     width: 300px;
     height: 300px;
@@ -308,7 +306,7 @@ const ButtonPosition = styled.div`
 `;
 const StyledInStock = styled.p`
   padding-top: 10px;
-  color: ${(props) => (props.instock ? "green" : "red")};
+  color: ${(props) => (props.instock ? "green" : "black")};
   font-size: medium;
   font-weight: bold;
 `;

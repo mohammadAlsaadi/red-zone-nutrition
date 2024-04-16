@@ -115,6 +115,14 @@ const Button = styled.button`
 
   ${(props) => sizes[props.size]}
   ${(props) => variations[props.variation]}
+  ${(props) =>
+    props.disabledColor &&
+    css`
+      background-color: var(--color-grey-500);
+      &:hover {
+        background-color: var(--color-grey-500);
+      }
+    `}
 `;
 
 Button.defaultProps = {

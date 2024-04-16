@@ -105,36 +105,77 @@ export function formatProductDescription(description) {
 }
 
 export function colorCoordination(text = "unflavored") {
-  const LowerCaseedText = text.toLowerCase();
-  if (LowerCaseedText.includes("chocolate" || "Choclate")) {
+  const lowerCasedText = text.toLowerCase();
+  if (
+    lowerCasedText.includes("chocolate") ||
+    lowerCasedText.includes("choclate")
+  ) {
     return "#7B3F00";
-  } else if (LowerCaseedText.includes("vanilla" || "bueno" || "white")) {
-    return "#fffbe9";
-  } else if (LowerCaseedText.includes("caramel" || "orange")) {
+  } else if (
+    lowerCasedText.includes("vanilla") ||
+    lowerCasedText.includes("bueno") ||
+    lowerCasedText.includes("white")
+  ) {
+    return "#fffbe7";
+  } else if (
+    lowerCasedText.includes("caramel") ||
+    lowerCasedText.includes("orange")
+  ) {
     return "#e68b22";
-  } else if (LowerCaseedText.includes("banana" || "pineapple")) {
+  } else if (
+    lowerCasedText.includes("banana") ||
+    lowerCasedText.includes("pineapple")
+  ) {
     return "#fbec5d";
-  } else if (LowerCaseedText.includes("Strawberry")) {
+  } else if (
+    lowerCasedText.includes("strawberry") ||
+    lowerCasedText.includes("red") ||
+    lowerCasedText.includes("blood")
+  ) {
     return "#db1515";
-  } else if (LowerCaseedText.includes("unflavored")) {
+  } else if (lowerCasedText.includes("unflavored")) {
     return "#bfc1c2";
-  } else if (LowerCaseedText.includes("peanut" || "butter")) {
+  } else if (
+    lowerCasedText.includes("peanut") ||
+    lowerCasedText.includes("butter")
+  ) {
     return "#DCA465";
-  } else if (LowerCaseedText.includes("cola" || "dark")) {
+  } else if (
+    lowerCasedText.includes("cola") ||
+    lowerCasedText.includes("dark")
+  ) {
     return "#3c3024";
-  } else if (LowerCaseedText.includes("fruit" || "punch")) {
+  } else if (
+    lowerCasedText.includes("fruit") ||
+    lowerCasedText.includes("punch")
+  ) {
     return "#ce3d48";
-  } else if (LowerCaseedText.includes("lemon")) {
+  } else if (lowerCasedText.includes("lemon")) {
     return "#FAFA33";
-  } else if (LowerCaseedText.includes("watermelon" || "green")) {
+  } else if (
+    lowerCasedText.includes("watermelon") ||
+    lowerCasedText.includes("green")
+  ) {
     return "#a9ff85";
-  } else if (LowerCaseedText.includes("lemon")) {
-    return "##FF5733";
-  } else if (LowerCaseedText.includes("mango" || "peach")) {
+  } else if (
+    lowerCasedText.includes("red hawaiian") ||
+    lowerCasedText.includes("tigers blood")
+  ) {
+    return "#FF5733";
+  } else if (
+    lowerCasedText.includes("mango") ||
+    lowerCasedText.includes("peach")
+  ) {
     return "#F4BB44";
-  } else if (LowerCaseedText.includes("blue" || "berry")) {
+  } else if (
+    lowerCasedText.includes("blue") ||
+    lowerCasedText.includes("berry")
+  ) {
     return "#0CBFE9";
-  } else if (LowerCaseedText.includes("cookies" || "cream")) {
+  } else if (
+    lowerCasedText.includes("cookies") ||
+    lowerCasedText.includes("cream")
+  ) {
     return "#6e5b55";
   } else {
     // default color or additional cases can be handled here

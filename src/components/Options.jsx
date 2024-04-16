@@ -183,6 +183,18 @@ function Options() {
                 <Label>{t("Best Seller")}</Label>
               </StyledNavLink>
             </li>
+            <li>
+              <StyledNavLink
+                onClick={() => {
+                  setIsOpenMore(false);
+                  window.scrollTo(0, 0);
+                }}
+                to="/articles"
+                isscrolled={isScrolled}
+              >
+                <Label>{t("Articles")}</Label>
+              </StyledNavLink>
+            </li>
 
             <li>
               <StyledNavLink
@@ -211,6 +223,16 @@ function Options() {
               <DropdownContentFlexColumn>
                 {!isLargeScreen && (
                   <>
+                    <StyledNavItem
+                      onClick={() => {
+                        setIsOpenMore(false);
+                        window.scrollTo(0, 0);
+                      }}
+                      to="/articles"
+                      isscrolled={isScrolled}
+                    >
+                      <Label>{t("Articles")}</Label>
+                    </StyledNavItem>
                     <StyledNavItem
                       onClick={() => {
                         setIsOpenMore(false);
