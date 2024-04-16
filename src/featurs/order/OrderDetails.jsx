@@ -22,9 +22,20 @@ const OrderDetails = ({ order, isLoading }) => {
 
   if (isLoading || isDeleting) return <Spinner />;
 
-  const { id, totalPrice, status, estimatedDelivery, items, location, userId } =
-    order;
+  const {
+    id,
+    totalPrice,
+    status,
+    estimatedDelivery,
+    items,
+    location,
+    userId,
+    payment_method,
+    has_discount,
+  } = order;
   const colorOfStatus = getStatusColor(status);
+  // const discount = has_discount ? 0.15 * productsPrice : 0;
+  // const totalPrice = productsPrice - discount + 3;
 
   const toggleDetails = () => {
     setIsOpenDetails((prevIsOpen) => !prevIsOpen);
@@ -72,6 +83,14 @@ const OrderDetails = ({ order, isLoading }) => {
               <Value>{location}</Value>
             </DetailItem>
             <DetailItem>
+              <Label>{t("Payment")}</Label>
+              <Value>
+                {payment_method === "cash"
+                  ? t("Cash")
+                  : t("The payment was made")}
+              </Value>
+            </DetailItem>
+            <DetailItem>
               <Label>{t("Items")}</Label>
               <ItemList>
                 {items?.map((item) => (
@@ -83,19 +102,22 @@ const OrderDetails = ({ order, isLoading }) => {
                 ))}
               </ItemList>
             </DetailItem>
-            <StyledCancelOrder>
-              <Modal>
-                <Modal.Open opens="cancel order">
-                  <Button variation="danger">{t("Cancel order")}</Button>
-                </Modal.Open>
-                <Modal.Window name="cancel order">
-                  <ConfirmDelete
-                    resourceName="order"
-                    onConfirm={() => deleteOrder(id)}
-                  />
-                </Modal.Window>
-              </Modal>
-            </StyledCancelOrder>
+
+            {payment_method === "cash" && (
+              <StyledCancelOrder>
+                <Modal>
+                  <Modal.Open opens="cancel order">
+                    <Button variation="danger">{t("Cancel order")}</Button>
+                  </Modal.Open>
+                  <Modal.Window name="cancel order">
+                    <ConfirmDelete
+                      resourceName="order"
+                      onConfirm={() => deleteOrder(id)}
+                    />
+                  </Modal.Window>
+                </Modal>
+              </StyledCancelOrder>
+            )}
           </>
         )}
       </DetailsSection>

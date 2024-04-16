@@ -1,8 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNewOrder } from "../../services/apiOrder";
 import toast from "react-hot-toast";
+import { useLocation } from "react-router-dom";
 
 export default function useCreateOrder() {
+  const pathName = useLocation().pathname === "/success-payment";
   const queryClient = useQueryClient();
   const {
     mutate: createOrder,
@@ -12,7 +14,8 @@ export default function useCreateOrder() {
     mutationFn: (newOrder) => createNewOrder(newOrder),
     onSuccess: () => {
       queryClient.invalidateQueries("order");
-      toast.success("order submited,check your order on my order page");
+      !pathName &&
+        toast.success("order submited,check your order on my order page");
     },
     onError: () => console.log(error.message),
   });

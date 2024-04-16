@@ -1,56 +1,100 @@
 import styled, { keyframes } from "styled-components";
-// import { useUser } from "../featurs/authentication/useUser";
 import NotAuthenticatedUser from "../components/NotAuthenticatedUser";
 import UserInfo from "../components/UserInfo";
-
 import AddressesForm from "../components/AddressesForm ";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../featurs/authentication/useUser";
 import Heading from "../components/Heading";
 import Spinner from "../components/Spinner";
 import Form from "../components/Form";
-import CreditCardPayment from "./CreditCardPayment";
 import { useCartContext } from "../context/CartContext";
 import useCreateOrder from "../featurs/order/useCreateOrder";
 import { formatPrice } from "../utils/helper";
 import ProductItemPreview from "../components/productItemPreview";
-import { HiOutlineChevronDown, HiXMark } from "react-icons/hi2";
+import {
+  HiOutlineCheckCircle,
+  HiOutlineChevronDown,
+  HiXMark,
+} from "react-icons/hi2";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
+import { useAddressContext } from "../context/AddressContext";
+import Input from "../components/Input";
 
 function Checkout() {
-  const [addressAutoFill, setAdressAutoFill] = useState("");
   const {
     cart,
     isLoading: isFetchingCartData,
     cartCountItems,
-    totalPrice,
+    totalPrice: productsPrice,
     clearCart,
   } = useCartContext();
-  const [street, setStreet] = useState("");
   const [isOpenSummaryItems, setIsOpenSummaryItems] = useState(false);
-  const [buildingNumber, setBuildingNumber] = useState("");
+  const [coupon, setCoupon] = useState("");
+  const { addressAutoFill, street, buildingNumber } = useAddressContext();
   const { user, isAuthenticated, isLoading } = useUser();
   const { createOrder, isLoading: isCreating } = useCreateOrder();
   const [paymentMethod, setPaymentMethod] = useState("creditCard");
-  const shipping = totalPrice < 60.0 ? 3.0 : 0;
+  const isCouponValid = coupon === "FRESHMUSCLES";
+  const shipping = productsPrice < 70.0 ? 3.0 : 0;
+  const discount = isCouponValid ? 0.15 * productsPrice : 0;
+  const totalPrice = shipping + productsPrice - discount;
+  const has_discount = window.localStorage.getItem("has_discount");
+  useEffect(() => {
+    if (isCouponValid) window.localStorage.setItem("has_discount", true);
+    else {
+      window.localStorage.setItem("has_discount", false);
+    }
+  }, [isCouponValid]);
   const navigate = useNavigate();
   const { t } = useTranslation();
   const handlePaymentMethodChange = (method) => {
     setPaymentMethod(method);
   };
-
-  const handleComplete = (e) => {
+  const handleComplete = async (e) => {
     e.preventDefault();
+
+    // Step 1 : Check if address information has not been entered
     if (addressAutoFill === undefined || !street || !buildingNumber) {
       toast.error(t("Please fill all address field."));
     }
-    //TODO: add another condition for payment method
-    else {
+    // Step 2 : Check payment method chosen
+    // 2.1 : Credit Card Method
+    else if (paymentMethod === "creditCard") {
+      try {
+        const response = await fetch(
+          "http://localhost:3000/create-checkout-session",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              items: cart,
+              discount,
+            }),
+          }
+        );
+        if (!response.ok) {
+          const error = await response.json();
+          console.log(error);
+          throw new Error(error.message);
+        }
+        const { url } = await response.json();
+        window.location.href = url;
+        console.log(url);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    // 2.1 : cash Method
+    else if (paymentMethod === "cash") {
+      const totalPriceAfterChange = productsPrice - discount + shipping;
       const newOrder = {
-        totalPrice,
+        totalPrice: totalPriceAfterChange,
         status: "Order Received",
         estimatedDelivery: "24h-48h",
         items: cart,
@@ -61,6 +105,8 @@ function Checkout() {
           "/building number:" +
           buildingNumber,
         userId: user.id,
+        payment_method: "cash",
+        has_discount,
       };
       createOrder(newOrder);
       clearCart();
@@ -87,12 +133,7 @@ function Checkout() {
 
       {isAuthenticated && <UserInfo />}
       <BoxContainer>
-        <AddressesForm
-          setAdressAutoFill={setAdressAutoFill}
-          setStreet={setStreet}
-          setBuildingNumber={setBuildingNumber}
-          apiKey="AIzaSyAkz2EGQi_c6xwbpzpUglGfLZEJ740lz-Q"
-        />{" "}
+        <AddressesForm apiKey="AIzaSyAkz2EGQi_c6xwbpzpUglGfLZEJ740lz-Q" />{" "}
       </BoxContainer>
       <BoxContainer>
         <Form>
@@ -143,11 +184,36 @@ function Checkout() {
               </MethodContainer>
             </RadioContainer>
           </PaymentMethodsContainer>
-          <BoxContainer>
-            {paymentMethod === "creditCard" && <CreditCardPayment />}
-          </BoxContainer>
         </Form>
       </BoxContainer>
+      <Form>
+        <DiscountContainer>
+          <Heading as="h5">{t("Save on your order")}</Heading>
+          <DiscountInputContainer>
+            <Input
+              placeholder="Enter the coupon here"
+              onChange={(e) => setCoupon(e.target.value)}
+              disabled={isCouponValid}
+            />
+            <Button
+              variation={isCouponValid ? "secondary" : "primary"}
+              size="small"
+              disabled={isCouponValid}
+            >
+              {isCouponValid ? (
+                <HiOutlineCheckCircle size={22} color="green" />
+              ) : (
+                t("submit")
+              )}
+            </Button>
+          </DiscountInputContainer>
+          {isCouponValid && (
+            <Heading color="green" as="h7">
+              {t("you got 15% discount")}
+            </Heading>
+          )}
+        </DiscountContainer>
+      </Form>
       <Form>
         <OrderSummaryContainer>
           <StyledHeader>
@@ -179,9 +245,13 @@ function Checkout() {
               <Heading as="h6">{cartCountItems}</Heading>
             </LabelValue>
             <LabelValue>
+              <p as="h6">{t("Products Price")}</p>
+              <Heading as="h6">{formatPrice(productsPrice)}</Heading>
+            </LabelValue>
+            <LabelValue>
               <p as="h6">{t("Shipping")}</p>
-              <Heading color="green" as="h6">
-                {totalPrice > 60.0 ? "FREE" : shipping}
+              <Heading color={totalPrice > 70.0 ? "green" : "red"} as="h6">
+                {totalPrice > 70.0 ? t("FREE") : formatPrice(shipping)}
               </Heading>
             </LabelValue>
             <LabelValue>
@@ -190,12 +260,14 @@ function Checkout() {
             </LabelValue>
             <LabelValue>
               <p as="h6">{t("Discount")}</p>
-              <Heading as="h6">--</Heading>
+              <Heading as="h6" color={isCouponValid ? "green" : ""}>
+                {isCouponValid ? formatPrice(discount) : "--"}
+              </Heading>
             </LabelValue>
           </SummaryInfo>
           <LabelValue>
             <p as="h4">{t("Total Price")}</p>
-            <Heading as="h5">{formatPrice(totalPrice + shipping)}</Heading>
+            <Heading as="h5">{formatPrice(totalPrice)}</Heading>
           </LabelValue>
           <Button
             variation="primary"
@@ -268,7 +340,6 @@ const PaymentMethodsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
 `;
 
 const RadioContainer = styled.div`
@@ -343,6 +414,22 @@ const ItemsContainer = styled.div`
   gap: 1rem;
   border-bottom: 2px solid var(--color-grey-300);
   margin-bottom: 1rem;
+`;
+const DiscountContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  padding: 0rem 5rem;
+`;
+const DiscountInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.3rem;
+  width: 100%;
 `;
 const SummaryInfo = styled.div`
   display: flex;

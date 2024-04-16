@@ -81,7 +81,6 @@ const CartProvider = ({ children }) => {
 
     setCart([]);
     setIsLoading(false);
-    toast.success("cart was cleared successfully");
   };
 
   return (

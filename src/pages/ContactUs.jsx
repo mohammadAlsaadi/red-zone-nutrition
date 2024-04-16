@@ -3,9 +3,12 @@ import Heading from "../components/Heading";
 import { useTranslation } from "react-i18next";
 import { HiMiniLink, HiOutlineEnvelope, HiOutlinePhone } from "react-icons/hi2";
 import LogoLink from "../components/LogoLink";
+import { useBodyDirection } from "../context/BodyDirectionContext";
 
 function ContactUs() {
   const { t } = useTranslation();
+  const { isRtl } = useBodyDirection();
+
   return (
     <StyledContactUs>
       <StyledHeader />
@@ -18,8 +21,10 @@ function ContactUs() {
             {t("Rabieh Branch")}
           </Heading>
           <LabelValue>
-            <Label>{t("Location")} :</Label>
-            <Value>{t("Seqeleyah St. 16-20,Rabiah, Amman")}</Value>
+            <Label isrtl={isRtl}>{t("Location")} :</Label>
+            <Value isrtl={isRtl}>
+              {t("Seqeleyah St. 16-20,Rabiah, Amman")}
+            </Value>
           </LabelValue>
           <LabelValue>
             <Label>{t("Location in google maps")} :</Label>
@@ -148,22 +153,22 @@ const LabelValue = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 7rem;
-  padding: 1rem 4rem;
+  padding: 1rem 2rem;
 `;
 const Label = styled.p`
-  font-size: 16px;
+  font-size: ${(props) => (props.isrtl ? "16px" : "13px")};
   color: var(--color-grey-50);
   font-weight: 600;
   @media (max-width: 700px) {
-    font-size: 12px;
+    font-size: ${(props) => (props.isrtl ? "12px" : "9px")};
   }
 `;
 const Value = styled.p`
-  font-size: 14px;
+  font-size: ${(props) => (props.isrtl ? "14px" : "12px")};
   color: var(--color-gold-700);
   font-weight: 400;
   @media (max-width: 700px) {
-    font-size: 10px;
+    font-size: ${(props) => (props.isrtl ? "10px" : "8px")};
   }
 `;
 const A = styled.a`

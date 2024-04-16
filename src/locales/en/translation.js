@@ -77,6 +77,24 @@ export const english = {
   "Choose Payment Method": "Choose Payment Method",
   "Credit Card": "Credit Card",
   Cash: "Cash",
+  "The payment was made": "The payment was made",
+  Payment: "Payment",
+  "Edit address information": "Edit address information",
+  "save address information": "save address information",
+  "Save on your order": "Save on your order",
+  "Enter the coupon here": "Enter the coupon here",
+  submit: "submit",
+  "you got 15% discount": "you got 15% discount",
+  "Products Price": "Products Price",
+  // success payment page
+  "Payment Submitted Successfully": "Payment Submitted Successfully",
+  "Thank you for choosing us!": "Thank you for choosing us!",
+  "Your order has been processed successfully.":
+    "Your order has been processed successfully.",
+  "See orders": "See orders",
+  "Back to home": "Back to home",
+
+  //
   "Enter Credit Card Information": "Enter Credit Card Information",
   "Card Number": "Card Number",
   "Expiry Date": "Expiry Date",
