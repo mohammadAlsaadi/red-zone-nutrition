@@ -15,23 +15,22 @@ function AppLayout() {
   const { isDesktopDevice } = useDeviceWidth();
   const isContactUsPage = useLocation().pathname === "/contact-us";
   const isHomePage = useLocation().pathname === "/home";
-  console.log(isContactUsPage);
   const { isScrolled } = useScrolled();
   const { isRtl } = useBodyDirection();
   const { t } = useTranslation();
   return (
     <StyledAppLayout>
-      {/* <AlertOffer>
-        <Heading as="h4" color="var(--color-gold-500)">
+      <AlertOffer>
+        <Heading as="h4" color="var(--color-grey-700)">
           {t("Free delivery for orders over 70 JD")}
         </Heading>
-      </AlertOffer> */}
-      {/* <Header /> */}
+      </AlertOffer>
       {showSideBar && <SideBar />}
       <StyledHeader
         isrtl={isRtl}
         showsidebar={showSideBar}
         isdesktopdevice={isDesktopDevice}
+        showalert={isScrolled}
         isscrolled={isHomePage || isContactUsPage ? isScrolled : true}
       >
         <Header />
@@ -60,8 +59,8 @@ const AlertOffer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 5rem;
-  background-color: var(--color-grey-900);
+  height: 4rem;
+  background-color: var(--color-gold-500);
   z-index: 1;
   position: fixed;
 `;
@@ -69,7 +68,7 @@ const AlertOffer = styled.div`
 const StyledHeader = styled.div`
   position: fixed;
   top: 0rem;
-  /* top: 5rem; */
+  top: ${(props) => (props.showalert ? "" : "4rem")};
 
   left: ${(props) =>
     props.showsidebar && !props.isdesktopdevice && !props.isrtl ? "30%" : 0};
@@ -83,7 +82,6 @@ const StyledHeader = styled.div`
 
 const Main = styled.main`
   background-color: var(--color-grey-50);
-  /* padding: 1rem 2.8rem 1.4rem; */
   height: 100%;
   width: 100%;
   padding-top: ${(props) => (props.iscontactuspage ? "0rem" : "10rem")};

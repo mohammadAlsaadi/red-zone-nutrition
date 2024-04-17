@@ -1,4 +1,8 @@
 export const english = {
+  "The page you are looking for could not be found":
+    "The page you are looking for could not be found",
+  "Go back": "Go back",
+
   welcome: "Welcome",
   Hello: "Hello",
   "This is a React app.": "This is a React app.",

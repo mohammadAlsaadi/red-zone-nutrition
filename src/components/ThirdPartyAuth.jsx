@@ -26,11 +26,6 @@ function ThirdPartyAuth() {
 
 export default ThirdPartyAuth;
 const StyledThirdPartyAuth = styled.div`
-  /* @media (min-width: 1000px) {
-    margin: 10rem 30rem;
-  } */
-  /* @media (max-width: 1000px) {
-    margin: 10rem 20rem;
-  } */
+  display: none;
   margin: 0rem 5rem 5.5rem;
 `;

@@ -4,7 +4,7 @@ import ColorIcon from "./ColorIcon";
 import { formatPrice } from "../utils/helper";
 import { useTranslation } from "react-i18next";
 
-function ProductItemPreview({ item, withoutDetails }) {
+function ProductItemPreview({ item }) {
   const { t } = useTranslation();
 
   return (
@@ -38,7 +38,6 @@ const CartItemContainer = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   width: 90%;
-  /* border-bottom: 1px solid var(--color-grey-300); */
   margin-bottom: 1rem;
   @media (max-width: 700px) {
     width: 100%;

@@ -5,6 +5,7 @@ import useFetchArticles from "../featurs/articles/useFetchArticles";
 import { useState } from "react";
 import ArticleCard from "../featurs/articles/ArticleCard";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
+import Spinner from "../components/Spinner";
 
 function Articles() {
   const { data: articles, isLoading } = useFetchArticles();
@@ -30,6 +31,7 @@ function Articles() {
   const handleNextPage = () => {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
   };
+  if (isLoading) return <Spinner />;
   return (
     <StyledArticles>
       <StyledHeader>
@@ -93,9 +95,7 @@ const ArticleList = styled.div`
     grid-template-columns: repeat(1, 1fr);
     gap: 3rem;
   }
-  /* @media (min-width: 1000px) {
-    gap: 3rem;
-  } */
+
   padding: 20px;
 `;
 const PaginationContainer = styled.div`

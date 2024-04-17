@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import LoginForm from "../featurs/authentication/LoginForm";
-import Logo from "../components/Logo";
 import Heading from "../components/Heading";
 import ThirdPartyAuth from "../components/ThirdPartyAuth";
 import { useNavigate } from "react-router-dom";
@@ -14,13 +13,13 @@ const LoginLayout = styled.main`
   gap: 0.5rem;
   background-color: var(--color-grey-50);
 `;
-const Or = styled.div`
-  /* margin-left: 20rem; */
-  font-weight: bold;
-  font-size: small;
-  text-align: center;
-  width: 100%;
-`;
+// const Or = styled.div`
+//   /* margin-left: 20rem; */
+//   font-weight: bold;
+//   font-size: small;
+//   text-align: center;
+//   width: 100%;
+// `;
 const StyledImg = styled.img`
   width: 130px;
   height: 110px;
@@ -46,7 +45,7 @@ function Login() {
       </ImgContainer>
       <Heading as="h4">{t("Login to your account")}</Heading>
       <LoginForm />
-      <Or>&ndash;&ndash;&ndash; {t("or")} &ndash;&ndash;&ndash;</Or>
+      {/* <Or>&ndash;&ndash;&ndash; {t("or")} &ndash;&ndash;&ndash;</Or> */}
       <ThirdPartyAuth />
     </LoginLayout>
   );

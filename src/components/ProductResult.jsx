@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Heading from "./Heading";
 import { useNavigate } from "react-router-dom";
-// import { useOutsideClick } from "../hooks/useOutsideClick";
 import { useTranslation } from "react-i18next";
 
 function ProductResult({ item, setShowSearchBar, setSearchInput }) {
@@ -13,10 +12,6 @@ function ProductResult({ item, setShowSearchBar, setSearchInput }) {
     setShowSearchBar(false);
     setSearchInput("");
   };
-  // const { ref } = useOutsideClick(handleClose, true);
-  // function handleClose() {
-  //   setShowSearchBar((show) => false);
-  // }
 
   return (
     <CartItemContainer onClick={handleClick}>

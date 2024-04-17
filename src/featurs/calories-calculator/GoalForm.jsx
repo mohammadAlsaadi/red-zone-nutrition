@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import Form from "../../components/Form";
 import FormRow from "../../components/FormRow";
-import ButtonText from "../../components/ButtonText";
 import { useState } from "react";
-import { HiXMark } from "react-icons/hi2";
 import Button from "../../components/Button";
 import Heading from "../../components/Heading";
 
@@ -48,7 +46,6 @@ function GoalForm({ goalForm, setGoalForm, showResult, setShowResult }) {
           value={goalForm.gender}
           onChange={(e) => setGoalForm({ ...goalForm, gender: e.target.value })}
         >
-          {/* <option value="">{goalOptions[0]}</option> */}
           {gender.map((key) => (
             <option key={key} value={key}>
               {key}
@@ -62,7 +59,6 @@ function GoalForm({ goalForm, setGoalForm, showResult, setShowResult }) {
           value={goalForm.goal}
           onChange={(e) => setGoalForm({ ...goalForm, goal: e.target.value })}
         >
-          {/* <option value="">{goalOptions[0]}</option> */}
           {goalOptions.map((key) => (
             <option key={key} value={key}>
               {key}
@@ -79,7 +75,6 @@ function GoalForm({ goalForm, setGoalForm, showResult, setShowResult }) {
               setGoalForm({ ...goalForm, bodyFat: e.target.value })
             }
           >
-            {/* <option value="">{goalOptions[0]}</option> */}
             {fatOptions.map((key) => (
               <option key={key} value={key}>
                 {key}

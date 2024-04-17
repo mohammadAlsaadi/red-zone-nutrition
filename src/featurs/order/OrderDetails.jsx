@@ -4,7 +4,6 @@ import ProductItemPreview from "../../components/productItemPreview";
 import Spinner from "../../components/Spinner";
 import Heading from "../../components/Heading";
 import Stepper from "../../components/Stepper";
-import SpinnerMini from "../../components/SpinnerMini";
 import { formatPrice, getStatusColor } from "../../utils/helper";
 import { HiOutlineChevronDown, HiXMark } from "react-icons/hi2";
 import Button from "../../components/Button";
@@ -29,13 +28,9 @@ const OrderDetails = ({ order, isLoading }) => {
     estimatedDelivery,
     items,
     location,
-    userId,
     payment_method,
-    has_discount,
   } = order;
   const colorOfStatus = getStatusColor(status);
-  // const discount = has_discount ? 0.15 * productsPrice : 0;
-  // const totalPrice = productsPrice - discount + 3;
 
   const toggleDetails = () => {
     setIsOpenDetails((prevIsOpen) => !prevIsOpen);

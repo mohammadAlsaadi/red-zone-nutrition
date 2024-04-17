@@ -34,7 +34,7 @@ function Options() {
         setColor("var(--color-grey-800)");
       }
     },
-    [isScrolled, isHomePagePath, setColor]
+    [isScrolled, isHomePagePath, setColor, isContactUsPage]
   );
   const handleNavigate = () => {
     window.scrollTo(0, 0);
@@ -134,7 +134,6 @@ function Options() {
                 >
                   <Label>{t("Fat Burners")}</Label>
                 </StyledNavItem>
-                {/* Add more category NavLink items as needed */}
               </DropdownContentGrid>
             )}{" "}
           </StyledOptions>
@@ -306,7 +305,6 @@ function Options() {
                       <StyledNavItem
                         onClick={() => {
                           setIsOpenMore(false);
-                          // window.scrollTo(0, 0);
                         }}
                         isscrolled={isScrolled}
                       >
@@ -336,7 +334,7 @@ const StyledOptionsHomePage = styled.ul`
   color: ${(props) => props.color};
 `;
 const StyledOptions = styled.div`
-  position: relative; /* Required for absolute positioning */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -403,7 +401,6 @@ const StyledNavLink = styled(NavLink)`
     transition: all 0.3s;
   }
 
-  /* This works because react-router places the active class on the active NavLink */
   &:hover,
   &:active,
   &.active:link,
@@ -425,14 +422,11 @@ const StyledNavItem = styled(NavLink)`
     transition: all 0.3s;
   }
 
-  /* This works because react-router places the active class on the active NavLink */
   &:hover {
     color: var(--color-grey-800);
     background-color: var(--color-grey-100);
   }
-  /* &:active,
-  &.active:link,
-  &.active:visited  */
+
   color: var(--color-grey-800);
 
   width: 20vh;

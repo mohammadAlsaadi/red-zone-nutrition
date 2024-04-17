@@ -8,14 +8,21 @@ const rotate = keyframes`
 
 const Spinner = styled.div`
   margin: 4.8rem auto;
-
   width: 6.4rem;
-  aspect-ratio: 1;
+  height: 6.4rem;
   border-radius: 50%;
-  background: radial-gradient(farthest-side, var(--color-gold-600) 94%, #0000)
-      top/10px 10px no-repeat,
-    conic-gradient(#0000 30%, var(--color-gold-500));
-  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 6px), #000 0);
+  background: conic-gradient(
+      from -45deg,
+      var(--color-gold-600) 0%,
+      var(--color-gold-600) 25%,
+      #0000 25%,
+      #0000 50%,
+      var(--color-gold-500) 50%,
+      var(--color-gold-500) 75%,
+      #0000 75%,
+      #0000
+    ),
+    radial-gradient(circle at 50% 100%, var(--color-gold-500), transparent);
   animation: ${rotate} 1.5s infinite linear;
 `;
 

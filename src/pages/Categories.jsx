@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Heading from "../components/Heading";
-import ButtonText from "../components/ButtonText";
 import useCategories from "../featurs/category/useCategories";
 import CategoryCard from "../featurs/category/CategoryCard";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
@@ -73,19 +72,15 @@ const StyledCategories = styled.div`
   flex-direction: column;
   width: 100%;
   @media (min-width: 600px) {
-    /* width: 60%; */
     padding: 0rem 5rem;
   }
   @media (min-width: 700px) {
-    /* width: 60%; */
     padding: 0rem 0rem;
   }
   @media (min-width: 1000px) {
-    /* width: 60%; */
     padding: 0rem 10rem;
   }
   @media (min-width: 1200px) {
-    /* width: 60%; */
     padding: 0rem 20rem;
   }
 `;
@@ -112,9 +107,7 @@ const CategoriesList = styled.div`
     grid-template-columns: repeat(2, 2fr);
     gap: 3rem;
   }
-  /* @media (min-width: 1000px) {
-    gap: 3rem;
-  } */
+
   padding: 20px;
 `;
 const PaginationContainer = styled.div`

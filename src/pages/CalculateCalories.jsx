@@ -24,9 +24,6 @@ function CalculateCalories() {
   );
   return (
     <CalculateCaloriesLayout>
-      {/* <Heading color="var(--color-grey-50)" as="h3">
-        Know what calories you burn (BMR & TDEE)
-      </Heading> */}
       <CaloriesCalculator setCalculatedTDEE={setCalculatedTDEE} />
 
       {calculatedTDEE !== 0 && (
@@ -87,7 +84,6 @@ const CalculateCaloriesLayout = styled.div`
   align-items: center;
   animation: ${fadeIn} 1s ease-out;
   background-color: var(--color-grey-50);
-  /* background-image: url("https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/cover-images/fit.jpg"); */
   background-size: cover;
   background-position: center;
 `;

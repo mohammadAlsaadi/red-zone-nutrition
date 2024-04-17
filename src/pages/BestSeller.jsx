@@ -35,8 +35,8 @@ function BestSeller() {
   return (
     <ListOfProducts
       data={bestSellers}
-      isLoading={false} // Since we're not loading anything here
-      headerName="Best Seller" // Assuming there could be multiple best sellers
+      isLoading={false}
+      headerName="Best Seller"
     />
   );
 }

@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import Heading from "./Heading";
-import Logo from "./Logo";
 import LogoLink from "./LogoLink";
 import { HiOutlineEnvelope, HiOutlinePhone } from "react-icons/hi2";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 const FOOTER_LOGO_REDZONE =
   "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/logo-redzone.png";
@@ -59,7 +58,6 @@ export default Footer;
 const StyledFooter = styled.footer`
   width: 100%;
   height: 30%;
-  /* bottom: 0rem; */
   position: relative;
   border-top: 1px solid var(--color-grey-200);
 
@@ -107,7 +105,6 @@ const ContactElement = styled.div`
 const P = styled.p`
   font-size: small;
   color: #f3f4f6;
-  /* padding-top: 10px; */
 `;
 const StyledCopyRight = styled.div`
   width: 100%;

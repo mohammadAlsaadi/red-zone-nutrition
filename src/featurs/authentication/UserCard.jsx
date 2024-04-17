@@ -3,10 +3,12 @@ import { useUser } from "./useUser";
 import { useScrolled } from "../../context/ScrolledContext";
 import { useLocation } from "react-router-dom";
 import { useDeviceWidth } from "../../context/DeviceWidthContext";
+import { useShowSideBar } from "../../context/ShowSideBar";
 export const DEFAULT_USER_IMG =
   "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/default-user.jpg";
 function UserCard() {
   const { isScrolled } = useScrolled();
+  const { showSideBar } = useShowSideBar();
   const { user } = useUser();
   const { fullName, avatar } = user.user_metadata;
   const isHomePagePath = useLocation().pathname === "/home";
@@ -24,9 +26,8 @@ function UserCard() {
           src={avatar || DEFAULT_USER_IMG}
         />
         <StyledName
-          color={color}
+          color={showSideBar ? "var(--color-grey-800)" : color}
           isdesktopdevice={isDesktopDevice}
-          //  ishomepagepath={isHomePagePath} isscrolled={isScrolled}
         >
           {fullName}
         </StyledName>
@@ -40,10 +41,6 @@ const CartContainer = styled.div`
   border: none;
   padding: 2px 6px;
   border-radius: 10px;
-  /* width: 40%; */
-  /* @media (min-width: 1200px) {
-    width: 100%;
-  } */
 `;
 const StyledUserCard = styled.div`
   display: flex;

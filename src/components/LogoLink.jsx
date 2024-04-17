@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Logo from "./Logo";
 const LOGO_ICONS_FACEBOOK =
   "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/Facebook.svg";
 const LOGO_ICONS_INSTAGRAM =
@@ -26,10 +25,6 @@ function LogoLink() {
 
 export default LogoLink;
 
-// const StyledLogoLink = styled.a`
-//   cursor: pointer;
-//   height: 10px;
-// `;
 const LogoLinkContainer = styled.div`
   display: flex;
   align-items: center;
@@ -46,7 +41,6 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  /* gap: 3rem; */
 `;
 const StyledNavLink = styled.a`
   &:link,
@@ -58,23 +52,18 @@ const StyledNavLink = styled.a`
     color: var(--color-grey-600);
     font-size: 1.6rem;
     font-weight: 500;
-    /* padding: 1.2rem 2.4rem; */
     transition: all 0.3s;
   }
 
-  /* This works because react-router places the active class on the active NavLink */
   &:hover,
   &:active,
   &.active:link,
   &.active:visited {
-    /* color: var(--color-grey-800); */
     scale: calc(1.1);
-    /* border-radius: var(--border-radius-sm); */
   }
 `;
 const LogoImageLink = styled.img`
   text-align: center;
   padding-top: 2rem;
-  /* padding-bottom: 2rem; */
   padding-left: 1rem;
 `;

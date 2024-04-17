@@ -12,7 +12,6 @@ function ListOfProducts({
   itemsNumbersPerPage = 4,
   headerName = "All Categories",
 }) {
-  //   const { data: categories, isLoading } = useCategories();
   const [currentPage, setCurrentPage] = useState(1);
   const { t } = useTranslation();
 
@@ -80,19 +79,15 @@ const ListOfProductsLayout = styled.div`
   flex-direction: column;
   width: 100%;
   @media (min-width: 600px) {
-    /* width: 60%; */
     padding: 0rem 5rem;
   }
   @media (min-width: 700px) {
-    /* width: 60%; */
     padding: 0rem 0rem;
   }
   @media (min-width: 1000px) {
-    /* width: 60%; */
     padding: 0rem 10rem;
   }
   @media (min-width: 1200px) {
-    /* width: 60%; */
     padding: 0rem 20rem;
   }
 `;
@@ -119,9 +114,7 @@ const ProductsList = styled.div`
     grid-template-columns: repeat(2, 2fr);
     gap: 3rem;
   }
-  /* @media (min-width: 1000px) {
-    gap: 3rem;
-  } */
+
   padding: 20px;
 `;
 const PaginationContainer = styled.div`

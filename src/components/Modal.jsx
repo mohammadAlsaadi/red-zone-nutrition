@@ -4,19 +4,6 @@ import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 
-// const StyledModal = styled.div`
-//   position: fixed;
-//   top: 50%;
-//   left: 50%;
-
-//   width: 80%;
-//   transform: translate(-50%, -50%);
-//   background-color: var(--color-grey-0);
-//   border-radius: var(--border-radius-lg);
-//   box-shadow: var(--shadow-lg);
-//   padding: 3.2rem 4rem;
-//   transition: all 0.5s;
-// `;
 const StyledModal = styled.div`
   position: fixed;
   top: 50%;
@@ -28,12 +15,12 @@ const StyledModal = styled.div`
   box-shadow: var(--shadow-lg);
   padding: 3.2rem 4rem;
   transition: all 0.5s;
-  max-height: 80vh; /* Set a max height for the modal */
-  overflow-y: auto; /* Enable vertical scrolling when content exceeds max height */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  max-height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, and Opera */
+    display: none;
   }
 `;
 
@@ -67,9 +54,7 @@ const Button = styled.button`
   & svg {
     width: 2.4rem;
     height: 2.4rem;
-    /* Sometimes we need both */
-    /* fill: var(--color-grey-500);
-    stroke: var(--color-grey-500); */
+
     color: var(--color-grey-500);
   }
 `;

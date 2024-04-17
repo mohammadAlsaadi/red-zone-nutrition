@@ -102,7 +102,6 @@ const StyledContactUs = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  /* gap: 4rem; */
   width: 100%;
   height: 170vh;
   background-color: var(--color-grey-footer);
@@ -122,7 +121,7 @@ const StyledHeader = styled.div`
 `;
 
 const StyledBody = styled.div`
-  position: relative; /* Required for absolute positioning of overlay */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -130,12 +129,10 @@ const StyledBody = styled.div`
   padding: 3rem 6rem;
   gap: 4rem;
   width: 100%;
-  /* height: 100%; */
 `;
 const ContactContainer = styled.div`
   width: 60%;
   height: 100%;
-  /* background-color: var(--color-grey-100); */
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -182,7 +179,6 @@ const ContactElement = styled.div`
   display: flex;
   align-items: center;
   gap: 6px;
-  /* padding-top: 20px; */
 `;
 const StyledFooter = styled.footer`
   width: 100%;

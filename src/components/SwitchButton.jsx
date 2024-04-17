@@ -18,41 +18,6 @@ function SwitchButton({ width, height, setStock, stock, labels }) {
           {t(label)}
         </StyledButton>
       ))}
-      {/* <StyledButton
-        selected={isSelectedOp1}
-        onClick={() => {
-          setIsSelectedOp2(false);
-          setIsSelectedOp3(false);
-          setIsSelectedOp1(true);
-          setStock((stock) => label1);
-        }}
-      >
-        {t(label1)}
-      </StyledButton>
-      <StyledButton
-        selected={isSelectedOp2}
-        onClick={() => {
-          setIsSelectedOp1(false);
-          setIsSelectedOp3(false);
-          setIsSelectedOp2(true);
-          setStock((stock) => label2);
-        }}
-      >
-        {t(label2)}
-      </StyledButton>
-      {label3 && (
-        <StyledButton
-          selected={isSelectedOp3}
-          onClick={() => {
-            setIsSelectedOp1(false);
-            setIsSelectedOp2(false);
-            setIsSelectedOp3(true);
-            setStock((stock) => label3);
-          }}
-        >
-          {t(label3)}
-        </StyledButton>
-      )} */}
     </StyledSwitchButton>
   );
 }

@@ -1,13 +1,11 @@
 import styled from "styled-components";
 import Heading from "../../components/Heading";
 import StarRating from "../../components/StarRating";
-
 import formatJordanDateTime from "../../utils/helper";
-
 import { DEFAULT_USER_IMG } from "../authentication/UserCard";
 
 function Commint({ commintInfo }) {
-  const { id, userName, rating, comment, created_at } = commintInfo;
+  const { userName, rating, comment, created_at } = commintInfo;
 
   return (
     <CommintLayout>
@@ -25,19 +23,6 @@ function Commint({ commintInfo }) {
       </UserLayer>
       <CommintLayer>
         <Heading as="h5">{comment}</Heading>
-        {/* <ButtonIcon
-          width="17"
-          height="17"
-          disabled={isUpdating}
-          onClick={handleLikesUpdated}
-        >
-          {isLikePressed ? (
-            <HiHandThumbUp color="var(--color-red-500)" />
-          ) : (
-            <HiOutlineHandThumbUp />
-          )}
-          <span as="h4">{likes}</span>
-        </ButtonIcon> */}
       </CommintLayer>
     </CommintLayout>
   );
@@ -79,9 +64,7 @@ const CommintLayer = styled.div`
   padding-top: 0.8rem;
   padding-left: 1rem;
 `;
-const LikeLayer = styled.div`
-  display: flex;
-`;
+
 const Avatar = styled.img`
   display: block;
   width: 4rem;

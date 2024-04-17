@@ -10,9 +10,7 @@ function BodyDirectionProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    // Set the direction of the body based on the current language
     document.body.dir = currLan === "ar" ? "rtl" : "ltr";
-    // console.log("document.body.dir", document.body.dir);
   }, [currLan]);
   const isRtl = bodyDirection === "rtl";
 

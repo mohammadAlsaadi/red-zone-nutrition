@@ -1,4 +1,7 @@
 export const arabicTranslation = {
+  "The page you are looking for could not be found":
+    "الصفحة التي تبحث عنها لا يمكن العثور عليها",
+  "Go back": "عُد للوراء",
   welcome: "أهلاً بك",
   Menu: "خيارات",
   Hello: "مرحباً",

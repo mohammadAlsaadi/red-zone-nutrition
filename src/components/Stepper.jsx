@@ -29,7 +29,6 @@ const Stepper = ({ steps, currentStep, status }) => {
 
 const StepperContainer = styled.div`
   display: flex;
-  /* justify-content: space-between; */
   gap: 1rem;
   align-items: center;
   width: 100%;

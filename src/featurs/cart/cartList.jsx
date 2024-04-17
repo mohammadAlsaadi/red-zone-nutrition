@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Modal from "../../components/Modal";
 import CartItem from "../../components/CartItem";
 import Heading from "../../components/Heading";
-import { formatCurrency, formatPrice } from "../../utils/helper";
+import { formatPrice } from "../../utils/helper";
 import Button from "../../components/Button";
 import ButtonText from "../../components/ButtonText";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -21,7 +21,6 @@ function CartList({ onCloseModal }) {
   const { t } = useTranslation();
 
   function handleclick(path) {
-    // e.preventDefault();
     if (!isCartPage) onCloseModal();
     navigate(path);
   }

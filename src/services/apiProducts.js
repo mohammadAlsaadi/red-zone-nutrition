@@ -24,7 +24,6 @@ export async function getProduct(productId) {
   return data;
 }
 export async function updateProductRating(newRating, productId) {
-  console.log(newRating, productId);
   const { data, error } = await supabase
     .from("products")
     .update({ productRating: newRating })

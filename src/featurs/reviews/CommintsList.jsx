@@ -4,7 +4,6 @@ import Spinner from "../../components/Spinner";
 import useFetchReviews from "./useFetchReviews";
 import { useParams } from "react-router-dom";
 
-// const FAKE_COMMINT =
 function CommintsList() {
   const { data, isLoading } = useFetchReviews();
   const { productId } = useParams();

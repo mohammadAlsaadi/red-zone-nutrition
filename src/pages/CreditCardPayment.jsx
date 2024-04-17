@@ -5,12 +5,7 @@ import { useTranslation } from "react-i18next";
 
 const Wrapper = styled.div`
   max-width: 40rem;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
   width: 100%;
-  /* margin: auto; */
   padding: 20px;
   margin-top: 2rem;
   background-color: var(--color-grey-0);
@@ -22,7 +17,6 @@ const Title = styled.h2`
   font-size: 1.5rem;
   color: #333;
   margin-bottom: 20px;
-  /* text-align: center; */
 `;
 
 const FormGroup = styled.div`
@@ -53,7 +47,6 @@ const CreditCardPayment = () => {
 
   const handlePayment = (e) => {
     e.preventDefault();
-    // Implement your payment logic here
     console.log("Payment submitted!");
     fetch("http://localhost:3000/create-checkout-session", {
       method: "POST",
@@ -75,7 +68,6 @@ const CreditCardPayment = () => {
       })
       .then(({ url }) => {
         console.log(url);
-        // window.location = url;
       })
       .catch((e) => {
         console.error(e.error);

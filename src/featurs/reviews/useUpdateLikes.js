@@ -9,7 +9,6 @@ export function useUpdateLikes() {
     mutationFn: ({ id, newLikes }) => updateLikesApi(id, newLikes),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["reviews"] });
-      console.log("new likes done");
     },
     onError: (err) => toast.error(err.message),
   });

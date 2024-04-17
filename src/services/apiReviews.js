@@ -15,6 +15,5 @@ export async function insertReview(newReview) {
     console.error(error);
     throw new Error("likes could not be loaded");
   }
-  console.log(data);
   return data;
 }

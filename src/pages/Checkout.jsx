@@ -80,12 +80,10 @@ function Checkout() {
         );
         if (!response.ok) {
           const error = await response.json();
-          console.log(error);
           throw new Error(error.message);
         }
         const { url } = await response.json();
         window.location.href = url;
-        console.log(url);
       } catch (error) {
         console.error(error);
       }
@@ -113,7 +111,6 @@ function Checkout() {
     }
   };
 
-  console.log(user);
   if (isLoading || isFetchingCartData) return <Spinner />;
   if (cart.length === 0) return navigate("/home");
   return (
@@ -304,7 +301,6 @@ const CheckoutLayout = styled.div`
   animation: ${fadeIn} 1s ease-out;
 `;
 const BoxContainer = styled.div`
-  /* background-color: var(--color-grey-0); */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -312,7 +308,6 @@ const BoxContainer = styled.div`
 `;
 const ISAuthCheck = styled.div`
   display: flex;
-  /* width: 100%; */
   height: 100%;
   padding: 1rem 2rem;
   @media (min-width: 1000px) {
@@ -397,7 +392,6 @@ const OrderSummaryContainer = styled.div`
   width: 40rem;
   height: 100%;
   gap: 1rem;
-  /* align-items: flex-start; */
 `;
 
 const StyledHeader = styled.div`

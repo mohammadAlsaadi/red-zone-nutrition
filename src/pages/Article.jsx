@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Spinner from "../components/Spinner";
 import useFetchArticles from "../featurs/articles/useFetchArticles";
 import Heading from "../components/Heading";
@@ -72,7 +72,6 @@ const StyledHeader = styled.div`
   padding: 2rem;
 `;
 const ImgContainer = styled.div`
-  /* background-image: ${(props) => props.img && css`url(${props.img})`}; */
   display: flex;
   flex-direction: column;
   align-items: center;

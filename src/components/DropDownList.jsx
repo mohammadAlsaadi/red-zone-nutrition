@@ -14,7 +14,6 @@ function DropDownList({
   fontSize,
 }) {
   const { t } = useTranslation();
-  console.log(options);
   return (
     <DropDownListContainer>
       {!withoutLabel && <p>{t(labelText)}</p>}

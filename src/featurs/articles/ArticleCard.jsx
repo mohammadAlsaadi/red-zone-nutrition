@@ -48,10 +48,7 @@ const StyledArticleCard = styled.div`
     height: 18rem;
     width: 37rem;
   }
-  /* @media (max-width: 600px) {
-    height: 20rem;
-    width: 40rem;
-  } */
+
   @media (min-width: 600px) {
     height: 22rem;
     width: 48rem;
@@ -125,7 +122,4 @@ const StyledButton = styled.div`
   padding: 2rem 2rem 0rem;
 `;
 
-const StyledImg = styled.img`
-  /* width: 60%;
-    height: 100%; */
-`;
+const StyledImg = styled.img``;

@@ -45,7 +45,7 @@ function SuccessPayment() {
         items: cart,
         location:
           addressAutoFill + "-" + street + "/building number:" + buildingNumber,
-        userId: user?.id, // Guard against accessing id property when user is undefined
+        userId: user?.id,
         payment_method: "creditCard",
         has_discount: has_discount,
       };
@@ -67,12 +67,12 @@ function SuccessPayment() {
     totalPrice,
     user,
     orderProcessed,
+    has_discount,
   ]);
 
   if (isLoading || isFetchingCartData || isCreating) return <Spinner />;
 
   if (!orderProcessed) {
-    // Check if the order has not been processed yet
     setOrderProcessed(true);
   }
 
@@ -151,7 +151,7 @@ const Paragraph = styled.p`
   font-size: 16px;
   line-height: 1.5;
   color: var(--color-grey-600);
-  margin-top: 1rem; /* Adjust margin as needed */
+  margin-top: 1rem;
 `;
 
 const StyledButtons = styled.div`

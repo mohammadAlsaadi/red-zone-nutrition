@@ -41,8 +41,6 @@ const CartProvider = ({ children }) => {
   };
 
   const incrementItem = (itemId) => {
-    console.log("item id:", itemId);
-    console.log("inc");
     setIsLoading(true);
     setCart((prevCart) =>
       prevCart.map((item) =>

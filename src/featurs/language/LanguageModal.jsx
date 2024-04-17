@@ -1,28 +1,17 @@
 import { useTranslation } from "react-i18next";
 import Heading from "../../components/Heading";
-import Button from "../../components/Button";
 import toast from "react-hot-toast";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import styled from "styled-components";
 
 function LanguageModal({ onCloseModal }) {
-  //   const storedLanguage = window.localStorage.getItem("language");
-  //   const initialLanguage = storedLanguage ? JSON.parse(storedLanguage) : "";
   const { t, i18n } = useTranslation();
-  //   const [chosenLanguage, setChosenLanguage] = useState(initialLanguage);
-  const [isLoading, setIsLoading] = useState(false);
   const [isSelectedEn, setIsSelectedEn] = useState(false);
   const [isSelectedAr, setIsSelectedAr] = useState(false);
   const currLan = window.localStorage.getItem("language");
 
-  // useEffect(() => {
-  //   // Set the direction of the body based on the current language
-  //   document.body.dir = currLan === "ar" ? "rtl" : "ltr";
-  //   // console.log("document.body.dir", document.body.dir);
-  // }, [currLan]);
   const changeLanguage = (language) => {
-    console.log(language);
     if (language === currLan) {
       toast.error(
         currLan === "en"
@@ -53,7 +42,6 @@ function LanguageModal({ onCloseModal }) {
   };
   return (
     <StyledLanguageModal>
-      {/* <h5>{t("Welcome")}</h5> */}
       <Heading as="h3">{t("Choose Language")}</Heading>
       <StyledOption selected={isSelectedEn} onClick={handleSelectEn}>
         English{" "}
@@ -73,15 +61,7 @@ function LanguageModal({ onCloseModal }) {
           alt="english"
         />
       </StyledOption>
-      <StyledConfirmOptions>
-        {/* <Button
-          onClick={() => {
-            onCloseModal();
-          }}
-        >
-          {t("Done")}
-        </Button> */}
-      </StyledConfirmOptions>
+      <StyledConfirmOptions></StyledConfirmOptions>
     </StyledLanguageModal>
   );
 }

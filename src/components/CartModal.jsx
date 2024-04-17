@@ -15,14 +15,7 @@ function CartModal() {
   const isContactUsPage = useLocation().pathname === "/contact-us";
 
   const [bodyDir, setBodyDir] = useState(document.body.dir);
-  // useEffect(() => {
-  //   const lan = window.localStorage.getItem("language");
-  //   if (lan === "ar") {
-  //     setBodyDir("rtl");
-  //   } else {
-  //     setBodyDir("ltr");
-  //   }
-  // }, []);
+
   const { t } = useTranslation();
   useEffect(() => {
     setBodyDir(document.body.dir);
@@ -108,10 +101,4 @@ const CartTextBlack = styled.p`
   color: var(--color-grey-700);
   padding-right: 0.6rem;
   font-size: 13px;
-`;
-
-const LoadingText = styled.p`
-  color: var(--color-grey-700);
-  font-size: 13px;
-  padding-left: 0.6rem;
 `;

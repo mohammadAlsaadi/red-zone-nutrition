@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import StarRating from "../../components/StarRating";
-import { useReviews } from "../../context/ReviewsContext";
 import Heading from "../../components/Heading";
 import CommintsList from "./CommintsList";
 import useFetchReviews from "./useFetchReviews";
@@ -43,7 +42,6 @@ function Reviews() {
   const oneStar = reviews.filter(
     (review) => review.rating === Number(1)
   ).length;
-  // console.log(data);
   const reviewsForProduct = data?.filter(
     (product) => product.productId === Number(productId)
   );
@@ -103,11 +101,8 @@ function Reviews() {
           <WriteReview isUserReviewedBefore={isUserReviewedBefore} />
         </AvgRating>
         <UnderLine />
-
-        {/* <Heading as="h4">Reviews</Heading> */}
       </RatingOverView>
       <CommintsList />
-      {/* <StarRating rating={starsRating} setRating={setStarsRating} /> */}
     </ReviewsContainer>
   );
 }
@@ -128,7 +123,6 @@ const ReviewsSummary = styled.div`
   justify-content: flex-start;
   gap: 1rem;
   width: 100%;
-  /* height: 200px; */
 `;
 const SummaryHeader = styled.div`
   width: 80%;
@@ -141,7 +135,6 @@ const RatingOverView = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  /* background-color: aliceblue; */
   width: 100%;
   height: 100%;
 `;
@@ -150,7 +143,6 @@ const AvgRating = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   padding: 0rem 4rem;
-  /* gap: 2rem; */
   width: 100%;
   padding-bottom: 2rem;
 `;
@@ -158,22 +150,11 @@ const AvgRating = styled.div`
 const VerticalBar = styled.div`
   display: flex;
   flex-direction: column;
-  /* min-width: 230px; */
-  /* padding-left: 15px;
-  margin-left: 15px; */
+
   border-left: 1px solid var(--color-grey-300);
   vertical-align: middle;
   text-align: left;
   height: 110px;
-`;
-const HorizontalBar = styled.div`
-  display: flex;
-  /* min-width: 230px; */
-  /* padding-left: 15px;
-  margin-left: 15px; */
-  border-bottom: 1px solid var(--color-grey-300);
-  text-align: left;
-  width: 110px;
 `;
 
 const StarRatingOverView = styled.div`
@@ -193,20 +174,7 @@ const SingleAnalysis = styled.div`
   align-items: flex-start;
   gap: 2px;
 `;
-const StyledLabel = styled.div`
-  /* padding-left: 2rem; */
-  gap: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 30%;
-  /* @media (max-width: 700px) {
-    width: 60%;
-  } */
-  cursor: pointer;
-  border-bottom: 1px solid var(--color-grey-300);
-  padding-bottom: 1rem;
-`;
+
 const UnderLine = styled.div`
   border-bottom: 1.5px solid var(--color-grey-300);
   width: 80%;

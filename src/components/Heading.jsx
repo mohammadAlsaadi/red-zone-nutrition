@@ -41,7 +41,7 @@ const Heading = styled.h1`
     props.as === "h4" &&
     css`
       font-size: 1.5rem;
-      font-weight: 600;
+      font-weight: 700;
       text-align: center;
     `}
     ${(props) =>
@@ -72,7 +72,6 @@ const Heading = styled.h1`
       padding-top: 5px;
       padding-bottom: 8px;
     `}
-  /* line-height: 5; */
   color: ${(props) => props.color || "var(--color-grey-900)"};
 `;
 

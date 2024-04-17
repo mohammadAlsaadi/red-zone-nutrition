@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import ListOfProducts from "../components/ListOfProducts";
 import Spinner from "../components/Spinner";
 import useProducts from "../featurs/product/useProducts";

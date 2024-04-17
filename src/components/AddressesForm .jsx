@@ -26,7 +26,6 @@ function AddressesForm({ apiKey }) {
     buildingNumber,
   } = useAddressContext();
   const address = JSON.parse(window.localStorage.getItem("address"));
-  console.log(address);
   const { t } = useTranslation();
   const validateAddress = (place) => {
     if (!place || !place.formatted_address) {
@@ -55,7 +54,6 @@ function AddressesForm({ apiKey }) {
   };
 
   const handlePlaceSelected = (place) => {
-    console.log("place:", place);
     validateAddress(place);
     setAddressAutoFill(place?.formatted_address);
   };

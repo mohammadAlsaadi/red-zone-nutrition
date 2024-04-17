@@ -7,15 +7,13 @@ function ScrolledProvider({ children }) {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const threshold = 100; // Adjust this value as needed
+      const threshold = 100;
 
-      // Check if the scroll position is beyond the threshold
       setIsScrolled(scrollY > threshold);
     };
 
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

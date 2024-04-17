@@ -1,4 +1,3 @@
-// useProducts.js
 import { useQuery } from "@tanstack/react-query";
 import { getProduct } from "../../services/apiProducts";
 import { useParams } from "react-router-dom";

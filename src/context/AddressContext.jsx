@@ -13,15 +13,8 @@ const AddressProvider = ({ children }) => {
   const [buildingNumber, setBuildingNumber] = useState(
     storedAddress ? storedAddress.buildingNumber : ""
   );
-  console.log(addressAutoFill, "___", street, "___", buildingNumber);
-  //   const storedAddress = window.localStorage.getItem("address");
-
-  //   const initialAddress = storedAddress ? JSON.parse(storedAddress) : [];
-
-  //   const [address, setAddress] = useState(initialAddress);
 
   useEffect(() => {
-    // Save address to local storage when any of the state variables change
     if (addressAutoFill !== undefined || street || buildingNumber) {
       window.localStorage.setItem(
         "address",
@@ -43,7 +36,6 @@ const AddressProvider = ({ children }) => {
         setStreet,
         buildingNumber,
         setBuildingNumber,
-        // address,
       }}
     >
       {children}

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Button from "./Button";
-import { formatCurrency, formatPrice } from "../utils/helper";
+import { formatPrice } from "../utils/helper";
 import ButtonText from "./ButtonText";
 import Spinner from "./Spinner";
 
@@ -79,7 +79,6 @@ const StyledCartItem = styled.li`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  /* padding: 0rem 2rem; */
 
   margin: 1rem 0rem 2rem;
   background-color: var(--color-grey-100);
@@ -126,7 +125,6 @@ const StyledCategory = styled.p`
 const StyledButtonContant = styled.p`
   font-size: 15px;
   padding: 3px 7px;
-  /* font-weight: bold; */
   @media (max-width: 600px) {
     font-size: x-small;
   }
@@ -145,7 +143,6 @@ const OptionsContainer = styled.div`
   justify-content: center;
   gap: 1rem;
   padding: 0rem 3rem;
-  /* margin-right: 10px; */
   @media (max-width: 600px) {
   }
 `;

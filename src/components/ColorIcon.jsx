@@ -6,7 +6,7 @@ function ColorIcon({ dataToConvert }) {
   const [iconColor, setIconColor] = useState("");
   useEffect(
     function () {
-      if (!dataToConvert) console.log("no data to convert to color icon !");
+      if (!dataToConvert) return;
       setIconColor(colorCoordination(dataToConvert));
     },
 

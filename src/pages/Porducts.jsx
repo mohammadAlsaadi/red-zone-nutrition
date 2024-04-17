@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Heading from "../components/Heading";
 import ButtonText from "../components/ButtonText";
@@ -16,12 +16,12 @@ import NoResult from "../components/NoResult";
 
 function Porducts() {
   const { data, isLoading, error } = useProducts();
-  const { filterPrice, isLoading: isFiltering } = useFilterProductsPrice();
+  const { isLoading: isFiltering } = useFilterProductsPrice();
   const { categoryName } = useParams();
   const { t } = useTranslation();
   const [priceFrom, setPriceFrom] = useState(0);
   const [priceTo, setPriceTo] = useState(100);
-  const [filtered, setFiltered] = useState(false);
+  const [setFiltered] = useState(false);
   const [stock, setStock] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   let products = [];
@@ -162,19 +162,15 @@ const StyledProducts = styled.div`
   flex-direction: column;
   width: 100%;
   @media (min-width: 600px) {
-    /* width: 60%; */
     padding: 0rem 5rem;
   }
   @media (min-width: 700px) {
-    /* width: 60%; */
     padding: 0rem 0rem;
   }
   @media (min-width: 1000px) {
-    /* width: 60%; */
     padding: 0rem 10rem;
   }
   @media (min-width: 1200px) {
-    /* width: 60%; */
     padding: 0rem 20rem;
   }
 `;
@@ -204,9 +200,7 @@ const ProductsList = styled.div`
     grid-template-columns: repeat(3, 2fr);
     gap: 3rem;
   }
-  /* @media (min-width: 1000px) {
-    gap: 3rem;
-  } */
+
   padding: 20px;
 `;
 

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { useMoveBack } from "../hooks/useMoveBack";
+import { useTranslation } from "react-i18next";
 
 const StyledPageNotFound = styled.main`
   height: 100vh;
@@ -28,13 +29,14 @@ const Box = styled.div`
 
 function PageNotFound() {
   const moveBack = useMoveBack();
+  const { t } = useTranslation();
 
   return (
     <StyledPageNotFound>
       <Box>
-        <h2>The page you are looking for could not be found 😢</h2>
+        <h2>{t("The page you are looking for could not be found")} 😢</h2>
         <button onClick={moveBack} size="large">
-          &larr; Go back
+          &larr; {t("Go back")}
         </button>
       </Box>
     </StyledPageNotFound>

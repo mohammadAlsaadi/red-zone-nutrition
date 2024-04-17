@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "../../components/Form";
 import FormRow from "../../components/FormRow";
-import InpBMRut from "../../components/Input";
 import Heading from "../../components/Heading";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -26,7 +25,6 @@ const calculateBMR = (weight, height, age, gender) => {
   }
 };
 
-// Component
 function CaloriesCalculator({ setCalculatedTDEE }) {
   const [errors, setErrors] = useState({});
   const [BMR, setBMR] = useState(0);
@@ -142,7 +140,6 @@ function CaloriesCalculator({ setCalculatedTDEE }) {
   );
 }
 
-// Styled Components
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -159,19 +156,5 @@ const Select = styled.select`
   border: 1px solid #ccc;
   border-radius: 4px;
 `;
-
-// const SubmitButton = styled.button`
-//   padding: 0.5rem 1rem;
-//   background-color: #007bff;
-//   color: #fff;
-//   border: none;
-//   border-radius: 4px;
-//   cursor: pointer;
-//   transition: background-color 0.3s ease;
-
-//   &:hover {
-//     background-color: #0056b3;
-//   }
-// `;
 
 export default CaloriesCalculator;

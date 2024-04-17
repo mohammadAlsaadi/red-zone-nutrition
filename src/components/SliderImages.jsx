@@ -47,19 +47,15 @@ function SliderImages() {
       setCurrIndex((prevIndex) => (prevIndex + 1) % TEMP_IMG_SLIDES.length);
     }, 2000);
 
-    return () => clearInterval(intervalId); // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId);
   }, []);
   const handleImageLoad = () => {
-    setImageLoaded(true); // Set imageLoaded state to true when the image is loaded
+    setImageLoaded(true);
   };
   if (imageLoaded) return <Spinner />;
 
   return (
     <StyledSliderImages showsidebar={showSideBar}>
-      {/* <ButtonIcon onClick={handlePrevClick}>
-        <HiChevronLeft color="red" />
-      </ButtonIcon> */}
-
       <StyledImg
         imgurl={TEMP_IMG_SLIDES[currIndex]?.url}
         onLoad={handleImageLoad}
@@ -132,9 +128,6 @@ const StyledHeading = styled.div`
   padding-top: 35rem;
   width: ${(props) => (props.isrtl ? "90%" : "95%")};
 
-  /* padding-left: ${(props) => (props.isrtl ? "0" : "50%")};
-  padding-right: ${(props) => (props.isrtl ? "50%" : "0")}; */
-
   @media (max-width: 900px) {
     padding-left: ${(props) => (props.isrtl ? "0" : "50%")};
   }
@@ -150,18 +143,13 @@ const StyledImg = styled.div`
   background-size: cover;
   background-position: center;
 
-  /* Add a nice fade-in, box-shadow, and scale effect */
   opacity: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transform: scale(1); /* Add this line for initial scale */
+  transform: scale(1);
   transition: opacity 1s ease-out 0.3s, box-shadow 0.5s ease-out,
     transform 0.5s ease-out;
 
   animation: fadeIn 1s ease-out forwards;
-
-  /* &:hover {
-    transform: scale(1.05); 
-  } */
 
   @keyframes fadeIn {
     from {

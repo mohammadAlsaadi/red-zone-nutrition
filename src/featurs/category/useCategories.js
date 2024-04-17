@@ -1,4 +1,3 @@
-// useCategories.js
 import { useQuery } from "@tanstack/react-query";
 import { fetchCategories } from "../../services/apiCategories";
 

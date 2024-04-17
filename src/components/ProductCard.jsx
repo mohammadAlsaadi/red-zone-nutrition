@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 import Banner from "./Banner";
 import HasOffer from "./HasOffer";
 import { useTranslation } from "react-i18next";
-import Heading from "./Heading";
-import { useState } from "react";
 import { useProductSelection } from "../context/ProductSelectionContext";
 
 function ProductCard({ product }) {
@@ -23,12 +21,10 @@ function ProductCard({ product }) {
   } = product;
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [isBuyNow, setIsBuyNow] = useState(false);
   const { setActiveProductSize, setSelectedFlavor } = useProductSelection();
   function handleBuy() {
     setActiveProductSize(0);
     setSelectedFlavor(0);
-    setIsBuyNow((buyNow) => !buyNow);
     navigate(`/details/${id}`);
     window.scrollTo(0, 0);
   }

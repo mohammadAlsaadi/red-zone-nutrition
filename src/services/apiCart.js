@@ -29,13 +29,10 @@ export async function IncrementItemCart(productId) {
     console.error(fetchingError);
     throw new Error("Error fetching current productCount value");
   }
-  // console.log(cartProductCount);
   const productCurrentCount = cartProductCount.filter(
     (item) => item.productId === productId
   )[0].productCount;
   let newCount = productCurrentCount + 1;
-  console.log(newCount);
-  // console.log(newCount);
   const { data, error } = await supabase
     .from("cart")
     .update({ productCount: newCount })
@@ -45,7 +42,6 @@ export async function IncrementItemCart(productId) {
     console.error(error);
     throw new Error("Error updating current productCount value");
   }
-  console.log(data);
   return data;
 }
 
@@ -57,14 +53,11 @@ export async function DecrementItemCart(productId) {
     console.error(fetchingError);
     throw new Error("Error fetching current productCount value");
   }
-  // console.log(cartProductCount);
   const productCurrentCount = cartProductCount.filter(
     (item) => item.productId === productId
   )[0].productCount;
   let newCount =
     productCurrentCount > 1 ? productCurrentCount - 1 : productCurrentCount;
-  console.log(newCount);
-  // console.log(newCount);
   if (productCurrentCount === 1) return null;
   const { data, error } = await supabase
     .from("cart")
@@ -75,7 +68,6 @@ export async function DecrementItemCart(productId) {
     console.error(error);
     throw new Error("Error updating current productCount value");
   }
-  console.log(data);
   return data;
 }
 
@@ -87,8 +79,6 @@ export async function removeItem(itemId) {
       console.error(error);
       throw new Error(`Error deleting item with productId ${itemId}`);
     }
-
-    console.log("Item deleted successfully");
   } catch (error) {
     console.error(error);
     throw new Error(`Error deleting item with productId ${itemId}`);
@@ -117,8 +107,6 @@ export async function removeAllItems() {
         throw new Error(`Error deleting item with ID ${item.id}`);
       }
     }
-
-    console.log("All items removed successfully");
   } catch (error) {
     console.error(error.message);
     throw new Error(`Error removing all items from cart`);

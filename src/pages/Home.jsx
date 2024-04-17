@@ -127,7 +127,6 @@ const fadeIn = keyframes`
 const StyledHome = styled.div`
   display: flex;
   flex-direction: column;
-  /* padding: 0px 10px; */
   align-items: flex-start;
   justify-content: center;
   background-color: var(--color-grey-0);
@@ -137,9 +136,6 @@ const SliderContainer = styled.div`
   width: 100%;
   height: 300px;
   padding-bottom: 25rem;
-  /* @media (max-width: 900px) {
-    width: 90%;
-  } */
 `;
 const ConsultationContainer = styled.div`
   display: flex;
@@ -205,7 +201,6 @@ const StyledConsultationImg = styled.div`
   }
   @media (min-width: 600px) {
     width: 70%;
-    /* margin-right: 17rem; */
   }
   @media (min-width: 900px) {
     width: 50%;

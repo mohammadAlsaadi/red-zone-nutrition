@@ -20,9 +20,6 @@ import LanguageModal from "../featurs/language/LanguageModal";
 import { useBodyDirection } from "../context/BodyDirectionContext";
 import { useDeviceWidth } from "../context/DeviceWidthContext";
 import UserCard from "../featurs/authentication/UserCard";
-import Heading from "./Heading";
-import Logout from "./Logout";
-import Button from "./Button";
 import { useUser } from "../featurs/authentication/useUser";
 import ButtonText from "./ButtonText";
 function Header() {
@@ -187,7 +184,6 @@ const StyledResult = styled.div`
   flex-direction: column;
   align-items: center;
   width: 50%;
-  /* margin-top: 0.2rem; */
 
   background-color: var(--color-grey-0);
 `;
@@ -223,12 +219,6 @@ const LayerTwo = styled.div`
           border-bottom: 1px solid var(--color-grey-300);
         `)}
   }
-
-  /* &:hover {
-    border-bottom: 1px solid
-      ${(props) =>
-    props.isscrolled ? "var(--color-grey-200)" : "var(--color-grey-700)"};
-  } */
 `;
 const OptionsContainer1 = styled.div`
   display: flex;
@@ -249,7 +239,6 @@ const StyledSideBarButton = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    /* width: 10%; */
     cursor: pointer;
     &:hover {
       transform: scale(1.1);
@@ -301,14 +290,10 @@ const OptionsContainer2 = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 1.4rem;
-  /* width: 30%; */
 `;
 const UserContainer = styled.div`
   display: flex;
   width: 60%;
-  /* padding-right: 1rem; */
 
-  /* padding-top: 1rem; */
   align-items: center;
-  /* padding-left: ${(props) => (props.isauth ? "1rem" : "1rem")}; */
 `;

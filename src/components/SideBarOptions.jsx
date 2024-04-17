@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { HiOutlineChevronRight, HiOutlineXMark } from "react-icons/hi2";
 
 import { useShowSideBar } from "../context/ShowSideBar";
-// import { useUser } from "../featurs/authentication/useUser";
 import Heading from "./Heading";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +10,6 @@ import { useTranslation } from "react-i18next";
 function SideBarOptions() {
   const [isOpenCategories, setIsOpenCategories] = useState(false);
 
-  // const { isAuthenticated } = useUser();
   const { setShowSideBar } = useShowSideBar();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -114,9 +112,7 @@ function SideBarOptions() {
       <StyledOption onClick={() => handleNavigate(`/calculate-calories`)}>
         <Heading as="h5">{t("Calculate Calories")}</Heading>
       </StyledOption>
-      {/* <StyledOption onClick={() => handleNavigate(`/consultation`)}>
-        <Heading as="h5">Take a Consultation</Heading>
-      </StyledOption> */}
+
       <StyledOption onClick={() => handleNavigate(`/articles`)}>
         <Heading as="h5">{t("Articles")}</Heading>
       </StyledOption>
@@ -140,7 +136,6 @@ export default SideBarOptions;
 const NavList = styled.ul`
   display: flex;
   flex-direction: column;
-  /* gap: 0.8rem; */
   align-items: flex-start;
   width: 100%;
   justify-content: flex-start;
@@ -148,14 +143,12 @@ const NavList = styled.ul`
   padding-top: 0.1rem;
   padding-bottom: 6rem;
 
-  /* Make the overflow scrollable */
   overflow-y: auto;
 
-  /* Hide the scrollbar */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, and Opera */
+    display: none;
   }
 `;
 
@@ -174,7 +167,6 @@ const StyledOption = styled.div`
   &:hover {
     background-color: var(--color-grey-100);
     cursor: pointer;
-    /* color: var(--color-grey-0); */
   }
 `;
 const StyledListLabel = styled.div`
@@ -194,7 +186,6 @@ const StyledListLabel = styled.div`
 const StyledList = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   width: 100%;
   border-bottom: 3px solid var(--color-grey-300);
   margin-bottom: 1rem;

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Logo from "../components/Logo";
 import Heading from "../components/Heading";
 import SignupForm from "../featurs/authentication/SignupForm";
 import { useNavigate } from "react-router-dom";
@@ -25,12 +24,9 @@ function Register() {
 export default Register;
 
 const RegisterLayout = styled.div`
-  /* min-height: 100vh; */
-  /* padding-left: 10rem; */
   padding-top: 5rem;
   display: flex;
   flex-direction: column;
-  /* grid-template-columns: 48rem; */
   align-content: center;
   justify-content: center;
   width: 100%;

@@ -13,7 +13,6 @@ import { useState } from "react";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-// import Uploader from "../data/Uploader";
 function Sidebar() {
   const [language, setLanguage] = useState("English");
   const [country, setCountry] = useState("jordan");
@@ -21,8 +20,6 @@ function Sidebar() {
   const { isAuthenticated } = useUser();
   const { ref } = useOutsideClick(handleClose, true);
   const navigate = useNavigate();
-  const { user } = useUser();
-  console.log("user", user);
 
   function handleNavigate(path) {
     navigate(path);
@@ -150,7 +147,6 @@ const LayerOne = styled.div`
   border-bottom: 1px solid var(--color-grey-200);
   border-top: 1px solid var(--color-grey-300);
   background-color: var(--color-grey-0);
-  /* z-index: 1; */
   width: 100%;
   justify-content: space-between;
 `;
@@ -160,7 +156,6 @@ const LayerTwo = styled.div`
   width: 100%;
   padding-right: 1rem;
 
-  /* padding-top: 1rem; */
   align-items: center;
   padding-left: ${(props) => (props.isauth ? "1rem" : "1rem")};
 `;

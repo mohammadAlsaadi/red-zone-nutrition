@@ -3,7 +3,6 @@ import styled, { keyframes } from "styled-components";
 import Heading from "../components/Heading";
 import { useTranslation } from "react-i18next";
 
-// Import your Spinner component here
 import Spinner from "../components/Spinner";
 
 const AboutUs = () => {
@@ -15,12 +14,11 @@ const AboutUs = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 1000); // Display the spinner for 2 seconds before setting isLoading to false
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, []);
 
-  // If still loading, render Spinner component
   if (isLoading) {
     return <Spinner />;
   }
@@ -90,7 +88,6 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
   width: 50%;
-  /* border-radius: 8px; */
   height: 100%;
 `;
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { HiOutlinePlus, HiOutlineXMark } from "react-icons/hi2";
 import useProduct from "../featurs/product/useProduct";
 import { formatPrice, formatProductDescription } from "../utils/helper";
@@ -16,7 +16,7 @@ import { v4 as uuidv4 } from "uuid";
 import HasOffer from "../components/HasOffer";
 import { useTranslation } from "react-i18next";
 import SpinnerMini from "../components/SpinnerMini";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useProductSelection } from "../context/ProductSelectionContext";
 
 function Details() {
@@ -27,12 +27,11 @@ function Details() {
     setSelectedFlavor,
   } = useProductSelection();
   const [isHovered, setIsHovered] = useState(false);
-  const [inStock, setInStock] = useState(true);
+  const [setInStock] = useState(true);
   const [isOpenDescription, setIsOpenDescription] = useState(false);
   const [isOpenNutritionFacts, setIsOpenNutritionFacts] = useState(false);
   const { t } = useTranslation();
   const { productId } = useParams();
-  console.log(productId);
   const {
     cart,
     addToCart,
@@ -41,8 +40,6 @@ function Details() {
   } = useCartContext();
   const { product, isLoading } = useProduct();
 
-  console.log(activeProductSize);
-  console.log("selected flavors", selectedFlavor);
   useEffect(
     function () {
       if (product?.flavors[activeProductSize].length === 0) {
@@ -50,11 +47,10 @@ function Details() {
       }
       setInStock(true);
     },
-    [activeProductSize, product]
+    [activeProductSize, product, setInStock]
   );
   if (isLoading) return <Spinner />;
   const {
-    id,
     name,
     image,
     price,
@@ -63,7 +59,6 @@ function Details() {
     nutritionFactsImage,
     category,
     description,
-    isNew,
     hasOffer,
     newPrice,
     companyName,
@@ -279,12 +274,9 @@ const StyledOptions = styled.div`
 const PriceContainer = styled.div`
   padding-left: 10px;
   border-bottom: 1px solid var(--color-grey-300);
-  /* border-radius: 5px; */
   width: 90%;
 `;
 const StyledImg = styled.img`
-  /* width: 200px;
-  height: 300px; */
   width: 300px;
   height: 330px;
   object-fit: cover;
@@ -293,9 +285,6 @@ const StyledImg = styled.img`
     height: 300px;
     object-fit: cover;
   }
-  /* &:hover {
-    transform: scale(1.6);
-  } */
 `;
 const ButtonPosition = styled.div`
   display: flex;
@@ -304,12 +293,7 @@ const ButtonPosition = styled.div`
   padding-top: 1rem;
   width: 100%;
 `;
-const StyledInStock = styled.p`
-  padding-top: 10px;
-  color: ${(props) => (props.instock ? "green" : "black")};
-  font-size: medium;
-  font-weight: bold;
-`;
+
 const StyledIcon = styled.img`
   object-fit: cover;
   width: 25%;

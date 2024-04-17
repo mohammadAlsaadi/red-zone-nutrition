@@ -3,15 +3,13 @@ import Heading from "../../components/Heading";
 import StarRating from "../../components/StarRating";
 import SpinnerMini from "../../components/SpinnerMini";
 import Button from "../../components/Button";
-import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useReviews } from "../../context/ReviewsContext";
 import { useUser } from "../authentication/useUser";
 import { useParams } from "react-router-dom";
 import { useInsertReview } from "./useInsertReview";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 function ReviewForm({ onCloseModal }) {
-  const { user, isAuthenticated } = useUser();
+  const { user } = useUser();
   const { insertReview, isLoading } = useInsertReview();
   const { productId } = useParams();
   const userId = user.id;
@@ -57,9 +55,7 @@ function ReviewForm({ onCloseModal }) {
 export default ReviewForm;
 const HorizontalBar = styled.div`
   display: flex;
-  /* min-width: 230px; */
-  /* padding-left: 15px;
-  margin-left: 15px; */
+
   position: absolute;
   top: 7rem;
   border-bottom: 2px solid var(--color-grey-300);

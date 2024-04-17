@@ -9,7 +9,6 @@ function WaitingForConfirm() {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const navigate = useNavigate();
   const { isAuthenticated } = useUser();
-  console.log(isAuthenticated);
   useEffect(
     function () {
       if (isAuthenticated) {

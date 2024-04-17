@@ -11,7 +11,6 @@ function CategoriesList() {
   const { data: categories, isLoading } = useCategories();
   const { showSideBar } = useShowSideBar();
   const { isDesktopDevice } = useDeviceWidth();
-  // const { showSideBar } = useShowSideBar();
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1400 },
