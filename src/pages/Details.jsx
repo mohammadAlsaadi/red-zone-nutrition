@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { HiOutlinePlus, HiOutlineXMark } from "react-icons/hi2";
 import useProduct from "../featurs/product/useProduct";
@@ -27,7 +27,6 @@ function Details() {
     setSelectedFlavor,
   } = useProductSelection();
   const [isHovered, setIsHovered] = useState(false);
-  const [setInStock] = useState(true);
   const [isOpenDescription, setIsOpenDescription] = useState(false);
   const [isOpenNutritionFacts, setIsOpenNutritionFacts] = useState(false);
   const { t } = useTranslation();
@@ -40,15 +39,6 @@ function Details() {
   } = useCartContext();
   const { product, isLoading } = useProduct();
 
-  useEffect(
-    function () {
-      if (product?.flavors[activeProductSize].length === 0) {
-        setInStock(false);
-      }
-      setInStock(true);
-    },
-    [activeProductSize, product, setInStock]
-  );
   if (isLoading) return <Spinner />;
   const {
     name,
@@ -274,9 +264,12 @@ const StyledOptions = styled.div`
 const PriceContainer = styled.div`
   padding-left: 10px;
   border-bottom: 1px solid var(--color-grey-300);
+  /* border-radius: 5px; */
   width: 90%;
 `;
 const StyledImg = styled.img`
+  /* width: 200px;
+  height: 300px; */
   width: 300px;
   height: 330px;
   object-fit: cover;
@@ -285,6 +278,9 @@ const StyledImg = styled.img`
     height: 300px;
     object-fit: cover;
   }
+  /* &:hover {
+    transform: scale(1.6);
+  } */
 `;
 const ButtonPosition = styled.div`
   display: flex;

@@ -20,11 +20,11 @@ function AppLayout() {
   const { t } = useTranslation();
   return (
     <StyledAppLayout>
-      <AlertOffer>
+      {/* <AlertOffer>
         <Heading as="h4" color="var(--color-grey-700)">
           {t("Free delivery for orders over 70 JD")}
         </Heading>
-      </AlertOffer>
+      </AlertOffer> */}
       {showSideBar && <SideBar />}
       <StyledHeader
         isrtl={isRtl}
@@ -54,21 +54,21 @@ const StyledAppLayout = styled.div`
   overflow: hidden;
   height: 100%;
 `;
-const AlertOffer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 4rem;
-  background-color: var(--color-gold-500);
-  z-index: 1;
-  position: fixed;
-`;
+// const AlertOffer = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 100%;
+//   height: 4rem;
+//   background-color: var(--color-gold-500);
+//   z-index: 1;
+//   position: fixed;
+// `;
 
 const StyledHeader = styled.div`
   position: fixed;
   top: 0rem;
-  top: ${(props) => (props.showalert ? "" : "4rem")};
+  /* top: ${(props) => (props.showalert ? "" : "4rem")}; */
 
   left: ${(props) =>
     props.showsidebar && !props.isdesktopdevice && !props.isrtl ? "30%" : 0};
