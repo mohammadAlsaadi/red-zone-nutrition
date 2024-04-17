@@ -5,11 +5,13 @@ const AddressContext = createContext();
 const AddressProvider = ({ children }) => {
   const storedAddress = JSON.parse(window.localStorage.getItem("address"));
   const [addressAutoFill, setAddressAutoFill] = useState(
-    storedAddress ? storedAddress[0] : ""
+    storedAddress ? storedAddress.addressAutoFill : ""
   );
-  const [street, setStreet] = useState(storedAddress ? storedAddress[1] : "");
+  const [street, setStreet] = useState(
+    storedAddress ? storedAddress.street : ""
+  );
   const [buildingNumber, setBuildingNumber] = useState(
-    storedAddress ? storedAddress[2] : ""
+    storedAddress ? storedAddress.buildingNumber : ""
   );
   console.log(addressAutoFill, "___", street, "___", buildingNumber);
   //   const storedAddress = window.localStorage.getItem("address");
@@ -18,10 +20,19 @@ const AddressProvider = ({ children }) => {
 
   //   const [address, setAddress] = useState(initialAddress);
 
-  //   useEffect(() => {
-  //     // Save address to local storage when any of the state variables change
-  //     window.localStorage.setItem("address", { street, buildingNumber });
-  //   }, [addressAutoFill, street, buildingNumber]);
+  useEffect(() => {
+    // Save address to local storage when any of the state variables change
+    if (addressAutoFill !== undefined || street || buildingNumber) {
+      window.localStorage.setItem(
+        "address",
+        JSON.stringify({
+          addressAutoFill,
+          street,
+          buildingNumber,
+        })
+      );
+    }
+  }, [addressAutoFill, street, buildingNumber]);
 
   return (
     <AddressContext.Provider

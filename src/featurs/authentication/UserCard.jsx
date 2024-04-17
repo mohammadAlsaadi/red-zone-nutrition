@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useUser } from "./useUser";
 import { useScrolled } from "../../context/ScrolledContext";
 import { useLocation } from "react-router-dom";
+import { useDeviceWidth } from "../../context/DeviceWidthContext";
 export const DEFAULT_USER_IMG =
   "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/default-user.jpg";
 function UserCard() {
@@ -9,6 +10,11 @@ function UserCard() {
   const { user } = useUser();
   const { fullName, avatar } = user.user_metadata;
   const isHomePagePath = useLocation().pathname === "/home";
+  const { isDesktopDevice } = useDeviceWidth();
+  const color =
+    isScrolled || !isHomePagePath
+      ? "var(--color-grey-800)"
+      : "var(--color-grey-0)";
 
   return (
     <CartContainer>
@@ -18,7 +24,9 @@ function UserCard() {
           src={avatar || DEFAULT_USER_IMG}
         />
         <StyledName
-        //  ishomepagepath={isHomePagePath} isscrolled={isScrolled}
+          color={color}
+          isdesktopdevice={isDesktopDevice}
+          //  ishomepagepath={isHomePagePath} isscrolled={isScrolled}
         >
           {fullName}
         </StyledName>
@@ -32,8 +40,10 @@ const CartContainer = styled.div`
   border: none;
   padding: 2px 6px;
   border-radius: 10px;
-  /* background-color: var(--color-grey-0); */
-  /* background-color: inherit; */
+  /* width: 40%; */
+  /* @media (min-width: 1200px) {
+    width: 100%;
+  } */
 `;
 const StyledUserCard = styled.div`
   display: flex;
@@ -44,17 +54,13 @@ const StyledUserCard = styled.div`
   color: var(--color-grey-600);
 `;
 const StyledName = styled.div`
-  /* color: ${(props) =>
-    props.isscrolled || !props.ishomepagepath
-      ? "var(--color-grey-700)"
-      : "var(--color-grey-0)"}; */
-  color: var(--color-grey-700);
-  font-size: small;
+  color: ${(props) => props.color};
+  font-size: x-small;
 `;
 const Avatar = styled.img`
   display: block;
   width: 4rem;
-  width: 3.6rem;
+  width: 3.2rem;
   aspect-ratio: 1;
   object-fit: cover;
   object-position: center;

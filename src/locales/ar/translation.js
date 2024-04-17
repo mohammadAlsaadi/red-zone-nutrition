@@ -381,4 +381,6 @@ export const arabicTranslation = {
   "40 Scoops": "40 مكيال",
   "Red Hawaiian": "هاواي الحمراء",
   "Tigers Blood": "دماء النمور",
+  //confirm Logout
+  "Are you sure you want to logout?": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
 };

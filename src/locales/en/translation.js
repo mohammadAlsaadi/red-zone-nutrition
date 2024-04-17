@@ -375,4 +375,6 @@ export const english = {
   "40 Scoops": "40 Scoops",
   "Red Hawaiian": "Red Hawaiian",
   "Tigers Blood": "Tigers Blood",
+  //confirm Logout
+  "Are you sure you want to logout?": "Are you sure you want to logout?",
 };

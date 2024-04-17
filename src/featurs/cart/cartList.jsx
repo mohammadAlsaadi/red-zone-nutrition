@@ -22,8 +22,7 @@ function CartList({ onCloseModal }) {
 
   function handleclick(path) {
     // e.preventDefault();
-
-    onCloseModal();
+    if (!isCartPage) onCloseModal();
     navigate(path);
   }
   return (
@@ -64,7 +63,7 @@ function CartList({ onCloseModal }) {
                 {t("Order more")}
               </ButtonText>
               <Button
-                onClick={() => handleclick("checkout")}
+                onClick={() => handleclick("/checkout")}
                 variation="transparent"
                 border="circle"
               >

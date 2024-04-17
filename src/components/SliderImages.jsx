@@ -62,7 +62,6 @@ function SliderImages() {
 
       <StyledImg
         imgurl={TEMP_IMG_SLIDES[currIndex]?.url}
-        title={TEMP_IMG_SLIDES[currIndex]?.title}
         onLoad={handleImageLoad}
       >
         <StyledHeading isrtl={isRtl}>

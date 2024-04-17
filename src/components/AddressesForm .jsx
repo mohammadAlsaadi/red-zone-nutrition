@@ -26,6 +26,7 @@ function AddressesForm({ apiKey }) {
     buildingNumber,
   } = useAddressContext();
   const address = JSON.parse(window.localStorage.getItem("address"));
+  console.log(address);
   const { t } = useTranslation();
   const validateAddress = (place) => {
     if (!place || !place.formatted_address) {
@@ -73,17 +74,17 @@ function AddressesForm({ apiKey }) {
   const handleSaveAddress = (e) => {
     e.preventDefault();
     if (isAddressSaved === false) {
-      setIsAdressSaved((isSaved) => !isSaved);
       window.localStorage.setItem(
         "address",
-        JSON.parse({ addressAutoFill, street, buildingNumber })
+        JSON.stringify({ addressAutoFill, street, buildingNumber })
       );
-      toast.success("Adress was saved");
+      toast.success("Address was saved");
+      setIsAdressSaved((isSaved) => !isSaved);
     } else {
       setIsAdressSaved(false);
     }
   };
-  console.log(isAddressSaved);
+
   return (
     <FormContainer>
       <Form>
@@ -109,7 +110,9 @@ function AddressesForm({ apiKey }) {
         ) : (
           <FormRow id="address" label="Country/City">
             <Input
-              placeholder={isAddressSaved ? address.at(0) : t("Amman, Jordan")}
+              placeholder={
+                isAddressSaved ? address?.addressAutoFill : t("Amman, Jordan")
+              }
               disabled={true}
             />
           </FormRow>
@@ -118,7 +121,7 @@ function AddressesForm({ apiKey }) {
           <Input
             type="text"
             placeholder={
-              isAddressSaved ? address.at(1) : t("Pr. Hamzeh Street")
+              isAddressSaved ? address?.street : t("Pr. Hamzeh Street")
             }
             onChange={handleStreetChange}
             disabled={isAddressSaved}
@@ -130,7 +133,7 @@ function AddressesForm({ apiKey }) {
           label="Building Number"
         >
           <Input
-            placeholder={isAddressSaved ? address.at(2) : "105"}
+            placeholder={isAddressSaved ? address?.buildingNumber : "105"}
             type="number"
             onChange={handleBuildingNumberChange}
             disabled={isAddressSaved}

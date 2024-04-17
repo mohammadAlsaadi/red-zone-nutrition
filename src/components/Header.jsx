@@ -7,7 +7,7 @@ import {
 } from "react-icons/hi2";
 import { useShowSideBar } from "../context/ShowSideBar";
 import Logo from "./Logo";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CartModal from "./CartModal";
 import { useState } from "react";
 import OptionsBar from "./OptionsBar";
@@ -18,6 +18,13 @@ import Modal from "./Modal";
 import { useTranslation } from "react-i18next";
 import LanguageModal from "../featurs/language/LanguageModal";
 import { useBodyDirection } from "../context/BodyDirectionContext";
+import { useDeviceWidth } from "../context/DeviceWidthContext";
+import UserCard from "../featurs/authentication/UserCard";
+import Heading from "./Heading";
+import Logout from "./Logout";
+import Button from "./Button";
+import { useUser } from "../featurs/authentication/useUser";
+import ButtonText from "./ButtonText";
 function Header() {
   const [searchInput, setSearchInput] = useState("");
   const { data } = useProducts();
@@ -27,6 +34,9 @@ function Header() {
   const isHomePagePath = pathName === "/home" || pathName === "/contact-us";
   const { isScrolled } = useScrolled();
   const { t } = useTranslation();
+  const { isDesktopDevice } = useDeviceWidth();
+  const { isAuthenticated } = useUser();
+  const navigate = useNavigate();
   const { bodyDirectionection, isRtl } = useBodyDirection();
 
   let resultData =
@@ -36,7 +46,10 @@ function Header() {
         ? item.name_ar.includes(searchInput)
         : item.name.toLowerCase().includes(searchInput.toLowerCase())
     );
-  console.log(searchInput);
+  function handleNavigate(path) {
+    navigate(path);
+    setShowSideBar(false);
+  }
   if (showSearchBar)
     return (
       <StyledSearchResult>
@@ -104,17 +117,39 @@ function Header() {
           />
 
           <OptionsContainer2>
+            {isDesktopDevice && (
+              <UserContainer isauth={isAuthenticated}>
+                {isAuthenticated ? (
+                  <UserCard />
+                ) : (
+                  <ButtonText
+                    fontWeight="600"
+                    fontSize="small"
+                    color={
+                      isScrolled || !isHomePagePath
+                        ? "var(--color-grey-800)"
+                        : "var(--color-grey-0)"
+                    }
+                    onClick={() => handleNavigate("/login")}
+                  >
+                    {t("sign in")}
+                  </ButtonText>
+                )}
+              </UserContainer>
+            )}
             <Modal>
               <Modal.Open opens="language">
-                <HiOutlineLanguage
-                  cursor="pointer"
-                  size={22}
-                  color={
-                    isScrolled || !isHomePagePath
-                      ? "var(--color-grey-800)"
-                      : "var(--color-grey-0"
-                  }
-                />
+                <div>
+                  <HiOutlineLanguage
+                    cursor="pointer"
+                    size={22}
+                    color={
+                      isScrolled || !isHomePagePath
+                        ? "var(--color-grey-800)"
+                        : "var(--color-grey-0"
+                    }
+                  />
+                </div>
               </Modal.Open>
               <Modal.Window name="language">
                 <LanguageModal />
@@ -264,6 +299,16 @@ const SearchText = styled.p`
 const OptionsContainer2 = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 2rem;
+  justify-content: flex-start;
+  gap: 1.4rem;
+  /* width: 30%; */
+`;
+const UserContainer = styled.div`
+  display: flex;
+  width: 60%;
+  /* padding-right: 1rem; */
+
+  /* padding-top: 1rem; */
+  align-items: center;
+  /* padding-left: ${(props) => (props.isauth ? "1rem" : "1rem")}; */
 `;

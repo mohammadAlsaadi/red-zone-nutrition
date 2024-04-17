@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useUser } from "../featurs/authentication/useUser";
 import { useDeviceWidth } from "../context/DeviceWidthContext";
 import { useTranslation } from "react-i18next";
+import Modal from "./Modal";
+import ConfirmLogout from "./ConfirmLogout";
 function Options() {
   const { isScrolled } = useScrolled();
   const isHomePagePath = useLocation().pathname === "/home";
@@ -298,6 +300,24 @@ function Options() {
                 >
                   <Label>{t("Contact Us")}</Label>
                 </StyledNavItem>
+                {isAuthenticated && (
+                  <Modal>
+                    <Modal.Open opens="logout">
+                      <StyledNavItem
+                        onClick={() => {
+                          setIsOpenMore(false);
+                          // window.scrollTo(0, 0);
+                        }}
+                        isscrolled={isScrolled}
+                      >
+                        <Label>{t("Logout")}</Label>
+                      </StyledNavItem>
+                    </Modal.Open>
+                    <Modal.Window name="logout">
+                      <ConfirmLogout setIsOpenMore={setIsOpenMore} />
+                    </Modal.Window>
+                  </Modal>
+                )}
               </DropdownContentFlexColumn>
             )}
           </StyledOptions>
