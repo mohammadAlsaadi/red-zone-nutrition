@@ -61,7 +61,7 @@ function ProductsList({ offers, isLoadingFetch, category, categoryList }) {
   return (
     <StyledList>
       <StyledCarousel
-        arrows={showSideBar && !isDesktopDevice ? false : true}
+        arrows={showSideBar || !isDesktopDevice ? false : true}
         responsive={responsive}
         autoPlay={true}
         autoPlaySpeed={1500}

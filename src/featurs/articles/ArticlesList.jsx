@@ -41,7 +41,7 @@ function ArticlesList() {
   return (
     <StyledArticlesList>
       <StyledCarousel
-        arrows={showSideBar || !isDesktopDevice ? false : true}
+        arrows={false}
         responsive={responsive}
         autoPlay={true}
         autoPlaySpeed={3500}

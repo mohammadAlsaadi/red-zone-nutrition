@@ -127,14 +127,14 @@ export function colorCoordination(text = "unflavored") {
     lowerCasedText.includes("pineapple")
   ) {
     return "#fbec5d";
+  } else if (lowerCasedText.includes("unflavored")) {
+    return "#bfc1c2";
   } else if (
     lowerCasedText.includes("strawberry") ||
     lowerCasedText.includes("red") ||
     lowerCasedText.includes("blood")
   ) {
     return "#db1515";
-  } else if (lowerCasedText.includes("unflavored")) {
-    return "#bfc1c2";
   } else if (
     lowerCasedText.includes("peanut") ||
     lowerCasedText.includes("butter")

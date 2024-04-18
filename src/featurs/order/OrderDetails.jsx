@@ -40,14 +40,14 @@ const OrderDetails = ({ order, isLoading }) => {
     <Container>
       <DetailsSection>
         <StyledDetailsHeader>
-          <Heading as="h2">
+          <StyledOrderHeading>
             {t("Order #")} {id}
-          </Heading>
+          </StyledOrderHeading>
           <DetailItem>
             {!isOpenDetails && (
-              <Heading as="h4" color={colorOfStatus}>
+              <StyledOrderCurrentStep color={colorOfStatus}>
                 {t(status)}
-              </Heading>
+              </StyledOrderCurrentStep>
             )}
             {isOpenDetails ? (
               <HiXMark cursor="pointer" size={23} onClick={toggleDetails} />
@@ -86,7 +86,7 @@ const OrderDetails = ({ order, isLoading }) => {
               </Value>
             </DetailItem>
             <DetailItem>
-              <Label>{t("Items")}</Label>
+              {/* <Label>{t("Items")}</Label> */}
               <ItemList>
                 {items?.map((item) => (
                   <ProductItemPreview
@@ -123,6 +123,9 @@ const OrderDetails = ({ order, isLoading }) => {
 const Container = styled.div`
   padding: 20px;
   border-radius: 10px;
+  @media (max-width: 600px) {
+    padding: 10px;
+  }
 `;
 
 const DetailsSection = styled.div`
@@ -130,6 +133,9 @@ const DetailsSection = styled.div`
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  @media (max-width: 600px) {
+    padding: 15px 10px;
+  }
 `;
 
 const StepsWrapper = styled.div`
@@ -149,10 +155,17 @@ const DetailItem = styled.div`
 const Label = styled.div`
   font-weight: bold;
   margin-right: 10px;
+  @media (max-width: 600px) {
+    font-size: 10px;
+  }
 `;
 
 const Value = styled.div`
   flex-grow: 1;
+  @media (max-width: 600px) {
+    font-size: 9px;
+    flex-grow: 0;
+  }
 `;
 
 const ItemList = styled.ul`
@@ -178,5 +191,21 @@ const StyledCancelOrder = styled.div`
   align-items: center;
   justify-content: flex-end;
 `;
-
+const StyledOrderHeading = styled.div`
+  font-size: medium;
+  font-weight: bold;
+  @media (max-width: 600px) {
+    font-size: small;
+    font-weight: bold;
+  }
+`;
+const StyledOrderCurrentStep = styled.p`
+  font-size: medium;
+  font-weight: bold;
+  color: ${(props) => props.color || ""};
+  @media (max-width: 600px) {
+    font-size: small;
+    font-weight: bold;
+  }
+`;
 export default OrderDetails;

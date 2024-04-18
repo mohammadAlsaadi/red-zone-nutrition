@@ -32,6 +32,9 @@ const StepperContainer = styled.div`
   gap: 1rem;
   align-items: center;
   width: 100%;
+  @media (max-width: 600px) {
+    gap: 0.4rem;
+  }
 `;
 const PhaseNumber = styled.div`
   border: 1px solid var(--color-grey-300);
@@ -42,6 +45,10 @@ const PhaseNumber = styled.div`
   background-color: ${(props) =>
     props.isActive ? "#007bff" : "var(--color-grey-0)"};
   text-align: center;
+  @media (max-width: 600px) {
+    font-size: 9px;
+    padding: 0.1rem 0.5rem;
+  }
 `;
 
 const Phase = styled.div`
@@ -53,6 +60,9 @@ const Phase = styled.div`
   /* font-weight: bold; */
   font-size: small;
   color: ${(props) => (props.isActive ? "#007bff" : "#333")};
+  @media (max-width: 600px) {
+    font-size: 8px;
+  }
 `;
 
 const Divider = styled.div`
@@ -60,6 +70,9 @@ const Divider = styled.div`
   width: 7%;
   height: 2px;
   background-color: #ccc;
+  @media (max-width: 600px) {
+    width: 3%;
+  }
 `;
 
 export default Stepper;

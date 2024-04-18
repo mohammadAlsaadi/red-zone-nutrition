@@ -28,7 +28,7 @@ function Article() {
       {contantHeading.map((headerContant, index) => (
         <StyledContant>
           <Heading as="h3">{t(headerContant)}</Heading>
-          <Heading as="h5">{t(contant[index])}</Heading>
+          <StyledContentParagraph>{t(contant[index])}</StyledContentParagraph>
         </StyledContant>
       ))}
       <StyledReferences>
@@ -63,6 +63,13 @@ const StyledArticle = styled.div`
   width: 100%;
   height: 100%;
   animation: ${fadeIn} 1s ease-out;
+`;
+const StyledContentParagraph = styled.p`
+  font-size: medium;
+  font-weight: 400;
+  @media (max-width: 600px) {
+    font-size: small;
+  }
 `;
 const StyledHeader = styled.div`
   display: flex;

@@ -48,9 +48,7 @@ function CartList({ onCloseModal }) {
           ))}
           <StyledFooterBar>
             <StyledTotalPrice>
-              <Heading as="h4" color="var(--color-grey-50)">
-                {t("Total Price")} :
-              </Heading>
+              <Label>{t("Total Price")} :</Label>
               <P>{formatPrice(totalPrice)}</P>
             </StyledTotalPrice>
             <StyledOptions>
@@ -58,6 +56,7 @@ function CartList({ onCloseModal }) {
                 onClick={() => handleclick("/products/all")}
                 color="white"
                 textDecoration="underLine"
+                fontSize="x-small"
               >
                 {t("Order more")}
               </ButtonText>
@@ -86,6 +85,9 @@ const StyledList = styled.ul`
   margin-bottom: 2rem;
   height: 100%;
   padding: 0rem 2rem;
+  @media (max-width: 600px) {
+    padding: 0rem 1rem;
+  }
 `;
 const StyledFooterBar = styled.footer`
   display: flex;
@@ -93,22 +95,44 @@ const StyledFooterBar = styled.footer`
   justify-content: space-between;
   width: 100%;
   height: 80px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   background-color: var(--color-grey-700);
   padding: 0rem 2rem;
+  @media (max-width: 600px) {
+    padding: 0rem 1rem;
+  }
 `;
 const StyledTotalPrice = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 0px 20px;
+  @media (max-width: 600px) {
+    padding: 0px 0px;
+    gap: 0.2rem;
+  }
 `;
 const P = styled.p`
   color: var(--color-red-500);
+  @media (max-width: 600px) {
+    font-size: 14px;
+    font-weight: bold;
+  }
 `;
 const StyledOptions = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-right: 10px;
+  @media (max-width: 600px) {
+    margin-right: 0px;
+    gap: 0.4rem;
+  }
+`;
+const Label = styled.p`
+  font-size: medium;
+  color: var(--color-grey-50);
+  @media (max-width: 600px) {
+    font-size: 11px;
+  }
 `;

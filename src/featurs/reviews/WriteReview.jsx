@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
-import {
-  HiMiniExclamationTriangle,
-  HiOutlinePencilSquare,
-} from "react-icons/hi2";
+import { HiMiniExclamationTriangle } from "react-icons/hi2";
 import Heading from "../../components/Heading";
 import { useUser } from "../authentication/useUser";
 

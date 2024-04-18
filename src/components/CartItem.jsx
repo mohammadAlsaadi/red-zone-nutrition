@@ -6,6 +6,7 @@ import Spinner from "./Spinner";
 
 import { useCartContext } from "../context/CartContext";
 import { useTranslation } from "react-i18next";
+import ColorIcon from "./ColorIcon";
 
 function CartItem({ item }) {
   const { incrementItem, decrementItem, removeItem } = useCartContext();
@@ -15,7 +16,6 @@ function CartItem({ item }) {
   const {
     image,
     name,
-    category,
     price,
     count,
 
@@ -26,15 +26,13 @@ function CartItem({ item }) {
   return (
     <StyledCartItem>
       <StyledProductInfo>
-        {!image ? (
-          <Spinner />
-        ) : (
-          <img src={image} alt={`${image}`} width={100} height={100} />
-        )}
+        {!image ? <Spinner /> : <StyledImg src={image} />}
         <StyledName>
           {t(name)}
-          <br /> <StyledCategory>{t(category)}</StyledCategory>
-          {t(flavor)} <p>{t(productSize)}</p>
+          <StyledFlavor>
+            <ColorIcon dataToConvert={item?.flavor} /> {t(flavor)}
+          </StyledFlavor>
+          <p>{t(productSize)}</p>
         </StyledName>
       </StyledProductInfo>
       <OptionsContainer>
@@ -93,7 +91,7 @@ const StyledProductInfo = styled.div`
   gap: 10px;
   margin-left: 10px;
   @media (max-width: 600px) {
-    width: 35%;
+    width: 100%;
     margin-left: 2px;
   }
 `;
@@ -106,6 +104,14 @@ const StyledOptins = styled.div`
     gap: 1px;
   }
 `;
+const StyledImg = styled.img`
+  width: 100px;
+  height: 100px;
+  @media (max-width: 600px) {
+    width: 50px;
+    height: 50px;
+  }
+`;
 const StyledName = styled.p`
   font-weight: bold;
   color: var(--color-grey-700);
@@ -115,18 +121,13 @@ const StyledName = styled.p`
     color: var(--color-grey-900);
   }
 `;
-const StyledCategory = styled.p`
-  color: var(--color-grey-400);
-  font-size: small;
-  @media (max-width: 600px) {
-    font-size: x-small;
-  }
-`;
+
 const StyledButtonContant = styled.p`
   font-size: 15px;
   padding: 3px 7px;
   @media (max-width: 600px) {
     font-size: x-small;
+    padding: 3px 2px;
   }
 `;
 const StyledPrice = styled.p`
@@ -134,6 +135,7 @@ const StyledPrice = styled.p`
   padding-right: 5px;
   @media (max-width: 600px) {
     font-size: small;
+    padding-right: 2px;
   }
 `;
 const OptionsContainer = styled.div`
@@ -144,5 +146,12 @@ const OptionsContainer = styled.div`
   gap: 1rem;
   padding: 0rem 3rem;
   @media (max-width: 600px) {
+    padding: 0rem 1rem;
   }
+`;
+const StyledFlavor = styled.div`
+  padding-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 `;

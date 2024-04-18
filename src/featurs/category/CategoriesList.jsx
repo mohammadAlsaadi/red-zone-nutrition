@@ -38,7 +38,7 @@ function CategoriesList() {
     return (
       <StyledList>
         <Carousel
-          arrows={showSideBar && !isDesktopDevice ? false : true}
+          arrows={showSideBar || !isDesktopDevice ? false : true}
           responsive={responsive}
           autoPlay={true}
           autoPlaySpeed={1500}
