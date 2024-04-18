@@ -41,7 +41,7 @@ function ArticlesList() {
   return (
     <StyledArticlesList>
       <StyledCarousel
-        arrows={showSideBar && !isDesktopDevice ? false : true}
+        arrows={showSideBar || !isDesktopDevice ? false : true}
         responsive={responsive}
         autoPlay={true}
         autoPlaySpeed={3500}
@@ -71,7 +71,7 @@ const StyledCarousel = styled(Carousel)`
     height: 22rem;
   }
   @media (min-width: 700px) {
-    height: 25rem;
+    height: 28rem;
     padding-left: 2rem;
     padding-right: 2rem;
   }

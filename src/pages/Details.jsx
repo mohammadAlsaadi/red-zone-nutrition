@@ -214,6 +214,8 @@ const DetailsLayout = styled.div`
 
   @media (max-width: 700px) {
     gap: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 `;
 const ProductOptions = styled.div`

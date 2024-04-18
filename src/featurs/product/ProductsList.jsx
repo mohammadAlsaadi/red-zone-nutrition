@@ -31,8 +31,12 @@ function ProductsList({ offers, isLoadingFetch, category, categoryList }) {
       items: 3,
     },
     mobile: {
-      breakpoint: { max: 600, min: 0 },
-      items: 2.6,
+      breakpoint: { max: 600, min: 400 },
+      items: 2.5,
+    },
+    smallMobile: {
+      breakpoint: { max: 400, min: 0 },
+      items: 2,
     },
   };
 

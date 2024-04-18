@@ -159,7 +159,7 @@ const StyledOption = styled.div`
   border-bottom: 1px solid var(--color-grey-300);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding-left: 2rem;
   padding-right: 2rem;
 

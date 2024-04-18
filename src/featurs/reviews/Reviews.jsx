@@ -142,9 +142,11 @@ const AvgRating = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 0rem 4rem;
+  padding: 0rem 4rem 2rem;
   width: 100%;
-  padding-bottom: 2rem;
+  @media (max-width: 600px) {
+    padding: 0rem 1rem 1rem;
+  }
 `;
 
 const VerticalBar = styled.div`

@@ -42,6 +42,7 @@ function Checkout() {
   const discount = isCouponValid ? 0.15 * productsPrice : 0;
   const totalPrice = shipping + productsPrice - discount;
   const has_discount = window.localStorage.getItem("has_discount");
+  const address = window.localStorage.getItem("address");
   useEffect(() => {
     if (isCouponValid) window.localStorage.setItem("has_discount", true);
     else {
@@ -97,11 +98,7 @@ function Checkout() {
         estimatedDelivery: "24h-48h",
         items: cart,
         location:
-          addressAutoFill.formatted_address +
-          "-" +
-          street +
-          "/building number:" +
-          buildingNumber,
+          addressAutoFill + "-" + street + "/building number:" + buildingNumber,
         userId: user.id,
         payment_method: "cash",
         has_discount,

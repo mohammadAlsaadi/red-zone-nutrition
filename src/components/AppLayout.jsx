@@ -7,8 +7,7 @@ import Footer from "./Footer";
 import { useScrolled } from "../context/ScrolledContext";
 import { useDeviceWidth } from "../context/DeviceWidthContext";
 import { useBodyDirection } from "../context/BodyDirectionContext";
-import Heading from "./Heading";
-import { useTranslation } from "react-i18next";
+// import Heading from "./Heading";
 
 function AppLayout() {
   const { showSideBar } = useShowSideBar();
@@ -17,7 +16,6 @@ function AppLayout() {
   const isHomePage = useLocation().pathname === "/home";
   const { isScrolled } = useScrolled();
   const { isRtl } = useBodyDirection();
-  const { t } = useTranslation();
   return (
     <StyledAppLayout>
       {/* <AlertOffer>
@@ -71,13 +69,16 @@ const StyledHeader = styled.div`
   /* top: ${(props) => (props.showalert ? "" : "4rem")}; */
 
   left: ${(props) =>
-    props.showsidebar && !props.isdesktopdevice && !props.isrtl ? "30%" : 0};
+    props.showsidebar && !props.isdesktopdevice && !props.isrtl ? "0" : 0};
   right: ${(props) =>
-    props.showsidebar && !props.isdesktopdevice && props.isrtl ? "30%" : 0};
+    props.showsidebar && !props.isdesktopdevice && props.isrtl ? "0" : 0};
   z-index: 1;
 
   background-color: ${(props) =>
     props.isscrolled ? "var(--color-grey-0)" : ""};
+  @media (max-width: 600px) {
+    display: ${(props) => props.showsidebar && "none"};
+  }
 `;
 
 const Main = styled.main`

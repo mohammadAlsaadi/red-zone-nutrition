@@ -35,7 +35,7 @@ const OrderDetails = ({ order, isLoading }) => {
   const toggleDetails = () => {
     setIsOpenDetails((prevIsOpen) => !prevIsOpen);
   };
-
+  console.log(items);
   return (
     <Container>
       <DetailsSection>

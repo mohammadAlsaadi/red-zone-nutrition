@@ -44,18 +44,28 @@ const StyledArticleCard = styled.div`
   &:hover {
     transform: scale(1.02);
   }
-  @media (max-width: 600px) {
+  @media (max-width: 500px) {
     height: 18rem;
-    width: 37rem;
+    width: 32rem;
+    gap: 0.6rem;
   }
 
+  @media (min-width: 500px) {
+    height: 18rem;
+    width: 38rem;
+    gap: 0.6rem;
+  }
   @media (min-width: 600px) {
     height: 22rem;
-    width: 48rem;
+    width: 40rem;
   }
   @media (min-width: 700px) {
     height: 25rem;
     width: 50rem;
+  }
+  @media (min-width: 800px) {
+    height: 27rem;
+    width: 57rem;
   }
   @media (min-width: 900px) {
     height: 30rem;
@@ -79,11 +89,12 @@ const ArticleHeader = styled.p`
   font-size: 12px;
   font-weight: 800;
   width: 100%;
-  @media (max-width: 600px) {
-    font-size: 10px;
+
+  @media (max-width: 500px) {
+    font-size: 9px;
   }
-  @media (min-width: 600px) {
-    font-size: 12px;
+  @media (min-width: 500px) {
+    font-size: 10px;
   }
   @media (min-width: 700px) {
     font-size: 14px;
@@ -98,11 +109,11 @@ const ArticleHeader = styled.p`
 const ArticleBref = styled.p`
   font-size: 10px;
   font-weight: 600;
-  @media (max-width: 600px) {
-    font-size: 9px;
+  @media (max-width: 500px) {
+    font-size: 7px;
   }
-  @media (min-width: 600px) {
-    font-size: 12px;
+  @media (min-width: 500px) {
+    font-size: 9px;
   }
   @media (min-width: 700px) {
     font-size: 12px;
@@ -122,4 +133,9 @@ const StyledButton = styled.div`
   padding: 2rem 2rem 0rem;
 `;
 
-const StyledImg = styled.img``;
+const StyledImg = styled.img`
+  @media (max-width: 500px) {
+    height: 15rem;
+    width: 31rem;
+  }
+`;

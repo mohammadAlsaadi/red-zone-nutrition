@@ -131,6 +131,9 @@ const ProductCategory = styled.span`
   font-weight: lighter;
   font-size: 10px;
   color: var(--color-grey-600);
+  @media (max-width: 500px) {
+    font-size: 8px;
+  }
 `;
 const ProductPrice = styled.span`
   font-weight: bold;
@@ -139,6 +142,10 @@ const ProductPrice = styled.span`
   padding: 5px 0px;
   @media (max-width: 900px) {
     font-size: 13px;
+  }
+  @media (max-width: 500px) {
+    font-size: 10px;
+    padding: 5px 0px 0px 0px;
   }
 `;
 

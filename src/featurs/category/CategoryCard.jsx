@@ -42,7 +42,11 @@ const StyledCategoryCart = styled.div`
   &:hover {
     transform: scale(1.02);
   }
-  @media (max-width: 900px) {
+  @media (max-width: 500px) {
+    width: 150px;
+    height: 150px;
+  }
+  @media (min-width: 500px) {
     width: 190px;
     height: 190px;
   }
@@ -57,8 +61,12 @@ const StyledCategoryCart = styled.div`
 `;
 
 const StyledImage = styled.div`
-  height: 500px;
+  height: 100%;
   width: 100%;
+  @media (max-width: 700px) {
+    height: 100%;
+    width: 100%;
+  }
   background-image: ${(props) => ` url(${props.imgurl})`};
   background-size: cover;
   background-position: center;

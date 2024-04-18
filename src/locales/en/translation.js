@@ -2,6 +2,10 @@ export const english = {
   "The page you are looking for could not be found":
     "The page you are looking for could not be found",
   "Go back": "Go back",
+  "You already rated this product!": "You already rated this product!",
+  Warning: "Warning",
+  "Please sign in to can rate this product":
+    "Please sign in to can rate this product",
 
   welcome: "Welcome",
   Hello: "Hello",

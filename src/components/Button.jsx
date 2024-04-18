@@ -37,7 +37,7 @@ const sizes = {
     text-align: center;
 
     @media (max-width: 600px) {
-      font-size: 1.1rem;
+      font-size: 1rem;
       padding: 0.8rem 1.6rem;
     }
     @media (min-width: 600px) {

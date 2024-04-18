@@ -26,12 +26,7 @@ function WriteReview({ isUserReviewedBefore, onCloseModal }) {
     <Modal>
       <Modal.Open opens={"write-review"}>
         <Button variation="primary" size="medium">
-          <StyledButtonText>
-            <Heading as="h5" color="var(--color-grey-50)">
-              {t("Write a review")}
-            </Heading>
-            <HiOutlinePencilSquare size={18} />
-          </StyledButtonText>
+          {t("Write a review")}
         </Button>
       </Modal.Open>
       <Modal.Window name={"write-review"}>
@@ -44,9 +39,9 @@ function WriteReview({ isUserReviewedBefore, onCloseModal }) {
                 size={50}
                 color={"var(--color-gold-500)"}
               />
-              <Heading as="h2">Warning !!</Heading>
+              <Heading as="h2">{t("Warning")} !!</Heading>
             </StyledMessageHeader>
-            <Heading as="h3">You already rated this product!</Heading>
+            <Heading as="h3">{t("You already rated this product!")}</Heading>
           </StyledWarningMessage>
         ) : (
           <StyledWarningMessage>
@@ -55,11 +50,13 @@ function WriteReview({ isUserReviewedBefore, onCloseModal }) {
                 size={50}
                 color={"var(--color-gold-500)"}
               />
-              <Heading as="h2">Warning !!</Heading>
+              <Heading as="h2">{t("Warning")} !!</Heading>
             </StyledMessageHeader>
-            <Heading as="h3">Please sign in to can rate this product !</Heading>
+            <Heading as="h3">
+              {t("Please sign in to can rate this product")} !
+            </Heading>
             <Button variation="primary" onClick={handleSignin}>
-              Sign in
+              {t("Sign in")}
             </Button>
           </StyledWarningMessage>
         )}
@@ -70,12 +67,6 @@ function WriteReview({ isUserReviewedBefore, onCloseModal }) {
 
 export default WriteReview;
 
-const StyledButtonText = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  justify-content: center;
-`;
 const StyledWarningMessage = styled.div`
   display: flex;
   flex-direction: column;

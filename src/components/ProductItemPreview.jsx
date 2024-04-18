@@ -26,7 +26,10 @@ function ProductItemPreview({ item }) {
           <ColorIcon dataToConvert={item?.flavor} />
           <Heading as="h6">{t(item.flavor)}</Heading>
         </StyledFlavor>
-        <Heading as="h4">{formatPrice(item.price)}</Heading>
+        <Heading as="h4">{formatPrice(item.price * item.count)}</Heading>
+        <Heading as="h6">
+          {formatPrice(item.price)} x {item.count}
+        </Heading>
       </StyledFlavorPriceContainer>
     </CartItemContainer>
   );

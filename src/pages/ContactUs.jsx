@@ -129,6 +129,9 @@ const StyledBody = styled.div`
   padding: 3rem 6rem;
   gap: 4rem;
   width: 100%;
+  @media (max-width: 700px) {
+    padding: 3rem 2rem;
+  }
 `;
 const ContactContainer = styled.div`
   width: 60%;
@@ -137,6 +140,9 @@ const ContactContainer = styled.div`
   flex-direction: column;
   padding: 1rem;
   border-bottom: 1px solid var(--color-grey-700);
+  @media (max-width: 600px) {
+    width: 100%;
+  }
   @media (max-width: 800px) {
     width: 90%;
   }

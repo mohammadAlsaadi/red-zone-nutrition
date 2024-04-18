@@ -1,6 +1,10 @@
 export const arabicTranslation = {
   "The page you are looking for could not be found":
     "الصفحة التي تبحث عنها لا يمكن العثور عليها",
+  "You already rated this product!": "لقد قمت بالفعل بتقييم هذا المنتج!",
+  Warning: "تحذير",
+  "Please sign in to can rate this product":
+    "الرجاء تسجيل الدخول لتتمكن من تقييم هذا المنتج",
   "Go back": "عُد للوراء",
   welcome: "أهلاً بك",
   Menu: "خيارات",

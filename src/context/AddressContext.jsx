@@ -14,19 +14,18 @@ const AddressProvider = ({ children }) => {
     storedAddress ? storedAddress.buildingNumber : ""
   );
 
-  useEffect(() => {
-    if (addressAutoFill !== undefined || street || buildingNumber) {
-      window.localStorage.setItem(
-        "address",
-        JSON.stringify({
-          addressAutoFill,
-          street,
-          buildingNumber,
-        })
-      );
-    }
-  }, [addressAutoFill, street, buildingNumber]);
-
+  // useEffect(() => {
+  //   if (addressAutoFill !== undefined || street || buildingNumber) {
+  //     window.localStorage.setItem(
+  //       "address",
+  //       JSON.stringify({
+  //         addressAutoFill,
+  //         street,
+  //         buildingNumber,
+  //       })
+  //     );
+  //   }
+  // }, [addressAutoFill, street, buildingNumber]);
   return (
     <AddressContext.Provider
       value={{

@@ -14,7 +14,7 @@ import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 function Sidebar() {
-  const [language, setLanguage] = useState("English");
+  // const [language, setLanguage] = useState("English");
   const [country, setCountry] = useState("jordan");
   const { setShowSideBar } = useShowSideBar();
   const { isAuthenticated } = useUser();
@@ -52,7 +52,7 @@ function Sidebar() {
             withoutLabel={true}
             fontSize="x-small"
           />
-          <DropDownList
+          {/* <DropDownList
             width="50px"
             height="30px"
             withoutLabel={true}
@@ -61,7 +61,7 @@ function Sidebar() {
             options={["English", "العربية"]}
             labelText="language"
             fontSize="x-small"
-          />
+          /> */}
         </LayerOne>
         <LayerTwo isauth={isAuthenticated}>
           {isAuthenticated ? (
@@ -100,7 +100,7 @@ const StyledSidebar = styled.aside`
   overflow-y: hidden;
   position: fixed;
   z-index: 1;
-  width: 30%;
+  width: 60%;
   transform: scale(1);
   transition: opacity 1s ease-out 0.3s, box-shadow 0.5s ease-out,
     transform 0.5s ease-out;
@@ -110,7 +110,9 @@ const StyledSidebar = styled.aside`
   @media (min-width: 900px) {
     display: none;
   }
-
+  @media (max-width: 600px) {
+    width: 90%;
+  }
   @keyframes fadeIn {
     from {
       opacity: 0;
