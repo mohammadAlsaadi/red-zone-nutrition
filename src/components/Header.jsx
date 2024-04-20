@@ -193,16 +193,15 @@ const LayerOne = styled.div`
   justify-content: space-between;
   height: 100%;
   width: 100%;
+  padding: 0rem 1rem;
   ${(props) =>
     props.isscrolled ||
     (!props.ishomepagepath &&
       css`
         border-bottom: 1px solid var(--color-grey-300);
-      `)}
-
-  @media (min-width: 1200px) {
+      `)}/* @media (min-width: 1200px) {
     padding: 0rem 3rem;
-  }
+  } */
 `;
 const LayerTwo = styled.div`
   display: none;

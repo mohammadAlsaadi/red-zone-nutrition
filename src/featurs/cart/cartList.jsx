@@ -3,7 +3,7 @@ import styled from "styled-components";
 // import useCart from "./useCart";
 import Modal from "../../components/Modal";
 import CartItem from "../../components/CartItem";
-import Heading from "../../components/Heading";
+// import Heading from "../../components/Heading";
 import { formatPrice } from "../../utils/helper";
 import Button from "../../components/Button";
 import ButtonText from "../../components/ButtonText";
@@ -113,10 +113,11 @@ const StyledTotalPrice = styled.div`
   }
 `;
 const P = styled.p`
-  color: var(--color-red-500);
+  color: var(--color-gold-500);
+  font-weight: bold;
+
   @media (max-width: 600px) {
     font-size: 14px;
-    font-weight: bold;
   }
 `;
 const StyledOptions = styled.div`

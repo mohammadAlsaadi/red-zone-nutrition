@@ -102,7 +102,7 @@ function Porducts() {
             ? t(categoryName)
             : t("All Products")}
         </Heading>
-        <ButtonText color="red" size="small">
+        <ButtonText color="var(--color-gold-700)" size="small">
           <Modal>
             <Modal.Open opens="category-filter">
               <ButtonText color="red" size="small">
@@ -135,7 +135,7 @@ function Porducts() {
         </ProductsList>
         <PaginationContainer>
           <PageNumberArrow onClick={handlePrevPage}>
-            <HiOutlineChevronLeft color="red" />
+            <HiOutlineChevronLeft color="var(--color-gold-700)" />
           </PageNumberArrow>
           {Array.from({ length: totalPages }).map((_, index) => (
             <PageNumber
@@ -147,7 +147,7 @@ function Porducts() {
             </PageNumber>
           ))}
           <PageNumberArrow onClick={handleNextPage}>
-            <HiOutlineChevronRight color="red" />
+            <HiOutlineChevronRight color="var(--color-gold-700)" />
           </PageNumberArrow>
         </PaginationContainer>
       </ProductsContainer>
@@ -216,11 +216,13 @@ const PageNumber = styled.div`
   margin: 0 5px;
   padding: 8px;
   border-radius: 4px;
-  background-color: ${(props) => (props.isactive ? "red" : "white")};
+  background-color: ${(props) =>
+    props.isactive ? "var(--color-gold-500)" : "white"};
   color: ${(props) => (props.isactive ? "white" : "black")};
 
   &:hover {
-    background-color: ${(props) => (props.isactive ? "red" : "#f0f0f0")};
+    background-color: ${(props) =>
+      props.isactive ? "var(--color-gold-600)" : "var(--color-gold-100)"};
   }
 `;
 

@@ -45,7 +45,7 @@ function Articles() {
         </ArticleList>
         <PaginationContainer>
           <PageNumberArrow onClick={handlePrevPage}>
-            <HiOutlineChevronLeft color="red" />
+            <HiOutlineChevronLeft color="var(--color-gold-600)" />
           </PageNumberArrow>
           {Array.from({ length: totalPages }).map((_, index) => (
             <PageNumber
@@ -57,7 +57,7 @@ function Articles() {
             </PageNumber>
           ))}
           <PageNumberArrow onClick={handleNextPage}>
-            <HiOutlineChevronRight color="red" />
+            <HiOutlineChevronRight color="var(--color-gold-600)" />
           </PageNumberArrow>
         </PaginationContainer>
       </ArticleContainer>
@@ -109,11 +109,13 @@ const PageNumber = styled.div`
   margin: 0 5px;
   padding: 8px;
   border-radius: 4px;
-  background-color: ${(props) => (props.isactive ? "red" : "white")};
+  background-color: ${(props) =>
+    props.isactive ? "var(--color-gold-600)" : "white"};
   color: ${(props) => (props.isactive ? "white" : "black")};
 
   &:hover {
-    background-color: ${(props) => (props.isactive ? "red" : "#f0f0f0")};
+    background-color: ${(props) =>
+      props.isactive ? "var(--color-gold-600)" : "#f0f0f0"};
   }
 `;
 

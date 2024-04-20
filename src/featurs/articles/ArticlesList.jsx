@@ -2,8 +2,8 @@ import styled from "styled-components";
 import Spinner from "../../components/Spinner";
 import useFetchArticles from "./useFetchArticles";
 import Carousel from "react-multi-carousel";
-import { useShowSideBar } from "../../context/ShowSideBar";
-import { useLocation } from "react-router-dom";
+// import { useShowSideBar } from "../../context/ShowSideBar";
+// import { useLocation } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 
 function ArticlesList() {
@@ -35,8 +35,8 @@ function ArticlesList() {
   };
 
   const { data, isLoading } = useFetchArticles();
-  const { showSideBar } = useShowSideBar();
-  const isDesktopDevice = useLocation().pathname === "/home";
+  // const { showSideBar } = useShowSideBar();
+  // const isDesktopDevice = useLocation().pathname === "/home";
   if (isLoading) return <Spinner />;
   return (
     <StyledArticlesList>
