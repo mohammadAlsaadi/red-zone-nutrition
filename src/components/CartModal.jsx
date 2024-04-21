@@ -16,7 +16,7 @@ function CartModal() {
 
   const language = window.localStorage.getItem("language");
   const [bodyDir, setBodyDir] = useState(document.body.dir);
-
+  console.log(bodyDir);
   const { t } = useTranslation();
   useEffect(() => {
     setBodyDir(document.body.dir);
@@ -41,10 +41,7 @@ function CartModal() {
               }
             />
 
-            <Counter
-              dir={language === "ar" ? "rtl" : "ltr"}
-              isScrolled={isScrolled}
-            >
+            <Counter language={language} isScrolled={isScrolled}>
               <P>{cartCountItems}</P>
             </Counter>
           </StyledCartIcon>
@@ -78,8 +75,8 @@ const Counter = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  left: ${(props) => props.dir === "rtl" && "11px"};
-  right: ${(props) => props.dir !== "rtl" && "11px"};
+  left: ${(props) => props.language === "ar" && "11px"};
+  right: ${(props) => props.language !== "ar" && "11px"};
   margin-left: 0px;
   margin-bottom: 20px;
   background-color: var(--color-grey-800);
