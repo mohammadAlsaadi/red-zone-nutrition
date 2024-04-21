@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import ProductItemPreview from "../../components/productItemPreview";
+import ProductItemPreview from "../../components/ProductItemPreview";
 import Spinner from "../../components/Spinner";
 // import Heading from "../../components/Heading";
 import Stepper from "../../components/Stepper";
