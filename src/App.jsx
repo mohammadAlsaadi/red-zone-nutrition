@@ -62,7 +62,7 @@ function App() {
                     <ReviewsProvider>
                       <ScrolledProvider>
                         <AddressProvider>
-                          <BrowserRouter>
+                          <BrowserRouter basename="home">
                             <Routes>
                               <Route element={<AppLayout />}>
                                 <Route
