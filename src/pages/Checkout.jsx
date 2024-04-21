@@ -10,7 +10,7 @@ import Form from "../components/Form";
 import { useCartContext } from "../context/CartContext";
 import useCreateOrder from "../featurs/order/useCreateOrder";
 import { formatPrice } from "../utils/helper";
-import ProductItemPreview from "../components/productItemPreview";
+import ProductItemPreview from "../components/ProductItemPreview";
 import {
   HiOutlineCheckCircle,
   HiOutlineChevronDown,
