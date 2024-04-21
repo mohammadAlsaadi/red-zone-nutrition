@@ -86,6 +86,7 @@ function Checkout() {
         window.location.href = url;
       } catch (error) {
         console.error(error);
+        console.error("Stripe Error:", error);
       }
     }
     // 2.1 : cash Method
