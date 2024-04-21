@@ -2,12 +2,13 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import { DarkModeProvider } from "./context/DarkModeContext";
 import GlobalStyles from "./styles/globalStyles";
-import Home from "./pages/home";
 import Porducts from "./pages/Porducts";
 import PageNotFound from "./pages/PageNotFound";
 import { DeviceWidthProvider } from "./context/DeviceWidthContext";
 import { ShowSideBarProvider } from "./context/ShowSideBar";
 import Cart from "./pages/Cart";
+import Home from "./pages/Home";
+
 // import Account from "./pages/Account";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
