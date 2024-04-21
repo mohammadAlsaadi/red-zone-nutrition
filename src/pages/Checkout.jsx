@@ -65,7 +65,7 @@ function Checkout() {
     else if (paymentMethod === "creditCard") {
       try {
         const response = await fetch(
-          "https://payment-with-stripe.vercel.app/create-checkout-session",
+          "https://payment-with-stripe-ofqn.onrender.com/create-checkout-session",
           {
             method: "POST",
             headers: {
