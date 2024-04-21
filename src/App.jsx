@@ -30,7 +30,7 @@ import NewInStore from "./pages/NewInStore";
 import Orders from "./pages/Orders";
 import SpecialOffer from "./pages/SpecialOffer";
 import BestSeller from "./pages/BestSeller";
-import AboutUs from "./pages/Aboutus";
+import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import { BodyDirectionProvider } from "./context/BodyDirectionContext";
 import Articles from "./pages/Articles";
