@@ -14,6 +14,7 @@ function CartModal() {
   const isHomePagePath = useLocation().pathname === "/home";
   const isContactUsPage = useLocation().pathname === "/contact-us";
 
+  const language = window.localStorage.getItem("language");
   const [bodyDir, setBodyDir] = useState(document.body.dir);
 
   const { t } = useTranslation();
@@ -40,7 +41,10 @@ function CartModal() {
               }
             />
 
-            <Counter dir={bodyDir} isScrolled={isScrolled}>
+            <Counter
+              dir={language === "ar" ? "rtl" : "ltr"}
+              isScrolled={isScrolled}
+            >
               <P>{cartCountItems}</P>
             </Counter>
           </StyledCartIcon>
