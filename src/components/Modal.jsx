@@ -8,6 +8,9 @@ const StyledModal = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
+  @media (max-width: 600px) {
+    width: ${(props) => (props.anotherstyleoption ? "90%" : "80%")};
+  }
   width: 80%;
   transform: translate(-50%, -50%);
   background-color: var(--color-grey-0);
@@ -63,7 +66,6 @@ const ModalContext = createContext();
 
 function Modal({ children }) {
   const [openName, setOpenName] = useState("");
-
   const close = () => setOpenName("");
   const open = setOpenName;
   return (
@@ -79,11 +81,12 @@ function Open({ children, opens: opensWindowName }) {
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
   const { ref } = useOutsideClick(close, true);
+  const cartModalOpend = Boolean(openName === "cart");
 
   if (name !== openName) return null;
   return createPortal(
     <Overlay>
-      <StyledModal ref={ref}>
+      <StyledModal anotherstyleoption={cartModalOpend} ref={ref}>
         <Button onClick={close}>
           <HiXMark />
         </Button>
