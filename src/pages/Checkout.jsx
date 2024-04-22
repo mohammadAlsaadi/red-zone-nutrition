@@ -108,7 +108,9 @@ function Checkout() {
       clearCart();
     }
   };
-
+  function handleCopon(e) {
+    e.preventDefault();
+  }
   if (isLoading || isFetchingCartData) return <Spinner />;
   if (cart.length === 0) return navigate("/home");
   return (
@@ -194,6 +196,7 @@ function Checkout() {
               variation={isCouponValid ? "secondary" : "primary"}
               size="small"
               disabled={isCouponValid}
+              onClick={(e) => handleCopon(e)}
             >
               {isCouponValid ? (
                 <HiOutlineCheckCircle size={22} color="green" />
