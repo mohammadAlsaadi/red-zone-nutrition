@@ -36,6 +36,14 @@ function CartItem({ item }) {
         </StyledName>
       </StyledProductInfo>
       <OptionsContainer>
+        <ButtonText
+          fontSize="small"
+          color="var(--color-red-500)"
+          textDecoration="underLine"
+          onClick={() => removeItem(id)}
+        >
+          {t("Remove")}
+        </ButtonText>
         <StyledOptins>
           <Button
             variation="secondary"
@@ -55,14 +63,6 @@ function CartItem({ item }) {
           >
             <StyledButtonContant>-</StyledButtonContant>
           </Button>
-          <ButtonText
-            fontSize="small"
-            color="var(--color-red-500)"
-            textDecoration="underLine"
-            onClick={() => removeItem(id)}
-          >
-            {t("Remove")}
-          </ButtonText>
         </StyledOptins>
         <StyledPrice>{formatPrice(price)}</StyledPrice>
       </OptionsContainer>
@@ -126,8 +126,8 @@ const StyledButtonContant = styled.p`
   font-size: 15px;
   padding: 3px 7px;
   @media (max-width: 600px) {
-    font-size: x-small;
-    padding: 3px 2px;
+    font-size: small;
+    /* padding: 5px 7px; */
   }
 `;
 const StyledPrice = styled.p`
@@ -141,7 +141,7 @@ const StyledPrice = styled.p`
 const OptionsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   gap: 1rem;
   padding: 0rem 3rem;
