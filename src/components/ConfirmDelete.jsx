@@ -4,7 +4,7 @@ import Heading from "./Heading";
 import { useTranslation } from "react-i18next";
 
 const StyledConfirmDelete = styled.div`
-  width: 40rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -12,6 +12,9 @@ const StyledConfirmDelete = styled.div`
   & p {
     color: var(--color-grey-500);
     margin-bottom: 1.2rem;
+    @media (max-width: 600px) {
+      font-size: small;
+    }
   }
 
   & div {
