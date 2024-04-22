@@ -22,9 +22,10 @@ function Porducts() {
   const [priceFrom, setPriceFrom] = useState(0);
   const [priceTo, setPriceTo] = useState(100);
   const [setFiltered] = useState(false);
-  const [stock, setStock] = useState("all");
+  const [stock, setStock] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
   let products = [];
+  console.log("stock on p,:", stock);
 
   if (error) console.log(error.message);
   if (isLoading || isFiltering) return <Spinner />;
@@ -56,6 +57,7 @@ function Porducts() {
       );
     }
   } else if (stock === "Out of stock") {
+    console.log("hhhhhhhhhhhh");
     if (categoryName === "all") {
       products = data.filter((product) => product.inStock === false);
     } else {
@@ -102,7 +104,8 @@ function Porducts() {
             ? t(categoryName)
             : t("All Products")}
         </Heading>
-        <ButtonText color="var(--color-gold-700)" size="small">
+
+        {/* <ButtonText color="var(--color-gold-700)" size="small">
           <Modal>
             <Modal.Open opens="category-filter">
               <ButtonText color="red" size="small">
@@ -121,7 +124,7 @@ function Porducts() {
               />
             </Modal.Window>
           </Modal>
-        </ButtonText>
+        </ButtonText> */}
       </StyledHeader>
       <ProductsContainer>
         <ProductsList>

@@ -145,10 +145,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 90vh;
+  height: 100%;
   width: 100%;
   gap: 2rem;
-  padding-top: 4rem;
+  padding: 2rem 0rem 3rem;
 `;
 
 const Select = styled.select`

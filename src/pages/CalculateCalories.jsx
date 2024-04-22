@@ -75,7 +75,6 @@ const fadeIn = keyframes`
   }
 `;
 const CalculateCaloriesLayout = styled.div`
-  padding-top: 4rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -96,10 +95,13 @@ const StyledFooter = styled.footer`
   border-radius: 2rem;
 
   width: 90%;
-  height: 30vh;
+  height: 20rem;
   margin-bottom: 1rem;
   gap: 1rem;
   padding: 1.5rem;
+  @media (max-width: 600px) {
+    padding: 1rem;
+  }
 `;
 const P = styled.p`
   color: var(--color-grey-300);

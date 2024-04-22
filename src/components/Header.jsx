@@ -34,12 +34,13 @@ function Header() {
   const { isDesktopDevice } = useDeviceWidth();
   const { isAuthenticated } = useUser();
   const navigate = useNavigate();
-  const { bodyDirectionection, isRtl } = useBodyDirection();
-
+  const { bodyDirectionection } = useBodyDirection();
+  const language = window.localStorage.getItem("language");
+  const isAr = language === "ar";
   let resultData =
     searchInput.length >= 2 &&
     data.filter((item) =>
-      isRtl
+      isAr
         ? item.name_ar.includes(searchInput)
         : item.name.toLowerCase().includes(searchInput.toLowerCase())
     );
@@ -193,15 +194,17 @@ const LayerOne = styled.div`
   justify-content: space-between;
   height: 100%;
   width: 100%;
+
   padding: 0rem 1rem;
   ${(props) =>
     props.isscrolled ||
     (!props.ishomepagepath &&
       css`
         border-bottom: 1px solid var(--color-grey-300);
-      `)}/* @media (min-width: 1200px) {
-    padding: 0rem 3rem;
-  } */
+      `)}
+  @media (max-width: 600px) {
+    padding: 0rem;
+  }
 `;
 const LayerTwo = styled.div`
   display: none;

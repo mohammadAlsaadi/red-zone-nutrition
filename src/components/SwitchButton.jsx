@@ -5,6 +5,7 @@ import styled from "styled-components";
 function SwitchButton({ width, height, setStock, stock, labels }) {
   const [selectedLabel, setSelectedLabel] = useState(stock);
   const { t } = useTranslation();
+  console.log(selectedLabel);
   return (
     <StyledSwitchButton width={width} height={height}>
       {labels.map((label, index) => (
@@ -12,7 +13,7 @@ function SwitchButton({ width, height, setStock, stock, labels }) {
           selected={selectedLabel === labels[index]}
           onClick={() => {
             setSelectedLabel(label);
-            setStock(label);
+            setStock(selectedLabel);
           }}
         >
           {t(label)}

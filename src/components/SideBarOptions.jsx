@@ -86,7 +86,7 @@ function SideBarOptions() {
         </StyledList>
       )}
 
-      <StyledOption onClick={() => handleNavigate(`/spectial-offer`)}>
+      <StyledOption onClick={() => handleNavigate(`/special-offer`)}>
         <Heading as="h5">{t("Special Offers")}</Heading>
       </StyledOption>
 

@@ -64,7 +64,7 @@ function ProductsList({ offers, isLoadingFetch, category, categoryList }) {
         arrows={showSideBar || !isDesktopDevice ? false : true}
         responsive={responsive}
         autoPlay={true}
-        autoPlaySpeed={1500}
+        autoPlaySpeed={2500}
         pauseOnHover={true}
       >
         {products.map((product) => (

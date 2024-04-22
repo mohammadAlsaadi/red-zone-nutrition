@@ -21,7 +21,6 @@ function Home() {
       <SliderContainer>
         <SliderImages />
       </SliderContainer>
-      <br />
 
       <ConsultationContainer>
         <StyledConsultationImg

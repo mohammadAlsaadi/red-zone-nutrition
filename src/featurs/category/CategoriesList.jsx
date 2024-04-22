@@ -41,7 +41,7 @@ function CategoriesList() {
           arrows={showSideBar || !isDesktopDevice ? false : true}
           responsive={responsive}
           autoPlay={true}
-          autoPlaySpeed={1500}
+          autoPlaySpeed={2500}
         >
           {categories.map((category) => (
             <CategoryCard categoryItem={category} key={category.id} />

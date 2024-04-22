@@ -20,7 +20,8 @@ function FilterContant({
   const [toValue, setToValue] = useState(priceTo);
   const placeHolderValue1 = 35;
   const placeHolderValue2 = 70;
-  const handleFilter = () => {
+  console.log(stock);
+  const handleFilter = (e) => {
     if (toValue < 0 || fromValue < 0) return onCloseModal();
     else if (toValue < fromValue) {
       setStock(stockValue);
@@ -32,37 +33,40 @@ function FilterContant({
       setPriceFrom(fromValue);
       setPriceTo(toValue);
     }
+    setStock(stockValue);
 
+    setPriceFrom(fromValue);
+    setPriceTo(toValue);
     onCloseModal();
   };
   return (
     <StyledFilter>
       <Heading as="h3">{t("Filter by")}</Heading>
       <OptionContainer>
-        <Heading as="h4">{t("Price")}</Heading>
+        <Label>{t("Price")}</Label>
         <OptionContant>
           <InputContainer>
-            <Heading as="h5">{t("From")}</Heading>
+            <P>{t("From")}</P>
             <StyledInput
               placeholder={placeHolderValue1}
               type="number"
               onChange={(e) => setFromValue(e.target.value)}
             />
-            <Heading as="h6">{t("JOD")}</Heading>
+            <P>{t("JOD")}</P>
           </InputContainer>
           <InputContainer>
-            <Heading as="h5">{t("to")}</Heading>
+            <P>{t("to")}</P>
             <StyledInput
               placeholder={placeHolderValue2}
               type="number"
               onChange={(e) => setToValue(e.target.value)}
             />
-            <Heading as="h6">{t("JOD")}</Heading>
+            <P>{t("JOD")}</P>
           </InputContainer>
         </OptionContant>
       </OptionContainer>
       <OptionContainer>
-        <Heading as="h4">{t("Stock")}</Heading>
+        <Label>{t("Stock")}</Label>
         <OptionContant>
           <SwitchButton
             labels={["All", "In Stock", "Out of stock"]}
@@ -91,11 +95,18 @@ const StyledFilter = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 2rem;
+  @media (max-width: 600px) {
+    padding: 1rem 0rem;
+  }
 `;
 const OptionContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 5rem;
+  @media (max-width: 600px) {
+    height: 6rem;
+  }
   width: 100%;
 `;
 const InputContainer = styled.div`
@@ -110,6 +121,15 @@ const StyledInput = styled.input`
     font-size: small;
     text-align: center;
   }
+  @media (max-width: 600px) {
+    width: 30%;
+    font-size: small;
+    &::placeholder {
+      font-size: x-small;
+      text-align: center;
+    }
+    height: 100%;
+  }
 `;
 const OptionContant = styled.div`
   display: flex;
@@ -121,4 +141,18 @@ const StyledButtons = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
+`;
+const P = styled.p`
+  font-size: 14px;
+  font-weight: bold;
+  @media (max-width: 600px) {
+    font-size: 10px;
+  }
+`;
+const Label = styled.p`
+  font-size: medium;
+  font-weight: bold;
+  @media (max-width: 600px) {
+    font-size: small;
+  }
 `;

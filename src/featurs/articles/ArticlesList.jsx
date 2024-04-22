@@ -43,8 +43,8 @@ function ArticlesList() {
       <StyledCarousel
         arrows={false}
         responsive={responsive}
-        autoPlay={true}
-        autoPlaySpeed={3500}
+        autoPlay={false}
+        // autoPlaySpeed={3500}
         pauseOnHover={true}
       >
         {data?.map((article) => (
