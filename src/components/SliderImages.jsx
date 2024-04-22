@@ -119,10 +119,11 @@ const StyledSliderImages = styled.div`
   width: 100%;
 `;
 const StyledHeading = styled.div`
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  justify-content: flex-end;
 
   justify-content: ${(props) => (props.isrtl ? "flex-start" : "flex-end")};
   padding-top: 35rem;

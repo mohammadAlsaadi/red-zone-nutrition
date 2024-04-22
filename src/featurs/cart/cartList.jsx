@@ -47,16 +47,16 @@ function CartList({ onCloseModal }) {
             <CartItem key={item.id} item={item} />
           ))}
           <StyledFooterBar>
-            <StyledTotalPrice>
-              <Label>{t("Total Price")} :</Label>
+            <StyledTotalPrice iscartpage={isCartPage}>
+              <Label>{t("Total Price")}</Label>
               <P>{formatPrice(totalPrice)}</P>
             </StyledTotalPrice>
-            <StyledOptions>
+            <StyledOptions iscartpage={isCartPage}>
               <ButtonText
                 onClick={() => handleclick("/products/all")}
                 color="white"
                 textDecoration="underLine"
-                fontSize="x-small"
+                fontSize="10px"
               >
                 {t("Order more")}
               </ButtonText>
@@ -64,6 +64,7 @@ function CartList({ onCloseModal }) {
                 onClick={() => handleclick("/checkout")}
                 variation="transparent"
                 border="circle"
+                size="medium"
               >
                 {t("Check out")}
               </Button>
@@ -105,6 +106,11 @@ const StyledFooterBar = styled.footer`
 const StyledTotalPrice = styled.div`
   display: flex;
   align-items: center;
+  @media (max-width: 600px) {
+    justify-content: ${(props) => !props.iscartpage && "center"};
+
+    flex-direction: ${(props) => !props.iscartpage && "column"};
+  }
   gap: 1rem;
   padding: 0px 20px;
   @media (max-width: 600px) {
@@ -117,17 +123,21 @@ const P = styled.p`
   font-weight: bold;
 
   @media (max-width: 600px) {
-    font-size: 14px;
+    font-size: 11px;
   }
 `;
 const StyledOptions = styled.div`
   display: flex;
+  @media (max-width: 600px) {
+    flex-direction: ${(props) => !props.iscartpage && "column"};
+  }
+
   align-items: center;
   gap: 1rem;
   margin-right: 10px;
   @media (max-width: 600px) {
     margin-right: 0px;
-    gap: 0.4rem;
+    gap: 0.8rem;
   }
 `;
 const Label = styled.p`

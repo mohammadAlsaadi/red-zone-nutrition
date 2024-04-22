@@ -11,7 +11,7 @@ const ButtonText = styled.button`
   border: none;
   outline: none;
   @media (max-width: 600px) {
-    font-size: 12px;
+    font-size: 9px;
   }
   &:hover,
   &:active {

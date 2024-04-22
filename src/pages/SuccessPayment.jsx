@@ -79,15 +79,15 @@ function SuccessPayment() {
   return (
     <Container>
       <StyledSuccessPayment>
-        <StyledHeader>
-          <Heading as="h3">{t("Payment Submitted Successfully")} </Heading>
+        <HeaderContainer>
+          <StyledHeader>{t("Payment Submitted Successfully")} </StyledHeader>
           <img
             src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/checkIcon.png"
             alt="checkIcon"
             width={40}
             height={40}
           />
-        </StyledHeader>
+        </HeaderContainer>
 
         <Paragraph>{t("Thank you for choosing us!")}</Paragraph>
         <Paragraph>
@@ -123,7 +123,10 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: var(--color-grey-0);
-  padding: 10rem;
+  padding: 5rem 10rem;
+  @media (max-width: 700px) {
+    padding: 1rem;
+  }
 `;
 
 const StyledSuccessPayment = styled.div`
@@ -138,20 +141,34 @@ const StyledSuccessPayment = styled.div`
   background-color: var(--color-grey-50);
   border: 1px solid var(--color-grey-300);
   border-radius: 16px;
+  @media (max-width: 700px) {
+    width: 100%;
+    padding: 3rem;
+  }
 `;
 
-const StyledHeader = styled.div`
+const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
 `;
-
+const StyledHeader = styled.p`
+  font-size: medium;
+  font-weight: bold;
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
+`;
 const Paragraph = styled.p`
   font-size: 16px;
   line-height: 1.5;
   color: var(--color-grey-600);
   margin-top: 1rem;
+  @media (max-width: 600px) {
+    font-size: x-small;
+    font-weight: 600;
+  }
 `;
 
 const StyledButtons = styled.div`

@@ -168,7 +168,7 @@ function Details() {
         <UnderLine />
         {isOpenDescription && (
           <DescriptionParagraphs>
-            <p>{formatProductDescription(t(description))}</p>{" "}
+            <p>{t(description)}</p>{" "}
             {/* Format the description using the function */}
           </DescriptionParagraphs>
         )}
@@ -246,7 +246,8 @@ const ImageContainer = styled.div`
   }
 `;
 const DescriptionParagraphs = styled.div`
-  width: 90%;
+  width: 75%;
+  padding: 2rem;
   p {
     margin-bottom: 1rem;
   }

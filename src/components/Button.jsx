@@ -37,8 +37,8 @@ const sizes = {
     text-align: center;
 
     @media (max-width: 600px) {
-      font-size: 1rem;
-      padding: 0.8rem 1.6rem;
+      font-size: 12px;
+      padding: 0.5rem 1.2rem;
     }
     @media (min-width: 600px) {
       font-size: 1.2rem;
@@ -62,6 +62,22 @@ const sizes = {
     font-size: 1.6rem;
     padding: 0.6rem 8rem;
     font-weight: 500;
+    @media (max-width: 600px) {
+      font-size: 10px;
+      padding: 0.8rem 1.6rem;
+    }
+    @media (min-width: 600px) {
+      font-size: 1.2rem;
+    }
+    @media (min-width: 700px) {
+      font-size: 1.2rem;
+    }
+    @media (min-width: 900px) {
+      font-size: 1.4rem;
+    }
+    @media (min-width: 1100px) {
+      font-size: 1.6rem;
+    }
   `,
 };
 
