@@ -38,6 +38,7 @@ import Article from "./pages/Article";
 import { ProductSelectionProvider } from "./context/ProductSelectionContext";
 import SuccessPayment from "./pages/SuccessPayment";
 import { AddressProvider } from "./context/AddressContext";
+import SuccessOrder from "./pages/SuccessOrder";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -129,6 +130,10 @@ function App() {
                                 <Route
                                   path="success-payment"
                                   element={<SuccessPayment />}
+                                />
+                                <Route
+                                  path="success-order"
+                                  element={<SuccessOrder />}
                                 />
                               </Route>
                               <Route path="login" element={<Login />} />

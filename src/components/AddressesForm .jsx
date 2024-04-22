@@ -11,8 +11,11 @@ import Button from "./Button";
 import toast from "react-hot-toast";
 
 function AddressesForm({ apiKey }) {
+  const address = JSON.parse(window.localStorage.getItem("address"));
   const [isAddressSaved, setIsAdressSaved] = useState(
-    window.localStorage.getItem("address") !== null
+    address.addressAutoFill !== "" ||
+      address.street !== "" ||
+      address.buildingNumber !== ""
   );
   const [addressError, setAddressError] = useState("");
   const [streetError, setStreetError] = useState("");
@@ -25,7 +28,6 @@ function AddressesForm({ apiKey }) {
     street,
     buildingNumber,
   } = useAddressContext();
-  const address = JSON.parse(window.localStorage.getItem("address"));
   const { t } = useTranslation();
   const validateAddress = (place) => {
     if (!place || !place.formatted_address) {

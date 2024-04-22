@@ -11,6 +11,7 @@ import { useCartContext } from "../context/CartContext";
 import useCreateOrder from "../featurs/order/useCreateOrder";
 import { formatPrice } from "../utils/helper";
 import ProductItemPreview from "../components/ProductItemPreview";
+import SpinnerMini from "../components/SpinnerMini";
 import {
   HiOutlineCheckCircle,
   HiOutlineChevronDown,
@@ -35,13 +36,15 @@ function Checkout() {
   const [coupon, setCoupon] = useState("");
   const { addressAutoFill, street, buildingNumber } = useAddressContext();
   const { user, isAuthenticated, isLoading } = useUser();
-  const { createOrder, isLoading: isCreating } = useCreateOrder();
+  const { createOrder } = useCreateOrder();
   const [paymentMethod, setPaymentMethod] = useState("creditCard");
   const isCouponValid = coupon === "FRESHMUSCLES";
   const shipping = productsPrice < 70.0 ? 3.0 : 0;
   const discount = isCouponValid ? 0.15 * productsPrice : 0;
   const totalPrice = shipping + productsPrice - discount;
   const has_discount = window.localStorage.getItem("has_discount");
+  const [isOrderCreating, setIsOrderCreating] = useState(false);
+
   useEffect(() => {
     if (isCouponValid) window.localStorage.setItem("has_discount", true);
     else {
@@ -55,10 +58,18 @@ function Checkout() {
   };
   const handleComplete = async (e) => {
     e.preventDefault();
-
+    setIsOrderCreating(true);
     // Step 1 : Check if address information has not been entered
-    if (addressAutoFill === undefined || !street || !buildingNumber) {
+    if (
+      addressAutoFill === "" ||
+      addressAutoFill === undefined ||
+      street === "" ||
+      !street ||
+      !buildingNumber ||
+      buildingNumber === ""
+    ) {
       toast.error(t("Please fill all address field."));
+      setIsOrderCreating(false);
     }
     // Step 2 : Check payment method chosen
     // 2.1 : Credit Card Method
@@ -82,12 +93,15 @@ function Checkout() {
           const error = await response.json();
           throw new Error(error.message);
         }
+        setIsOrderCreating(false);
+
         const { url } = await response.json();
         window.location.href = url;
       } catch (error) {
         console.error(error);
         console.error("Stripe Error:", error);
         console.error("Stripe Error:", error.message);
+        setIsOrderCreating(false);
       }
     }
     // 2.1 : cash Method
@@ -105,7 +119,10 @@ function Checkout() {
         has_discount,
       };
       createOrder(newOrder);
+      setIsOrderCreating(true);
+
       clearCart();
+      navigate("/success-order");
     }
   };
   function handleCopon(e) {
@@ -272,7 +289,7 @@ function Checkout() {
             size="tallerHerzontally"
             onClick={(e) => handleComplete(e)}
           >
-            {isCreating ? t("Loading") + " .." : t("Complete Order")}
+            {isOrderCreating ? <SpinnerMini /> : t("Complete Order")}
           </Button>
         </OrderSummaryContainer>
       </Form>

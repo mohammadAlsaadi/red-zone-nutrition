@@ -1,83 +1,16 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "../components/Button";
-import { useNavigate } from "react-router-dom";
-import { useAddressContext } from "../context/AddressContext";
-import { useUser } from "../featurs/authentication/useUser";
-import Spinner from "../components/Spinner";
-import { useCartContext } from "../context/CartContext";
-import useCreateOrder from "../featurs/order/useCreateOrder";
+
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
-function SuccessPayment() {
-  const { addressAutoFill, street, buildingNumber } = useAddressContext();
-  const { user, isAuthenticated, isLoading } = useUser();
-  const [orderProcessed, setOrderProcessed] = useState(false);
+function SuccessOrder() {
   const { t } = useTranslation();
-  const {
-    cart,
-    isLoading: isFetchingCartData,
-    totalPrice: itemsPrice,
-    clearCart,
-  } = useCartContext();
-  const { createOrder, isLoading: isCreating } = useCreateOrder();
-  const has_discount = window.localStorage.getItem("has_discount");
-
   const navigate = useNavigate();
-  const discount = has_discount ? 0.15 * itemsPrice : 0;
-  const shipping = itemsPrice < 70.0 ? 3.0 : 0;
-
-  const totalPrice = itemsPrice - discount + shipping;
-  useEffect(() => {
-    if (
-      orderProcessed &&
-      !isLoading &&
-      !isFetchingCartData &&
-      cart.length !== 0 &&
-      isAuthenticated &&
-      !isCreating
-    ) {
-      const newOrder = {
-        totalPrice: totalPrice,
-        status: "Order Received",
-        estimatedDelivery: "24h-48h",
-        items: cart,
-        location:
-          addressAutoFill + "-" + street + "/building number:" + buildingNumber,
-        userId: user?.id,
-        payment_method: "creditCard",
-        has_discount: has_discount,
-      };
-      createOrder(newOrder);
-      clearCart();
-      window.localStorage.setItem("has_discount", false);
-    }
-  }, [
-    cart,
-    isAuthenticated,
-    isCreating,
-    isLoading,
-    isFetchingCartData,
-    addressAutoFill,
-    street,
-    buildingNumber,
-    clearCart,
-    createOrder,
-    totalPrice,
-    user,
-    orderProcessed,
-    has_discount,
-  ]);
-
-  if (isLoading || isFetchingCartData || isCreating) return <Spinner />;
-
-  if (!orderProcessed) {
-    setOrderProcessed(true);
-  }
 
   return (
     <Container>
-      <StyledSuccessPayment>
+      <StyledSuccessOrder>
         <HeaderContainer>
           <StyledHeader>{t("Payment Submitted Successfully")} </StyledHeader>
           <img
@@ -108,12 +41,12 @@ function SuccessPayment() {
             {t("Back to home")}
           </Button>
         </StyledButtons>
-      </StyledSuccessPayment>
+      </StyledSuccessOrder>
     </Container>
   );
 }
 
-export default SuccessPayment;
+export default SuccessOrder;
 
 const Container = styled.div`
   width: 100%;
@@ -128,7 +61,7 @@ const Container = styled.div`
   }
 `;
 
-const StyledSuccessPayment = styled.div`
+const StyledSuccessOrder = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
