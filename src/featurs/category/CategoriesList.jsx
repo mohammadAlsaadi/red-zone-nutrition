@@ -1,9 +1,8 @@
-import "react-multi-carousel/lib/styles.css";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CategoryCard from "./CategoryCard";
 import Spinner from "../../components/Spinner";
 import useCategories from "./useCategories";
-import React, { useState } from "react";
 import { HiMiniChevronLeft } from "react-icons/hi2";
 import { HiMiniChevronRight } from "react-icons/hi2";
 
@@ -12,6 +11,8 @@ function CategoriesList() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mouseDownX, setMouseDownX] = useState(null);
   const [mouseUpX, setMouseUpX] = useState(null);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   if (isLoading) return <Spinner />;
 
@@ -49,7 +50,7 @@ function CategoriesList() {
   };
 
   const goToNextSlide = () => {
-    if (currentIndex !== totalSlides) {
+    if (currentIndex !== totalSlides - 1) {
       setCurrentIndex(currentIndex + 1);
     }
   };
@@ -58,16 +59,16 @@ function CategoriesList() {
     setCurrentIndex(index);
   };
 
-  const onMouseDown = (e) => {
+  const handleMouseDown = (e) => {
     setMouseDownX(e.clientX);
   };
 
-  const onMouseMove = (e) => {
+  const handleMouseMove = (e) => {
     if (mouseDownX === null) return;
     setMouseUpX(e.clientX);
   };
 
-  const onMouseUp = () => {
+  const handleMouseUp = () => {
     if (!mouseDownX || !mouseUpX) return;
     const distance = mouseDownX - mouseUpX;
     if (distance > 30) {
@@ -79,12 +80,36 @@ function CategoriesList() {
     setMouseDownX(null);
     setMouseUpX(null);
   };
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    if (distance > 30) {
+      goToNextSlide();
+    } else if (distance < -30) {
+      goToPrevSlide();
+    }
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
+
   return (
     <Container dir="ltr">
       <SliderWrapper
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={onMouseUp}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <Slider currentIndex={currentIndex}>
           {categories.map((category, index) => (
@@ -185,6 +210,5 @@ const ArrowRight = styled.button`
   background: none;
   border: none;
   font-size: 24px;
-
   cursor: pointer;
 `;

@@ -63,7 +63,7 @@ const ProductsList = ({ offers, isLoadingFetch, category, categoryList }) => {
   };
 
   const goToNextSlide = () => {
-    if (currentIndex !== totalSlides) {
+    if (currentIndex !== totalSlides - 1) {
       setCurrentIndex(currentIndex + 1);
     }
   };
