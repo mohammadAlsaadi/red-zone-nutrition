@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 // import Button from "../../components/Button";
-import { useBodyDirection } from "../../context/BodyDirectionContext";
+// import { useBodyDirection } from "../../context/BodyDirectionContext";
 
 function CategoryCard({ categoryItem }) {
   const { image, category, image_ar } = categoryItem;
   const navigate = useNavigate();
-  const { isRtl } = useBodyDirection();
+  // const { isRtl } = useBodyDirection();
+  const lang = window.localStorage.getItem("language");
 
   return (
     <StyledCategoryCart
@@ -15,7 +16,7 @@ function CategoryCard({ categoryItem }) {
         window.scrollTo(0, 0);
       }}
     >
-      <StyledImage imgurl={isRtl ? image_ar : image}>
+      <StyledImage imgurl={lang === "ar" ? image_ar : image}>
         {/* <ButtonPosition>
           <Button borderbutton="none" variation="transparent">
             <h4>Browse</h4>{" "}
