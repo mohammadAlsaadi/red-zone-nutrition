@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ProductCard from "../../components/ProductCard";
 import Spinner from "../../components/Spinner";
-// import { useBodyDirection } from "../../context/BodyDirectionContext";
 import useProducts from "./useProducts";
 import { HiMiniChevronLeft } from "react-icons/hi2";
 import { HiMiniChevronRight } from "react-icons/hi2";
 
 const ProductsList = ({ offers, isLoadingFetch, category, categoryList }) => {
   const { data, isLoading } = useProducts();
-  // const { isRtl } = useBodyDirection();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mouseDownX, setMouseDownX] = useState(null);
   const [mouseUpX, setMouseUpX] = useState(null);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   if (isLoading || isLoadingFetch) return <Spinner />;
 
@@ -56,7 +56,6 @@ const ProductsList = ({ offers, isLoadingFetch, category, categoryList }) => {
   };
 
   const totalSlides = Math.ceil(products.length / getItemsPerSlide());
-
   const goToPrevSlide = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
@@ -73,16 +72,16 @@ const ProductsList = ({ offers, isLoadingFetch, category, categoryList }) => {
     setCurrentIndex(index);
   };
 
-  const onMouseDown = (e) => {
+  const handleMouseDown = (e) => {
     setMouseDownX(e.clientX);
   };
 
-  const onMouseMove = (e) => {
+  const handleMouseMove = (e) => {
     if (mouseDownX === null) return;
     setMouseUpX(e.clientX);
   };
 
-  const onMouseUp = () => {
+  const handleMouseUp = () => {
     if (!mouseDownX || !mouseUpX) return;
     const distance = mouseDownX - mouseUpX;
     if (distance > 30) {
@@ -94,12 +93,35 @@ const ProductsList = ({ offers, isLoadingFetch, category, categoryList }) => {
     setMouseDownX(null);
     setMouseUpX(null);
   };
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    if (distance > 30) {
+      goToNextSlide();
+    } else if (distance < -30) {
+      goToPrevSlide();
+    }
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
   return (
     <Container dir="ltr">
       <SliderWrapper
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={onMouseUp}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <Slider currentIndex={currentIndex}>
           {products.map((product, index) => (
@@ -128,12 +150,12 @@ const ProductsList = ({ offers, isLoadingFetch, category, categoryList }) => {
           />
         ))}
         <ArrowRight
-          disabled={currentIndex + 1 === totalSlides}
+          disabled={currentIndex === totalSlides - 1}
           onClick={goToNextSlide}
         >
           <HiMiniChevronRight
             color={
-              currentIndex + 1 === totalSlides
+              currentIndex === totalSlides - 1
                 ? "var(--color-grey-300)"
                 : "var(--color-grey-800)"
             }
