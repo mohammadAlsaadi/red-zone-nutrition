@@ -2,31 +2,17 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ProductCard from "../../components/ProductCard";
 import Spinner from "../../components/Spinner";
-import { useBodyDirection } from "../../context/BodyDirectionContext";
+// import { useBodyDirection } from "../../context/BodyDirectionContext";
 import useProducts from "./useProducts";
 import { HiMiniChevronLeft } from "react-icons/hi2";
 import { HiMiniChevronRight } from "react-icons/hi2";
 
 const ProductsList = ({ offers, isLoadingFetch, category, categoryList }) => {
   const { data, isLoading } = useProducts();
-  const { isRtl } = useBodyDirection();
+  // const { isRtl } = useBodyDirection();
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const goToPrevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? data.length - 1 : prevIndex - 1
-    );
-  };
-
-  const goToNextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === data.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const goToSlide = (index) => {
-    setCurrentIndex(index);
-  };
+  const [mouseDownX, setMouseDownX] = useState(null);
+  const [mouseUpX, setMouseUpX] = useState(null);
 
   if (isLoading || isLoadingFetch) return <Spinner />;
 
@@ -70,9 +56,51 @@ const ProductsList = ({ offers, isLoadingFetch, category, categoryList }) => {
   };
 
   const totalSlides = Math.ceil(products.length / getItemsPerSlide());
+
+  const goToPrevSlide = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  const goToNextSlide = () => {
+    if (currentIndex !== totalSlides) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
+  const onMouseDown = (e) => {
+    setMouseDownX(e.clientX);
+  };
+
+  const onMouseMove = (e) => {
+    if (mouseDownX === null) return;
+    setMouseUpX(e.clientX);
+  };
+
+  const onMouseUp = () => {
+    if (!mouseDownX || !mouseUpX) return;
+    const distance = mouseDownX - mouseUpX;
+    if (distance > 30) {
+      goToNextSlide();
+    } else if (distance < -30) {
+      goToPrevSlide();
+    }
+
+    setMouseDownX(null);
+    setMouseUpX(null);
+  };
   return (
     <Container dir="ltr">
-      <SliderWrapper>
+      <SliderWrapper
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+      >
         <Slider currentIndex={currentIndex}>
           {products.map((product, index) => (
             <Slide key={index}>

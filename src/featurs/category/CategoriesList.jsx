@@ -6,27 +6,15 @@ import useCategories from "./useCategories";
 import React, { useState } from "react";
 import { HiMiniChevronLeft } from "react-icons/hi2";
 import { HiMiniChevronRight } from "react-icons/hi2";
+
 function CategoriesList() {
   const { data: categories, isLoading } = useCategories();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [mouseDownX, setMouseDownX] = useState(null);
+  const [mouseUpX, setMouseUpX] = useState(null);
 
   if (isLoading) return <Spinner />;
 
-  const goToPrevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? categories.length - 1 : prevIndex - 1
-    );
-  };
-
-  const goToNextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === categories.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const goToSlide = (index) => {
-    setCurrentIndex(index);
-  };
   const responsive = {
     superLargeDesktop: { breakpoint: { max: 4000, min: 1400 }, items: 5 },
     desktop: { breakpoint: { max: 1400, min: 1100 }, items: 4 },
@@ -53,9 +41,51 @@ function CategoriesList() {
   };
 
   const totalSlides = Math.ceil(categories.length / getItemsPerSlide());
+
+  const goToPrevSlide = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  const goToNextSlide = () => {
+    if (currentIndex !== totalSlides) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
+  const onMouseDown = (e) => {
+    setMouseDownX(e.clientX);
+  };
+
+  const onMouseMove = (e) => {
+    if (mouseDownX === null) return;
+    setMouseUpX(e.clientX);
+  };
+
+  const onMouseUp = () => {
+    if (!mouseDownX || !mouseUpX) return;
+    const distance = mouseDownX - mouseUpX;
+    if (distance > 30) {
+      goToNextSlide();
+    } else if (distance < -30) {
+      goToPrevSlide();
+    }
+
+    setMouseDownX(null);
+    setMouseUpX(null);
+  };
   return (
     <Container dir="ltr">
-      <SliderWrapper>
+      <SliderWrapper
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+      >
         <Slider currentIndex={currentIndex}>
           {categories.map((category, index) => (
             <Slide key={index}>
@@ -66,7 +96,11 @@ function CategoriesList() {
       </SliderWrapper>
 
       <Pagination>
-        <ArrowLeft disabled={currentIndex === 0} onClick={goToPrevSlide}>
+        <ArrowLeft
+          disabled={currentIndex === 0}
+          onClick={goToPrevSlide}
+          title="Previous"
+        >
           <HiMiniChevronLeft
             color={
               currentIndex === 0
@@ -83,12 +117,13 @@ function CategoriesList() {
           />
         ))}
         <ArrowRight
-          disabled={currentIndex + 1 === totalSlides}
+          disabled={currentIndex === totalSlides - 1}
           onClick={goToNextSlide}
+          title="Next"
         >
           <HiMiniChevronRight
             color={
-              currentIndex + 1 === totalSlides
+              currentIndex === totalSlides - 1
                 ? "var(--color-grey-300)"
                 : "var(--color-grey-800)"
             }
@@ -100,6 +135,7 @@ function CategoriesList() {
 }
 
 export default CategoriesList;
+
 const Container = styled.div`
   position: relative;
   width: 100%;
@@ -149,5 +185,6 @@ const ArrowRight = styled.button`
   background: none;
   border: none;
   font-size: 24px;
+
   cursor: pointer;
 `;

@@ -187,7 +187,7 @@ const StyledImg = styled.div`
   transform: scale(1);
   transition: opacity 1s ease-out, box-shadow 0.5s ease-out,
     transform 0.5s ease-out;
-  animation: fadeIn 2s ease-out forwards;
+  animation: fadeIn 1s ease-out forwards;
   @keyframes fadeIn {
     from {
       opacity: 0;
