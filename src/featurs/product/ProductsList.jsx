@@ -1,56 +1,41 @@
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import ProductCard from "../../components/ProductCard";
+import React, { useState } from "react";
 import styled from "styled-components";
-import useProducts from "./useProducts";
+import ProductCard from "../../components/ProductCard";
 import Spinner from "../../components/Spinner";
-import { useShowSideBar } from "../../context/ShowSideBar";
-import { useDeviceWidth } from "../../context/DeviceWidthContext";
+import { useBodyDirection } from "../../context/BodyDirectionContext";
+import useProducts from "./useProducts";
+import { HiMiniChevronLeft } from "react-icons/hi2";
+import { HiMiniChevronRight } from "react-icons/hi2";
 
-function ProductsList({ offers, isLoadingFetch, category, categoryList }) {
-  let products;
+const ProductsList = ({ offers, isLoadingFetch, category, categoryList }) => {
   const { data, isLoading } = useProducts();
-  const { showSideBar } = useShowSideBar();
-  const { isDesktopDevice } = useDeviceWidth();
+  const { isRtl } = useBodyDirection();
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 2000, min: 1200 },
-      items: 4.2,
-    },
-    notebook: {
-      breakpoint: { max: 1200, min: 950 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 950, min: 600 },
-      items: 3,
-    },
-    mobile: {
-      breakpoint: { max: 600, min: 400 },
-      items: 2.5,
-    },
-    smallMobile: {
-      breakpoint: { max: 400, min: 0 },
-      items: 2,
-    },
+  const goToPrevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? data.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToNextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === data.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
   };
 
   if (isLoading || isLoadingFetch) return <Spinner />;
-  const offersProducts = data?.filter((product) => product.hasOffer === true);
 
+  let products = [];
   if (offers) {
-    products = offersProducts;
+    products = data.filter((product) => product.hasOffer);
   } else if (categoryList) {
-    products = data.filter(
-      (product) =>
-        product.category === categoryList[0] ||
-        product.category === categoryList[1] ||
-        product.category === categoryList[2]
+    products = data.filter((product) =>
+      categoryList.includes(product.category)
     );
   } else if (category) {
     products = data.filter((product) => product.category === category);
@@ -58,47 +43,135 @@ function ProductsList({ offers, isLoadingFetch, category, categoryList }) {
     products = data;
   }
 
+  const responsive = {
+    superLargeDesktop: { breakpoint: { max: 4000, min: 1400 }, items: 5 },
+    desktop: { breakpoint: { max: 1400, min: 1100 }, items: 4 },
+    notebook: { breakpoint: { max: 1100, min: 800 }, items: 3.1 },
+    tablet: { breakpoint: { max: 800, min: 600 }, items: 2.8 },
+    mobile: { breakpoint: { max: 600, min: 400 }, items: 2.4 },
+    smallMobile: { breakpoint: { max: 400, min: 0 }, items: 1.7 },
+  };
+
+  const getItemsPerSlide = () => {
+    const width = window.innerWidth;
+    if (width >= responsive.superLargeDesktop.breakpoint.min) {
+      return responsive.superLargeDesktop.items;
+    } else if (width >= responsive.desktop.breakpoint.min) {
+      return responsive.desktop.items;
+    } else if (width >= responsive.notebook.breakpoint.min) {
+      return responsive.notebook.items;
+    } else if (width >= responsive.tablet.breakpoint.min) {
+      return responsive.tablet.items;
+    } else if (width >= responsive.mobile.breakpoint.min) {
+      return responsive.mobile.items;
+    } else {
+      return responsive.smallMobile.items;
+    }
+  };
+
+  const totalSlides = Math.ceil(products.length / getItemsPerSlide());
   return (
-    <StyledList>
-      <StyledCarousel
-        arrows={showSideBar || !isDesktopDevice ? false : true}
-        responsive={responsive}
-        autoPlay={true}
-        autoPlaySpeed={2500}
-        pauseOnHover={true}
-      >
-        {products.map((product) => (
-          <ProductCard product={product} key={product.name} />
+    <Container dir="ltr">
+      <SliderWrapper>
+        <Slider currentIndex={currentIndex}>
+          {products.map((product, index) => (
+            <Slide key={index}>
+              <ProductCard product={product} />
+            </Slide>
+          ))}
+        </Slider>
+      </SliderWrapper>
+
+      <Pagination>
+        <ArrowLeft disabled={currentIndex === 0} onClick={goToPrevSlide}>
+          <HiMiniChevronLeft
+            color={
+              currentIndex === 0
+                ? "var(--color-grey-300)"
+                : "var(--color-grey-800)"
+            }
+          />
+        </ArrowLeft>
+        {[...Array(totalSlides)].map((_, index) => (
+          <Dot
+            key={index}
+            active={index === currentIndex}
+            onClick={() => goToSlide(index)}
+          />
         ))}
-      </StyledCarousel>
-    </StyledList>
+        <ArrowRight
+          disabled={currentIndex + 1 === totalSlides}
+          onClick={goToNextSlide}
+        >
+          <HiMiniChevronRight
+            color={
+              currentIndex + 1 === totalSlides
+                ? "var(--color-grey-300)"
+                : "var(--color-grey-800)"
+            }
+          />
+        </ArrowRight>
+      </Pagination>
+    </Container>
   );
-}
+};
 
 export default ProductsList;
 
-const StyledList = styled.div`
+const Container = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
-  /* margin: 3rem 0rem; */
+  padding: 1rem 0rem;
+  margin: 0;
 `;
-const StyledCarousel = styled(Carousel)`
-  height: 45rem;
-  @media (max-width: 600px) {
-    height: 29rem;
+
+const SliderWrapper = styled.div`
+  overflow: hidden;
+`;
+
+const Slider = styled.div`
+  display: flex;
+  transition: transform 0.5s ease;
+  transform: ${({ currentIndex }) => `translateX(-${currentIndex * 100}%)`};
+`;
+
+const Slide = styled.div`
+  flex: 0 0;
+  margin: 0px 15px;
+  @media (max-width: 800px) {
+    margin: 0px 10px;
+    flex: 0 0;
   }
-  @media (min-width: 600px) {
-    height: 33rem;
-  }
-  @media (min-width: 700px) {
-    height: 38rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-  @media (min-width: 900px) {
-    height: 42rem;
-  }
-  @media (min-width: 1100px) {
-    height: 45rem;
-  }
+`;
+
+const Pagination = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+`;
+
+const Dot = styled.div`
+  width: ${({ active }) => (active ? "25px" : "10px")};
+  height: 10px;
+  background-color: ${({ active }) =>
+    active ? "var(--color-grey-800)" : "var(--color-grey-200)"};
+  border-radius: 7px;
+  margin: 0 5px;
+  cursor: pointer;
+`;
+
+const ArrowLeft = styled.button`
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+`;
+
+const ArrowRight = styled.button`
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
 `;

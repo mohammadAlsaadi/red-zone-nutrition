@@ -1,11 +1,12 @@
 import styled, { css } from "styled-components";
 import Button from "./Button";
-import { formatCurrency } from "../utils/helper";
+import { formatCurrency, formatPrice } from "../utils/helper";
 import { useNavigate } from "react-router-dom";
 import Banner from "./Banner";
 import HasOffer from "./HasOffer";
 import { useTranslation } from "react-i18next";
 import { useProductSelection } from "../context/ProductSelectionContext";
+import SaleBanner from "./SaleBanner";
 
 function ProductCard({ product }) {
   const {
@@ -31,7 +32,7 @@ function ProductCard({ product }) {
 
   return (
     <StyledProductCart inStock={inStock}>
-      {isNew && !hasOffer && (
+      {/* {isNew && !hasOffer && (
         <Banner src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/new.svg" />
       )}
       {hasOffer && !isNew && (
@@ -43,22 +44,39 @@ function ProductCard({ product }) {
       )}
       {hasOffer && isNew && (
         <Banner src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/new.svg" />
-      )}
-      <StyledImage src={image} outOfStock={!inStock}></StyledImage>
+      )} */}
+
+      <StyledImage src={image} outOfStock={!inStock}>
+        {hasOffer && (
+          <BannerContainer>
+            <SaleBanner />
+          </BannerContainer>
+        )}
+      </StyledImage>
       <ProductInfo>
-        <ProductName>{t(name)}</ProductName>
+        <ProductName>
+          {t(name)}{" "}
+          {isNew && (
+            <img
+              src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/new.svg"
+              alt="new"
+              width={25}
+              height={25}
+            />
+          )}
+        </ProductName>
         <ProductCategory>{t(category)}</ProductCategory>
 
         {hasOffer ? (
           <OldNewPrice>
-            <HasOffer>{formatCurrency(price[0])}</HasOffer>
             <ProductPrice>
-              {t("From")} {formatCurrency(newPrice[0])}
+              <FromWord>{t("From")}</FromWord> {formatPrice(newPrice[0])}
             </ProductPrice>
+            <HasOffer>{formatPrice(price[0])}</HasOffer>
           </OldNewPrice>
         ) : (
           <ProductPrice>
-            {t("From")} {formatCurrency(price[0])}
+            {t("From")} {formatPrice(price[0])}
           </ProductPrice>
         )}
       </ProductInfo>
@@ -67,10 +85,10 @@ function ProductCard({ product }) {
           disabled={!inStock}
           variations="primary"
           color={!inStock && "var(--color-grey-500)"}
-          size="small"
+          size="tallerHerzontally"
           onClick={handleBuy}
         >
-          {inStock ? t("Buy now") : t("Out of Stock")}
+          {inStock ? t("Buy now") : t("SOLD OUT")}
         </Button>
       </CardOption>
     </StyledProductCart>
@@ -84,17 +102,18 @@ const StyledProductCart = styled.div`
   height: 420px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: 2px solid var(--color-grey-300);
-  border-radius: 1rem;
-  padding: 3rem 2rem 0.3rem 2rem;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.5s ease-out;
-  animation: fadeIn 1s ease-out forwards;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border: 1px solid var(--color-grey-300);
+  /* border-radius: 1rem; */
+  padding: 0rem 1rem;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  /* transition: transform 0.5s ease-out;
+  animation: fadeIn 1s ease-out forwards; */
 
-  &:hover {
+  /* &:hover {
     transform: ${(props) => props.inStock && "scale(1.02)"};
-  }
+  } */
 
   ${(props) =>
     !props.inStock &&
@@ -103,28 +122,41 @@ const StyledProductCart = styled.div`
     `}
 
   @media (max-width: 1100px) {
-    width: 260px;
+    width: 290px;
     height: 400px;
   }
   @media (max-width: 900px) {
-    width: 230px;
+    width: 250px;
     height: 350px;
   }
   @media (max-width: 700px) {
-    width: 190px;
-    height: 300px;
+    width: 210px;
+    height: 310px;
   }
   @media (max-width: 600px) {
-    width: 150px;
-    height: 270px;
+    width: 200px;
+    height: 310px;
+  }
+  @media (max-width: 500px) {
+    width: 190px;
+    height: 300px;
   }
 `;
 
 const ProductName = styled.span`
   font-weight: bold;
   font-size: 16px;
-  @media (max-width: 1000px) {
+  @media (max-width: 700px) {
     font-size: 10px;
+  }
+  @media (min-width: 700px) {
+    font-size: 12px;
+  }
+  @media (min-width: 900px) {
+    font-size: 14px;
+  }
+  @media (min-width: 1200px) {
+    font-size: 16px;
   }
 `;
 const ProductCategory = styled.span`
@@ -135,30 +167,56 @@ const ProductCategory = styled.span`
     font-size: 8px;
   }
 `;
-const ProductPrice = styled.span`
-  font-weight: bold;
-  font-size: 15px;
-  color: var(--color-gold-700);
-  padding: 5px 0px;
-  @media (max-width: 900px) {
-    font-size: 13px;
+const FromWord = styled.span`
+  font-size: 9px;
+  color: var(--color-grey-900);
+  @media (max-width: 700px) {
+    font-size: 9px;
   }
-  @media (max-width: 500px) {
+  @media (min-width: 700px) {
     font-size: 10px;
-    padding: 5px 0px 0px 0px;
+  }
+  @media (min-width: 900px) {
+    font-size: 11px;
+  }
+  @media (min-width: 1200px) {
+    font-size: 12px;
+  }
+`;
+const ProductPrice = styled.span`
+  font-weight: 600;
+  font-size: 9px;
+  color: var(--color-grey-900);
+  @media (max-width: 700px) {
+    font-size: 10px;
+  }
+  @media (min-width: 700px) {
+    font-size: 12px;
+  }
+  @media (min-width: 900px) {
+    font-size: 14px;
+  }
+  @media (min-width: 1200px) {
+    font-size: 16px;
   }
 `;
 
 const OldNewPrice = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 0rem;
+  padding: 10px 0px 0px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
 `;
-const StyledImage = styled.img`
-  width: 80%;
-  border-radius: 0.5rem;
+const StyledImage = styled.div`
+  width: 100%;
+  height: 100%;
+  background-image: ${(props) => `url(${props.src})`};
+  background-size: cover;
+  background-position: center;
+  /* border-radius: 0.5rem; */
+
   border: none;
   ${(props) =>
     props.outOfStock &&
@@ -169,12 +227,23 @@ const StyledImage = styled.img`
 const ProductInfo = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: center;
+  height: 40%;
 `;
 const CardOption = styled.div`
   display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 20%;
+  width: 100%;
+  padding-bottom: 1rem;
+`;
+const BannerContainer = styled.div`
+  display: flex;
+  width: 100%;
+  /* position: absolute; */
   align-items: center;
   justify-content: flex-end;
-  height: 100%;
+  padding-top: 0.5rem;
 `;

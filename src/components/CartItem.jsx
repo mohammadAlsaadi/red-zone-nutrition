@@ -39,14 +39,14 @@ function CartItem({ item }) {
         <ButtonText
           fontSize="small"
           color="var(--color-red-500)"
-          textDecoration="underLine"
+          // textDecoration="underLine"
           onClick={() => removeItem(id)}
         >
           {t("Remove")}
         </ButtonText>
         <StyledOptins>
           <Button
-            variation="secondary"
+            variation="primary"
             border="circle"
             size="x-small"
             onClick={() => incrementItem(id)}
@@ -78,10 +78,13 @@ const StyledCartItem = styled.li`
   justify-content: space-between;
   width: 100%;
 
-  margin: 1rem 0rem 2rem;
+  margin: 1rem 0rem 1rem;
   background-color: var(--color-grey-100);
   border-radius: 7px;
-  border-bottom: 1px solid var(--color-grey-500);
+  border-bottom: 1px solid var(--color-grey-200);
+  @media (max-width: 600px) {
+    margin: 1rem 0rem 0.5rem;
+  }
 `;
 const StyledProductInfo = styled.div`
   display: flex;
@@ -111,13 +114,31 @@ const StyledImg = styled.img`
     width: 50px;
     height: 50px;
   }
+  @media (min-width: 600px) {
+    width: 70px;
+    height: 70px;
+  }
+  @media (min-width: 900px) {
+    width: 100px;
+    height: 100px;
+  }
 `;
 const StyledName = styled.p`
   font-weight: bold;
   color: var(--color-grey-700);
   @media (max-width: 600px) {
     font-size: x-small;
-    font-weight: lighter;
+    font-weight: 600;
+    color: var(--color-grey-900);
+  }
+  @media (min-width: 600px) {
+    font-size: small;
+    font-weight: 700;
+    color: var(--color-grey-900);
+  }
+  @media (min-width: 900px) {
+    font-size: small;
+    font-weight: 700;
     color: var(--color-grey-900);
   }
 `;
@@ -135,7 +156,15 @@ const StyledPrice = styled.p`
   padding-right: 5px;
   @media (max-width: 600px) {
     font-size: small;
+    padding-right: 1px;
+  }
+  @media (min-width: 600px) {
+    font-size: 13px;
     padding-right: 2px;
+  }
+  @media (min-width: 900px) {
+    font-size: medium;
+    padding-right: 5px;
   }
 `;
 const OptionsContainer = styled.div`

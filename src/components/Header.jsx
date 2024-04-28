@@ -197,11 +197,11 @@ const LayerOne = styled.div`
 
   padding: 0rem 1rem;
   ${(props) =>
-    props.isscrolled ||
-    (!props.ishomepagepath &&
-      css`
-        border-bottom: 1px solid var(--color-grey-300);
-      `)}
+    // props.isscrolled ||
+    !props.ishomepagepath &&
+    css`
+      border-bottom: 1px solid var(--color-grey-300);
+    `}
   @media (max-width: 600px) {
     padding: 0rem;
   }
@@ -224,9 +224,10 @@ const LayerTwo = styled.div`
 `;
 const OptionsContainer1 = styled.div`
   display: flex;
-  padding-left: 2rem;
+  padding-left: 1rem;
   @media (min-width: 900px) {
     display: none;
+    padding-left: 2rem;
   }
 `;
 

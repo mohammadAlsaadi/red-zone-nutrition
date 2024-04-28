@@ -61,7 +61,10 @@ function CartList({ onCloseModal }) {
                 {t("Order more")}
               </ButtonText>
               <Button
-                onClick={() => handleclick("/checkout")}
+                onClick={() => {
+                  handleclick("/checkout");
+                  window.scrollTo(0, 0);
+                }}
                 variation="transparent"
                 border="circle"
                 size="medium"
@@ -96,6 +99,7 @@ const StyledFooterBar = styled.footer`
   justify-content: space-between;
   width: 100%;
   height: 80px;
+  margin-top: 2rem;
   /* border-radius: 10px; */
   background-color: var(--color-grey-700);
   padding: 0rem 2rem;

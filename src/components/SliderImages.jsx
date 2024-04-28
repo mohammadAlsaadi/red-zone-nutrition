@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-
 import { useShowSideBar } from "../context/ShowSideBar";
 import Button from "./Button";
 import { useTranslation } from "react-i18next";
@@ -34,6 +33,7 @@ const TEMP_IMG_SLIDES = [
     title: "slideImage5",
   },
 ];
+
 function SliderImages() {
   const [currIndex, setCurrIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -49,19 +49,20 @@ function SliderImages() {
 
     return () => clearInterval(intervalId);
   }, []);
+
   const handleImageLoad = () => {
     setImageLoaded(true);
   };
-  if (imageLoaded) return <Spinner />;
 
   return (
     <StyledSliderImages showsidebar={showSideBar}>
       <StyledImg
         imgurl={TEMP_IMG_SLIDES[currIndex]?.url}
+        loaded={imageLoaded}
         onLoad={handleImageLoad}
       >
         <StyledHeading isrtl={isRtl}>
-          <P1>{t("Redzone nutrition's partnars")} </P1>
+          <P1>{t("Redzone nutrition's partnars")}</P1>
           <P2>{t("Join our team and be a part of us")}</P2>
           <Button
             borderbutton="none"
@@ -71,7 +72,7 @@ function SliderImages() {
               navigate("/contact-us");
             }}
           >
-            <h4>{t("CONTACT US NOW")}</h4>{" "}
+            <h4>{t("CONTACT US NOW")}</h4>
           </Button>
         </StyledHeading>
       </StyledImg>
@@ -80,6 +81,7 @@ function SliderImages() {
 }
 
 export default SliderImages;
+
 const P1 = styled.p`
   font-size: x-small;
   color: var(--color-grey-200);
@@ -91,8 +93,11 @@ const P1 = styled.p`
     font-size: 8px;
   }
 `;
+
 const P2 = styled.p`
   font-size: 20px;
+  color: var(--color-grey-200);
+  font-weight: bold;
   @media (min-width: 600px) {
     font-size: 17px;
   }
@@ -108,9 +113,8 @@ const P2 = styled.p`
   @media (max-width: 600px) {
     font-size: 12px;
   }
-  color: var(--color-grey-200);
-  font-weight: bold;
 `;
+
 const StyledSliderImages = styled.div`
   height: 100%;
   display: flex;
@@ -118,24 +122,59 @@ const StyledSliderImages = styled.div`
   justify-content: center;
   width: 100%;
 `;
+
 const StyledHeading = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: flex-end;
-
   justify-content: ${(props) => (props.isrtl ? "flex-start" : "flex-end")};
   padding-top: 35rem;
   width: ${(props) => (props.isrtl ? "90%" : "95%")};
-
   @media (max-width: 900px) {
     padding-left: ${(props) => (props.isrtl ? "0" : "50%")};
   }
-  gap: 1rem;
 
+  gap: 1rem;
   z-index: 1;
+
+  & > p {
+    animation-duration: 3s;
+    animation-name: fadeInOut, moveLeft300px, bounce;
+    animation-duration: 1.5s, 2s;
+    animation-iteration-count: 1, 1, 1;
+  }
+
+  @keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
+  @keyframes fadeInOut {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
 `;
+
 const StyledImg = styled.div`
   height: 500px;
   width: 100%;
@@ -143,15 +182,12 @@ const StyledImg = styled.div`
     `linear-gradient(rgba(36, 42, 46, 0.8), rgba(36, 42, 46, 0.8)), url(${props.imgurl})`};
   background-size: cover;
   background-position: center;
-
-  opacity: 0;
+  opacity: ${(props) => (props.loaded ? 1 : 0)};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transform: scale(1);
-  transition: opacity 1s ease-out 0.3s, box-shadow 0.5s ease-out,
+  transition: opacity 1s ease-out, box-shadow 0.5s ease-out,
     transform 0.5s ease-out;
-
-  animation: fadeIn 1s ease-out forwards;
-
+  animation: fadeIn 2s ease-out forwards;
   @keyframes fadeIn {
     from {
       opacity: 0;

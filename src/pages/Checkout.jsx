@@ -33,17 +33,20 @@ function Checkout() {
     clearCart,
   } = useCartContext();
   const [isOpenSummaryItems, setIsOpenSummaryItems] = useState(false);
+  const [isOrderCreating, setIsOrderCreating] = useState(false);
   const [coupon, setCoupon] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("creditCard");
+  const [couponeErrorMessage, setCouponeErrorMessage] = useState("");
+
   const { addressAutoFill, street, buildingNumber } = useAddressContext();
   const { user, isAuthenticated, isLoading } = useUser();
   const { createOrder } = useCreateOrder();
-  const [paymentMethod, setPaymentMethod] = useState("creditCard");
+
   const isCouponValid = coupon === "FRESHMUSCLES";
   const shipping = productsPrice < 70.0 ? 3.0 : 0;
   const discount = isCouponValid ? 0.15 * productsPrice : 0;
   const totalPrice = shipping + productsPrice - discount;
   const has_discount = window.localStorage.getItem("has_discount");
-  const [isOrderCreating, setIsOrderCreating] = useState(false);
 
   useEffect(() => {
     if (isCouponValid) window.localStorage.setItem("has_discount", true);
@@ -125,8 +128,9 @@ function Checkout() {
       navigate("/success-order");
     }
   };
-  function handleCopon(e) {
+  function handleCoupon(e) {
     e.preventDefault();
+    if (!isCouponValid) setCouponeErrorMessage(t("Coupon do not valid!"));
   }
   if (isLoading || isFetchingCartData) return <Spinner />;
   if (cart.length === 0) return navigate("/home");
@@ -213,7 +217,7 @@ function Checkout() {
               variation={isCouponValid ? "secondary" : "primary"}
               size="small"
               disabled={isCouponValid}
-              onClick={(e) => handleCopon(e)}
+              onClick={(e) => handleCoupon(e)}
             >
               {isCouponValid ? (
                 <HiOutlineCheckCircle size={22} color="green" />
@@ -222,9 +226,13 @@ function Checkout() {
               )}
             </Button>
           </DiscountInputContainer>
-          {isCouponValid && (
+          {isCouponValid ? (
             <Heading color="green" as="h7">
               {t("you got 15% discount")}
+            </Heading>
+          ) : (
+            <Heading color="red" as="h7">
+              {t(couponeErrorMessage)}
             </Heading>
           )}
         </DiscountContainer>

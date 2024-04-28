@@ -51,12 +51,12 @@ function Home() {
           <Heading as="h3">{t("Categories")}</Heading>
 
           <ButtonText
-            color="var(--color-gold-500)"
+            color="var(--color-grey-900)"
             onClick={() => {
               navigate("/categories");
               window.scrollTo(0, 0);
             }}
-            fontSize="20px"
+            fontSize="15px"
           >
             {t("See all")}
           </ButtonText>
@@ -67,12 +67,12 @@ function Home() {
         <StyledLabel>
           <Heading as="h3">{t("Special Offers")}</Heading>
           <ButtonText
-            color="var(--color-gold-500)"
+            color="var(--color-grey-900)"
             onClick={() => {
               navigate("/special-offer");
               window.scrollTo(0, 0);
             }}
-            fontSize="20px"
+            fontSize="15px"
           >
             {t("See all")}
           </ButtonText>
@@ -83,12 +83,12 @@ function Home() {
         <StyledLabel>
           <Heading as="h3">{t("All Products")}</Heading>
           <ButtonText
-            color="var(--color-gold-500)"
+            color="var(--color-grey-900)"
             onClick={() => {
               navigate("/products/all");
               window.scrollTo(0, 0);
             }}
-            fontSize="20px"
+            fontSize="15px"
           >
             {t("See all")}
           </ButtonText>
@@ -99,9 +99,12 @@ function Home() {
         <StyledLabel>
           <Heading as="h3">{t("Red Zone Article")}</Heading>
           <ButtonText
-            color="var(--color-gold-500)"
-            onClick={() => navigate("/articles")}
-            fontSize="20px"
+            color="var(--color-grey-900)"
+            onClick={() => {
+              navigate("/articles");
+              window.scrollTo(0, 0);
+            }}
+            fontSize="15px"
           >
             {t("See all")}
           </ButtonText>

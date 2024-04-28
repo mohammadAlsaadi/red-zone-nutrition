@@ -57,7 +57,6 @@ function Porducts() {
       );
     }
   } else if (stock === "Out of stock") {
-    console.log("hhhhhhhhhhhh");
     if (categoryName === "all") {
       products = data.filter((product) => product.inStock === false);
     } else {

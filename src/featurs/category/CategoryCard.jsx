@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../../components/Button";
+// import Button from "../../components/Button";
 import { useBodyDirection } from "../../context/BodyDirectionContext";
 
 function CategoryCard({ categoryItem }) {
@@ -16,11 +16,11 @@ function CategoryCard({ categoryItem }) {
       }}
     >
       <StyledImage imgurl={isRtl ? image_ar : image}>
-        <ButtonPosition>
+        {/* <ButtonPosition>
           <Button borderbutton="none" variation="transparent">
             <h4>Browse</h4>{" "}
           </Button>
-        </ButtonPosition>
+        </ButtonPosition> */}
       </StyledImage>
     </StyledCategoryCart>
   );
@@ -57,6 +57,10 @@ const StyledCategoryCart = styled.div`
   @media (min-width: 1100px) {
     width: 230px;
     height: 230px;
+  }
+  &:hover {
+    cursor: pointer;
+    filter: brightness(90%);
   }
 `;
 

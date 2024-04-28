@@ -62,21 +62,32 @@ const sizes = {
     font-size: 1.6rem;
     padding: 0.6rem 8rem;
     font-weight: 500;
+    width: 60%;
+
     @media (max-width: 600px) {
       font-size: 10px;
-      padding: 0.8rem 1.6rem;
+      padding: 0.6rem 0rem;
+      width: 100%;
     }
     @media (min-width: 600px) {
       font-size: 1.2rem;
+      padding: 0.6rem 0rem;
+      width: 90%;
     }
     @media (min-width: 700px) {
       font-size: 1.2rem;
+      padding: 0.6rem 0rem;
+      width: 85%;
     }
     @media (min-width: 900px) {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
+      padding: 0.6rem 0rem;
+      width: 80%;
     }
     @media (min-width: 1100px) {
-      font-size: 1.6rem;
+      font-size: 1.3rem;
+      padding: 0.6rem 0rem;
+      width: 70%;
     }
   `,
 };
