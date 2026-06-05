@@ -9,8 +9,8 @@ function GoalForm({ goalForm, setGoalForm, showResult, setShowResult }) {
   const [isOpened, setIsOpened] = useState(false);
   const examplePhoto =
     goalForm.gender === "male"
-      ? "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/bodyFatMale.jpg"
-      : "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/bodyFatFemale.jpg";
+      ? "https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/services-images/bodyFatMale.jpg"
+      : "https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/services-images/bodyFatFemale.jpg";
   const gender = ["male", "female"];
   const goalOptions = ["loss fat", "maintain weight", "gain weight"];
   const fatOptions =

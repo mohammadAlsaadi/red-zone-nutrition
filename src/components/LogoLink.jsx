@@ -1,8 +1,8 @@
 import styled from "styled-components";
 const LOGO_ICONS_FACEBOOK =
-  "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/Facebook.svg";
+  "https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/product-nutrition-facts/Facebook.svg";
 const LOGO_ICONS_INSTAGRAM =
-  "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/Instagram.svg";
+  "https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/product-nutrition-facts/Instagram.svg";
 
 function LogoLink() {
   return (

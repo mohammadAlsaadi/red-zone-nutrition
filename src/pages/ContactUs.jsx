@@ -115,7 +115,7 @@ const StyledHeader = styled.div`
   align-items: center;
   justify-content: center;
   background-image: ${(props) =>
-    `linear-gradient(rgba(14, 18, 20, 0.8), rgba(22, 25, 28, 0.8)), url(https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/contact.jpg)`};
+    `linear-gradient(rgba(14, 18, 20, 0.8), rgba(22, 25, 28, 0.8)), url(https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/services-images/contact.jpg)`};
   background-size: cover;
   background-position: center;
 `;
@@ -190,7 +190,7 @@ const StyledFooter = styled.footer`
   width: 100%;
   height: 30%;
   background-image: ${(props) =>
-    `linear-gradient(rgba(14, 18, 20, 0.8), rgba(22, 25, 28, 0.8)), url(https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/cover-images/cover6.jpg)`};
+    `linear-gradient(rgba(14, 18, 20, 0.8), rgba(22, 25, 28, 0.8)), url(https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/cover-images/cover6.jpg)`};
   background-size: cover;
   background-position: center;
 `;

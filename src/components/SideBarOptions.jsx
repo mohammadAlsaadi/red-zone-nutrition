@@ -96,7 +96,7 @@ function SideBarOptions() {
       <StyledOption onClick={() => handleNavigate(`/new-in-store`)}>
         <Heading as="h5">{t("New in Store")}</Heading>
         <img
-          src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/new.svg"
+          src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/services-images/new.svg"
           alt="new"
           width={25}
           height={25}

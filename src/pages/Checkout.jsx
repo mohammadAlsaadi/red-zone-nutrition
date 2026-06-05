@@ -90,7 +90,7 @@ function Checkout() {
               items: cart,
               discount,
             }),
-          }
+          },
         );
         if (!response.ok) {
           const error = await response.json();
@@ -140,7 +140,7 @@ function Checkout() {
       {isAuthenticated && (
         <ISAuthCheck>
           <img
-            src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/checkIcon.png"
+            src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/services-images/checkIcon.png"
             alt="checkIcon"
             width={50}
             height={50}
@@ -173,7 +173,7 @@ function Checkout() {
                   <Heading as="h5">{t("Credit Card")}</Heading>
                 </RadioOption>
                 <img
-                  src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/creditMethod.png"
+                  src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/services-images/creditMethod.png"
                   alt="credit"
                   width={80}
                   height={25}
@@ -194,7 +194,7 @@ function Checkout() {
                   <Heading as="h5">{t("Cash")}</Heading>
                 </RadioOption>
                 <img
-                  src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/cashMethod.png"
+                  src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/services-images/cashMethod.png"
                   alt="cash"
                   width={30}
                   height={25}

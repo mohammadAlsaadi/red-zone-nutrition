@@ -42,7 +42,7 @@ function Header() {
     data.filter((item) =>
       isAr
         ? item.name_ar.includes(searchInput)
-        : item.name.toLowerCase().includes(searchInput.toLowerCase())
+        : item.name.toLowerCase().includes(searchInput.toLowerCase()),
     );
   function handleNavigate(path) {
     navigate(path);
@@ -111,7 +111,7 @@ function Header() {
           <Logo
             width={250}
             height={60}
-            src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/redzoneWithoutbg.png"
+            src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/product-nutrition-facts/redzoneWithoutbg.png"
           />
 
           <OptionsContainer2>

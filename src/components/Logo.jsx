@@ -3,7 +3,7 @@ import { useDeviceWidth } from "../context/DeviceWidthContext";
 import { useNavigate } from "react-router-dom";
 import { useShowSideBar } from "../context/ShowSideBar";
 const IMG_LOGO =
-  "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/redzone.png";
+  "https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/product-nutrition-facts/redzone.png";
 function Logo({ src, width, height }) {
   const { isDesktopDevice } = useDeviceWidth();
   const navigate = useNavigate();

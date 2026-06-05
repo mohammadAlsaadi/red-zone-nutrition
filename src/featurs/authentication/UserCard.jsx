@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useDeviceWidth } from "../../context/DeviceWidthContext";
 import { useShowSideBar } from "../../context/ShowSideBar";
 export const DEFAULT_USER_IMG =
-  "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/default-user.jpg";
+  "https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/product-nutrition-facts/default-user.jpg";
 function UserCard() {
   const { isScrolled } = useScrolled();
   const { showSideBar } = useShowSideBar();

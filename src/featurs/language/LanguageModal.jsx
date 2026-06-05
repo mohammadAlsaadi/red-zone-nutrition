@@ -16,14 +16,14 @@ function LanguageModal({ onCloseModal }) {
       toast.error(
         currLan === "en"
           ? "The language is already English!"
-          : "اللغة بالفعل عربية!"
+          : "اللغة بالفعل عربية!",
       );
     } else {
       i18n.changeLanguage(language);
       toast.success(
         language === "en"
           ? "The language has been changed to English."
-          : "تم تغيير اللغة إلى العربية."
+          : "تم تغيير اللغة إلى العربية.",
       );
       window.localStorage.setItem("language", language);
     }
@@ -48,7 +48,7 @@ function LanguageModal({ onCloseModal }) {
         <img
           width={30}
           height={20}
-          src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/en.png"
+          src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/services-images/en.png"
           alt="english"
         />
       </StyledOption>
@@ -57,7 +57,7 @@ function LanguageModal({ onCloseModal }) {
         <img
           width={30}
           height={20}
-          src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/ar.png"
+          src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/services-images/ar.png"
           alt="english"
         />
       </StyledOption>

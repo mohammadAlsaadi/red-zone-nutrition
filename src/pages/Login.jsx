@@ -40,7 +40,7 @@ function Login() {
       <ImgContainer>
         <StyledImg
           onClick={() => navigate("/home")}
-          src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/redzone.png"
+          src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/product-nutrition-facts/redzone.png"
         />
       </ImgContainer>
       <Heading as="h4">{t("Login to your account")}</Heading>

@@ -81,7 +81,7 @@ function SuccessPayment() {
         <HeaderContainer>
           <StyledHeader>{t("Payment Submitted Successfully")} </StyledHeader>
           <img
-            src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/checkIcon.png"
+            src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/services-images/checkIcon.png"
             alt="checkIcon"
             width={40}
             height={40}

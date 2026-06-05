@@ -9,27 +9,27 @@ import Spinner from "./Spinner";
 
 const TEMP_IMG_SLIDES = [
   {
-    url: "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/cover-images/cover6.jpg",
+    url: "https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/cover-images/cover6.jpg",
     title: "slideImage6",
   },
   {
-    url: "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/cover-images/cover3.jpg",
+    url: "https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/cover-images/cover3.jpg",
     title: "slideImage1",
   },
   {
-    url: "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/cover-images/cover2.jpg",
+    url: "https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/cover-images/cover2.jpg",
     title: "slideImage2",
   },
   {
-    url: "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/cover-images/cover4.jpg",
+    url: "https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/cover-images/cover4.jpg",
     title: "slideImage3",
   },
   {
-    url: "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/cover-images/cover1.jpg",
+    url: "https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/cover-images/cover1.jpg",
     title: "slideImage4",
   },
   {
-    url: "https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/cover-images/cover5.jpg",
+    url: "https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/cover-images/cover5.jpg",
     title: "slideImage5",
   },
 ];
@@ -185,7 +185,9 @@ const StyledImg = styled.div`
   opacity: ${(props) => (props.loaded ? 1 : 0)};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transform: scale(1);
-  transition: opacity 1s ease-out, box-shadow 0.5s ease-out,
+  transition:
+    opacity 1s ease-out,
+    box-shadow 0.5s ease-out,
     transform 0.5s ease-out;
   animation: fadeIn 1s ease-out forwards;
   @keyframes fadeIn {

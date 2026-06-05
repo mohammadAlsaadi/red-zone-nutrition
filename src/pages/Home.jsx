@@ -25,13 +25,13 @@ function Home() {
       <ConsultationContainer>
         <StyledConsultationImg
           isscrolled={isScrolled}
-          imgurl="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/cover-images/saadi.jpg"
+          imgurl="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/cover-images/saadi.jpg"
         ></StyledConsultationImg>
         <StyledDescription>
           <Heading as="h2">{t("NOW YOU CAN COUNT YOUR CALORIES!")}</Heading>
           <Heading as="h6">
             {t(
-              "You will also get recommended products based on your calorie intake."
+              "You will also get recommended products based on your calorie intake.",
             )}
           </Heading>
           <Button

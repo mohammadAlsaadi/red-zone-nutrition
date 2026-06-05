@@ -78,7 +78,7 @@ const CreditCardPayment = () => {
     <Wrapper>
       <Title>{t("Enter Credit Card Information")}</Title>
       <img
-        src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/credit-card.png"
+        src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/services-images/credit-card.png"
         width={250}
         height={150}
         alt="credit"

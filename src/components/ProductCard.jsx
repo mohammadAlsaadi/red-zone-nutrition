@@ -33,17 +33,17 @@ function ProductCard({ product }) {
   return (
     <StyledProductCart inStock={inStock}>
       {/* {isNew && !hasOffer && (
-        <Banner src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/new.svg" />
+        <Banner src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/product-nutrition-facts/new.svg" />
       )}
       {hasOffer && !isNew && (
         <Banner
-          src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/discount1.png"
+          src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/services-images/discount1.png"
           width={40}
           height={40}
         />
       )}
       {hasOffer && isNew && (
-        <Banner src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/new.svg" />
+        <Banner src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/product-nutrition-facts/new.svg" />
       )} */}
 
       <StyledImage src={image} outOfStock={!inStock}>
@@ -58,7 +58,7 @@ function ProductCard({ product }) {
           {t(name)}{" "}
           {isNew && (
             <img
-              src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/services-images/new.svg"
+              src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/services-images/new.svg"
               alt="new"
               width={25}
               height={25}

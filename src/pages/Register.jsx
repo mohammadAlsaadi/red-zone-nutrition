@@ -12,7 +12,7 @@ function Register() {
       <ImgContainer>
         <StyledImg
           onClick={() => navigate("/home")}
-          src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/redzone.png"
+          src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/product-nutrition-facts/redzone.png"
         />
       </ImgContainer>
       <Heading as="h4">{t("Create a new account")}</Heading>

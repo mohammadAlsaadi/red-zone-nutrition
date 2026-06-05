@@ -35,7 +35,7 @@ const AboutUs = () => {
         <Paragraph isar={isArLanguage}>{t("redZoneP4")}</Paragraph>
       </AboutUsContent>
       <ImageContainer>
-        <Image src="https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/product-nutrition-facts/redzoneWithoutbg.png" />
+        <Image src="https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/product-nutrition-facts/redzoneWithoutbg.png" />
       </ImageContainer>
     </AboutUsContainer>
   );
@@ -56,7 +56,7 @@ const AboutUsContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background-image: url("https://spzjbqxdghtmflngjxqg.supabase.co/storage/v1/object/public/cover-images/redZoneCover.jpg");
+  background-image: url("https://iqnqnxcarcgjtxvfmfye.supabase.co/storage/v1/object/public/cover-images/redZoneCover.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
